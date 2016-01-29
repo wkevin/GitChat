@@ -1,17 +1,21 @@
 <h1>Git 聊天室</h1>
 
+<div style="text-align:right">王俊建(10036143)</div>
+
 <!-- MarkdownTOC -->
 
-update time:2016-01-29 10:33
+update time:2016-01-29 17:35
 
 - [起步](#_1)
     - [git在哪里](#git)
     - [Git for Windows 咋用](#gitforwindows)
-- [加速](#_2)
-    - [git是从何而来](#git_1)
-    - [git有哪些好的入门的资料](#git_2)
-    - [怎样才能第一时间得知git上有提交和更新](#git_3)
-- [冲刺](#_3)
+    - [先单机玩玩还是先弄来个别人的git库](#git_1)
+    - [如何在本机管理我的日记](#_2)
+- [加速](#_3)
+    - [git是从何而来](#git_2)
+    - [git有哪些好的入门的资料](#git_3)
+    - [怎样才能第一时间得知git上有提交和更新](#git_4)
+- [冲刺](#_4)
 
 <!-- /MarkdownTOC -->
 
@@ -38,9 +42,46 @@ update time:2016-01-29 10:33
 
 ![](img/git4windows-install.png)
 
-* Git Bash: Linux 风格的命令行，如： /user/bin
-* Git CMD： Windows风格的命令行，即：C:\system
-* Git GUI: 图形化界面
+1. Git Bash: Linux 风格的命令行，如： /user/bin
+2. Git CMD： Windows风格的命令行，即：C:\system
+3. Git GUI: 图形化界面
+4. 其实还有一个： ${安装目录}/bin/sh.exe —— 我喜欢直接用这个
+
+![](img/git4windows-sh.png)
+
+对比一下1和4：
+
+![](img/git4windows-gitbash.png)
+![](img/git4windows-bin.png)
+
+* 1和4的图标不同，4其实是Windows自身的cmd窗口
+* 4由于是Windows自身cmd窗口，所以对中文支持较好
+
+所以建议您直接用4：**直接双击或在cmd中打开 ${安装目录}/bin/sh.exe 来运行MinGW环境和git**
+
+## 先单机玩玩还是先弄来个别人的git库
+
+先单机玩玩吧，理由如下：
+
+git 和 svn 最大的区别：
+
+* svn是集中式管控：所有库（repo）的内容都在server上，离了server连 svn log 都看不了，更别说提交代码了
+* git是分布式管控：每个git项目里面的.git文件夹中都包括了所有的库（repo）内容，可以看log、提交代码、创建分支、打tag……
+    - 两台电脑的git库之间是**同步（sync）**的概念，大家都是平等的
+
+所以说我们还是先练习一下除了sync之外的基础命令吧，会了这些之后，至少你能在本机快乐的写日记了。
+
+>我看到有些小伙伴还在用类似EDiary等日记本软件或PIM软件来写每天的日记，积累了这么多年的日记，一旦win10上运行不了EDiary可咋整？还是赶紧试试用纯文本+Markdown来写日记，用git本地做版本管理吧！
+
+## 如何在本机管理我的日记
+
+```cmd
+10036143@A20939270 MINGW32 /e/demo
+$ cd mydiary/
+
+10036143@A20939270 MINGW32 /e/demo/mydiary
+$
+```
 
 # 加速
 
