@@ -1,34 +1,52 @@
-<h1>Git 聊天室</h1>
+<h1>Git 聊天入门</h1>
+
+**Git 可以很复杂，Git 也可以很简单。**
+
+读一本Git的书和读一篇Git的文章给人的知识含量是不同的，但给人的愉悦感也是迥异的。本文不想写成一本书，至少不想让你有读书的感觉，但也不想像一篇文章似的只给你一个git的知识点。本文只是想从实际使用的角度，让大家都掌握 git 最简单，但又最有用的那些知识点。—— 因为本来这些问题都是来自于我和朋友们的聊天，可以说是我们的闲聊集，哪会有什么高深的理论？
+
+经常见路边扯着喉咙吆喝的自由职业者，也有不少用喇叭录上一段反复播放的，前者有诚意、后者有效率 —— 我很有诚意，但本文就是那个喇叭。
+
+--- 
 
 <!-- MarkdownTOC -->
 
-- [Round 1 -- 起步](#round-1----起步)
-    - [git在哪里](#git在哪里)
-    - [Git for Windows 咋用](#git-for-windows-咋用)
-    - [先单机玩玩还是先弄来个别人的git库](#先单机玩玩还是先弄来个别人的git库)
-    - [如何在本机git我的日记](#如何在本机git我的日记)
-- [Round 2 -- 效率](#round-2----效率)
-    - [每次都要敲add、commit、status，嫌累了](#每次都要敲add、commit、status，嫌累了)
-    - [有些文件不希望被git管理](#有些文件不希望被git管理)
-    - [我要定制 git log，不想一页看不了几条](#我要定制-git-log，不想一页看不了几条)
-    - [使用beyondCompare](#使用beyondcompare)
-    - [修改git commint时的默认编辑器](#修改git-commint时的默认编辑器)
-- [Round 3 -- 协作](#round-3----协作)
-    - [想看看别人的git库了](#想看看别人的git库了)
-    - [公司访问不了外网的github，咋办](#公司访问不了外网的github，咋办)
-- [Round 4 -- 机理](#round-4----机理)
-    - [git是从何而来](#git是从何而来)
-    - [git有哪些好的入门的资料](#git有哪些好的入门的资料)
-    - [重新梳理git的软件](#重新梳理git的软件)
-    - [怎样才能第一时间得知git上有提交和更新](#怎样才能第一时间得知git上有提交和更新)
-    - [导出某个子目录及其log成为一个新的repo](#导出某个子目录及其log成为一个新的repo)
-    - [git和SVN在元数据存储上有什么区别](#git和svn在元数据存储上有什么区别)
-- [Round 5 -- 最佳实践](#round-5----最佳实践)
-    - [用Git进行“不留痕迹的”协同开发](#用git进行“不留痕迹的”协同开发)
-    - [Git多用户间协作还有什么引人入胜之处](#git多用户间协作还有什么引人入胜之处)
+update time:2016-02-02 10:53
+
+- [Round 1 -- 起步](#round1)
+    - [git在哪里](#git)
+    - [Git for Windows 咋用](#gitforwindows)
+    - [先单机玩玩还是先弄来个别人的git库](#git_1)
+    - [如何在本机git我的日记](#git_2)
+    - [每次都要敲add、commit、status，嫌累了](#addcommitstatus)
+    - [有些文件不希望被git管理](#git_3)
+- [Round 2 -- 美化](#round2)
+    - [我要筛选 git log](#gitlog)
+    - [觉得 git log 中的时间看着困难，精简下呗](#gitlog_1)
+    - [我要定制 git log，不想一页看不了几条](#gitlog_2)
+    - [oneline太简陋了，我想一行里面看到hash、author、date、message](#onelinehashauthordatemessage)
+    - [git log 已经很好了，但好像还是缺点啥](#gitlog_3)
+    - [git log --fuller 中的 author 和 commit 啥关系](#gitlogfullerauthorcommit)
+- [Round 3 -- 效率](#round3)
+    - [使用beyondCompare](#beyondcompare)
+    - [我用ubuntu，我要修改git commint时的默认编辑器](#ubuntugitcommint)
+- [Round 4 -- 协作](#round4)
+    - [想看看别人的git库了](#git_4)
+    - [公司访问不了外网的github，咋办](#github)
+    - [如何与别人合作](#_1)
+    - [怎样才能第一时间得知git上有提交和更新](#git_5)
+- [Round 5 -- 机理](#round5)
+    - [git是从何而来](#git_6)
+    - [git有哪些好的入门的资料](#git_7)
+    - [重新梳理git的软件](#git_8)
+    - [导出某个子目录及其log成为一个新的repo](#logrepo)
+    - [git和SVN在元数据存储上有什么区别](#gitsvn)
+- [Round 6 -- 最佳实践](#round6)
+    - [用Git进行“不留痕迹的”协同开发](#git_9)
+    - [Git多用户间协作还有什么引人入胜之处](#git_10)
 
 <!-- /MarkdownTOC -->
 
+---
 
 # Round 1 -- 起步
 
@@ -167,7 +185,7 @@ MBP:mydiary wangkevin$ git status -sb
 ## Initial commit on master
 A  diary.md
 ```
-* `git commit`: 被暂存的文件还不算入库（repo）保存了，还缺一个提交（commit） —— 暂存就像回收站（删除前给你一个check的机会，多次操作放入回收站的文件可以一次清空），多次操作放入暂存，最后考虑成熟了，check OK了，再commit提交
+* `git commit`: 将文件从暂存态提交入库 —— 暂存就像回收站（删除前给你一个check的机会，多次操作放入回收站的文件可以一次清空），多次操作放入暂存，最后考虑成熟了，check OK了，再commit提交
 ```cmd
 MBP:mydiary wangkevin$ git commit
 [master (root-commit) 14dd781] create mydiary
@@ -203,6 +221,21 @@ Date:   Sun Jan 31 11:39:55 2016 +0800
 
     create mydiary
 ```
+* git 和 svn 不同，没有一个数字递增的节点号，而是一串40Bytes的哈希字符，指定一个提交只需要给出这个字符串即可，当然不能让你每次都把40个字符全输入一遍，只需要输入够区分提交的即可（一般是前7位），如果咱的库规模还很小，前4位也行哦（下文中的“6784”）
+```cmd
+MBP:mydiary wangkevin$ git lg
+ b81373d | 2016-01-31 15:49:08 +0800 | 2016-01-31 15:49:08 +0800 |  wkevin  add .gitignore file
+ 67840e1 | 2016-01-31 12:20:26 +0800 | 2016-01-31 12:20:26 +0800 |  wkevin  2.2日记
+ bf36ab9 | 2016-01-31 12:19:33 +0800 | 2016-01-31 12:19:33 +0800 |  wkevin  2.1的日记
+ 14dd781 | 2016-01-31 11:39:55 +0800 | 2016-01-31 11:39:55 +0800 |  wkevin  create mydiary
+MBP:mydiary wangkevin$ git log 6784
+commit 67840e1813af1084abd5d07d2e2a2e185c679f09
+Author: wkevin <wkevin27@gmail.com>
+Date:   Sun Jan 31 12:20:26 2016 +0800
+
+    2.2日记
+
+```
 * 每天可以随时写日记、随时`git add`、适时`git commit`，经过一段时间，你的diary库就越来越让你爱不释手了
 ```cmd
 MBP:mydiary wangkevin$ git log
@@ -235,26 +268,22 @@ wkevin (3):
 
 如果只是做个**日记本**，自己写、自己看、绝不给别人看、绝不上网……这些命令就差不多够了！
 
-哇！好累啊，可以休息一下了，就这些命令，玩几天，把日记写上一个礼拜，然后我们再继续。如果你不打算继续了，也没关系，这些命令就写日记够用了。
+哇！好累啊，可以休息一下了，就这些命令，玩几天，把日记写上一个礼拜，然后我们再继续。如果你不打算继续了，也没关系，这些命令就写日记--够用了！
 
-# Round 2 -- 效率
-
-![](img/boy-buffaloes-india-sw.jpg)
 
 ## 每次都要敲add、commit、status，嫌累了
 
-用git写了一周日记了，你肯定有了新需求，能回来接着读说明你是个积极追求上进的好同学，欢迎回来！
+用git写了一些日记，你肯定有了新需求，能回来接着读说明你是个积极追求上进的好同学，我们继续聊！
 
-有这样的问题说明你已经是git的中度用户了，并且听了我的建议：“使用命令行，而不是GUI” —— 我一点都不奇怪，绝大部分程序猿一旦用上git都会上瘾的，会频繁的`git commit`，然后在`git log`中寻觅自己的成就感，否则吃不好饭、睡不好觉……呵呵
+有这样的问题说明你已经是git的初级用户了，并且听了我的建议：“使用命令行，远离GUI” —— 我一点都不奇怪，绝大部分程序猿一旦用上git都会上瘾的，会频繁的`git commit`，然后在`git log`中寻觅自己的成就感，否则吃不好饭、睡不好觉……呵呵
 
-让我们整理行装，继续前行。
+言归正传。
 
-别名（alias）是linux系统的基本概念，在git中也水到渠成：
+别名（alias）是linux系统的基本概念，在git中也如鱼得水：
 
 * 这样设置别名
 ```cmd
 MBP:mydiary wangkevin$ git config --global alias.st  "status"
-git config --global alias.ci  "commit"
 ```
 * 然后就可以这样操作了
 ```cmd
@@ -275,16 +304,18 @@ MBP:mydiary wangkevin$ git st
 ## master
  M diary.md
 ```
-
-把让你烦的命令都用2个字来别名一下吧。
+* 把让你烦的命令都用2个字来别名一下吧。比如：
+```cmd
+MBP:mydiary wangkevin$ git config --global alias.ci  "commit"
+```
 
 ## 有些文件不希望被git管理
 
-markdown写的 diary.md ，会在本地生成 diary.html 检查和欣赏一下，但其实是不需要 commit 的，如何在 `git commit` 的时候忽略它们。
+问：markdown写的 diary.md ，会在本地生成 diary.html 检查和欣赏一下，但其实是不需要 commit 的，如何在 `git commit` 的时候忽略它们。
 
-答：`git commit`的时候已经不能忽略了，要忽略需要在`git add`的时候，那就是编辑**.gitignore文件**
+答：`git commit`的时候已经不能忽略了，要忽略需要在`git add`的时候，通过编辑**.gitignore文件**让add命令忽略它们。
 
-
+* diary.html 就是我们不想提交的过程文件
 ```cmd
 MBP:mydiary wangkevin$ git st
 On branch master
@@ -301,9 +332,7 @@ Untracked files:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
-
-可以看到不想提交的过程文件： diary.html
-
+* 手工生成一个**.gitignore**的文件，写入含有通配符的文件名（即：后缀名为html的文件）
 ```cmd
 MBP:mydiary wangkevin$ cat >.gitignore
 *.html
@@ -311,9 +340,7 @@ MBP:mydiary wangkevin$ cat >.gitignore
 MBP:mydiary wangkevin$ cat .gitignore 
 *.html
 ```
-
-手工生成一个**.gitignore**的文件，写入含有通配符的文件名（即：后缀名为html的文件）
-
+* diary.html 已经被自动忽略。
 ```cmd
 MBP:mydiary wangkevin$ git st
 On branch master
@@ -331,16 +358,198 @@ Untracked files:
 no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
-diary.html 已经被自动忽略。
+
+# Round 2 -- 美化
+
+![](img/harlequin-shrimp-indonesia-sw.jpg)
+
+## 我要筛选 git log
+
+* 可以只看某个子目录或某个文件的log
+* 可以从某个提交开始看
+```cmd
+MBP:mydiary wangkevin$ git log 6784
+commit 67840e1813af1084abd5d07d2e2a2e185c679f09
+Author: wkevin <wkevin27@gmail.com>
+Date:   Sun Jan 31 12:20:26 2016 +0800
+
+    2.2日记
+```
+* 可以只看某个人的log
+```cmd
+MBP:mydiary wangkevin$ git log --author=wkevin
+commit 67840e1813af1084abd5d07d2e2a2e185c679f09
+Author: wkevin <wkevin27@gmail.com>
+Date:   Sun Jan 31 12:20:26 2016 +0800
+
+    2.2日记
+……
+```
+* --author 支持匹配
+```cmd
+MBP:mydiary wangkevin$ git log --author=wke
+commit 67840e1813af1084abd5d07d2e2a2e185c679f09
+Author: wkevin <wkevin27@gmail.com>
+Date:   Sun Jan 31 12:20:26 2016 +0800
+
+    2.2日记
+……
+```
+* --author 的一个错误匹配
+```cmd
+MBP:mydiary wangkevin$ git log --author=wken
+MBP:mydiary wangkevin$ 
+```
+* --author 上使用通配符
+```cmd
+MBP:mydiary wangkevin$ git log --author=wke.*n
+commit 67840e1813af1084abd5d07d2e2a2e185c679f09
+Author: wkevin <wkevin27@gmail.com>
+Date:   Sun Jan 31 12:20:26 2016 +0800
+
+    2.2日记
+```
+
+
+## 觉得 git log 中的时间看着困难，精简下呗
+
+* 使用 --date=short
+```cmd
+MBP:mydiary wangkevin$ git log --pretty=medium --date=short
+commit 67840e1813af1084abd5d07d2e2a2e185c679f09
+Author: wkevin <wkevin27@gmail.com>
+Date:   2016-01-31
+
+    2.2日记
+
+commit bf36ab9b0d489a2eda911be9e01bddc395fc29e0
+Author: wkevin <wkevin27@gmail.com>
+Date:   2016-01-31
+
+    2.1的日记
+
+commit 14dd7815fcf56c961e11c52e96e2fc3fbd7d0543
+Author: wkevin <wkevin27@gmail.com>
+Date:   2016-01-31
+
+    create mydiary
+```
 
 ## 我要定制 git log，不想一页看不了几条
 
-默认的`git log`一条提交log至少需要6行来显示，一页顶多看个5、6条，很不方便。如果达到10行的话，一页也就看个2、3条。像linux这样的项目，经常遇到长篇大论的log，内容倒是详实了，但很难做一览表式的查询。
+默认的`git log`一条commit log至少需要6行来显示，一页顶多看个5、6条，很不方便。如果单条达到10行的话，一页也就看个2、3条。像linux这样的项目，经常遇到长篇大论的log，内容倒是详实了，但很难做一览表式的查询。
 
-* 可以只看某个子目录或某个文件的log
+下面我们祭出 git log 的必杀技： --pretty 或 --format
+
+`git log --pretty=xxx` 等价于 `git log --format=xxx`, xxx 可以是这些：
+
+* oneline：只显示一行
+* short
+* medium
+* full
+* fuller：会看到有两个角色：author（作者） 和 commit（提交人）
+* email
+* raw
+* format:'......'
+
+其中`oneline`能够帮你精简log
+
 ```cmd
+MBP:mydiary wangkevin$ git log --pretty=oneline
+67840e1813af1084abd5d07d2e2a2e185c679f09 2.2日记
+bf36ab9b0d489a2eda911be9e01bddc395fc29e0 2.1的日记
+14dd7815fcf56c961e11c52e96e2fc3fbd7d0543 create mydiary
 ```
 
+其实 `--oneline` 也是一个单独的参数
+
+```cmd
+MBP:mydiary wangkevin$ git log --oneline
+67840e1 2.2日记
+bf36ab9 2.1的日记
+14dd781 create mydiary
+```
+
+## oneline太简陋了，我想一行里面看到hash、author、date、message
+
+那需要用上 --pretty=formate:"......"参数了
+
+format 参数很多，没必要逐一掌握，除了你是强迫症患者 -- 凑巧本文不使用强迫症的视角，哈哈
+
+我常用的有：
+
+* %h：commit hash
+* %ai: author date
+* %an: author name
+* %ci: commit date
+* %cn: commit name
+* %s: log message
+
+示例：
+
+* 只看日期、作者、log（专业术语是：subject）
+```cmd
+MBP:mydiary wangkevin$ git log --pretty=format:'%ad %an %s'
+Sun Jan 31 15:49:08 2016 +0800 wkevin add .gitignore file
+Sun Jan 31 12:20:26 2016 +0800 wkevin 2.2日记
+Sun Jan 31 12:19:33 2016 +0800 wkevin 2.1的日记
+Sun Jan 31 11:39:55 2016 +0800 wkevin create mydiary
+```
+* 日期太碍眼，精简一下
+```cmd
+MBP:mydiary wangkevin$ git log --pretty=format:'%ad %an %s' --date=short
+2016-01-31 wkevin add .gitignore file
+2016-01-31 wkevin 2.2日记
+2016-01-31 wkevin 2.1的日记
+2016-01-31 wkevin create mydiary
+```
+* 不好了，但太精简了，咋只有date，没有time
+```cmd
+MBP:mydiary wangkevin$ git log --pretty=format:'%ad %an %s' --date=local
+Sun Jan 31 15:49:08 2016 wkevin add .gitignore file
+Sun Jan 31 12:20:26 2016 wkevin 2.2日记
+Sun Jan 31 12:19:33 2016 wkevin 2.1的日记
+Sun Jan 31 11:39:55 2016 wkevin create mydiary
+```
+* commit hash 最好也能加上
+```cmd
+MBP:mydiary wangkevin$ git log --pretty=format:'%h %ad %an %s' --date=local
+b81373d Sun Jan 31 15:49:08 2016 wkevin add .gitignore file
+67840e1 Sun Jan 31 12:20:26 2016 wkevin 2.2日记
+bf36ab9 Sun Jan 31 12:19:33 2016 wkevin 2.1的日记
+14dd781 Sun Jan 31 11:39:55 2016 wkevin create mydiary
+```
+
+最后，你还需这样：
+```cmd
+$ git config --global --replace-all alias.lg   "log --pretty=format:'%h %ad %an %s' --date=local"
+```
+
+## git log 已经很好了，但好像还是缺点啥
+
+那就是颜色了，加上颜色让字段分的更加清晰
+
+```cmd
+git config --global --replace-all alias.lg  "log --pretty=format:'%C(auto) %h | %ai | %Cred %an %Cgreen %s'"
+```
+
+![](img/git-lg-with-color.png)
+
+为什么改用`%ai`，不用`%ad`了？
+`%ad`会受到`--date=xxx`的影响，`%ai`不会。所以限制了`%ad`的使用，如果常从github上拿代码，会看到世界各地的提交人和提交时间，我还是希望分一下时区的，所以用了`%ai`。
+
+比如我们来查看linux的源码：
+
+![](img/git-lg-by-linux.png)
+
+## git log --fuller 中的 author 和 commit 啥关系
+
+必须要说了，git的作者（author）和提交人（commit）可以不是同一个人，或者说git希望提交人（执行`git commit`的人）能够把author写明白，而不是据为己有
+
+
+# Round 3 -- 效率
+
+![](img/boy-buffaloes-india-sw.jpg)
 
 ## 使用beyondCompare
 
@@ -357,11 +566,11 @@ git4windows
     - git mergetool
 
 
-## 修改git commint时的默认编辑器
+## 我用ubuntu，我要修改git commint时的默认编辑器
 
 `update-alternatives --config editor`
 
-# Round 3 -- 协作
+# Round 4 -- 协作
 
 ![](img/children-dam-bali-sw.jpg)
 
@@ -378,7 +587,41 @@ git4windows
 MBP:mydiary wangkevin$ git config --global http.proxy http://proxysz.zte.com.cn:80
 ```
 
-# Round 4 -- 机理
+## 如何与别人合作
+
+## 怎样才能第一时间得知git上有提交和更新
+
+和团队成员保持紧密合作在敏捷中非常重要，SVN的时候有一个非常优秀的软件 CommitMonitor，能够监控SVNServer的更新，图标是一双大眼睛，悄悄的躲在任务栏，发现更新大眼睛变成红色转啊转的。
+
+git和svn有所不同，svn 有 server，监控器只需要监控server即可，git 没有server，只有hub，或者说每个人电脑里的git都是server，大家通过hub进行同步。监控server和监控hub的思路是有些差别的，各位看官可细细品味。
+
+监控 git hub 的软件有：
+
+- windows 平台
+    - SourceLog：https://github.com/tomhunter-gh/SourceLog
+    - SCM Notifier： https://github.com/pocorall/scm-notifier
+- linux 平台
+    - GitMon：https://github.com/spajus/gitmon
+    - git-dude： https://github.com/sickill/git-dude
+    - git-notifier： http://www.icir.org/robin/git-notifier
+- OS.X 平台
+    + Gitifier：https://github.com/nschum/Gitifier
+
+但经过我的试用，功能还都不完善，希望它们早日成熟、好用。
+
+目前可以使用 github/gitlab 的 RSS Feed 功能：
+
+针对个人的RSS Feed：
+![](img/gitlab-rss-feed-user.png)
+
+针对团队的RSS Feed：
+![](img/gitlab-rss-feed-group.png)
+
+使用 RSS Reader（图中使用的是Snafer）订阅的效果：
+![](img/gitlab-rss-reader.png)
+
+
+# Round 5 -- 机理
 
 ![](img/black-trevally-sardines-sw.jpg)
 
@@ -417,38 +660,6 @@ MBP:mydiary wangkevin$ git config --global http.proxy http://proxysz.zte.com.cn:
         * 使用git请把重心放在：使用命令行
         * 只安装 **Git for Windows** 就行了
 
-## 怎样才能第一时间得知git上有提交和更新
-
-和团队成员保持紧密合作在敏捷中非常重要，SVN的时候有一个非常优秀的软件 CommitMonitor，能够监控SVNServer的更新，图标是一双大眼睛，悄悄的躲在任务栏，发现更新大眼睛变成红色转啊转的。
-
-git和svn有所不同，svn 有 server，监控器只需要监控server即可，git 没有server，只有hub，或者说每个人电脑里的git都是server，大家通过hub进行同步。监控server和监控hub的思路是有些差别的，各位看官可细细品味。
-
-监控 git hub 的软件有：
-
-- windows 平台
-    - SourceLog：https://github.com/tomhunter-gh/SourceLog
-    - SCM Notifier： https://github.com/pocorall/scm-notifier
-- linux 平台
-    - GitMon：https://github.com/spajus/gitmon
-    - git-dude： https://github.com/sickill/git-dude
-    - git-notifier： http://www.icir.org/robin/git-notifier
-- OS.X 平台
-    + Gitifier：https://github.com/nschum/Gitifier
-
-但经过我的试用，功能还都不完善，希望它们早日成熟、好用。
-
-目前可以使用 github/gitlab 的 RSS Feed 功能：
-
-针对个人的RSS Feed：
-![](img/gitlab-rss-feed-user.png)
-
-针对团队的RSS Feed：
-![](img/gitlab-rss-feed-group.png)
-
-使用 RSS Reader（图中使用的是Snafer）订阅的效果：
-![](img/gitlab-rss-reader.png)
-
-
 ## 导出某个子目录及其log成为一个新的repo
 
 ```
@@ -483,7 +694,7 @@ svn是基于增量存储的，两次提交对于repo来说只保存变化量，g
 * git log：ci的顺序是：B的ci、A的ci、B的merge后ci —— **B的ci会插入到A的ci前面**
 
 
-# Round 5 -- 最佳实践
+# Round 6 -- 最佳实践
 
 ![](img/gray-owl-mouse-sw.jpg)
 
