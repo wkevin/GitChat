@@ -10,37 +10,40 @@
 
 <!-- MarkdownTOC -->
 
-update time:2016-02-02 10:53
+update time:2016-02-04 00:48
 
-- [Round 1 -- 起步](#round1)
+- [Round 1](#round1)
     - [git在哪里](#git)
     - [Git for Windows 咋用](#gitforwindows)
     - [先单机玩玩还是先弄来个别人的git库](#git_1)
     - [如何在本机git我的日记](#git_2)
     - [每次都要敲add、commit、status，嫌累了](#addcommitstatus)
     - [有些文件不希望被git管理](#git_3)
-- [Round 2 -- 美化](#round2)
+- [Round 2](#round2)
     - [我要筛选 git log](#gitlog)
     - [觉得 git log 中的时间看着困难，精简下呗](#gitlog_1)
     - [我要定制 git log，不想一页看不了几条](#gitlog_2)
     - [oneline太简陋了，我想一行里面看到hash、author、date、message](#onelinehashauthordatemessage)
     - [git log 已经很好了，但好像还是缺点啥](#gitlog_3)
     - [git log --fuller 中的 author 和 commit 啥关系](#gitlogfullerauthorcommit)
-- [Round 3 -- 效率](#round3)
-    - [使用beyondCompare](#beyondcompare)
+- [Round 3](#round3)
+    - [我要能像TortoiseSVN那样左右两栏对比看diff](#tortoisesvndiff)
     - [我用ubuntu，我要修改git commint时的默认编辑器](#ubuntugitcommint)
-- [Round 4 -- 协作](#round4)
+    - [我想做个分支（branch），怎么做](#branch)
+    - [分支要合并到主干或其他分支，怎么merge](#merge)
+- [Round 4](#round4)
     - [想看看别人的git库了](#git_4)
     - [公司访问不了外网的github，咋办](#github)
     - [如何与别人合作](#_1)
     - [怎样才能第一时间得知git上有提交和更新](#git_5)
-- [Round 5 -- 机理](#round5)
+    - [github的工作流](#github_1)
+- [Round 5](#round5)
     - [git是从何而来](#git_6)
     - [git有哪些好的入门的资料](#git_7)
     - [重新梳理git的软件](#git_8)
     - [导出某个子目录及其log成为一个新的repo](#logrepo)
     - [git和SVN在元数据存储上有什么区别](#gitsvn)
-- [Round 6 -- 最佳实践](#round6)
+- [Round 6](#round6)
     - [用Git进行“不留痕迹的”协同开发](#git_9)
     - [Git多用户间协作还有什么引人入胜之处](#git_10)
 
@@ -48,9 +51,10 @@ update time:2016-02-02 10:53
 
 ---
 
-# Round 1 -- 起步
+# Round 1
 
 ![](img/run-buffalo.jpg)
+
 
 ## git在哪里
 
@@ -110,14 +114,14 @@ MBP:~ wangkevin$ git config --global user.emal wkevin27@gmail.com
 ```cmd
 MBP:demo wangkevin$ mkdir mydiary
 MBP:demo wangkevin$ cd mydiary
-MBP:mydiary wangkevin$ cat >diary.md
+$ cat >diary.md
 # Diary
 
 ## 2016.1.31
 回家过年^C
-MBP:mydiary wangkevin$ ls
+$ ls
 diary.md
-MBP:mydiary wangkevin$ cat diary.md 
+$ cat diary.md 
 # Diary
 
 ## 2016.1.31
@@ -125,17 +129,17 @@ MBP:mydiary wangkevin$ cat diary.md
 ```
 * `git init`:在文件夹中创建git库
 ```cmd
-MBP:mydiary wangkevin$ git init
+$ git init
 Initialized empty Git repository in /Users/wangkevin/workspace/kproject/demo/mydiary/.git/
 ```
 * 和SVN有.svn类似，git也有.git
 ```cmd
-MBP:mydiary wangkevin$ ls -a
+$ ls -a
 .       ..      .git        diary.md
-MBP:mydiary wangkevin$ ls .git
+$ ls .git
 HEAD        config      hooks       objects
 branches    description info        refs
-MBP:mydiary wangkevin$ cat .git/config
+$ cat .git/config
 [core]
     repositoryformatversion = 0
     filemode = true
@@ -146,7 +150,7 @@ MBP:mydiary wangkevin$ cat .git/config
 ```
 * `git status`：显示一个未被管控的文件(Untracked files) diary.md
 ```cmd
-MBP:mydiary wangkevin$ git status
+$ git status
 On branch master
 
 Initial commit
@@ -160,11 +164,11 @@ nothing added to commit but untracked files present (use "git add" to track)
 ```
 * `git add filename`：将文件纳入管理，filename 支持通配符，最常用的就是点(.)表示所有文件
 ```cmd
-MBP:mydiary wangkevin$ git add diary.md 
+$ git add diary.md 
 ```
 * `git status` 显示此文件待提交（to be committed），此时文件已经开始被git管理了，文件进入一种暂存状态（stage），如果想反悔可以用`git rm --cached`使其进入unstage状态
 ```cmd
-MBP:mydiary wangkevin$ git status
+$ git status
 On branch master
 
 Initial commit
@@ -176,18 +180,18 @@ Changes to be committed:
 ```
 * `git status -s` -short 短模式
 ```cmd
-MBP:mydiary wangkevin$ git status -s
+$ git status -s
 A  diary.md
 ```
 * `git status -b` -branch 显示分支，`git status`不带参数默认就是-b的，所以常和短模式合作，合并为一个sb，哈哈
 ```cmd
-MBP:mydiary wangkevin$ git status -sb
+$ git status -sb
 ## Initial commit on master
 A  diary.md
 ```
 * `git commit`: 将文件从暂存态提交入库 —— 暂存就像回收站（删除前给你一个check的机会，多次操作放入回收站的文件可以一次清空），多次操作放入暂存，最后考虑成熟了，check OK了，再commit提交
 ```cmd
-MBP:mydiary wangkevin$ git commit
+$ git commit
 [master (root-commit) 14dd781] create mydiary
  1 file changed, 4 insertions(+)
  create mode 100644 diary.md
@@ -207,14 +211,14 @@ MBP:mydiary wangkevin$ git commit
 ```
 * 再查`git status`，都已经提交干净了
 ```cmd
-MBP:mydiary wangkevin$ git status
+$ git status
 On branch master
 nothing to commit, working directory clean
-MBP:mydiary wangkevin$ git status -s
+$ git status -s
 ```
 * 现在可以看log了
 ```cmd
-MBP:mydiary wangkevin$ git log
+$ git log
 commit 14dd7815fcf56c961e11c52e96e2fc3fbd7d0543
 Author: wkevin <wkevin27@gmail.com>
 Date:   Sun Jan 31 11:39:55 2016 +0800
@@ -223,12 +227,12 @@ Date:   Sun Jan 31 11:39:55 2016 +0800
 ```
 * git 和 svn 不同，没有一个数字递增的节点号，而是一串40Bytes的哈希字符，指定一个提交只需要给出这个字符串即可，当然不能让你每次都把40个字符全输入一遍，只需要输入够区分提交的即可（一般是前7位），如果咱的库规模还很小，前4位也行哦（下文中的“6784”）
 ```cmd
-MBP:mydiary wangkevin$ git lg
+$ git lg
  b81373d | 2016-01-31 15:49:08 +0800 | 2016-01-31 15:49:08 +0800 |  wkevin  add .gitignore file
  67840e1 | 2016-01-31 12:20:26 +0800 | 2016-01-31 12:20:26 +0800 |  wkevin  2.2日记
  bf36ab9 | 2016-01-31 12:19:33 +0800 | 2016-01-31 12:19:33 +0800 |  wkevin  2.1的日记
  14dd781 | 2016-01-31 11:39:55 +0800 | 2016-01-31 11:39:55 +0800 |  wkevin  create mydiary
-MBP:mydiary wangkevin$ git log 6784
+$ git log 6784
 commit 67840e1813af1084abd5d07d2e2a2e185c679f09
 Author: wkevin <wkevin27@gmail.com>
 Date:   Sun Jan 31 12:20:26 2016 +0800
@@ -238,7 +242,7 @@ Date:   Sun Jan 31 12:20:26 2016 +0800
 ```
 * 每天可以随时写日记、随时`git add`、适时`git commit`，经过一段时间，你的diary库就越来越让你爱不释手了
 ```cmd
-MBP:mydiary wangkevin$ git log
+$ git log
 commit 67840e1813af1084abd5d07d2e2a2e185c679f09
 Author: wkevin <wkevin27@gmail.com>
 Date:   Sun Jan 31 12:20:26 2016 +0800
@@ -259,7 +263,7 @@ Date:   Sun Jan 31 11:39:55 2016 +0800
 ```
 * 觉得`git log`默认显示的内容不爽？想看更详细的、或更简略的？——别急，统统没问题，各种参数全方位满足你的各种需求，但这里先不说，后文慢慢来，先不要用这些复杂的参数来打击自己吧，不过来个一步简洁到位的的命令：`git shortlog` —— 什么？太简洁了？哈哈，别急，从简洁到纸到复杂到翔全都有，慢慢来。
 ```cmd
-MBP:mydiary wangkevin$ git shortlog
+$ git shortlog
 wkevin (3):
       create mydiary
       2.1的日记
@@ -283,11 +287,11 @@ wkevin (3):
 
 * 这样设置别名
 ```cmd
-MBP:mydiary wangkevin$ git config --global alias.st  "status"
+$ git config --global alias.st  "status"
 ```
 * 然后就可以这样操作了
 ```cmd
-MBP:mydiary wangkevin$ git st
+$ git st
 On branch master
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -299,14 +303,14 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ```
 * 换个别名玩玩
 ```cmd
-MBP:mydiary wangkevin$ git config --global alias.st  "status -sb"
-MBP:mydiary wangkevin$ git st
+$ git config --global alias.st  "status -sb"
+$ git st
 ## master
  M diary.md
 ```
 * 把让你烦的命令都用2个字来别名一下吧。比如：
 ```cmd
-MBP:mydiary wangkevin$ git config --global alias.ci  "commit"
+$ git config --global alias.ci  "commit"
 ```
 
 ## 有些文件不希望被git管理
@@ -317,7 +321,7 @@ MBP:mydiary wangkevin$ git config --global alias.ci  "commit"
 
 * diary.html 就是我们不想提交的过程文件
 ```cmd
-MBP:mydiary wangkevin$ git st
+$ git st
 On branch master
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -334,15 +338,15 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ```
 * 手工生成一个**.gitignore**的文件，写入含有通配符的文件名（即：后缀名为html的文件）
 ```cmd
-MBP:mydiary wangkevin$ cat >.gitignore
+$ cat >.gitignore
 *.html
 ^C
-MBP:mydiary wangkevin$ cat .gitignore 
+$ cat .gitignore 
 *.html
 ```
 * diary.html 已经被自动忽略。
 ```cmd
-MBP:mydiary wangkevin$ git st
+$ git st
 On branch master
 Changes not staged for commit:
   (use "git add <file>..." to update what will be committed)
@@ -359,16 +363,17 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
 
-# Round 2 -- 美化
+# Round 2
 
-![](img/harlequin-shrimp-indonesia-sw.jpg)
+![](img/gray-owl-mouse-sw.jpg)
 
 ## 我要筛选 git log
+
 
 * 可以只看某个子目录或某个文件的log
 * 可以从某个提交开始看
 ```cmd
-MBP:mydiary wangkevin$ git log 6784
+$ git log 6784
 commit 67840e1813af1084abd5d07d2e2a2e185c679f09
 Author: wkevin <wkevin27@gmail.com>
 Date:   Sun Jan 31 12:20:26 2016 +0800
@@ -377,7 +382,7 @@ Date:   Sun Jan 31 12:20:26 2016 +0800
 ```
 * 可以只看某个人的log
 ```cmd
-MBP:mydiary wangkevin$ git log --author=wkevin
+$ git log --author=wkevin
 commit 67840e1813af1084abd5d07d2e2a2e185c679f09
 Author: wkevin <wkevin27@gmail.com>
 Date:   Sun Jan 31 12:20:26 2016 +0800
@@ -387,7 +392,7 @@ Date:   Sun Jan 31 12:20:26 2016 +0800
 ```
 * --author 支持匹配
 ```cmd
-MBP:mydiary wangkevin$ git log --author=wke
+$ git log --author=wke
 commit 67840e1813af1084abd5d07d2e2a2e185c679f09
 Author: wkevin <wkevin27@gmail.com>
 Date:   Sun Jan 31 12:20:26 2016 +0800
@@ -397,12 +402,12 @@ Date:   Sun Jan 31 12:20:26 2016 +0800
 ```
 * --author 的一个错误匹配
 ```cmd
-MBP:mydiary wangkevin$ git log --author=wken
-MBP:mydiary wangkevin$ 
+$ git log --author=wken
+$ 
 ```
 * --author 上使用通配符
 ```cmd
-MBP:mydiary wangkevin$ git log --author=wke.*n
+$ git log --author=wke.*n
 commit 67840e1813af1084abd5d07d2e2a2e185c679f09
 Author: wkevin <wkevin27@gmail.com>
 Date:   Sun Jan 31 12:20:26 2016 +0800
@@ -415,7 +420,7 @@ Date:   Sun Jan 31 12:20:26 2016 +0800
 
 * 使用 --date=short
 ```cmd
-MBP:mydiary wangkevin$ git log --pretty=medium --date=short
+$ git log --pretty=medium --date=short
 commit 67840e1813af1084abd5d07d2e2a2e185c679f09
 Author: wkevin <wkevin27@gmail.com>
 Date:   2016-01-31
@@ -455,7 +460,7 @@ Date:   2016-01-31
 其中`oneline`能够帮你精简log
 
 ```cmd
-MBP:mydiary wangkevin$ git log --pretty=oneline
+$ git log --pretty=oneline
 67840e1813af1084abd5d07d2e2a2e185c679f09 2.2日记
 bf36ab9b0d489a2eda911be9e01bddc395fc29e0 2.1的日记
 14dd7815fcf56c961e11c52e96e2fc3fbd7d0543 create mydiary
@@ -464,7 +469,7 @@ bf36ab9b0d489a2eda911be9e01bddc395fc29e0 2.1的日记
 其实 `--oneline` 也是一个单独的参数
 
 ```cmd
-MBP:mydiary wangkevin$ git log --oneline
+$ git log --oneline
 67840e1 2.2日记
 bf36ab9 2.1的日记
 14dd781 create mydiary
@@ -489,7 +494,7 @@ format 参数很多，没必要逐一掌握，除了你是强迫症患者 -- 凑
 
 * 只看日期、作者、log（专业术语是：subject）
 ```cmd
-MBP:mydiary wangkevin$ git log --pretty=format:'%ad %an %s'
+$ git log --pretty=format:'%ad %an %s'
 Sun Jan 31 15:49:08 2016 +0800 wkevin add .gitignore file
 Sun Jan 31 12:20:26 2016 +0800 wkevin 2.2日记
 Sun Jan 31 12:19:33 2016 +0800 wkevin 2.1的日记
@@ -497,7 +502,7 @@ Sun Jan 31 11:39:55 2016 +0800 wkevin create mydiary
 ```
 * 日期太碍眼，精简一下
 ```cmd
-MBP:mydiary wangkevin$ git log --pretty=format:'%ad %an %s' --date=short
+$ git log --pretty=format:'%ad %an %s' --date=short
 2016-01-31 wkevin add .gitignore file
 2016-01-31 wkevin 2.2日记
 2016-01-31 wkevin 2.1的日记
@@ -505,7 +510,7 @@ MBP:mydiary wangkevin$ git log --pretty=format:'%ad %an %s' --date=short
 ```
 * 不好了，但太精简了，咋只有date，没有time
 ```cmd
-MBP:mydiary wangkevin$ git log --pretty=format:'%ad %an %s' --date=local
+$ git log --pretty=format:'%ad %an %s' --date=local
 Sun Jan 31 15:49:08 2016 wkevin add .gitignore file
 Sun Jan 31 12:20:26 2016 wkevin 2.2日记
 Sun Jan 31 12:19:33 2016 wkevin 2.1的日记
@@ -513,7 +518,7 @@ Sun Jan 31 11:39:55 2016 wkevin create mydiary
 ```
 * commit hash 最好也能加上
 ```cmd
-MBP:mydiary wangkevin$ git log --pretty=format:'%h %ad %an %s' --date=local
+$ git log --pretty=format:'%h %ad %an %s' --date=local
 b81373d Sun Jan 31 15:49:08 2016 wkevin add .gitignore file
 67840e1 Sun Jan 31 12:20:26 2016 wkevin 2.2日记
 bf36ab9 Sun Jan 31 12:19:33 2016 wkevin 2.1的日记
@@ -544,33 +549,131 @@ git config --global --replace-all alias.lg  "log --pretty=format:'%C(auto) %h | 
 
 ## git log --fuller 中的 author 和 commit 啥关系
 
-必须要说了，git的作者（author）和提交人（commit）可以不是同一个人，或者说git希望提交人（执行`git commit`的人）能够把author写明白，而不是据为己有
+必须要说了，git的设计者的设计思路是：希望提交人（执行`git commit`的人）能够把author写明白，而不是据为己有。所以git的作者（author）和提交人（commit）可以不是同一个人。
+
+```cmd
+$ git commit --author=wkevin --date='2016-01-30 22:04:04 +0800'
+```
+
+上面的命令可以在commit的同时指定提交内容的author和AUTHOR_DATE，这个恐怕要靠提交者（committer）的记忆力和公德心了，把这段代码的真是author的名字和写就时间录进去，而不是让git默认的把自己的name和提交时间（COMMITTER_DATE）录入库中。
+
+在没有github之前，一个开源项目通常还是只设置几个有权限的提交人，大家想贡献代码就发patch给有权限的人，然后有权人commit。但自从有了github，发明了fork（fork并不属于git，而是github的独创哦）和PR（Pull-Request），让这个过程更加的轻便，也让项目的发展更加《失控》，有能力的人可以在自己的领地fork并发展一个项目，PR或不PR给原作者全凭个人喜好，原作者如果“懒政”，其他人完全可以独立发展。—— 每个人都在自己的库里commit，使得committer和author通常都是一个人，大家都是通过PR给其他人，而不是发送patch了。—— 所以 `--author` 这个参数已经很久不用一次了。
 
 
-# Round 3 -- 效率
+# Round 3
 
 ![](img/boy-buffaloes-india-sw.jpg)
 
-## 使用beyondCompare
+## 我要能像TortoiseSVN那样左右两栏对比看diff
 
-git4windows
+这个必须有！
 
-* diff
-    - git config --global diff.tool bc3
-       + git config --global difftool.bc3.path "c:/program files/beyond compare 3/bcomp.exe"
-    - git config --global difftool.prompt false 
-    - git difftool
-* merge
-    - git config --global merge.tool bc3
-       + git config --global mergetool.bc3.path "c:/program files/beyond compare 3/bcomp.exe"
-    - git mergetool
+git和TortoiseSVN相比是不恰当的，git要和subversion比较，它们两个是协议；TortoiseGit才是和TortoiseSVN比较，这两个是前端。Subversion的前端并不多，除了TortoiseSVN并没有更多的选择，git的前端却不少：TortoiseGit、GitForWindows、Github for Desktop……
 
+前端对协议进行了封装（比如默认安装的TortoiseSVN都已经找不到`svn`等命令，所以也不能运行`svn log`、`svn commit`）和更多的图形化工作（图标重绘、文本比较工具……）的事情留在后面慢慢说，回到比较工具上来：除非你是要制作补丁包，或者改动很小，否则你几乎不会想直接查看`git diff`，配置好第三方比较工具的调用方法是必须要做的 —— 这个懒偷不得。
+
+**git中查看差异有两个命令**:
+
+1. `git diff`: 在Terminal中按照Linux的传统方式生成patch
+![](img/git-diff.png)
+2. `git difftool`: 使用第三方工具显示差异
+![](img/git-difftool-merge.png       
+
+git 调用第三方工具是灵活的，当然TortoiseSVN调用第三方diff/Merge工具也是可定制的，并且用户不指定第三方工具的话，TortoiseSVN项目自己做了一个比较工具TortoiseMerge来作为默认，TortoiseGit也是有默认的。git则需要收工设置。
+
+比较工具有很多，列几个本人用过的：
+
+* 收费的
+    - [Beyond Compare](http://www.scootersoftware.com) -- Win、Linux、OS.X
+    - [Araxis Merge](http://www.araxis.com) -- Win、OS.X
+    - [UltraCompare](http://www.ultraedit.com/products/ultracompare.html) -- Win,本来是UE的一个插件，近几年独立出来了
+* 免费但不开源的
+    - [DiffMerge](http://www.sourcegear.com/diffmerge/downloads.php) -- Win、Linux、OS.X
+* 开源的：
+    - [Meld](http://meldmerge.org) -- Win、Linxu、OS.X
+        + Linux上直接 yum 或 apt-get 安装
+        + Win上下载exe安装
+        + OS.X 上通过macports安装 —— macports
+
+用哪个呢？这是萝卜白菜的事情，不要纠结，你用惯了哪个就是哪个，git调用它们的方法配置是大同小异。我不能每种软件在每个系统中都试一遍，所以只能条目列在这里，但我本人没搞过的就空着了，看官自己百度一下吧，照葫芦画瓢能力强的话也用不着百度。
+
+* **Araxis Merge**
+    - OS.X: `vi ~/.gitconfig`，加入：
+    ```
+    difftool.prompt=false
+    diff.tool=araxis
+    merge.tool=araxis
+    mergetool.araxis.path=/Applications/Araxis Merge.app/Contents/Utilities/compare
+    difftool.araxis.path=/Applications/Araxis Merge.app/Contents/Utilities/compare
+    ```
+    - Linux
+    - Windows
+* **BeyondCompare**
+    - OS.X
+    - Linux
+    - Windows
+    ```cmd
+    $ git config --global diff.tool bc3
+    $ git config --global difftool.bc3.path "c:/program files/beyond compare 3/bcomp.exe"
+    ```
+* **DiffMerge**
+    - OS.X
+    - Linux
+    - Windows
+    ```cmd
+    $ git config --global diff.tool diffmerge
+    $ git config --global difftool.diffmerge.cmd 'diffmerge "$LOCAL" "$REMOTE"'
+    ```
+
+除此之外，还可以配置一项：
+
+```cmd
+$ git config --global difftool.prompt false 
+```
+
+OK，弄好了吧，我们来总结一下其知识点，如果不想看，可以跳过去看下条了。
+
+* 配置方法两种：
+    1. 通过 `git config ...` 命令
+    2. 通过 `vi ~/.gitconfig` 直接修改git的配置文件，方法1最终也是落实到2上
+* 配置命令有两个：
+    1. cmd：git在执行某个difftool的时候，执行的命令，用户没有定义的话，会使用tool的名字做默认启动；如果用户定义的话，就必须加上 $LOCAL $REMOTE
+    2. path: 用于定位不在PATH变量里的命令，但不需要加 $LOCAL $REMOTE
 
 ## 我用ubuntu，我要修改git commint时的默认编辑器
 
 `update-alternatives --config editor`
 
-# Round 4 -- 协作
+## 我想做个分支（branch），怎么做
+
+
+
+## 分支要合并到主干或其他分支，怎么merge
+
+* 通用配置
+```cmd
+$ git config --global mergetool.diffmerge.trustExitCode true
+```
+* **BeyondCompare**
+    - OS.X
+    - Linux
+    - Windows
+    ```cmd
+    $ git config --global merge.tool bc3
+    $ git config --global mergetool.bc3.path "c:/program files/beyond compare 3/bcomp.exe"
+    $ git mergetool
+    ```
+* **DiffMerge**
+    - OS.X
+    - Linux
+    - Windows
+    ```cmd
+    $ git config --global merge.tool diffmerge
+    $ git config --global mergetool.diffmerge.cmd 'diffmerge --merge --result="$MERGED" "$LOCAL" "$(if test -f "$BASE"; then echo "$BASE"; else echo "$LOCAL"; fi)" "$REMOTE"'
+    ```
+
+
+# Round 4
 
 ![](img/children-dam-bali-sw.jpg)
 
@@ -584,7 +687,7 @@ git4windows
 ## 公司访问不了外网的github，咋办
 
 ```cmd
-MBP:mydiary wangkevin$ git config --global http.proxy http://proxysz.zte.com.cn:80
+$ git config --global http.proxy http://proxysz.zte.com.cn:80
 ```
 
 ## 如何与别人合作
@@ -621,9 +724,13 @@ git和svn有所不同，svn 有 server，监控器只需要监控server即可，
 ![](img/gitlab-rss-reader.png)
 
 
-# Round 5 -- 机理
+## github的工作流
 
-![](img/black-trevally-sardines-sw.jpg)
+[Understanding the GitHub Flow](https://guides.github.com/introduction/flow/)
+
+# Round 5
+
+![](img/elephants-sand-river-sw.jpg)
 
 ## git是从何而来
 
@@ -637,8 +744,6 @@ git和svn有所不同，svn 有 server，监控器只需要监控server即可，
 
 * [Pro Git（中文版）](http://git.oschina.net/progit/)
 * [git简明教程](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
-
-为什么把git的历史和资料放在**加速**章节，而不是**起步**？—— 答案很简单：“10分钟了还不能开玩，心情多糟糕啊！”。
 
 ## 重新梳理git的软件
 
@@ -656,9 +761,6 @@ git和svn有所不同，svn 有 server，监控器只需要监控server即可，
         * 第一代的名字叫[msysGit](https://github.com/msysgit/git)，基于 msys（属于 MinGW）—— 2015年底已废弃
         * 第二代重新建立了github项目[Git for Windows](https://github.com/git-for-windows/git)，基于 msys2（不再属于MinGW），英语有自信的可以读读它的[背景](https://github.com/git-for-windows/git/wiki)
     + [TortoiseGit](http://code.google.com/p/tortoisegit/)：类似TortoiseSVN，可以做图标重绘。
-    + 个人建议：
-        * 使用git请把重心放在：使用命令行
-        * 只安装 **Git for Windows** 就行了
 
 ## 导出某个子目录及其log成为一个新的repo
 
@@ -694,9 +796,9 @@ svn是基于增量存储的，两次提交对于repo来说只保存变化量，g
 * git log：ci的顺序是：B的ci、A的ci、B的merge后ci —— **B的ci会插入到A的ci前面**
 
 
-# Round 6 -- 最佳实践
+# Round 6
 
-![](img/gray-owl-mouse-sw.jpg)
+![](img/black-trevally-sardines-sw.jpg)
 
 ## 用Git进行“不留痕迹的”协同开发 
 
