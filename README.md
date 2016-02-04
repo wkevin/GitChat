@@ -577,7 +577,7 @@ git和TortoiseSVN相比是不恰当的，git要和subversion比较，它们两�
 1. `git diff`: 在Terminal中按照Linux的传统方式生成patch
 ![](img/git-diff.png)
 2. `git difftool`: 使用第三方工具显示差异
-![](img/git-difftool-merge.png       
+![](img/git-difftool-merge.png)       
 
 git 调用第三方工具是灵活的，当然TortoiseSVN调用第三方diff/Merge工具也是可定制的，并且用户不指定第三方工具的话，TortoiseSVN项目自己做了一个比较工具TortoiseMerge来作为默认，TortoiseGit也是有默认的。git则需要收工设置。
 
