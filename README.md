@@ -579,7 +579,7 @@ git和TortoiseSVN相比是不恰当的，git要和subversion比较，它们两�
 2. `git difftool`: 使用第三方工具显示差异
 ![](img/git-difftool-merge.png)       
 
-git 调用第三方工具是灵活的，当然TortoiseSVN调用第三方diff/Merge工具也是可定制的，并且用户不指定第三方工具的话，TortoiseSVN项目自己做了一个比较工具TortoiseMerge来作为默认，TortoiseGit也是有默认的。git则需要收工设置。
+git 调用第三方工具是灵活的，当然TortoiseSVN调用第三方diff/Merge工具也是可定制的，并且用户不指定第三方工具的话，TortoiseSVN项目自己做了一个比较工具TortoiseMerge来作为默认，TortoiseGit也是有默认的。git则需要手工设置。
 
 比较工具有很多，列几个本人用过的：
 
@@ -755,9 +755,9 @@ git和svn有所不同，svn 有 server，监控器只需要监控server即可，
 
 >As with most other distributed version control systems, and unlike most client–server systems, every Git working directory is a full-fledged repository with complete history and full version-tracking capabilities, independent of network access or a central server.[10] Like the Linux kernel, Git is free software distributed under the terms of the GNU General Public License version 2.
 
-    - UI前端也有，比如github出品的 [github desktop](https://desktop.github.com)
 
-    + [Git for Windows](https://github.com/git-for-windows/git)
+- UI前端也有，比如github出品的 [github desktop](https://desktop.github.com)
++ [Git for Windows](https://github.com/git-for-windows/git)
         * 第一代的名字叫[msysGit](https://github.com/msysgit/git)，基于 msys（属于 MinGW）—— 2015年底已废弃
         * 第二代重新建立了github项目[Git for Windows](https://github.com/git-for-windows/git)，基于 msys2（不再属于MinGW），英语有自信的可以读读它的[背景](https://github.com/git-for-windows/git/wiki)
     + [TortoiseGit](http://code.google.com/p/tortoisegit/)：类似TortoiseSVN，可以做图标重绘。
