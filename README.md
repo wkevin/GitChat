@@ -10,7 +10,7 @@
 
 <!-- MarkdownTOC -->
 
-update time:2016-02-04 00:48
+update time:2016-02-13 11:30
 
 - [Round 1](#round1)
     - [git在哪里](#git)
@@ -28,9 +28,11 @@ update time:2016-02-04 00:48
     - [git log --fuller 中的 author 和 commit 啥关系](#gitlogfullerauthorcommit)
 - [Round 3](#round3)
     - [我要能像TortoiseSVN那样左右两栏对比看diff](#tortoisesvndiff)
-    - [我用ubuntu，我要修改git commint时的默认编辑器](#ubuntugitcommint)
+    - [我用ubuntu，如何修改git commint时的默认编辑器](#ubuntugitcommint)
+    - [听说git的提交是到什么暂存区（stage），是个什么意思](#gitstage)
     - [我想做个分支（branch），怎么做](#branch)
     - [分支要合并到主干或其他分支，怎么merge](#merge)
+    - [git merge 有没有图形化的工具](#gitmerge)
 - [Round 4](#round4)
     - [想看看别人的git库了](#git_4)
     - [公司访问不了外网的github，咋办](#github)
@@ -107,8 +109,8 @@ OK，让我们从头开始，跟着做一遍吧，Good Luck ……
 
 * 做一下git要求的最基本的两个配置：name 和 email
 ```cmd
-MBP:~ wangkevin$ git config --global user.name wkevin
-MBP:~ wangkevin$ git config --global user.emal wkevin27@gmail.com
+$ git config --global user.name wkevin
+$ git config --global user.emal wkevin27@gmail.com
 ```
 * 创建一个文件夹并写一篇日记
 ```cmd
@@ -640,15 +642,134 @@ OK，弄好了吧，我们来总结一下其知识点，如果不想看，可以
     1. cmd：git在执行某个difftool的时候，执行的命令，用户没有定义的话，会使用tool的名字做默认启动；如果用户定义的话，就必须加上 $LOCAL $REMOTE
     2. path: 用于定位不在PATH变量里的命令，但不需要加 $LOCAL $REMOTE
 
-## 我用ubuntu，我要修改git commint时的默认编辑器
+## 我用ubuntu，如何修改git commint时的默认编辑器
 
-`update-alternatives --config editor`
+```cmd
+$ update-alternatives --config editor
+```
+
+这个问题不属于git的范畴，而是linux的。
+
+## 听说git的提交是到什么暂存区（stage），是个什么意思
+
+理解git需要理解文件的5种状态和3个区（area）：
+
+5种状态：
+
+1. 未跟踪态（untracked）
+2. 未修改状态（unmodified）
+3. 修改状态（modified），即：待暂存（staging）
+4. 已暂存（staged）
+5. 已提交（committed）
+
+3个区：
+
+1. 本地工作目录（working directory）
+2. 暂存区（staging area，又叫做index）
+3. git库（repository）
+
+1、2、3状态在本地工作目录，4状态属于暂存区，5状态属于git库。
+
+![](img/git-state-and-area.svg)
+
+如果我修改了一下README.md，`git add`了一下，然后又修改了一下，用`git st`的打印是这样的：
+
+```cmd
+$ git st
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes to be committed:
+  (use "git reset HEAD <file>..." to unstage)
+
+    modified:   README.md
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+    modified:   README.md
+```
+
+很多地方把暂存和stage混在一起，不查字典的话还以为stage的中文翻译就是暂存。其实 stage 就这个单词的本身的意思是：
+
+1. 名词：舞台、讲台，比如：戏剧表演的舞台、国际政治的舞台；阶段，类似phase，比如：stage one/two意思是第一/二阶段，three-stage rocket意思是三级火箭
+2. 动词：上演、举行、组织，类似play、organize，比如：stage a football match，举办足球赛
+
+stage本身并没有暂存的意思，git中可以理解为把文件放到一个舞台上上演一下，进而文件进入到一个新的阶段。——用这个词可以说是一箭三雕。
+
+你可以输入`git help stage` 看看
+
+```cmd
+GIT-STAGE(1)                                              Git Manual                                              GIT-STAGE(1)
+NAME
+       git-stage - Add file contents to the staging area
+SYNOPSIS
+       git stage args...
+DESCRIPTION
+       This is a synonym for git-add(1). Please refer to the documentation of that command.
+```
+
+`git stage` 是同义于 `git add` 的：将文件加入到 **staging area**（舞台区、阶段区、进而翻译为暂存区，下文我还是尽量不去翻译这个词汇，而直接用英文吧，或搞个缩写：SA —— 如果让我翻译，我会译为：检视区）。
+
+把前面已经提到过暂存区像回收站，把文件放在回收站是给操作人一个检视的机会和反悔的机会，操作妥当后再彻底删除，彻底删除后再想反悔就要费劲了。git的staging area也是给用户一个**检视的机会**和**反悔的机会**，用户可以：
+
+* 使用`git add`或`git stage`命令随时向SA增加文件，和回收站不同的是后进入SA的文件会覆盖前面进入的
+* 使用`git checkout`命令随时从SA反悔，文件会从SA移除，是否覆盖
+
 
 ## 我想做个分支（branch），怎么做
 
 
+```cmd
+MBP:GitChat.git wangkevin$ git br
+* master                12205fd [origin/master] 写完 “## 我要能像TortoiseSVN那样左右两栏对比看diff”章节
+  remotes/origin/master 12205fd 写完 “## 我要能像TortoiseSVN那样左右两栏对比看diff”章节
+MBP:GitChat.git wangkevin$ git lg
+ 12205fd | 2016-02-04 00:50:37 +0800 | 2016-02-04 00:50:37 +0800 |  wkevin  写完 “## 我要能像TortoiseSVN那样左右两栏对比看diff”章节
+ 8216a0b | 2016-02-02 23:55:44 +0800 | 2016-02-02 23:55:44 +0800 |  wkevin  基本写完 Round 2 ，git log 部分
+ 8674466 | 2016-01-31 16:22:59 +0800 | 2016-01-31 16:22:59 +0800 |  wkevin  在动车上写的：修改为Round x，增加了每个Round的插图。 虽然是春运，但动车上并不挤，卧改座的还能躺着睡觉，坐票也有些车厢人很少。 还有2h下车，提交一下，休息休息。
+ ac580f2 | 2016-01-30 22:04:04 +0800 | 2016-01-30 22:04:04 +0800 |  wkevin  github desktop for windows snapshot
+ de9a9ab | 2016-01-29 17:51:48 +0800 | 2016-01-29 17:51:48 +0800 |  Kevin Wang  add git for windows 章节
+ e59757f | 2016-01-29 10:35:01 +0800 | 2016-01-29 10:35:01 +0800 |  Kevin Wang  增加："git在哪里"和"git for windows 咋用" 章节
+ 7aa77c3 | 2016-01-29 09:40:52 +0800 | 2016-01-29 09:40:52 +0800 |  Kevin Wang  create
+MBP:GitChat.git wangkevin$ git fetch origin
+remote: Counting objects: 6, done.
+remote: Compressing objects: 100% (5/5), done.
+remote: Total 6 (delta 2), reused 5 (delta 1), pack-reused 0
+Unpacking objects: 100% (6/6), done.
+From https://github.com/wkevin/GitChat
+   12205fd..c242093  master     -> origin/master
+MBP:GitChat.git wangkevin$ git br
+* master                12205fd [origin/master: behind 2] 写完 “## 我要能像TortoiseSVN那样左右两栏对比看diff”章节
+  remotes/origin/master c242093 笔误
+MBP:GitChat.git wangkevin$ git lg origin/master
+ c242093 | 2016-02-04 11:30:21 +0800 | 2016-02-04 11:30:21 +0800 |  wkevin  笔误
+ 48eda25 | 2016-02-04 11:21:57 +0800 | 2016-02-04 11:21:57 +0800 |  wkevin  笔误: 缺少一个反括号
+ 12205fd | 2016-02-04 00:50:37 +0800 | 2016-02-04 00:50:37 +0800 |  wkevin  写完 “## 我要能像TortoiseSVN那样左右两栏对比看diff”章节
+ 8216a0b | 2016-02-02 23:55:44 +0800 | 2016-02-02 23:55:44 +0800 |  wkevin  基本写完 Round 2 ，git log 部分
+ 8674466 | 2016-01-31 16:22:59 +0800 | 2016-01-31 16:22:59 +0800 |  wkevin  在动车上写的：修改为Round x，增加了每个Round的插图。 虽然是春运，但动车上并不挤，卧改座的还能躺着睡觉，坐票也有些车厢人很少。 还有2h下车，提交一下，休息休息。
+ ac580f2 | 2016-01-30 22:04:04 +0800 | 2016-01-30 22:04:04 +0800 |  wkevin  github desktop for windows snapshot
+ de9a9ab | 2016-01-29 17:51:48 +0800 | 2016-01-29 17:51:48 +0800 |  Kevin Wang  add git for windows 章节
+ e59757f | 2016-01-29 10:35:01 +0800 | 2016-01-29 10:35:01 +0800 |  Kevin Wang  增加："git在哪里"和"git for windows 咋用" 章节
+ 7aa77c3 | 2016-01-29 09:40:52 +0800 | 2016-01-29 09:40:52 +0800 |  Kevin Wang  create
+MBP:GitChat.git wangkevin$ 
+```
 
 ## 分支要合并到主干或其他分支，怎么merge
+
+merge有几个场景，按场景来学习更带劲：
+
+* 本地工作目录是branch1的，希望从branch2合并过来，branch1和branch1从同一个节点继承，branch2比branch1多了若干次提交
+    - branch1在继承节点后没有修改
+    - branch1在继承节点后有修改但没有暂存
+    - branch1在继承节点后有修改并且都暂存了，但还没有提交
+    - branch1在继承节点后有修改却只有一部分暂存了
+    - branch1在继承节点后有提交，无暂存态和修改态的文件
+* 
+
+## git merge 有没有图形化的工具
+
+和 `git difftool` 类似，也有 `git mergetool`。
 
 * 通用配置
 ```cmd
