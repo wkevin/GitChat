@@ -10,49 +10,55 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
 
 <!-- MarkdownTOC -->
 
-- [Round 1](#round1)
+- [Round 1](#round-1)
     - [git在哪里](#git)
-    - [Git for Windows 咋用](#gitforwindows)
+    - [Git for Windows 咋用](#git-for-windows)
     - [先单机玩玩还是先弄来个别人的git库](#git_1)
     - [如何在本机git我的日记](#git_2)
     - [每次都要敲add、commit、status，嫌累了](#addcommitstatus)
     - [有些文件不希望被git管理](#git_3)
-- [Round 2](#round2)
-    - [我要筛选 git log](#gitlog)
-    - [觉得 git log 中的时间看着困难，精简下呗](#gitlog_1)
-    - [我要定制 git log，不想一页看不了几条](#gitlog_2)
+- [Round 2](#round-2)
+    - [我要筛选 git log](#git-log)
+    - [觉得 git log 中的时间看着困难，精简下呗](#git-log_1)
+    - [我要定制 git log，不想一页看不了几条](#git-log_2)
     - [oneline太简陋了，我想一行里面看到hash、author、date、message](#onelinehashauthordatemessage)
-    - [git log 已经很好了，但好像还是缺点啥](#gitlog_3)
-    - [git log --fuller 中的 author 和 commit 啥关系](#gitlogfullerauthorcommit)
-- [Round 3](#round3)
+    - [git log 已经很好了，但好像还是缺点啥](#git-log_3)
+    - [git log --fuller 中的 author 和 commit 啥关系](#git-log-fuller-author-commit)
+- [Round 3](#round-3)
     - [我要能像TortoiseSVN那样左右两栏对比看diff](#tortoisesvndiff)
-    - [我用ubuntu，我要修改git commint时的默认编辑器](#ubuntugitcommint)
+    - [我用ubuntu，我要修改git commint时的默认编辑器](#ubuntugit-commint)
     - [听说git的提交是到什么暂存区（stage），是个什么意思](#gitstage)
     - [我想做个分支（branch），怎么做](#branch)
+    - [如何在分支间来回切换](#_1)
     - [merge是怎么玩儿的](#merge)
     - [分支要合并到主干或其他分支，怎么merge](#merge_1)
-    - [git merge 有没有图形化的工具](#gitmerge)
-- [Round 4](#round4)
+    - [git merge 有没有图形化的工具](#git-merge)
+- [Round 4](#round-4)
     - [想看看别人的git库了](#git_4)
     - [为什么github成了程序员的麦加圣地](#github)
     - [公司访问不了外网的github，咋办](#github_1)
-    - [如何与别人合作](#_1)
+    - [定义了外网和内网两个remote，proxy怎么同时支持](#remoteproxy)
+    - [如何与别人合作](#_2)
     - [如何在github上与别人合作](#github_2)
     - [怎样才能第一时间得知git上有提交和更新](#git_5)
+    - [如何不clone到本地看remote repo的log?](#cloneremote-repolog)
     - [程序猿如何频繁地commit，但又低调地push](#commitpush)
-    - [维持树的整洁](#_2)
+    - [远程分支的操作](#_3)
+    - [维持树的整洁](#_4)
     - [Git多用户间协作还有什么引人入胜之处](#git_6)
-- [Round 5](#round5)
+- [Round 5](#round-5)
     - [git从何而来](#git_7)
     - [git去往何处](#git_8)
     - [git有哪些好的入门的资料](#git_9)
     - [git命令我掌握的七七八八了，怎么整理一下](#git_10)
     - [重新梳理git的软件](#git_11)
-- [Round 6](#round6)
+- [Round 6](#round-6)
     - [导出某个子目录及其log成为一个新的repo](#logrepo)
-- [Round 7](#round7)
+    - [分支2需改bug，但我正在分支1上编码并不想commit怎么办](#2bug1commit)
+    - [我反悔了，我要回退！](#_5)
+- [Round 7](#round-7)
     - [git和SVN在元数据存储上有什么区别](#gitsvn)
-    - [git 的对象（object）](#gitobject)
+    - [git 的对象（object）](#git-object)
     - [git 的快照存储有点不可思议，如何做到好又多的](#git_12)
 
 <!-- /MarkdownTOC -->
@@ -785,6 +791,41 @@ MBP:GitChat.git wangkevin$ git lg origin/master
  7aa77c3 | 2016-01-29 09:40:52 +0800 | 2016-01-29 09:40:52 +0800 |  Kevin Wang  create
 MBP:GitChat.git wangkevin$ 
 ```
+
+## 如何在分支间来回切换
+
+概要：
+
+* `git checkout file`：用暂存区的file覆盖工作区的file
+* `git checkout branch`：HEAD指向branch，然后去覆盖暂存区和工作区
+* `git checkout --detach branch`：游离指向branch，然后去覆盖暂存区和工作区
+* `git checkout commit`：游离指向commit，，然后去覆盖暂存区和工作区
+* `git checkout branch/commit file`：那指针指向的file去覆盖暂存区和工作区的file，所以暂存区会有待提交内容
+
+详细：
+
+* `git checkout <./file>`
+    - HEAD 不会切换
+    - 用暂存区的file覆盖工作区中对应的文件，暂存区的不变
+        + **如果没有未提交的修改，暂存区和HEAD是相同的**
+        + 如果暂存区刚才有未提交的修改，后续仍可commit
+    - 覆盖：意味着所有修改会丢失；但新增的文件不丢失。
+* `git checkout <branch>`
+    - HEAD 会被切换
+    - 用 <branch> 中的文件覆盖工作区中对应的文件
+    - 切换的当前branch时：本地修改不会丢失，也不必提交
+    - 切换的其他branch时：本地修改要先提交，-f 强切修改会丢失
+* `git checkout --detach [<branch>]`
+    - HEAD 不变
+        + `git checkout --detach`：会从当前 HEAD 创建游离指针
+        + `git checkout --detach anotherBranch`：会从 anotherBranch 指针创建游离指针
+    - 从<branch>处创建一个**游离**的branch，并覆盖到本地工作区
+    - 从当前branch创建游离分支时：本地修改不会丢失，也不必提交
+    - 从其他branch创建游离分支时：本地修改要先提交，-f 强切修改会丢失
+* `git checkout [--detach] <commit>`
+    - 游离一个branch
+* `git checkout [[-b|-B|--orphan] <new_branch>] [<start_point>]`
+
 ## merge是怎么玩儿的
 
 ## 分支要合并到主干或其他分支，怎么merge
@@ -834,7 +875,7 @@ $ git config --global mergetool.diffmerge.trustExitCode true
 
 是不是已经不满足于只管理个本机的日记了？太好了，git天生就是为了程序猿合作用的，几条关键的命令要出场了：
 
-* `git clone [url] [localname]`  
+* `git clone url [localname]`  
 
 ## 为什么github成了程序员的麦加圣地
 
@@ -883,6 +924,30 @@ Unpacking objects: 100% (64/64), done.
 Checking connectivity... done.
 ```
 
+## 定义了外网和内网两个remote，proxy怎么同时支持
+
+自己的某个项目有两个remote：Ra和Rb，分别在外网和公司内网，为git配置了http.proxy后，外网OK，内网的就连不上，则内网的remote可以使用ssh来连接。
+
+网上通常的步骤是：
+
+* 生成公钥和密钥
+```cmd
+$ ssh-keygen -t rsa -C "wkevin27@gmail.com"
+```
+    - 得到两个文件：id_rsa和id_rsa.pub
+    - **请确定两个文件的路径**：git for windows 有时候生成的文件会位于：`C:\ShellHome`，而`git push`等命令使用的是用户根目录，这两个目录未必一致，可能会被用户无意间修改。
+* 拷贝公钥到github/gitlab
+    - 可打开文件手工拷贝
+    - 可 `clip < ~/.ssh/id_rsa.pub` 拷贝到粘贴板
+* 添加密钥到ssh-agent（可选）
+    - `$ eval "$(ssh-agent -s)"` 
+    - `$ ssh-add ~/.ssh/id_rsa`
+* 测试
+    - `$ ssh -T git@github.com`
+* 然后就可以使用ssh方式访问gitlab/github了
+    - `git remote add xxx git@github.com:wkevin/GitChat.git`
+    - `git push xxx master`
+
 
 ## 如何与别人合作
 
@@ -921,6 +986,7 @@ git和svn有所不同，svn 有 server，监控器只需要监控server即可，
 使用 RSS Reader（图中使用的是Snafer）订阅的效果：
 ![](img/gitlab-rss-reader.png)
 
+## 如何不clone到本地看remote repo的log?
 
 ## 程序猿如何频繁地commit，但又低调地push
 
@@ -951,6 +1017,19 @@ SVN和git面对同样的一个问题：大部分程序猿是含蓄、内敛的�
                 * git rebase -i将本地的提交进行清理
                 * 将一次记录git push到服务器上
 
+## 远程分支的操作
+    
+* 删除本地分支
+* 删除远程分支
+    - git push origin :<branchName>
+    - git push origin --delete <branchName>
+* 删除本地tag
+    - git tag -d <tagname>
+* 删除远程tag
+    - git tag -d <tagname>
+    - git push origin :refs/tags/<tagname>
+    - git push origin --delete tag <tagname>
+* 删除“远程已经删除了的分支”对应的本地分支：**git fetch -p**
 
 ## 维持树的整洁
 
@@ -1025,7 +1104,7 @@ github上有这样几个卓越的组织（Orgnization):
 
 ## git命令我掌握的七七八八了，怎么整理一下
 
-google 或 bing 上搜索图片：**git cheet sheet** —— 不要在baidu上搜索，结果你会很失望。
+google 或 bing 上搜索图片：**git cheat sheet** —— 不要在baidu上搜索，结果你会很失望。
 
 可以看到很多热心网友们整理的常用命令集，快选一幅打印出来或作为桌面吧！
 
@@ -1079,6 +1158,74 @@ git push ../newrepo.git newbranch:master #newrepo.git is a pure repo without my 
 cd ..
 git clone newrepo.git
 ```
+
+## 分支2需改bug，但我正在分支1上编码并不想commit怎么办
+
+使用git的时候，我们往往使用branch解决任务切换问题，例如，我们往往会建一个自己的分支去修改和调试代码, 如果别人或者自己发现原有的分支上有个不得不修改的bug，我们往往会把完成一半的代码 commit提交到本地仓库，然后切换分支去修改bug，改好之后再切换回来。这样的话往往log上会有大量不必要的记录。其实如果我们不想提交完成一半或者不完善的代码，但是却不得不去修改一个紧急Bug，那么使用'git stash'就可以将你当前未提交到本地（和服务器）的代码推入到Git的栈中，这时候你的工作区间和上一次提交的内容是完全一样的，所以你可以放心的修 Bug，等到修完Bug，提交到服务器上后，再使用'git stash apply'将以前一半的工作应用回来。也许有的人会说，那我可不可以多次将未提交的代码压入到栈中？答案是可以的。当你多次使用'git stash'命令后，你的栈里将充满了未提交的代码，这时候你会对将哪个版本应用回来有些困惑，'git stash list'命令可以将当前的Git栈信息打印出来，你只需要将找到对应的版本号，例如使用'git stash apply stash@{1}'就可以将你指定版本号为stash@{1}的工作取出来，当你将所有的栈都应用回来的时候，可以使用'git stash clear'来将栈清空。
+
+* git stash: 备份当前的工作区的内容，从最近的一次提交中读取相关内容，让工作区保证和上次提交的内容一致。同时，将当前的工作区内容保存到Git栈中。
+* git stash pop: 从Git栈中读取最近一次保存的内容，恢复工作区的相关内容。由于可能存在多个Stash的内容，所以用栈来管理，pop会从最近的一个stash中读取内容并恢复。
+* git stash list: 显示Git栈内的所有备份，可以利用这个列表来决定从那个地方恢复。
+* git stash clear: 清空Git栈。此时使用gitg等图形化工具会发现，原来stash的哪些节点都消失了。
+* git stash apply：将以前一半的工作应用回来
+
+## 我反悔了，我要回退！
+
+丢弃（要懂得放弃）
+
+* `git clean -df`：丢弃untracked的文件，不丢弃modified的文件
+* `git checkout .`：用缓存或HEAD中的文件覆盖本地文件，这些文件中的修改都丢弃掉了，但新增的文件不会被丢弃
+* git stash #把所有没有提交的修改暂存到stash里面。可用git stash pop回复。
+* git reset --soft HASH #返回到某个节点。保留修改
+* git reset --hard HASH #返回到某个节点，不保留修改。
+    - git reset --hard HEAD
+    - git reset --hard HEAD~1
+    - git reset --hard HEAD~5
+    - 
+* git clean -f: 删除 untracked files
+* git clean -fd: 连 untracked 的目录也一起删掉
+* git clean -xfd: 连 gitignore 的untrack 文件/目录也一起删掉 （慎用，一般这个是用来删掉编译出来的 .o之类的文件用的）
+* 在用上述 git clean 前，墙裂建议加上 -n 参数来先看看会删掉哪些文件，防止重要文件被误删
+    * git clean -nxfd
+    * git clean -nf
+    * git clean -nfd
+
+回退远程
+
+1. git reset --soft hashcode remoteRepo
+2. 把本地的回退了，然后把远程branch删掉，然后push新的
+
+**git reset**
+
+`git reset [-q] [<tree-ish>] [--] <paths>…`
+`git reset (--patch | -p) [<tree-ish>] [--] [<paths>…]`
+`git reset [--soft | --mixed [-N] | --hard | --merge | --keep] [-q] [<commit>]`
+
+
+* 图中3个动作：
+    1. 替换引用的指向。引用指向新的提交ID。
+    2. 替换暂存区。替换后，暂存区的内容和引用指向的目录树一致。
+    3. 替换工作区。替换后，工作区的内容变得和暂存区一致，也和HEAD所指向的目录树内容相同。
+* 3个参数：
+    * --hard: 执行上图中的全部动作1、2、3
+    * --soft: 执行上图中的全部动作1
+    * --mixed:执行上图中的全部动作1、2，—— 默认操作
+* 举例：
+    - `git reset`==`git reset HEAD`：用HEAD重置暂存区，工作区不受影响，相当于回滚/撤销 `git add`
+    - `git reset -- filename` == `git reset HEAD filename`：仅将文件的改动撤出暂存区，暂存区中其他文件不改变。
+    - `git reset --soft HEAD^`：工作区和暂存区不改变，但是HEAD和当前分支引用向前回退一次
+        + 用途：提交了之后，你又发现代码没有提交完整，或者你想重新编辑一下再提交
+    - `git reset --hard` == `git reset --hard HEAD`: 用HEAD覆盖暂存区和工作区，即：丢弃所有本地修改
+* 重置可以朝前，也可以朝后
+    ```
+    $ git br
+    * master ecfc106 2
+      new    ab3fa01 3
+    $ git reset --soft new
+    $ git br
+    * master ab3fa01 3
+      new    ab3fa01 3
+    ```
 
 # Round 7
 
