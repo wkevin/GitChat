@@ -10,62 +10,69 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
 
 <!-- MarkdownTOC -->
 
-- [Round 1](#round-1)
+- [Round 1 -- 起步](#round-1)
     - [git在哪里](#git)
     - [Git for Windows 咋用](#git-for-windows)
     - [先单机玩玩还是先弄来个别人的git库](#git_1)
     - [如何在本机git我的日记](#git_2)
+- [Round 2 -- 优雅](#round-2)
     - [每次都要敲add、commit、status，嫌累了](#addcommitstatus)
     - [有些文件不希望被git管理](#git_3)
-- [Round 2](#round-2)
     - [我要筛选 git log](#git-log)
     - [觉得 git log 中的时间看着困难，精简下呗](#git-log_1)
     - [我要定制 git log，不想一页看不了几条](#git-log_2)
     - [oneline太简陋了，我想一行里面看到hash、author、date、message](#onelinehashauthordatemessage)
     - [git log 已经很好了，但好像还是缺点啥](#git-log_3)
     - [git log --fuller 中的 author 和 commit 啥关系](#git-log-fuller-author-commit)
-- [Round 3](#round-3)
     - [我要能像TortoiseSVN那样左右两栏对比看diff](#tortoisesvndiff)
-    - [我用ubuntu，我要修改git commint时的默认编辑器](#ubuntugit-commint)
-    - [听说git的提交是到什么暂存区（stage），是个什么意思](#gitstage)
+    - [修改完了为什么不是直接提交，而是git add](#git-add)
+    - [我用ubuntu，我要修改git commit时的默认编辑器](#ubuntugit-commit)
+- [Round 3 -- 并发](#round-3)
     - [我想做个分支（branch），怎么做](#branch)
     - [如何在分支间来回切换](#_1)
     - [merge是怎么玩儿的](#merge)
     - [分支要合并到主干或其他分支，怎么merge](#merge_1)
     - [git merge 有没有图形化的工具](#git-merge)
-- [Round 4](#round-4)
-    - [想看看别人的git库了](#git_4)
+    - [git分支之间的关系咋看](#git_4)
+- [Round 4 -- 协作](#round-4)
+    - [想看看别人的git库了](#git_5)
+    - [到哪里找开源项目](#_2)
     - [为什么github成了程序员的麦加圣地](#github)
     - [公司访问不了外网的github，咋办](#github_1)
     - [定义了外网和内网两个remote，proxy怎么同时支持](#remoteproxy)
-    - [如何与别人合作](#_2)
+    - [如何与别人合作](#_3)
     - [如何在github上与别人合作](#github_2)
-    - [怎样才能第一时间得知git上有提交和更新](#git_5)
-    - [如何不clone到本地看remote repo的log?](#cloneremote-repolog)
+    - [怎样才能第一时间得知git上有提交和更新](#git_6)
+    - [如何不clone/fetch到本地看remote repo的log?](#clonefetchremote-repolog)
     - [程序猿如何频繁地commit，但又低调地push](#commitpush)
-    - [远程分支的操作](#_3)
-    - [维持树的整洁](#_4)
-    - [Git多用户间协作还有什么引人入胜之处](#git_6)
-- [Round 5](#round-5)
-    - [git从何而来](#git_7)
-    - [git去往何处](#git_8)
-    - [git有哪些好的入门的资料](#git_9)
-    - [git命令我掌握的七七八八了，怎么整理一下](#git_10)
-    - [重新梳理git的软件](#git_11)
-- [Round 6](#round-6)
+    - [如何删除远程分支](#_4)
+    - [如何删除远程tag](#tag)
+    - [别人把远程分支删除了，我本地的对应分支怎么还在](#_5)
+    - [维持树的整洁](#_6)
+    - [Git多用户间协作还有什么引人入胜之处](#git_7)
+- [Round 5 -- 整理](#round-5)
+    - [git从何而来](#git_8)
+    - [git去往何处](#git_9)
+    - [git有哪些好的入门的资料](#git_10)
+    - [git命令我掌握的七七八八了，怎么整理一下](#git_11)
+    - [重新梳理git的软件](#git_12)
+- [Round 6 -- 奇技淫巧](#round-6)
+    - [导出一个节点(commit、tag)，不受git管理，不用checkout](#committaggitcheckout)
     - [导出某个子目录及其log成为一个新的repo](#logrepo)
     - [分支2需改bug，但我正在分支1上编码并不想commit怎么办](#2bug1commit)
-    - [我反悔了，我要回退！](#_5)
-- [Round 7](#round-7)
+    - [我反悔了，我要回退！](#_7)
+    - [暂存一个文件的部分改动](#_8)
+    - [能否从不同的分支里选择某次提交并且把它合并到当前的分支](#_9)
+- [Round 7 -- 原理拾趣](#round-7)
     - [git和SVN在元数据存储上有什么区别](#gitsvn)
     - [git 的对象（object）](#git-object)
-    - [git 的快照存储有点不可思议，如何做到好又多的](#git_12)
+    - [git 的快照存储有点不可思议，如何做到好又多的](#git_13)
 
 <!-- /MarkdownTOC -->
 
 ---
 
-# Round 1
+# Round 1 -- 起步
 
 ![](img/run-buffalo.jpg)
 
@@ -284,14 +291,28 @@ wkevin (3):
       2.2日记
 ```
 
-如果只是做个**日记本**，自己写、自己看、绝不给别人看、绝不上网……这些命令就差不多够了！
+---
+
+如果只是让git管理个**日记本**，自己写、自己看、绝不给别人看、绝不上网……这些命令就差不多够了！
 
 哇！好累啊，可以休息一下了，就这些命令，玩几天，把日记写上一个礼拜，然后我们再继续。如果你不打算继续了，也没关系，这些命令就写日记--够用了！
 
+第一局，Over！
+
+# Round 2 -- 优雅
+
+![](img/gray-owl-mouse-sw.jpg)
+
+欢迎回来，能回来接着读说明你是个积极追求上进的好同学，我们继续聊！
+
+用git写了一些日记，你肯定有了新需求，最令你恼火的可能有：
+
+* 敲命令真烦人，尤其还辣么长的命令
+* 看log真晃眼，不清爽
+* 提交之前还要来个add，啥子意思
 
 ## 每次都要敲add、commit、status，嫌累了
 
-用git写了一些日记，你肯定有了新需求，能回来接着读说明你是个积极追求上进的好同学，我们继续聊！
 
 有这样的问题说明你已经是git的初级用户了，并且听了我的建议：“使用命令行，远离GUI” —— 我一点都不奇怪，绝大部分程序猿一旦用上git都会上瘾的，会频繁的`git commit`，然后在`git log`中寻觅自己的成就感，否则吃不好饭、睡不好觉……呵呵
 
@@ -377,9 +398,6 @@ no changes added to commit (use "git add" and/or "git commit -a")
 ```
 
 
-# Round 2
-
-![](img/gray-owl-mouse-sw.jpg)
 
 ## 我要筛选 git log
 
@@ -574,9 +592,7 @@ $ git commit --author=wkevin --date='2016-01-30 22:04:04 +0800'
 在没有github之前，一个开源项目通常还是只设置几个有权限的提交人，大家想贡献代码就发patch给有权限的人，然后有权人commit。但自从有了github，发明了fork（fork并不属于git，而是github的独创哦）和PR（Pull-Request），让这个过程更加的轻便，也让项目的发展更加《失控》，有能力的人可以在自己的领地fork并发展一个项目，PR或不PR给原作者全凭个人喜好，原作者如果“懒政”，其他人完全可以独立发展。—— 每个人都在自己的库里commit，使得committer和author通常都是一个人，大家都是通过PR给其他人，而不是发送patch了。—— 所以 `--author` 这个参数已经很久不用一次了。
 
 
-# Round 3
 
-![](img/boy-buffaloes-india-sw.jpg)
 
 ## 我要能像TortoiseSVN那样左右两栏对比看diff
 
@@ -676,15 +692,12 @@ $ git config --global diff.tool am
 $ git config --global diff.tool dm
 ```
 
-## 我用ubuntu，我要修改git commint时的默认编辑器
 
-```cmd
-ubuntu$ update-alternatives --config editor
-```
+## 修改完了为什么不是直接提交，而是git add
 
-这个问题不属于git的范畴，而是linux的。
+git在 `git commit` 之前首先要 `git add`，从svn转移过来的同学会对这点有一些疑惑和质疑。
 
-## 听说git的提交是到什么暂存区（stage），是个什么意思
+`git add` 将文件放入到暂存区（stage），并生成对象 —— 参见本文的 [git 的对象（object）](#git-object)
 
 理解git需要理解文件的5种状态和3个区（area）：
 
@@ -750,6 +763,28 @@ DESCRIPTION
 * 使用`git add`或`git stage`命令随时向SA增加文件，和回收站不同的是后进入SA的文件会覆盖前面进入的
 * 使用`git checkout`命令随时从SA反悔，文件会从SA移除，是否覆盖
 
+
+## 我用ubuntu，我要修改git commit时的默认编辑器
+
+`git cimmit`会自动打开系统默认的编辑器来让你写log，如下修改：
+
+```cmd
+ubuntu$ update-alternatives --config editor
+```
+
+这个问题不属于git的范畴，而是linux的。
+
+---
+
+到这里，你应该能够优雅地使用git管理自己的日记本了：**log清清爽爽、命令简简单单、变更一目了然** —— 如果只是管理自己的日记项目，已然可以游刃有余了。
+
+如果你是工程师或程序员，还会有多版本、多分支并行开发的需求，下面我们开始讨论分支、合并等操作。如果不是程序员，基本上可以刀枪入库、马放南山，结束阅读了。
+
+第二局，Over!
+
+# Round 3 -- 并发
+
+![](img/boy-buffaloes-india-sw.jpg)
 
 ## 我想做个分支（branch），怎么做
 
@@ -866,8 +901,35 @@ $ git config --global mergetool.diffmerge.trustExitCode true
     $ git config --global mergetool.diffmerge.cmd 'diffmerge --merge --result="$MERGED" "$LOCAL" "$(if test -f "$BASE"; then echo "$BASE"; else echo "$LOCAL"; fi)" "$REMOTE"'
     ```
 
+## git分支之间的关系咋看
 
-# Round 4
+```cmd
+$ git log --pretty=oneline --graph
+
+* 94688f21cc5d8bc85f1783b4c8b98b3288d712cb improve readme
+*   693f2c48421d9218e057340bf29de75e0d5ba8d2 Merge pull request #377 from PhrozenByte/patch-1
+|\
+| * 9545a295cf4cfda6e728ebf0948a12bc5530e42d README.md: Add PHP 5.3+ requirement
+| * 3d649081e58c9fed5ff11aeede1be2dd2e0ee153 Update composer.json requirements
+|/
+*   32de2cedcc98ffb3476f5a413f47bb482691c807 Merge pull request #373 from getgrav/master
+|\
+| * e7443a2bd868e78946ae6a01a1b07d477ce6f4cc Fixed really sorry spelling errors
+| * 10a7ff776c3f16b1b3aa41c176c48150fc091065 Left as-is
+| * 5ad15b87faa2ab10f7cda7593e2e92696fafadd2 Break out method_exists checks into extendable methods to allow for better pluggability
+| * b166cab9a252f4093af1f33cb178a86f6047d08a Make `lines` protected to allow for extendability
+|/
+* 0f974bf34fdc420c3a7dc0a6c5c5fc620fa9dd89 improve readme
+* 3d7cdeec5f90a16934a2cfd35a089c78aa0e4816 remove duplicate item in: who uses it
+```
+
+---
+
+学会了分支操作（创建、合并、冲突……）是与人合作的基础，你是否已经准备好了走出个人的宇宙，拥抱开源的大世界了！
+
+第3局，Over！
+
+# Round 4 -- 协作
 
 ![](img/children-dam-bali-sw.jpg)
 
@@ -876,10 +938,39 @@ $ git config --global mergetool.diffmerge.trustExitCode true
 是不是已经不满足于只管理个本机的日记了？太好了，git天生就是为了程序猿合作用的，几条关键的命令要出场了：
 
 * `git clone url [localname]`  
+* `git fetch`
+* `git pull`
+* `git push`
+
+一幅图说明问题：
+
+![](img/git-pull-push.png)
+
+## 到哪里找开源项目
+
+开源项目托管网站（及其开始支持git的时间）有：
+
+* [github](http://github.com)(2008.2)
+* [sourceforge](http://sourceforge.net)(2009.3)
+* [Google Code](http://code.google.com)(2011.7) —— 2015年底已关闭服务
+* [CodePlex](http://www.codeplex.com)(2012.3)
+* [CSDN Code](http://code.csdn.net)(2013.10)
+* [OSChina git](http://git.oschina.net)(2013)
+* [Coding](https://coding.net/)
+
+这些网站之间有很多有趣的历史，也是互为竞争对手。2004年我第一次接触开源的时候，项目经理给我的任务是到sourceforge下载一个叫做rainbow的源码，当时还没有git，开源项目托管第一平台sourceforge已经独霸江湖10年有余，它是在用cvs，作为一个还在学校的学生，真的是摸索了很久。
+
+很多年过去了，看江湖风云，版本管理系统从cvs到svn，又从svn到git。项目托管网站从sourceforge逐步衰败，群众寄予厚望的google code也曾风光无限，几乎替代了sourceforge，但最终都还是和其他网站一起，败在了一个2008年创立、2011年才火起来的后起之秀手上，google code也于2015年底宣布关闭。此后起之秀就是当前无人匹敌的：github。
+
+有个有趣的小插曲：CodePlex是微软家的，也开张好多年了，sourceforge时代就不愠不火，反正在大家眼里微软和开源本就是水火不容、盖茨/鲍尔默和托瓦茨也是井水不犯河水。但在2012年微软突然做出了一个有趣的决定：
+
+![](img/codeplex.torvalds.png)
+
+近几年，微软更是几乎放弃了自家的CodePlex，转投github，开源自己的.NET都在github上了。
 
 ## 为什么github成了程序员的麦加圣地
 
-
+不解释，它就是那么酷！ -- 谁用谁知道
 
 ## 公司访问不了外网的github，咋办
 
@@ -951,6 +1042,8 @@ $ ssh-keygen -t rsa -C "wkevin27@gmail.com"
 
 ## 如何与别人合作
 
+当面沟通必不可少，svn和git并不能解决所有问题，每个团队都可以有自己的分支策略、日志模版、合并规则、标签原则……
+
 ## 如何在github上与别人合作
 
 github的工作流： [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/)
@@ -986,7 +1079,8 @@ git和svn有所不同，svn 有 server，监控器只需要监控server即可，
 使用 RSS Reader（图中使用的是Snafer）订阅的效果：
 ![](img/gitlab-rss-reader.png)
 
-## 如何不clone到本地看remote repo的log?
+## 如何不clone/fetch到本地看remote repo的log?
+
 
 ## 程序猿如何频繁地commit，但又低调地push
 
@@ -1017,19 +1111,28 @@ SVN和git面对同样的一个问题：大部分程序猿是含蓄、内敛的�
                 * git rebase -i将本地的提交进行清理
                 * 将一次记录git push到服务器上
 
-## 远程分支的操作
+## 如何删除远程分支
     
-* 删除本地分支
-* 删除远程分支
-    - git push origin :<branchName>
-    - git push origin --delete <branchName>
+* 删除本地分支是： `git branch remove <branchName>`
+* 删除远程分支：
+    - `git push origin :<branchName>`
+    - `git push origin --delete <branchName>`
+
+## 如何删除远程tag
+
 * 删除本地tag
-    - git tag -d <tagname>
+    - `git tag -d <tagname>`
 * 删除远程tag
-    - git tag -d <tagname>
-    - git push origin :refs/tags/<tagname>
-    - git push origin --delete tag <tagname>
-* 删除“远程已经删除了的分支”对应的本地分支：**git fetch -p**
+    - `git tag -d <tagname>`
+    - `git push origin :refs/tags/<tagname>`
+    - `git push origin --delete tag <tagname>`
+
+## 别人把远程分支删除了，我本地的对应分支怎么还在
+
+张三删除了某个branch并push到github，李四`git fetch/pull`之后该branch在李四本地库里是仍然存在的，如何删除之？
+
+1. `git fetch -p`
+2. `git remote prune origin`
 
 ## 维持树的整洁
 
@@ -1053,7 +1156,7 @@ git rebase 一般自己一个人开发时使用，用来保持提交记录的整
 * 司令与副官流程（Linux）
 ![](img/workflow.many.layers.png)
 
-# Round 5
+# Round 5 -- 整理
 
 ![](img/elephants-sand-river-sw.jpg)
 
@@ -1113,6 +1216,7 @@ google 或 bing 上搜索图片：**git cheat sheet** —— 不要在baidu上�
 ![](img/Git-Cheatsheet-1.png)
 ![](img/Git-Cheatsheet-3.jpg)
 ![](img/Git-Cheatsheet-4.png)
+![](img/Git-Cheatsheet-5.png)
 
 也有一些复杂到令人发指的：
 ![](img/Git-Cheatsheet-2.png)
@@ -1136,9 +1240,17 @@ google 或 bing 上搜索图片：**git cheat sheet** —— 不要在baidu上�
     + [TortoiseGit](http://code.google.com/p/tortoisegit/)：类似TortoiseSVN，可以做图标重绘。
 
 
-# Round 6
+# Round 6 -- 奇技淫巧
 
 ![](img/black-trevally-sardines-sw.jpg)
+
+## 导出一个节点(commit、tag)，不受git管理，不用checkout
+
+```cmd
+$ cd projectA.git
+$ mkdir ../projectA-v1.2
+$ git archive v1.2 | tar -x -C ../projectA-v1.2
+```
 
 ## 导出某个子目录及其log成为一个新的repo
 
@@ -1171,9 +1283,18 @@ git clone newrepo.git
 
 ## 我反悔了，我要回退！
 
-丢弃（要懂得放弃）
+为什么把“反悔”放在奇技淫巧中——因为git不提倡反悔，男子汉大豆腐做了不悔、悔了不做。
+
+但人生不如意十之八九，学会放弃也是难能可贵的。
 
 * `git clean -df`：丢弃untracked的文件，不丢弃modified的文件
+    * git clean -f: 删除 untracked files
+    * git clean -fd: 连 untracked 的目录也一起删掉
+    * git clean -xfd: 连 gitignore 的untrack 文件/目录也一起删掉 （慎用，一般这个是用来删掉编译出来的 .o之类的文件用的）
+    * 在用上述 git clean 前，墙裂建议加上 -n 参数来先看看会删掉哪些文件，防止重要文件被误删
+        * git clean -nxfd
+        * git clean -nf
+        * git clean -nfd
 * `git checkout .`：用缓存或HEAD中的文件覆盖本地文件，这些文件中的修改都丢弃掉了，但新增的文件不会被丢弃
 * git stash #把所有没有提交的修改暂存到stash里面。可用git stash pop回复。
 * git reset --soft HASH #返回到某个节点。保留修改
@@ -1181,14 +1302,6 @@ git clone newrepo.git
     - git reset --hard HEAD
     - git reset --hard HEAD~1
     - git reset --hard HEAD~5
-    - 
-* git clean -f: 删除 untracked files
-* git clean -fd: 连 untracked 的目录也一起删掉
-* git clean -xfd: 连 gitignore 的untrack 文件/目录也一起删掉 （慎用，一般这个是用来删掉编译出来的 .o之类的文件用的）
-* 在用上述 git clean 前，墙裂建议加上 -n 参数来先看看会删掉哪些文件，防止重要文件被误删
-    * git clean -nxfd
-    * git clean -nf
-    * git clean -nfd
 
 回退远程
 
@@ -1227,7 +1340,21 @@ git clone newrepo.git
       new    ab3fa01 3
     ```
 
-# Round 7
+## 暂存一个文件的部分改动
+
+比如说，你对一个文件进行了多次修改并且想把他们分别提交。这种情况下，你可以在添加命令(add)中加上-p选项
+
+`git add -p [file_name]`
+
+会逐段（hunk）提示你是否add。
+
+## 能否从不同的分支里选择某次提交并且把它合并到当前的分支
+
+`git cherry-pick [commit_hash]`
+
+这个命令会带来冲突，请谨慎使用
+
+# Round 7 -- 原理拾趣
 
 ## git和SVN在元数据存储上有什么区别
 
@@ -1374,6 +1501,13 @@ $ git ls-tree f1683d3e
 
 因此说明：**每次提交仅会把有改动的file重新计算HASH并封装为对象进行存储**
 
-整个文件存储那不是很浪费空间？—— Yes！
+* 整个文件存储那不是很浪费空间？—— Yes！
+* 那为什么还比svn的增量存储更快呢？ —— 这个问题要这么看：
+    - `svn commit`的时候是提交到网络服务器的，存在网络时延的问题，`git commit`只有本地操作
+    - `svn commit`的时候要实时计算diff，`git add/commit`不存在diff计算，`git add`时会做对象的生成，但git对象的生成是执行压缩算法 —— 执行diff计算和执行压缩算法在当前水平的CPU能力下已不分伯仲
+    - git虽然耗损更多的磁盘空间，但现在最不值钱的就是磁盘空间了
 
-那为什么还比svn的增量存储更快呢？ —— 这个问题
+---
+就到这里吧，休息、休息一下！
+
+bye……

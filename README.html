@@ -312,75 +312,82 @@ img {
 <!-- MarkdownTOC -->
 
 <ul>
-<li><a href="#round-1">Round 1</a><ul>
+<li><a href="#round-1">Round 1 &ndash; 起步</a><ul>
 <li><a href="#git">git在哪里</a></li>
 <li><a href="#git-for-windows">Git for Windows 咋用</a></li>
 <li><a href="#git_1">先单机玩玩还是先弄来个别人的git库</a></li>
 <li><a href="#git_2">如何在本机git我的日记</a></li>
-<li><a href="#addcommitstatus">每次都要敲add、commit、status，嫌累了</a></li>
-<li><a href="#git_3">有些文件不希望被git管理</a></li>
 </ul>
 </li>
-<li><a href="#round-2">Round 2</a><ul>
+<li><a href="#round-2">Round 2 &ndash; 优雅</a><ul>
+<li><a href="#addcommitstatus">每次都要敲add、commit、status，嫌累了</a></li>
+<li><a href="#git_3">有些文件不希望被git管理</a></li>
 <li><a href="#git-log">我要筛选 git log</a></li>
 <li><a href="#git-log_1">觉得 git log 中的时间看着困难，精简下呗</a></li>
 <li><a href="#git-log_2">我要定制 git log，不想一页看不了几条</a></li>
 <li><a href="#onelinehashauthordatemessage">oneline太简陋了，我想一行里面看到hash、author、date、message</a></li>
 <li><a href="#git-log_3">git log 已经很好了，但好像还是缺点啥</a></li>
 <li><a href="#git-log-fuller-author-commit">git log &ndash;fuller 中的 author 和 commit 啥关系</a></li>
+<li><a href="#tortoisesvndiff">我要能像TortoiseSVN那样左右两栏对比看diff</a></li>
+<li><a href="#git-add">修改完了为什么不是直接提交，而是git add</a></li>
+<li><a href="#ubuntugit-commit">我用ubuntu，我要修改git commit时的默认编辑器</a></li>
 </ul>
 </li>
-<li><a href="#round-3">Round 3</a><ul>
-<li><a href="#tortoisesvndiff">我要能像TortoiseSVN那样左右两栏对比看diff</a></li>
-<li><a href="#ubuntugit-commint">我用ubuntu，我要修改git commint时的默认编辑器</a></li>
-<li><a href="#gitstage">听说git的提交是到什么暂存区（stage），是个什么意思</a></li>
+<li><a href="#round-3">Round 3 &ndash; 并发</a><ul>
 <li><a href="#branch">我想做个分支（branch），怎么做</a></li>
 <li><a href="#_1">如何在分支间来回切换</a></li>
 <li><a href="#merge">merge是怎么玩儿的</a></li>
 <li><a href="#merge_1">分支要合并到主干或其他分支，怎么merge</a></li>
 <li><a href="#git-merge">git merge 有没有图形化的工具</a></li>
+<li><a href="#git_4">git分支之间的关系咋看</a></li>
 </ul>
 </li>
-<li><a href="#round-4">Round 4</a><ul>
-<li><a href="#git_4">想看看别人的git库了</a></li>
+<li><a href="#round-4">Round 4 &ndash; 协作</a><ul>
+<li><a href="#git_5">想看看别人的git库了</a></li>
+<li><a href="#_2">到哪里找开源项目</a></li>
 <li><a href="#github">为什么github成了程序员的麦加圣地</a></li>
 <li><a href="#github_1">公司访问不了外网的github，咋办</a></li>
 <li><a href="#remoteproxy">定义了外网和内网两个remote，proxy怎么同时支持</a></li>
-<li><a href="#_2">如何与别人合作</a></li>
+<li><a href="#_3">如何与别人合作</a></li>
 <li><a href="#github_2">如何在github上与别人合作</a></li>
-<li><a href="#git_5">怎样才能第一时间得知git上有提交和更新</a></li>
-<li><a href="#cloneremote-repolog">如何不clone到本地看remote repo的log?</a></li>
+<li><a href="#git_6">怎样才能第一时间得知git上有提交和更新</a></li>
+<li><a href="#clonefetchremote-repolog">如何不clone/fetch到本地看remote repo的log?</a></li>
 <li><a href="#commitpush">程序猿如何频繁地commit，但又低调地push</a></li>
-<li><a href="#_3">远程分支的操作</a></li>
-<li><a href="#_4">维持树的整洁</a></li>
-<li><a href="#git_6">Git多用户间协作还有什么引人入胜之处</a></li>
+<li><a href="#_4">如何删除远程分支</a></li>
+<li><a href="#tag">如何删除远程tag</a></li>
+<li><a href="#_5">别人把远程分支删除了，我本地的对应分支怎么还在</a></li>
+<li><a href="#_6">维持树的整洁</a></li>
+<li><a href="#git_7">Git多用户间协作还有什么引人入胜之处</a></li>
 </ul>
 </li>
-<li><a href="#round-5">Round 5</a><ul>
-<li><a href="#git_7">git从何而来</a></li>
-<li><a href="#git_8">git去往何处</a></li>
-<li><a href="#git_9">git有哪些好的入门的资料</a></li>
-<li><a href="#git_10">git命令我掌握的七七八八了，怎么整理一下</a></li>
-<li><a href="#git_11">重新梳理git的软件</a></li>
+<li><a href="#round-5">Round 5 &ndash; 整理</a><ul>
+<li><a href="#git_8">git从何而来</a></li>
+<li><a href="#git_9">git去往何处</a></li>
+<li><a href="#git_10">git有哪些好的入门的资料</a></li>
+<li><a href="#git_11">git命令我掌握的七七八八了，怎么整理一下</a></li>
+<li><a href="#git_12">重新梳理git的软件</a></li>
 </ul>
 </li>
-<li><a href="#round-6">Round 6</a><ul>
+<li><a href="#round-6">Round 6 &ndash; 奇技淫巧</a><ul>
+<li><a href="#committaggitcheckout">导出一个节点(commit、tag)，不受git管理，不用checkout</a></li>
 <li><a href="#logrepo">导出某个子目录及其log成为一个新的repo</a></li>
 <li><a href="#2bug1commit">分支2需改bug，但我正在分支1上编码并不想commit怎么办</a></li>
-<li><a href="#_5">我反悔了，我要回退！</a></li>
+<li><a href="#_7">我反悔了，我要回退！</a></li>
+<li><a href="#_8">暂存一个文件的部分改动</a></li>
+<li><a href="#_9">能否从不同的分支里选择某次提交并且把它合并到当前的分支</a></li>
 </ul>
 </li>
-<li><a href="#round-7">Round 7</a><ul>
+<li><a href="#round-7">Round 7 &ndash; 原理拾趣</a><ul>
 <li><a href="#gitsvn">git和SVN在元数据存储上有什么区别</a></li>
 <li><a href="#git-object">git 的对象（object）</a></li>
-<li><a href="#git_12">git 的快照存储有点不可思议，如何做到好又多的</a></li>
+<li><a href="#git_13">git 的快照存储有点不可思议，如何做到好又多的</a></li>
 </ul>
 </li>
 </ul>
 <!-- /MarkdownTOC -->
 
 <hr />
-<h1 id="round-1"><a name="user-content-round-1" href="#round-1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 1</h1>
+<h1 id="round-1-"><a name="user-content-round-1-" href="#round-1-" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 1 &ndash; 起步</h1>
 <p><img alt="" src="img/run-buffalo.jpg" /></p>
 <h2 id="git"><a name="user-content-git" href="#git" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git在哪里</h2>
 <ul>
@@ -575,10 +582,20 @@ wkevin (3):
       2.2日记
 </code></pre></li>
 </ul>
-<p>如果只是做个<strong>日记本</strong>，自己写、自己看、绝不给别人看、绝不上网……这些命令就差不多够了！</p>
+<hr />
+<p>如果只是让git管理个<strong>日记本</strong>，自己写、自己看、绝不给别人看、绝不上网……这些命令就差不多够了！</p>
 <p>哇！好累啊，可以休息一下了，就这些命令，玩几天，把日记写上一个礼拜，然后我们再继续。如果你不打算继续了，也没关系，这些命令就写日记&ndash;够用了！</p>
+<p>第一局，Over！</p>
+<h1 id="round-2-"><a name="user-content-round-2-" href="#round-2-" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 2 &ndash; 优雅</h1>
+<p><img alt="" src="img/gray-owl-mouse-sw.jpg" /></p>
+<p>欢迎回来，能回来接着读说明你是个积极追求上进的好同学，我们继续聊！</p>
+<p>用git写了一些日记，你肯定有了新需求，最令你恼火的可能有：</p>
+<ul>
+<li>敲命令真烦人，尤其还辣么长的命令</li>
+<li>看log真晃眼，不清爽</li>
+<li>提交之前还要来个add，啥子意思</li>
+</ul>
 <h2 id="addcommitstatus"><a name="user-content-addcommitstatus" href="#addcommitstatus" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>每次都要敲add、commit、status，嫌累了</h2>
-<p>用git写了一些日记，你肯定有了新需求，能回来接着读说明你是个积极追求上进的好同学，我们继续聊！</p>
 <p>有这样的问题说明你已经是git的初级用户了，并且听了我的建议：“使用命令行，远离GUI” —— 我一点都不奇怪，绝大部分程序猿一旦用上git都会上瘾的，会频繁的<code>git commit</code>，然后在<code>git log</code>中寻觅自己的成就感，否则吃不好饭、睡不好觉……呵呵</p>
 <p>言归正传。</p>
 <p>别名（alias）是linux系统的基本概念，在git中也如鱼得水：</p>
@@ -651,8 +668,6 @@ Untracked files:
 no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
 </code></pre></li>
 </ul>
-<h1 id="round-2"><a name="user-content-round-2" href="#round-2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 2</h1>
-<p><img alt="" src="img/gray-owl-mouse-sw.jpg" /></p>
 <h2 id="git-log"><a name="user-content-git-log" href="#git-log" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我要筛选 git log</h2>
 <ul>
 <li>可以只看某个子目录或某个文件的log</li>
@@ -809,8 +824,6 @@ bf36ab9 Sun Jan 31 12:19:33 2016 wkevin 2.1的日记
 
 <p>上面的命令可以在commit的同时指定提交内容的author和AUTHOR_DATE，这个恐怕要靠提交者（committer）的记忆力和公德心了，把这段代码真实author的名字和写就时间录进去，而不是让git默认的把自己的name和提交时间（COMMITTER_DATE）录入库中。</p>
 <p>在没有github之前，一个开源项目通常还是只设置几个有权限的提交人，大家想贡献代码就发patch给有权限的人，然后有权人commit。但自从有了github，发明了fork（fork并不属于git，而是github的独创哦）和PR（Pull-Request），让这个过程更加的轻便，也让项目的发展更加《失控》，有能力的人可以在自己的领地fork并发展一个项目，PR或不PR给原作者全凭个人喜好，原作者如果“懒政”，其他人完全可以独立发展。—— 每个人都在自己的库里commit，使得committer和author通常都是一个人，大家都是通过PR给其他人，而不是发送patch了。—— 所以 <code>--author</code> 这个参数已经很久不用一次了。</p>
-<h1 id="round-3"><a name="user-content-round-3" href="#round-3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 3</h1>
-<p><img alt="" src="img/boy-buffaloes-india-sw.jpg" /></p>
 <h2 id="tortoisesvndiff"><a name="user-content-tortoisesvndiff" href="#tortoisesvndiff" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我要能像TortoiseSVN那样左右两栏对比看diff</h2>
 <p>这个必须有！</p>
 <blockquote>
@@ -915,12 +928,9 @@ $ git config --global difftool.dm.cmd 'diffmerge &quot;$LOCAL&quot; &quot;$REMOT
 <pre><code class="cmd">$ git config --global diff.tool dm
 </code></pre></li>
 </ul>
-<h2 id="ubuntugit-commint"><a name="user-content-ubuntugit-commint" href="#ubuntugit-commint" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我用ubuntu，我要修改git commint时的默认编辑器</h2>
-<pre><code class="cmd">ubuntu$ update-alternatives --config editor
-</code></pre>
-
-<p>这个问题不属于git的范畴，而是linux的。</p>
-<h2 id="gitstage"><a name="user-content-gitstage" href="#gitstage" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>听说git的提交是到什么暂存区（stage），是个什么意思</h2>
+<h2 id="git-add"><a name="user-content-git-add" href="#git-add" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>修改完了为什么不是直接提交，而是git add</h2>
+<p>git在 <code>git commit</code> 之前首先要 <code>git add</code>，从svn转移过来的同学会对这点有一些疑惑和质疑。</p>
+<p><code>git add</code> 将文件放入到暂存区（stage），并生成对象 —— 参见本文的 <a href="#git-object">git 的对象（object）</a></p>
 <p>理解git需要理解文件的5种状态和3个区（area）：</p>
 <p>5种状态：</p>
 <ol>
@@ -976,6 +986,18 @@ DESCRIPTION
 <li>使用<code>git add</code>或<code>git stage</code>命令随时向SA增加文件，和回收站不同的是后进入SA的文件会覆盖前面进入的</li>
 <li>使用<code>git checkout</code>命令随时从SA反悔，文件会从SA移除，是否覆盖</li>
 </ul>
+<h2 id="ubuntugit-commit"><a name="user-content-ubuntugit-commit" href="#ubuntugit-commit" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我用ubuntu，我要修改git commit时的默认编辑器</h2>
+<p><code>git cimmit</code>会自动打开系统默认的编辑器来让你写log，如下修改：</p>
+<pre><code class="cmd">ubuntu$ update-alternatives --config editor
+</code></pre>
+
+<p>这个问题不属于git的范畴，而是linux的。</p>
+<hr />
+<p>到这里，你应该能够优雅地使用git管理自己的日记本了：<strong>log清清爽爽、命令简简单单、变更一目了然</strong> —— 如果只是管理自己的日记项目，已然可以游刃有余了。</p>
+<p>如果你是工程师或程序员，还会有多版本、多分支并行开发的需求，下面我们开始讨论分支、合并等操作。如果不是程序员，基本上可以刀枪入库、马放南山，结束阅读了。</p>
+<p>第二局，Over!</p>
+<h1 id="round-3-"><a name="user-content-round-3-" href="#round-3-" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 3 &ndash; 并发</h1>
+<p><img alt="" src="img/boy-buffaloes-india-sw.jpg" /></p>
 <h2 id="branch"><a name="user-content-branch" href="#branch" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我想做个分支（branch），怎么做</h2>
 <p>好了，这里要提到一个非常重要的概念了，很多git书籍都会强调的一点：<strong>git的branch只是个指针</strong> —— 也常被称作“<strong>git的必杀技</strong>”。</p>
 <p>git 的分支操作异常的迅速、便捷、和轻量级，全部依赖于branch只是个指针，类似于C语言的指针，但这个指针不是4Bytes，而是包含了比较多的信息（算是个struct吧，呵呵），通常书里是这样描述此指针的：</p>
@@ -1098,14 +1120,59 @@ $ git config --global mergetool.diffmerge.cmd 'diffmerge --merge --result=&quot;
 </ul>
 </li>
 </ul>
-<h1 id="round-4"><a name="user-content-round-4" href="#round-4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 4</h1>
+<h2 id="git_4"><a name="user-content-git_4" href="#git_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git分支之间的关系咋看</h2>
+<pre><code class="cmd">$ git log --pretty=oneline --graph
+
+* 94688f21cc5d8bc85f1783b4c8b98b3288d712cb improve readme
+*   693f2c48421d9218e057340bf29de75e0d5ba8d2 Merge pull request #377 from PhrozenByte/patch-1
+|\
+| * 9545a295cf4cfda6e728ebf0948a12bc5530e42d README.md: Add PHP 5.3+ requirement
+| * 3d649081e58c9fed5ff11aeede1be2dd2e0ee153 Update composer.json requirements
+|/
+*   32de2cedcc98ffb3476f5a413f47bb482691c807 Merge pull request #373 from getgrav/master
+|\
+| * e7443a2bd868e78946ae6a01a1b07d477ce6f4cc Fixed really sorry spelling errors
+| * 10a7ff776c3f16b1b3aa41c176c48150fc091065 Left as-is
+| * 5ad15b87faa2ab10f7cda7593e2e92696fafadd2 Break out method_exists checks into extendable methods to allow for better pluggability
+| * b166cab9a252f4093af1f33cb178a86f6047d08a Make `lines` protected to allow for extendability
+|/
+* 0f974bf34fdc420c3a7dc0a6c5c5fc620fa9dd89 improve readme
+* 3d7cdeec5f90a16934a2cfd35a089c78aa0e4816 remove duplicate item in: who uses it
+</code></pre>
+
+<hr />
+<p>学会了分支操作（创建、合并、冲突……）是与人合作的基础，你是否已经准备好了走出个人的宇宙，拥抱开源的大世界了！</p>
+<p>第3局，Over！</p>
+<h1 id="round-4-"><a name="user-content-round-4-" href="#round-4-" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 4 &ndash; 协作</h1>
 <p><img alt="" src="img/children-dam-bali-sw.jpg" /></p>
-<h2 id="git_4"><a name="user-content-git_4" href="#git_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>想看看别人的git库了</h2>
+<h2 id="git_5"><a name="user-content-git_5" href="#git_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>想看看别人的git库了</h2>
 <p>是不是已经不满足于只管理个本机的日记了？太好了，git天生就是为了程序猿合作用的，几条关键的命令要出场了：</p>
 <ul>
 <li><code>git clone url [localname]</code>  </li>
+<li><code>git fetch</code></li>
+<li><code>git pull</code></li>
+<li><code>git push</code></li>
 </ul>
+<p>一幅图说明问题：</p>
+<p><img alt="" src="img/git-pull-push.png" /></p>
+<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>到哪里找开源项目</h2>
+<p>开源项目托管网站（及其开始支持git的时间）有：</p>
+<ul>
+<li><a href="http://github.com">github</a>(2008.2)</li>
+<li><a href="http://sourceforge.net">sourceforge</a>(2009.3)</li>
+<li><a href="http://code.google.com">Google Code</a>(2011.7) —— 2015年底已关闭服务</li>
+<li><a href="http://www.codeplex.com">CodePlex</a>(2012.3)</li>
+<li><a href="http://code.csdn.net">CSDN Code</a>(2013.10)</li>
+<li><a href="http://git.oschina.net">OSChina git</a>(2013)</li>
+<li><a href="https://coding.net/">Coding</a></li>
+</ul>
+<p>这些网站之间有很多有趣的历史，也是互为竞争对手。2004年我第一次接触开源的时候，项目经理给我的任务是到sourceforge下载一个叫做rainbow的源码，当时还没有git，开源项目托管第一平台sourceforge已经独霸江湖10年有余，它是在用cvs，作为一个还在学校的学生，真的是摸索了很久。</p>
+<p>很多年过去了，看江湖风云，版本管理系统从cvs到svn，又从svn到git。项目托管网站从sourceforge逐步衰败，群众寄予厚望的google code也曾风光无限，几乎替代了sourceforge，但最终都还是和其他网站一起，败在了一个2008年创立、2011年才火起来的后起之秀手上，google code也于2015年底宣布关闭。此后起之秀就是当前无人匹敌的：github。</p>
+<p>有个有趣的小插曲：CodePlex是微软家的，也开张好多年了，sourceforge时代就不愠不火，反正在大家眼里微软和开源本就是水火不容、盖茨/鲍尔默和托瓦茨也是井水不犯河水。但在2012年微软突然做出了一个有趣的决定：</p>
+<p><img alt="" src="img/codeplex.torvalds.png" /></p>
+<p>近几年，微软更是几乎放弃了自家的CodePlex，转投github，开源自己的.NET都在github上了。</p>
 <h2 id="github"><a name="user-content-github" href="#github" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>为什么github成了程序员的麦加圣地</h2>
+<p>不解释，它就是那么酷！ &ndash; 谁用谁知道</p>
 <h2 id="github_1"><a name="user-content-github_1" href="#github_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>公司访问不了外网的github，咋办</h2>
 <pre><code class="cmd">$ git config --global http.proxy http://&lt;proxyserver&gt;:&lt;port&gt;
 $ git config --global https.proxy http://&lt;proxyserver&gt;:&lt;port&gt;
@@ -1173,10 +1240,11 @@ Checking connectivity... done.
 </ul>
 </li>
 </ul>
-<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何与别人合作</h2>
+<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何与别人合作</h2>
+<p>当面沟通必不可少，svn和git并不能解决所有问题，每个团队都可以有自己的分支策略、日志模版、合并规则、标签原则……</p>
 <h2 id="github_2"><a name="user-content-github_2" href="#github_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何在github上与别人合作</h2>
 <p>github的工作流： <a href="https://guides.github.com/introduction/flow/">Understanding the GitHub Flow</a></p>
-<h2 id="git_5"><a name="user-content-git_5" href="#git_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>怎样才能第一时间得知git上有提交和更新</h2>
+<h2 id="git_6"><a name="user-content-git_6" href="#git_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>怎样才能第一时间得知git上有提交和更新</h2>
 <p>和团队成员保持紧密合作在敏捷中非常重要，SVN的时候有一个非常优秀的软件 CommitMonitor，能够监控SVNServer的更新，图标是一双大眼睛，悄悄的躲在任务栏，发现更新大眼睛变成红色转啊转的。</p>
 <p>git和svn有所不同，svn 有 server，监控器只需要监控server即可，git 没有server，只有hub，或者说每个人电脑里的git都是server，大家通过hub进行同步。监控server和监控hub的思路是有些差别的，各位看官可细细品味。</p>
 <p>监控 git hub 的软件有：</p>
@@ -1205,7 +1273,7 @@ Checking connectivity... done.
 <img alt="" src="img/gitlab-rss-feed-group.png" /></p>
 <p>使用 RSS Reader（图中使用的是Snafer）订阅的效果：<br />
 <img alt="" src="img/gitlab-rss-reader.png" /></p>
-<h2 id="cloneremote-repolog"><a name="user-content-cloneremote-repolog" href="#cloneremote-repolog" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何不clone到本地看remote repo的log?</h2>
+<h2 id="clonefetchremote-repolog"><a name="user-content-clonefetchremote-repolog" href="#clonefetchremote-repolog" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何不clone/fetch到本地看remote repo的log?</h2>
 <h2 id="commitpush"><a name="user-content-commitpush" href="#commitpush" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>程序猿如何频繁地commit，但又低调地push</h2>
 <p>SVN和git面对同样的一个问题：大部分程序猿是含蓄、内敛的，他既希望频繁的commit，让svn/git帮他记住每一步，但并不想把这些过程信息全都公诸于众，而只是把阶段性成果推送给大家或服务器。</p>
 <p>具体情况还要分为两种：假定两名程序员A、B</p>
@@ -1253,34 +1321,42 @@ Checking connectivity... done.
 </ul>
 </li>
 </ol>
-<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>远程分支的操作</h2>
+<h2 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何删除远程分支</h2>
 <ul>
-<li>删除本地分支</li>
-<li>删除远程分支<ul>
-<li>git push origin :<branchName></li>
-<li>git push origin &ndash;delete <branchName></li>
+<li>删除本地分支是： <code>git branch remove &lt;branchName&gt;</code></li>
+<li>删除远程分支：<ul>
+<li><code>git push origin :&lt;branchName&gt;</code></li>
+<li><code>git push origin --delete &lt;branchName&gt;</code></li>
 </ul>
 </li>
+</ul>
+<h2 id="tag"><a name="user-content-tag" href="#tag" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何删除远程tag</h2>
+<ul>
 <li>删除本地tag<ul>
-<li>git tag -d <tagname></li>
+<li><code>git tag -d &lt;tagname&gt;</code></li>
 </ul>
 </li>
 <li>删除远程tag<ul>
-<li>git tag -d <tagname></li>
-<li>git push origin :refs/tags/<tagname></li>
-<li>git push origin &ndash;delete tag <tagname></li>
+<li><code>git tag -d &lt;tagname&gt;</code></li>
+<li><code>git push origin :refs/tags/&lt;tagname&gt;</code></li>
+<li><code>git push origin --delete tag &lt;tagname&gt;</code></li>
 </ul>
 </li>
-<li>删除“远程已经删除了的分支”对应的本地分支：<strong>git fetch -p</strong></li>
 </ul>
-<h2 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>维持树的整洁</h2>
+<h2 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>别人把远程分支删除了，我本地的对应分支怎么还在</h2>
+<p>张三删除了某个branch并push到github，李四<code>git fetch/pull</code>之后该branch在李四本地库里是仍然存在的，如何删除之？</p>
+<ol>
+<li><code>git fetch -p</code></li>
+<li><code>git remote prune origin</code></li>
+</ol>
+<h2 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>维持树的整洁</h2>
 <p><a href="http://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a> </p>
 <p>方法就是：在git push之前，先git fetch，再git rebase</p>
 <p>git rebase（衍合）</p>
 <p>git rebase 一般自己一个人开发时使用，用来保持提交记录的整洁。一旦上传到github后，不应该使用git rebase,不然被骂死。</p>
 <p>一旦分支中的提交对象发布到公共仓库，就千万不要对该分支进行衍合操作。<br />
  如果你遵循这条金科玉律，就不会出差错。否则，人民群众会仇恨你，你的朋友和家人也会嘲笑你，唾弃你。</p>
-<h2 id="git_6"><a name="user-content-git_6" href="#git_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Git多用户间协作还有什么引人入胜之处</h2>
+<h2 id="git_7"><a name="user-content-git_7" href="#git_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Git多用户间协作还有什么引人入胜之处</h2>
 <ul>
 <li>集中式工作流<br />
 <img alt="" src="img/workflow.onecore.png" /></li>
@@ -1289,15 +1365,15 @@ Checking connectivity... done.
 <li>司令与副官流程（Linux）<br />
 <img alt="" src="img/workflow.many.layers.png" /></li>
 </ul>
-<h1 id="round-5"><a name="user-content-round-5" href="#round-5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 5</h1>
+<h1 id="round-5-"><a name="user-content-round-5-" href="#round-5-" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 5 &ndash; 整理</h1>
 <p><img alt="" src="img/elephants-sand-river-sw.jpg" /></p>
-<h2 id="git_7"><a name="user-content-git_7" href="#git_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git从何而来</h2>
+<h2 id="git_8"><a name="user-content-git_8" href="#git_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git从何而来</h2>
 <p><img alt="" src="img/Torvalds.jpg" /></p>
 <p>这里有一篇git的创始人Torvalds（同时也是Linux的创始人）的接受中国媒体的一篇访谈录：</p>
 <ul>
 <li><a href="http://www.wtoutiao.com/a/2287349.html">Linux创始人Linus Torvalds访谈，Git的十年之旅</a> &ndash; 如果网页链接失效，重新百度即可，Torvalds接受类似的访谈录很多，但大多是英文的。</li>
 </ul>
-<h2 id="git_8"><a name="user-content-git_8" href="#git_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git去往何处</h2>
+<h2 id="git_9"><a name="user-content-git_9" href="#git_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git去往何处</h2>
 <p>2005年7月26日开始，Torvalds把git托付给了一位日本人：<a href="https://en.wikipedia.org/wiki/Junio_Hamano">Junio Hamano</a>。Torvalds也说过自己一生最大的成功之一就包括把git托付给Hamano。</p>
 <p>Hamano现在google，他的github帐号为：<a href="https://github.com/gitster">gitster</a>，头像中抱着个大熊猫，说不定比较喜欢China哦。<br />
 <img alt="" src="img/Hamano.jpg" /></p>
@@ -1318,7 +1394,7 @@ Checking connectivity... done.
 </ul>
 </li>
 </ul>
-<h2 id="git_9"><a name="user-content-git_9" href="#git_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git有哪些好的入门的资料</h2>
+<h2 id="git_10"><a name="user-content-git_10" href="#git_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git有哪些好的入门的资料</h2>
 <p>读到这里是需要系统的了解、学习一下git的时候了，<br />
 当然，我明白你说的是中文资料。</p>
 <ul>
@@ -1335,16 +1411,17 @@ Checking connectivity... done.
 <ul>
 <li><a href="http://git.wiki.kernel.org">git wiki</a></li>
 </ul>
-<h2 id="git_10"><a name="user-content-git_10" href="#git_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git命令我掌握的七七八八了，怎么整理一下</h2>
+<h2 id="git_11"><a name="user-content-git_11" href="#git_11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git命令我掌握的七七八八了，怎么整理一下</h2>
 <p>google 或 bing 上搜索图片：<strong>git cheat sheet</strong> —— 不要在baidu上搜索，结果你会很失望。</p>
 <p>可以看到很多热心网友们整理的常用命令集，快选一幅打印出来或作为桌面吧！</p>
 <p>比如（版权归作者所有，本文仅是转发）：</p>
 <p><img alt="" src="img/Git-Cheatsheet-1.png" /><br />
 <img alt="" src="img/Git-Cheatsheet-3.jpg" /><br />
-<img alt="" src="img/Git-Cheatsheet-4.png" /></p>
+<img alt="" src="img/Git-Cheatsheet-4.png" /><br />
+<img alt="" src="img/Git-Cheatsheet-5.png" /></p>
 <p>也有一些复杂到令人发指的：<br />
 <img alt="" src="img/Git-Cheatsheet-2.png" /></p>
-<h2 id="git_11"><a name="user-content-git_11" href="#git_11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>重新梳理git的软件</h2>
+<h2 id="git_12"><a name="user-content-git_12" href="#git_12" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>重新梳理git的软件</h2>
 <p>是时候看一下git的 <a href="https://en.wikipedia.org/wiki/Git_(software)">维基百科</a> 了：</p>
 <blockquote>
 <p>Git is a widely-used source code management system for software development. It is a distributed revision control system with an emphasis on speed,[6] data integrity,[7] and support for distributed, non-linear workflows.[8] Git was initially designed and developed in 2005 by Linux kernel developers (including Linus Torvalds) for Linux kernel development.[9]</p>
@@ -1359,8 +1436,14 @@ Checking connectivity... done.
 </ul>
 </li>
 </ul>
-<h1 id="round-6"><a name="user-content-round-6" href="#round-6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 6</h1>
+<h1 id="round-6-"><a name="user-content-round-6-" href="#round-6-" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 6 &ndash; 奇技淫巧</h1>
 <p><img alt="" src="img/black-trevally-sardines-sw.jpg" /></p>
+<h2 id="committaggitcheckout"><a name="user-content-committaggitcheckout" href="#committaggitcheckout" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>导出一个节点(commit、tag)，不受git管理，不用checkout</h2>
+<pre><code class="cmd">$ cd projectA.git
+$ mkdir ../projectA-v1.2
+$ git archive v1.2 | tar -x -C ../projectA-v1.2
+</code></pre>
+
 <h2 id="logrepo"><a name="user-content-logrepo" href="#logrepo" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>导出某个子目录及其log成为一个新的repo</h2>
 <pre><code>cd oldrepo
 git subtree split -P subdir -b newbranch
@@ -1387,20 +1470,11 @@ git clone newrepo.git
 <li>git stash clear: 清空Git栈。此时使用gitg等图形化工具会发现，原来stash的哪些节点都消失了。</li>
 <li>git stash apply：将以前一半的工作应用回来</li>
 </ul>
-<h2 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我反悔了，我要回退！</h2>
-<p>丢弃（要懂得放弃）</p>
+<h2 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我反悔了，我要回退！</h2>
+<p>为什么把“反悔”放在奇技淫巧中——因为git不提倡反悔，男子汉大豆腐做了不悔、悔了不做。</p>
+<p>但人生不如意十之八九，学会放弃也是难能可贵的。</p>
 <ul>
-<li><code>git clean -df</code>：丢弃untracked的文件，不丢弃modified的文件</li>
-<li><code>git checkout .</code>：用缓存或HEAD中的文件覆盖本地文件，这些文件中的修改都丢弃掉了，但新增的文件不会被丢弃</li>
-<li>git stash #把所有没有提交的修改暂存到stash里面。可用git stash pop回复。</li>
-<li>git reset &ndash;soft HASH #返回到某个节点。保留修改</li>
-<li>git reset &ndash;hard HASH #返回到某个节点，不保留修改。<ul>
-<li>git reset &ndash;hard HEAD</li>
-<li>git reset &ndash;hard HEAD~1</li>
-<li>git reset &ndash;hard HEAD~5</li>
-<li></li>
-</ul>
-</li>
+<li><code>git clean -df</code>：丢弃untracked的文件，不丢弃modified的文件<ul>
 <li>git clean -f: 删除 untracked files</li>
 <li>git clean -fd: 连 untracked 的目录也一起删掉</li>
 <li>git clean -xfd: 连 gitignore 的untrack 文件/目录也一起删掉 （慎用，一般这个是用来删掉编译出来的 .o之类的文件用的）</li>
@@ -1408,6 +1482,17 @@ git clone newrepo.git
 <li>git clean -nxfd</li>
 <li>git clean -nf</li>
 <li>git clean -nfd</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>git checkout .</code>：用缓存或HEAD中的文件覆盖本地文件，这些文件中的修改都丢弃掉了，但新增的文件不会被丢弃</li>
+<li>git stash #把所有没有提交的修改暂存到stash里面。可用git stash pop回复。</li>
+<li>git reset &ndash;soft HASH #返回到某个节点。保留修改</li>
+<li>git reset &ndash;hard HASH #返回到某个节点，不保留修改。<ul>
+<li>git reset &ndash;hard HEAD</li>
+<li>git reset &ndash;hard HEAD~1</li>
+<li>git reset &ndash;hard HEAD~5</li>
 </ul>
 </li>
 </ul>
@@ -1453,7 +1538,14 @@ $ git br
   new    ab3fa01 3
 </code></pre></li>
 </ul>
-<h1 id="round-7"><a name="user-content-round-7" href="#round-7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 7</h1>
+<h2 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>暂存一个文件的部分改动</h2>
+<p>比如说，你对一个文件进行了多次修改并且想把他们分别提交。这种情况下，你可以在添加命令(add)中加上-p选项</p>
+<p><code>git add -p [file_name]</code></p>
+<p>会逐段（hunk）提示你是否add。</p>
+<h2 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>能否从不同的分支里选择某次提交并且把它合并到当前的分支</h2>
+<p><code>git cherry-pick [commit_hash]</code></p>
+<p>这个命令会带来冲突，请谨慎使用</p>
+<h1 id="round-7-"><a name="user-content-round-7-" href="#round-7-" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 7 &ndash; 原理拾趣</h1>
 <h2 id="gitsvn"><a name="user-content-gitsvn" href="#gitsvn" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git和SVN在元数据存储上有什么区别</h2>
 <p>svn是基于增量存储的，两次提交对于repo来说只保存变化量，git不使用svn的增量方式保存数据，而是使用快照。因为git的分布式特性，并没有一颗树一样成长的repo，repo更像是一张网式的成长，节点与节点之间可能会绕很远才能找到亲戚关系，所以增量无从谈起。</p>
 <p>来看下面这个过程：</p>
@@ -1577,7 +1669,7 @@ $ git ls-tree e3426a5
 .vim.*
 </code></pre></li>
 </ul>
-<h2 id="git_12"><a name="user-content-git_12" href="#git_12" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git 的快照存储有点不可思议，如何做到好又多的</h2>
+<h2 id="git_13"><a name="user-content-git_13" href="#git_13" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git 的快照存储有点不可思议，如何做到好又多的</h2>
 <ul>
 <li>继续前面的话题，我们往前查几个commit对象，试图发现的更多一些<br />
 <pre><code class="cmd">$ git show --pretty=raw 48eda25
@@ -1602,5 +1694,15 @@ committer wkevin &lt;wkevin@users.noreply.github.com&gt; 1454556117 +0800
 <li>README.md的HASH不同</li>
 </ul>
 <p>因此说明：<strong>每次提交仅会把有改动的file重新计算HASH并封装为对象进行存储</strong></p>
-<p>整个文件存储那不是很浪费空间？—— Yes！</p>
-<p>那为什么还比svn的增量存储更快呢？ —— 这个问题</p></article></body></html>
+<ul>
+<li>整个文件存储那不是很浪费空间？—— Yes！</li>
+<li>那为什么还比svn的增量存储更快呢？ —— 这个问题要这么看：<ul>
+<li><code>svn commit</code>的时候是提交到网络服务器的，存在网络时延的问题，<code>git commit</code>只有本地操作</li>
+<li><code>svn commit</code>的时候要实时计算diff，<code>git add/commit</code>不存在diff计算，<code>git add</code>时会做对象的生成，但git对象的生成是执行压缩算法 —— 执行diff计算和执行压缩算法在当前水平的CPU能力下已不分伯仲</li>
+<li>git虽然耗损更多的磁盘空间，但现在最不值钱的就是磁盘空间了</li>
+</ul>
+</li>
+</ul>
+<hr />
+<p>就到这里吧，休息、休息一下！</p>
+<p>bye……</p></article></body></html>
