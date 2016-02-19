@@ -10,12 +10,12 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
 
 <!-- MarkdownTOC -->
 
-- [Round 1 -- 起步](#round-1)
+- [Round 1 : 起步](#round-1)
     - [git在哪里](#git)
     - [Git for Windows 咋用](#git-for-windows)
     - [先单机玩玩还是先弄来个别人的git库](#git_1)
     - [如何在本机git我的日记](#git_2)
-- [Round 2 -- 优雅](#round-2)
+- [Round 2 : 优雅](#round-2)
     - [每次都要敲add、commit、status，嫌累了](#addcommitstatus)
     - [有些文件不希望被git管理](#git_3)
     - [我要筛选 git log](#git-log)
@@ -27,14 +27,14 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [我要能像TortoiseSVN那样左右两栏对比看diff](#tortoisesvndiff)
     - [修改完了为什么不是直接提交，而是git add](#git-add)
     - [我用ubuntu，我要修改git commit时的默认编辑器](#ubuntugit-commit)
-- [Round 3 -- 并发](#round-3)
+- [Round 3 : 并发](#round-3)
     - [我想做个分支（branch），怎么做](#branch)
     - [如何在分支间来回切换](#_1)
     - [merge是怎么玩儿的](#merge)
     - [分支要合并到主干或其他分支，怎么merge](#merge_1)
     - [git merge 有没有图形化的工具](#git-merge)
     - [git分支之间的关系咋看](#git_4)
-- [Round 4 -- 协作](#round-4)
+- [Round 4 : 协作](#round-4)
     - [想看看别人的git库了](#git_5)
     - [到哪里找开源项目](#_2)
     - [为什么github成了程序员的麦加圣地](#github)
@@ -50,20 +50,20 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [别人把远程分支删除了，我本地的对应分支怎么还在](#_5)
     - [维持树的整洁](#_6)
     - [Git多用户间协作还有什么引人入胜之处](#git_7)
-- [Round 5 -- 整理](#round-5)
+- [Round 5 : 整理](#round-5)
     - [git从何而来](#git_8)
     - [git去往何处](#git_9)
     - [git有哪些好的入门的资料](#git_10)
     - [git命令我掌握的七七八八了，怎么整理一下](#git_11)
     - [重新梳理git的软件](#git_12)
-- [Round 6 -- 奇技淫巧](#round-6)
+- [Round 6 : 奇技淫巧](#round-6)
     - [导出一个节点(commit、tag)，不受git管理，不用checkout](#committaggitcheckout)
     - [导出某个子目录及其log成为一个新的repo](#logrepo)
     - [分支2需改bug，但我正在分支1上编码并不想commit怎么办](#2bug1commit)
     - [我反悔了，我要回退！](#_7)
     - [暂存一个文件的部分改动](#_8)
     - [能否从不同的分支里选择某次提交并且把它合并到当前的分支](#_9)
-- [Round 7 -- 原理拾趣](#round-7)
+- [Round 7 : 原理拾趣](#round-7)
     - [git和SVN在元数据存储上有什么区别](#gitsvn)
     - [git 的对象（object）](#git-object)
     - [git 的快照存储有点不可思议，如何做到好又多的](#git_13)
@@ -72,7 +72,7 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
 
 ---
 
-# Round 1 -- 起步
+# Round 1 : 起步
 
 ![](img/run-buffalo.jpg)
 
@@ -299,7 +299,7 @@ wkevin (3):
 
 第一局，Over！
 
-# Round 2 -- 优雅
+# Round 2 : 优雅
 
 ![](img/gray-owl-mouse-sw.jpg)
 
@@ -782,7 +782,7 @@ ubuntu$ update-alternatives --config editor
 
 第二局，Over!
 
-# Round 3 -- 并发
+# Round 3 : 并发
 
 ![](img/boy-buffaloes-india-sw.jpg)
 
@@ -929,7 +929,7 @@ $ git log --pretty=oneline --graph
 
 第3局，Over！
 
-# Round 4 -- 协作
+# Round 4 : 协作
 
 ![](img/children-dam-bali-sw.jpg)
 
@@ -1156,7 +1156,7 @@ git rebase 一般自己一个人开发时使用，用来保持提交记录的整
 * 司令与副官流程（Linux）
 ![](img/workflow.many.layers.png)
 
-# Round 5 -- 整理
+# Round 5 : 整理
 
 ![](img/elephants-sand-river-sw.jpg)
 
@@ -1240,7 +1240,7 @@ google 或 bing 上搜索图片：**git cheat sheet** —— 不要在baidu上�
     + [TortoiseGit](http://code.google.com/p/tortoisegit/)：类似TortoiseSVN，可以做图标重绘。
 
 
-# Round 6 -- 奇技淫巧
+# Round 6 : 奇技淫巧
 
 ![](img/black-trevally-sardines-sw.jpg)
 
@@ -1354,7 +1354,7 @@ git clone newrepo.git
 
 这个命令会带来冲突，请谨慎使用
 
-# Round 7 -- 原理拾趣
+# Round 7 : 原理拾趣
 
 ## git和SVN在元数据存储上有什么区别
 
