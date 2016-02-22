@@ -30,6 +30,7 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
 - [Round 3 : 并发](#round-3)
     - [我想做个分支（branch），怎么做](#branch)
     - [如何在分支间来回切换](#_1)
+    - [删除分支总是想用git branch delete](#git-branch-delete)
     - [merge是怎么玩儿的](#merge)
     - [分支要合并到主干或其他分支，怎么merge](#merge_1)
     - [git merge 有没有图形化的工具](#git-merge)
@@ -43,6 +44,7 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [如何与别人合作](#_3)
     - [如何在github上与别人合作](#github_2)
     - [怎样才能第一时间得知git上有提交和更新](#git_6)
+    - [git fetch 还是 git pull](#git-fetch-git-pull)
     - [如何不clone/fetch到本地看remote repo的log?](#clonefetchremote-repolog)
     - [程序猿如何频繁地commit，但又低调地push](#commitpush)
     - [如何删除远程分支](#_4)
@@ -57,7 +59,7 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [git命令我掌握的七七八八了，怎么整理一下](#git_11)
     - [重新梳理git的软件](#git_12)
 - [Round 6 : 奇技淫巧](#round-6)
-    - [导出一个节点(commit、tag)，不受git管理，不用checkout](#committaggitcheckout)
+    - [从当前库中快速导出一个节点(commit、tag)另作他用](#committag)
     - [导出某个子目录及其log成为一个新的repo](#logrepo)
     - [分支2需改bug，但我正在分支1上编码并不想commit怎么办](#2bug1commit)
     - [我反悔了，我要回退！](#_7)
@@ -789,41 +791,10 @@ ubuntu$ update-alternatives --config editor
 
 好了，这里要提到一个非常重要的概念了，很多git书籍都会强调的一点：**git的branch只是个指针** —— 也常被称作“**git的必杀技**”。
 
-git 的分支操作异常的迅速、便捷、和轻量级，全部依赖于branch只是个指针，类似于C语言的指针，但这个指针不是4Bytes，而是包含了比较多的信息（算是个struct吧，呵呵），通常书里是这样描述此指针的：
+网文非常多，自行搜索一下 `git branch` 吧，或者执行:
 
 ```cmd
-MBP:GitChat.git wangkevin$ git br
-* master                12205fd [origin/master] 写完 “## 我要能像TortoiseSVN那样左右两栏对比看diff”章节
-  remotes/origin/master 12205fd 写完 “## 我要能像TortoiseSVN那样左右两栏对比看diff”章节
-MBP:GitChat.git wangkevin$ git lg
- 12205fd | 2016-02-04 00:50:37 +0800 | 2016-02-04 00:50:37 +0800 |  wkevin  写完 “## 我要能像TortoiseSVN那样左右两栏对比看diff”章节
- 8216a0b | 2016-02-02 23:55:44 +0800 | 2016-02-02 23:55:44 +0800 |  wkevin  基本写完 Round 2 ，git log 部分
- 8674466 | 2016-01-31 16:22:59 +0800 | 2016-01-31 16:22:59 +0800 |  wkevin  在动车上写的：修改为Round x，增加了每个Round的插图。 虽然是春运，但动车上并不挤，卧改座的还能躺着睡觉，坐票也有些车厢人很少。 还有2h下车，提交一下，休息休息。
- ac580f2 | 2016-01-30 22:04:04 +0800 | 2016-01-30 22:04:04 +0800 |  wkevin  github desktop for windows snapshot
- de9a9ab | 2016-01-29 17:51:48 +0800 | 2016-01-29 17:51:48 +0800 |  Kevin Wang  add git for windows 章节
- e59757f | 2016-01-29 10:35:01 +0800 | 2016-01-29 10:35:01 +0800 |  Kevin Wang  增加："git在哪里"和"git for windows 咋用" 章节
- 7aa77c3 | 2016-01-29 09:40:52 +0800 | 2016-01-29 09:40:52 +0800 |  Kevin Wang  create
-MBP:GitChat.git wangkevin$ git fetch origin
-remote: Counting objects: 6, done.
-remote: Compressing objects: 100% (5/5), done.
-remote: Total 6 (delta 2), reused 5 (delta 1), pack-reused 0
-Unpacking objects: 100% (6/6), done.
-From https://github.com/wkevin/GitChat
-   12205fd..c242093  master     -> origin/master
-MBP:GitChat.git wangkevin$ git br
-* master                12205fd [origin/master: behind 2] 写完 “## 我要能像TortoiseSVN那样左右两栏对比看diff”章节
-  remotes/origin/master c242093 笔误
-MBP:GitChat.git wangkevin$ git lg origin/master
- c242093 | 2016-02-04 11:30:21 +0800 | 2016-02-04 11:30:21 +0800 |  wkevin  笔误
- 48eda25 | 2016-02-04 11:21:57 +0800 | 2016-02-04 11:21:57 +0800 |  wkevin  笔误: 缺少一个反括号
- 12205fd | 2016-02-04 00:50:37 +0800 | 2016-02-04 00:50:37 +0800 |  wkevin  写完 “## 我要能像TortoiseSVN那样左右两栏对比看diff”章节
- 8216a0b | 2016-02-02 23:55:44 +0800 | 2016-02-02 23:55:44 +0800 |  wkevin  基本写完 Round 2 ，git log 部分
- 8674466 | 2016-01-31 16:22:59 +0800 | 2016-01-31 16:22:59 +0800 |  wkevin  在动车上写的：修改为Round x，增加了每个Round的插图。 虽然是春运，但动车上并不挤，卧改座的还能躺着睡觉，坐票也有些车厢人很少。 还有2h下车，提交一下，休息休息。
- ac580f2 | 2016-01-30 22:04:04 +0800 | 2016-01-30 22:04:04 +0800 |  wkevin  github desktop for windows snapshot
- de9a9ab | 2016-01-29 17:51:48 +0800 | 2016-01-29 17:51:48 +0800 |  Kevin Wang  add git for windows 章节
- e59757f | 2016-01-29 10:35:01 +0800 | 2016-01-29 10:35:01 +0800 |  Kevin Wang  增加："git在哪里"和"git for windows 咋用" 章节
- 7aa77c3 | 2016-01-29 09:40:52 +0800 | 2016-01-29 09:40:52 +0800 |  Kevin Wang  create
-MBP:GitChat.git wangkevin$ 
+$ git help branch
 ```
 
 ## 如何在分支间来回切换
@@ -859,6 +830,34 @@ MBP:GitChat.git wangkevin$
 * `git checkout [--detach] <commit>`
     - 游离一个branch
 * `git checkout [[-b|-B|--orphan] <new_branch>] [<start_point>]`
+
+## 删除分支总是想用git branch delete
+
+曾经我也愤怒过这个事情：
+
+* 增加一个remote是：`git remote add ...`，增加一个branch却是：`git branch ...` —— 为啥不要add？
+* 删除一个remote是：`git remote remove ...`，删除一个branch却是：`git branch -d ...` —— 为啥要用`-d`？
+* 那些年闹过的笑话：
+    - `git branch delete xyz`: 结果增加了两个分支：delete和xyz
+    - `git branch remove delete xyz`: 以为用错了，再试remove，结果又增加了第3个分支：remove
+    - 非常疑惑，再试：`git branch del remove delete xyz`: 结果可想而知
+    - 最后还得： `git help branch`
+    - `git branch -d del remove delete xyz`
+
+在用参数还是用子命令的问题上，其实也不要纠结，子命令还能加参，所以子命令相当于对参数进行了一级分类，或者纯粹是开发者的个人偏好。
+
+* git中使用子命令的不多：`git <command> <subcommand> <option>`
+    - `git bisect       <subcommand>`
+    - `git bundle       <subcommand>`
+    - `git credential   <subcommand>`
+    - `git notes        <subcommand>`
+    - `git p4           <subcommand>`
+    - `git remote       <subcommand>`
+    - `git stash        <subcommand>`
+    - `git subtree      <subcommand>`
+    - `git svn          <subcommand>`
+    - `git worktree     <subcommand>`
+* 剩下的基本都是： `git <command> <option>`
 
 ## merge是怎么玩儿的
 
@@ -1088,6 +1087,10 @@ git和svn有所不同，svn 有 server，监控器只需要监控server即可，
 使用 RSS Reader（图中使用的是Snafer）订阅的效果：
 ![](img/gitlab-rss-reader.png)
 
+## git fetch 还是 git pull
+
+
+
 ## 如何不clone/fetch到本地看remote repo的log?
 
 
@@ -1253,12 +1256,113 @@ google 或 bing 上搜索图片：**git cheat sheet** —— 不要在baidu上�
 
 ![](img/black-trevally-sardines-sw.jpg)
 
-## 导出一个节点(commit、tag)，不受git管理，不用checkout
+## 从当前库中快速导出一个节点(commit、tag)另作他用
+
+比如：
+
+* 导出某次提交或某个分支给他人看看，但checkout过去，看完再checkout回来是有成本的（当前工作要打断，要commit或stash）
+* 导出多个标签进行对比查看，比如想比较一下 v1.0、v1.1、v1.3 三个版本之间的差异，则在一个目录下通过checkout就搞不定了
+
+建议方案：
+
+**方案1**： `git archive` 导出一份不受git管理的纯内容出去
 
 ```cmd
 $ cd projectA.git
 $ mkdir ../projectA-v1.2
 $ git archive v1.2 | tar -x -C ../projectA-v1.2
+```
+
+**方案2**：`git worktree` 在另外一处创建一个分支 —— 这是git2.5新增的一个功能，相当有趣
+
+* 原始状态：本地仅master分支
+```cmd
+$ git br
+* master                cf4edda [origin/master] 修订proxy的使用方法
+  remotes/origin/HEAD   -> origin/master
+  remotes/origin/master cf4edda 修订proxy的使用方法
+  remotes/zte/master    cf4edda 修订proxy的使用方法
+```
+* 首先看看现有哪些worktree
+```cmd
+$ git worktree list
+E:/demo/GitChat.git  cf4edda [master]
+```
+* 在另外一个文件夹，用当前分支，创建一份新的工作拷贝
+```cmd
+$ git worktree add -b 4compare ../forCompare
+Preparing ../forCompare (identifier forCompare)
+HEAD is now at cf4edda 修订proxy的使用方法
+
+$ ls ../
+forCompare/  GitChat.git/
+```
+* `git branch`可以查看到新创建的分支
+```cmd
+$ git branch -vv
+  4compare cf4edda 修订proxy的使用方法
+* master   cf4edda [origin/master] 修订proxy的使用方法
+
+$ git worktree list
+E:/demo/GitChat.git  cf4edda [master]
+E:/demo/forCompare   cf4edda [4compare]
+```
+* 进入新创建的文件夹中，可以查看到
+```cmd
+$ cd ../forCompare/
+$ git branch -vv
+* 4compare cf4edda 修订proxy的使用方法
+  master   cf4edda [origin/master] 修订proxy的使用方法
+```
+
+OK，可以在 forCompare 目录下工作了
+
+我们继续探讨一下`git worktree`的其他用法
+
+* `git worktree`不但可以根据某个branch创建，也可以从某个tag创建
+```cmd
+$ git worktree add -b new2 ../new2 v0.1
+Preparing ../new2 (identifier new2)
+HEAD is now at 5d21d8b new file:   img/git-state-and-area.svg
+```
+* 还可以根据某个commit创建
+```cmd
+$ git worktree add -b new ../new 5d21d8b
+Preparing ../new (identifier new)
+HEAD is now at 5d21d8b new file:   img/git-state-and-area.svg
+```
+* 删除worktree：`git prune`能够删除目标文件已经被删除的worktree
+```cmd
+$ git worktree list
+E:/demo/GitChat.git  cf4edda [master]
+E:/demo/forCompare   cf4edda [4compare]
+E:/demo/new          5d21d8b [new]
+E:/demo/new1         12205fd [new1]
+E:/demo/new2         5d21d8b [new2]
+
+$ rm -rf ../new2
+
+$ git worktree list
+E:/demo/GitChat.git  cf4edda [master]
+E:/demo/forCompare   cf4edda [4compare]
+E:/demo/new          5d21d8b [new]
+E:/demo/new1         12205fd [new1]
+E:/demo/new2         5d21d8b [new2]
+
+$ git worktree prune
+
+$ git worktree list
+E:/demo/GitChat.git  cf4edda [master]
+E:/demo/forCompare   cf4edda [4compare]
+E:/demo/new          5d21d8b [new]
+E:/demo/new1         12205fd [new1]
+
+$ rm -rf ../new ../new1 ../forCompare/
+
+$ git worktree prune
+
+$ git worktree list
+E:/demo/GitChat.git  cf4edda [master]
 ```
 
 ## 导出某个子目录及其log成为一个新的repo
@@ -1339,7 +1443,7 @@ git clone newrepo.git
         + 用途：提交了之后，你又发现代码没有提交完整，或者你想重新编辑一下再提交
     - `git reset --hard` == `git reset --hard HEAD`: 用HEAD覆盖暂存区和工作区，即：丢弃所有本地修改
 * 重置可以朝前，也可以朝后
-    ```
+    ```cmd
     $ git br
     * master ecfc106 2
       new    ab3fa01 3

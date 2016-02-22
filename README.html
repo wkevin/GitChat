@@ -173,8 +173,9 @@ dl dd>:last-child {
 =============================================================================*/
 
 pre, code, tt {
-  font-size: 12px;
+  font-size: 13px;
   font-family: Consolas, "Liberation Mono", Courier, monospace;
+  font-weight: bold;
 }
 
 pre {
@@ -185,6 +186,7 @@ pre {
   overflow: auto;
   padding: 6px 10px;
   border-radius: 3px; 
+  font-weight: normal;
 }
 
 pre code, pre tt {
@@ -194,7 +196,8 @@ pre code, pre tt {
 }
 
 pre code.cmd {
-  color: #FFff00;
+  color: #ffff00;
+  background-color: transparent;
   border: none;
 }
 
@@ -336,6 +339,7 @@ img {
 <li><a href="#round-3">Round 3 : 并发</a><ul>
 <li><a href="#branch">我想做个分支（branch），怎么做</a></li>
 <li><a href="#_1">如何在分支间来回切换</a></li>
+<li><a href="#git-branch-delete">删除分支总是想用git branch delete</a></li>
 <li><a href="#merge">merge是怎么玩儿的</a></li>
 <li><a href="#merge_1">分支要合并到主干或其他分支，怎么merge</a></li>
 <li><a href="#git-merge">git merge 有没有图形化的工具</a></li>
@@ -351,6 +355,7 @@ img {
 <li><a href="#_3">如何与别人合作</a></li>
 <li><a href="#github_2">如何在github上与别人合作</a></li>
 <li><a href="#git_6">怎样才能第一时间得知git上有提交和更新</a></li>
+<li><a href="#git-fetch-git-pull">git fetch 还是 git pull</a></li>
 <li><a href="#clonefetchremote-repolog">如何不clone/fetch到本地看remote repo的log?</a></li>
 <li><a href="#commitpush">程序猿如何频繁地commit，但又低调地push</a></li>
 <li><a href="#_4">如何删除远程分支</a></li>
@@ -369,7 +374,7 @@ img {
 </ul>
 </li>
 <li><a href="#round-6">Round 6 : 奇技淫巧</a><ul>
-<li><a href="#committaggitcheckout">导出一个节点(commit、tag)，不受git管理，不用checkout</a></li>
+<li><a href="#committag">从当前库中快速导出一个节点(commit、tag)另作他用</a></li>
 <li><a href="#logrepo">导出某个子目录及其log成为一个新的repo</a></li>
 <li><a href="#2bug1commit">分支2需改bug，但我正在分支1上编码并不想commit怎么办</a></li>
 <li><a href="#_7">我反悔了，我要回退！</a></li>
@@ -392,10 +397,7 @@ img {
 <h2 id="git"><a name="user-content-git" href="#git" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git在哪里</h2>
 <ul>
 <li>Unix系（Ubuntu/Fedora/MAC-OS.X/……）默认就有，打开terminal，输入<code>git --version</code>，就在那里了</li>
-<li>Windows上要安装：<a href="https://github.com/git-for-windows/git">Git for Windows</a><ul>
-<li>提供我们团队FTP的下载链接：<a href="ftp://emb:zteemb@10.9.111.222/Soft/Develop/Git/Git4Windows/Git-2.7.0-32-bit.exe">Git-2.7.0-32-bit.exe</a></li>
-</ul>
-</li>
+<li>Windows上要安装：<a href="https://github.com/git-for-windows/git">Git for Windows</a></li>
 </ul>
 <h2 id="git-for-windows"><a name="user-content-git-for-windows" href="#git-for-windows" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Git for Windows 咋用</h2>
 <p>一路“下一步”安装完即可。</p>
@@ -1000,39 +1002,8 @@ DESCRIPTION
 <p><img alt="" src="img/boy-buffaloes-india-sw.jpg" /></p>
 <h2 id="branch"><a name="user-content-branch" href="#branch" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我想做个分支（branch），怎么做</h2>
 <p>好了，这里要提到一个非常重要的概念了，很多git书籍都会强调的一点：<strong>git的branch只是个指针</strong> —— 也常被称作“<strong>git的必杀技</strong>”。</p>
-<p>git 的分支操作异常的迅速、便捷、和轻量级，全部依赖于branch只是个指针，类似于C语言的指针，但这个指针不是4Bytes，而是包含了比较多的信息（算是个struct吧，呵呵），通常书里是这样描述此指针的：</p>
-<pre><code class="cmd">MBP:GitChat.git wangkevin$ git br
-* master                12205fd [origin/master] 写完 “## 我要能像TortoiseSVN那样左右两栏对比看diff”章节
-  remotes/origin/master 12205fd 写完 “## 我要能像TortoiseSVN那样左右两栏对比看diff”章节
-MBP:GitChat.git wangkevin$ git lg
- 12205fd | 2016-02-04 00:50:37 +0800 | 2016-02-04 00:50:37 +0800 |  wkevin  写完 “## 我要能像TortoiseSVN那样左右两栏对比看diff”章节
- 8216a0b | 2016-02-02 23:55:44 +0800 | 2016-02-02 23:55:44 +0800 |  wkevin  基本写完 Round 2 ，git log 部分
- 8674466 | 2016-01-31 16:22:59 +0800 | 2016-01-31 16:22:59 +0800 |  wkevin  在动车上写的：修改为Round x，增加了每个Round的插图。 虽然是春运，但动车上并不挤，卧改座的还能躺着睡觉，坐票也有些车厢人很少。 还有2h下车，提交一下，休息休息。
- ac580f2 | 2016-01-30 22:04:04 +0800 | 2016-01-30 22:04:04 +0800 |  wkevin  github desktop for windows snapshot
- de9a9ab | 2016-01-29 17:51:48 +0800 | 2016-01-29 17:51:48 +0800 |  Kevin Wang  add git for windows 章节
- e59757f | 2016-01-29 10:35:01 +0800 | 2016-01-29 10:35:01 +0800 |  Kevin Wang  增加：&quot;git在哪里&quot;和&quot;git for windows 咋用&quot; 章节
- 7aa77c3 | 2016-01-29 09:40:52 +0800 | 2016-01-29 09:40:52 +0800 |  Kevin Wang  create
-MBP:GitChat.git wangkevin$ git fetch origin
-remote: Counting objects: 6, done.
-remote: Compressing objects: 100% (5/5), done.
-remote: Total 6 (delta 2), reused 5 (delta 1), pack-reused 0
-Unpacking objects: 100% (6/6), done.
-From https://github.com/wkevin/GitChat
-   12205fd..c242093  master     -&gt; origin/master
-MBP:GitChat.git wangkevin$ git br
-* master                12205fd [origin/master: behind 2] 写完 “## 我要能像TortoiseSVN那样左右两栏对比看diff”章节
-  remotes/origin/master c242093 笔误
-MBP:GitChat.git wangkevin$ git lg origin/master
- c242093 | 2016-02-04 11:30:21 +0800 | 2016-02-04 11:30:21 +0800 |  wkevin  笔误
- 48eda25 | 2016-02-04 11:21:57 +0800 | 2016-02-04 11:21:57 +0800 |  wkevin  笔误: 缺少一个反括号
- 12205fd | 2016-02-04 00:50:37 +0800 | 2016-02-04 00:50:37 +0800 |  wkevin  写完 “## 我要能像TortoiseSVN那样左右两栏对比看diff”章节
- 8216a0b | 2016-02-02 23:55:44 +0800 | 2016-02-02 23:55:44 +0800 |  wkevin  基本写完 Round 2 ，git log 部分
- 8674466 | 2016-01-31 16:22:59 +0800 | 2016-01-31 16:22:59 +0800 |  wkevin  在动车上写的：修改为Round x，增加了每个Round的插图。 虽然是春运，但动车上并不挤，卧改座的还能躺着睡觉，坐票也有些车厢人很少。 还有2h下车，提交一下，休息休息。
- ac580f2 | 2016-01-30 22:04:04 +0800 | 2016-01-30 22:04:04 +0800 |  wkevin  github desktop for windows snapshot
- de9a9ab | 2016-01-29 17:51:48 +0800 | 2016-01-29 17:51:48 +0800 |  Kevin Wang  add git for windows 章节
- e59757f | 2016-01-29 10:35:01 +0800 | 2016-01-29 10:35:01 +0800 |  Kevin Wang  增加：&quot;git在哪里&quot;和&quot;git for windows 咋用&quot; 章节
- 7aa77c3 | 2016-01-29 09:40:52 +0800 | 2016-01-29 09:40:52 +0800 |  Kevin Wang  create
-MBP:GitChat.git wangkevin$ 
+<p>网文非常多，自行搜索一下 <code>git branch</code> 吧，或者执行:</p>
+<pre><code class="cmd">$ git help branch
 </code></pre>
 
 <h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何在分支间来回切换</h2>
@@ -1079,6 +1050,37 @@ MBP:GitChat.git wangkevin$
 </ul>
 </li>
 <li><code>git checkout [[-b|-B|--orphan] &lt;new_branch&gt;] [&lt;start_point&gt;]</code></li>
+</ul>
+<h2 id="git-branch-delete"><a name="user-content-git-branch-delete" href="#git-branch-delete" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>删除分支总是想用git branch delete</h2>
+<p>曾经我也愤怒过这个事情：</p>
+<ul>
+<li>增加一个remote是：<code>git remote add ...</code>，增加一个branch却是：<code>git branch ...</code> —— 为啥不要add？</li>
+<li>删除一个remote是：<code>git remote remove ...</code>，删除一个branch却是：<code>git branch -d ...</code> —— 为啥要用<code>-d</code>？</li>
+<li>那些年闹过的笑话：<ul>
+<li><code>git branch delete xyz</code>: 结果增加了两个分支：delete和xyz</li>
+<li><code>git branch remove delete xyz</code>: 以为用错了，再试remove，结果又增加了第3个分支：remove</li>
+<li>非常疑惑，再试：<code>git branch del remove delete xyz</code>: 结果可想而知</li>
+<li>最后还得： <code>git help branch</code></li>
+<li><code>git branch -d del remove delete xyz</code></li>
+</ul>
+</li>
+</ul>
+<p>在用参数还是用子命令的问题上，其实也不要纠结，子命令还能加参，所以子命令相当于对参数进行了一级分类，或者纯粹是开发者的个人偏好。</p>
+<ul>
+<li>git中使用子命令的不多：<code>git &lt;command&gt; &lt;subcommand&gt; &lt;option&gt;</code><ul>
+<li><code>git bisect       &lt;subcommand&gt;</code></li>
+<li><code>git bundle       &lt;subcommand&gt;</code></li>
+<li><code>git credential   &lt;subcommand&gt;</code></li>
+<li><code>git notes        &lt;subcommand&gt;</code></li>
+<li><code>git p4           &lt;subcommand&gt;</code></li>
+<li><code>git remote       &lt;subcommand&gt;</code></li>
+<li><code>git stash        &lt;subcommand&gt;</code></li>
+<li><code>git subtree      &lt;subcommand&gt;</code></li>
+<li><code>git svn          &lt;subcommand&gt;</code></li>
+<li><code>git worktree     &lt;subcommand&gt;</code></li>
+</ul>
+</li>
+<li>剩下的基本都是： <code>git &lt;command&gt; &lt;option&gt;</code></li>
 </ul>
 <h2 id="merge"><a name="user-content-merge" href="#merge" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>merge是怎么玩儿的</h2>
 <h2 id="merge_1"><a name="user-content-merge_1" href="#merge_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>分支要合并到主干或其他分支，怎么merge</h2>
@@ -1166,8 +1168,8 @@ $ git config --global mergetool.diffmerge.cmd 'diffmerge --merge --result=&quot;
 <li><a href="http://git.oschina.net">OSChina git</a>(2013)</li>
 <li><a href="https://coding.net/">Coding</a></li>
 </ul>
-<p>这些网站之间有很多有趣的历史，也是互为竞争对手。2004年我第一次接触开源的时候，项目经理给我的任务是到sourceforge下载一个叫做rainbow的源码，当时还没有git，开源项目托管第一平台sourceforge已经独霸江湖10年有余，它是在用cvs，作为一个还在学校的学生，真的是摸索了很久。</p>
-<p>很多年过去了，看江湖风云，版本管理系统从cvs到svn，又从svn到git。项目托管网站从sourceforge逐步衰败，群众寄予厚望的google code也曾风光无限，几乎替代了sourceforge，但最终都还是和其他网站一起，败在了一个2008年创立、2011年才火起来的后起之秀手上，google code也于2015年底宣布关闭。此后起之秀就是当前无人匹敌的：github。</p>
+<p>这些网站之间有很多有趣的历史，也是互为竞争对手。2004年我第一次接触开源的时候，项目经理给我的任务是到sourceforge下载一个叫做rainbow的源码，当时还没有git，开源项目托管第一平台sourceforge已经独霸江湖10余年，它是在用cvs，作为一个还在学校的学生，真的是摸索了很久。</p>
+<p>很多年过去了，看江湖风云，开源项目版本管理系统从cvs到svn，又从svn到git。开源项目托管网站从sourceforge逐步衰败，到群众寄予厚望的google code风光无限，但最终都还是和其他网站一起，败在了一个2008年创立、2011年才火起来的后起之秀手上，google code也于2015年底宣布关闭。此后起之秀就是当下无人匹敌的：github。</p>
 <p>有个有趣的小插曲：CodePlex是微软家的，也开张好多年了，sourceforge时代就不愠不火，反正在大家眼里微软和开源本就是水火不容、盖茨/鲍尔默和托瓦茨也是井水不犯河水。但在2012年微软突然做出了一个有趣的决定：</p>
 <p><img alt="" src="img/codeplex.torvalds.png" /></p>
 <p>近几年，微软更是几乎放弃了自家的CodePlex，转投github，开源自己的.NET都在github上了。</p>
@@ -1210,8 +1212,18 @@ Checking connectivity... done.
 </code></pre></li>
 </ul>
 <h2 id="remoteproxy"><a name="user-content-remoteproxy" href="#remoteproxy" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>定义了外网和内网两个remote，proxy怎么同时支持</h2>
-<p>自己的某个项目有两个remote：Ra和Rb，分别在外网和公司内网，为git配置了http.proxy后，外网OK，内网的就连不上，则内网的remote可以使用ssh来连接。</p>
-<p>网上通常的步骤是：</p>
+<p>若你处在某个proxy之内，你的某个项目又有两个remote，分别在外网和公司内网，则会遇到这样的困扰：</p>
+<ul>
+<li>为git配置了http.proxy后，外网OK，内网的就连不上</li>
+<li>去掉http.proxy后，内文的remote OK，外网的又连不上</li>
+</ul>
+<p>说实话如何配置 http.proxy &amp; https.proxy ，使其同时支持proxy内、外的remote（其实是制定proxy的筛选策略） —— 我没搞定，我也没研究。</p>
+<p>能想到的解决策略有：</p>
+<ol>
+<li>如果你配置了http.proxy（全局or项目），则内网的remote可以使用ssh来连接。</li>
+<li>如果你没有配置http.proxy，则外网的remote可以使用ssh来链接，但要给<strong>ssh配置proxy</strong>（<a href="http://blog.csdn.net/qq634416025/article/details/42835409">参考1</a>、<a href="http://iyuan.iteye.com/blog/1672982">参考2</a>）</li>
+</ol>
+<p>OK，ssh访问remote，网上通常的步骤是：</p>
 <ul>
 <li>生成公钥和密钥<br />
 <pre><code class="cmd">$ ssh-keygen -t rsa -C &quot;wkevin27@gmail.com&quot;
@@ -1235,8 +1247,8 @@ Checking connectivity... done.
 </ul>
 </li>
 <li>然后就可以使用ssh方式访问gitlab/github了<ul>
-<li><code>git remote add xxx git@github.com:wkevin/GitChat.git</code></li>
-<li><code>git push xxx master</code></li>
+<li><code>git remote add xyz git@github.com:wkevin/GitChat.git</code></li>
+<li><code>git push xyz master</code></li>
 </ul>
 </li>
 </ul>
@@ -1273,6 +1285,7 @@ Checking connectivity... done.
 <img alt="" src="img/gitlab-rss-feed-group.png" /></p>
 <p>使用 RSS Reader（图中使用的是Snafer）订阅的效果：<br />
 <img alt="" src="img/gitlab-rss-reader.png" /></p>
+<h2 id="git-fetch-git-pull"><a name="user-content-git-fetch-git-pull" href="#git-fetch-git-pull" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git fetch 还是 git pull</h2>
 <h2 id="clonefetchremote-repolog"><a name="user-content-clonefetchremote-repolog" href="#clonefetchremote-repolog" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何不clone/fetch到本地看remote repo的log?</h2>
 <h2 id="commitpush"><a name="user-content-commitpush" href="#commitpush" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>程序猿如何频繁地commit，但又低调地push</h2>
 <p>SVN和git面对同样的一个问题：大部分程序猿是含蓄、内敛的，他既希望频繁的commit，让svn/git帮他记住每一步，但并不想把这些过程信息全都公诸于众，而只是把阶段性成果推送给大家或服务器。</p>
@@ -1438,12 +1451,102 @@ Checking connectivity... done.
 </ul>
 <h1 id="round-6"><a name="user-content-round-6" href="#round-6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 6 : 奇技淫巧</h1>
 <p><img alt="" src="img/black-trevally-sardines-sw.jpg" /></p>
-<h2 id="committaggitcheckout"><a name="user-content-committaggitcheckout" href="#committaggitcheckout" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>导出一个节点(commit、tag)，不受git管理，不用checkout</h2>
+<h2 id="committag"><a name="user-content-committag" href="#committag" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>从当前库中快速导出一个节点(commit、tag)另作他用</h2>
+<p>比如：</p>
+<ul>
+<li>导出某次提交或某个分支给他人看看，但checkout过去，看完再checkout回来是有成本的（当前工作要打断，要commit或stash）</li>
+<li>导出多个标签进行对比查看，比如想比较一下 v1.0、v1.1、v1.3 三个版本之间的差异，则在一个目录下通过checkout就搞不定了</li>
+</ul>
+<p>建议方案：</p>
+<p><strong>方案1</strong>： <code>git archive</code> 导出一份不受git管理的纯内容出去</p>
 <pre><code class="cmd">$ cd projectA.git
 $ mkdir ../projectA-v1.2
 $ git archive v1.2 | tar -x -C ../projectA-v1.2
 </code></pre>
 
+<p><strong>方案2</strong>：<code>git worktree</code> 在另外一处创建一个分支 —— 这是git2.5新增的一个功能，相当有趣</p>
+<ul>
+<li>原始状态：本地仅master分支<br />
+<pre><code class="cmd">$ git br
+* master                cf4edda [origin/master] 修订proxy的使用方法
+  remotes/origin/HEAD   -&gt; origin/master
+  remotes/origin/master cf4edda 修订proxy的使用方法
+  remotes/zte/master    cf4edda 修订proxy的使用方法
+</code></pre></li>
+<li>首先看看现有哪些worktree<br />
+<pre><code class="cmd">$ git worktree list
+E:/demo/GitChat.git  cf4edda [master]
+</code></pre></li>
+<li>在另外一个文件夹，用当前分支，创建一份新的工作拷贝<br />
+<pre><code class="cmd">$ git worktree add -b 4compare ../forCompare
+Preparing ../forCompare (identifier forCompare)
+HEAD is now at cf4edda 修订proxy的使用方法
+
+$ ls ../
+forCompare/  GitChat.git/
+</code></pre></li>
+<li><code>git branch</code>可以查看到新创建的分支<br />
+<pre><code class="cmd">$ git branch -vv
+  4compare cf4edda 修订proxy的使用方法
+* master   cf4edda [origin/master] 修订proxy的使用方法
+
+$ git worktree list
+E:/demo/GitChat.git  cf4edda [master]
+E:/demo/forCompare   cf4edda [4compare]
+</code></pre></li>
+<li>进入新创建的文件夹中，可以查看到<br />
+<pre><code class="cmd">$ cd ../forCompare/
+$ git branch -vv
+* 4compare cf4edda 修订proxy的使用方法
+  master   cf4edda [origin/master] 修订proxy的使用方法
+</code></pre></li>
+</ul>
+<p>OK，可以在 forCompare 目录下工作了</p>
+<p>我们继续探讨一下<code>git worktree</code>的其他用法</p>
+<ul>
+<li><code>git worktree</code>不但可以根据某个branch创建，也可以从某个tag创建<br />
+<pre><code class="cmd">$ git worktree add -b new2 ../new2 v0.1
+Preparing ../new2 (identifier new2)
+HEAD is now at 5d21d8b new file:   img/git-state-and-area.svg
+</code></pre></li>
+<li>还可以根据某个commit创建<br />
+<pre><code class="cmd">$ git worktree add -b new ../new 5d21d8b
+Preparing ../new (identifier new)
+HEAD is now at 5d21d8b new file:   img/git-state-and-area.svg
+</code></pre></li>
+<li>删除worktree：<code>git prune</code>能够删除目标文件已经被删除的worktree<br />
+<pre><code class="cmd">$ git worktree list
+E:/demo/GitChat.git  cf4edda [master]
+E:/demo/forCompare   cf4edda [4compare]
+E:/demo/new          5d21d8b [new]
+E:/demo/new1         12205fd [new1]
+E:/demo/new2         5d21d8b [new2]
+
+$ rm -rf ../new2
+
+$ git worktree list
+E:/demo/GitChat.git  cf4edda [master]
+E:/demo/forCompare   cf4edda [4compare]
+E:/demo/new          5d21d8b [new]
+E:/demo/new1         12205fd [new1]
+E:/demo/new2         5d21d8b [new2]
+
+$ git worktree prune
+
+$ git worktree list
+E:/demo/GitChat.git  cf4edda [master]
+E:/demo/forCompare   cf4edda [4compare]
+E:/demo/new          5d21d8b [new]
+E:/demo/new1         12205fd [new1]
+
+$ rm -rf ../new ../new1 ../forCompare/
+
+$ git worktree prune
+
+$ git worktree list
+E:/demo/GitChat.git  cf4edda [master]
+</code></pre></li>
+</ul>
 <h2 id="logrepo"><a name="user-content-logrepo" href="#logrepo" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>导出某个子目录及其log成为一个新的repo</h2>
 <pre><code>cd oldrepo
 git subtree split -P subdir -b newbranch
@@ -1529,7 +1632,7 @@ git clone newrepo.git
 </ul>
 </li>
 <li>重置可以朝前，也可以朝后<br />
-    <pre><code>$ git br
+    <pre><code class="cmd">$ git br
 * master ecfc106 2
   new    ab3fa01 3
 $ git reset --soft new
