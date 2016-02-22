@@ -81,7 +81,6 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
 
 * Unix系（Ubuntu/Fedora/MAC-OS.X/……）默认就有，打开terminal，输入`git --version`，就在那里了
 * Windows上要安装：[Git for Windows](https://github.com/git-for-windows/git)
-    - 提供我们团队FTP的下载链接：[Git-2.7.0-32-bit.exe](ftp://emb:zteemb@10.9.111.222/Soft/Develop/Git/Git4Windows/Git-2.7.0-32-bit.exe)
 
 ## Git for Windows 咋用
 
@@ -958,9 +957,9 @@ $ git log --pretty=oneline --graph
 * [OSChina git](http://git.oschina.net)(2013)
 * [Coding](https://coding.net/)
 
-这些网站之间有很多有趣的历史，也是互为竞争对手。2004年我第一次接触开源的时候，项目经理给我的任务是到sourceforge下载一个叫做rainbow的源码，当时还没有git，开源项目托管第一平台sourceforge已经独霸江湖10年有余，它是在用cvs，作为一个还在学校的学生，真的是摸索了很久。
+这些网站之间有很多有趣的历史，也是互为竞争对手。2004年我第一次接触开源的时候，项目经理给我的任务是到sourceforge下载一个叫做rainbow的源码，当时还没有git，开源项目托管第一平台sourceforge已经独霸江湖10余年，它是在用cvs，作为一个还在学校的学生，真的是摸索了很久。
 
-很多年过去了，看江湖风云，版本管理系统从cvs到svn，又从svn到git。项目托管网站从sourceforge逐步衰败，群众寄予厚望的google code也曾风光无限，几乎替代了sourceforge，但最终都还是和其他网站一起，败在了一个2008年创立、2011年才火起来的后起之秀手上，google code也于2015年底宣布关闭。此后起之秀就是当前无人匹敌的：github。
+很多年过去了，看江湖风云，开源项目版本管理系统从cvs到svn，又从svn到git。开源项目托管网站从sourceforge逐步衰败，到群众寄予厚望的google code风光无限，但最终都还是和其他网站一起，败在了一个2008年创立、2011年才火起来的后起之秀手上，google code也于2015年底宣布关闭。此后起之秀就是当下无人匹敌的：github。
 
 有个有趣的小插曲：CodePlex是微软家的，也开张好多年了，sourceforge时代就不愠不火，反正在大家眼里微软和开源本就是水火不容、盖茨/鲍尔默和托瓦茨也是井水不犯河水。但在2012年微软突然做出了一个有趣的决定：
 
@@ -1017,9 +1016,19 @@ Checking connectivity... done.
 
 ## 定义了外网和内网两个remote，proxy怎么同时支持
 
-自己的某个项目有两个remote：Ra和Rb，分别在外网和公司内网，为git配置了http.proxy后，外网OK，内网的就连不上，则内网的remote可以使用ssh来连接。
+若你处在某个proxy之内，你的某个项目又有两个remote，分别在外网和公司内网，则会遇到这样的困扰：
 
-网上通常的步骤是：
+* 为git配置了http.proxy后，外网OK，内网的就连不上
+* 去掉http.proxy后，内文的remote OK，外网的又连不上
+
+说实话如何配置 http.proxy & https.proxy ，使其同时支持proxy内、外的remote（其实是制定proxy的筛选策略） —— 我没搞定，我也没研究。
+
+能想到的解决策略有：
+
+1. 如果你配置了http.proxy（全局or项目），则内网的remote可以使用ssh来连接。
+2. 如果你没有配置http.proxy，则外网的remote可以使用ssh来链接，但要给**ssh配置proxy**（[参考1](http://blog.csdn.net/qq634416025/article/details/42835409)、[参考2](http://iyuan.iteye.com/blog/1672982)）
+
+OK，ssh访问remote，网上通常的步骤是：
 
 * 生成公钥和密钥
 ```cmd
@@ -1036,8 +1045,8 @@ $ ssh-keygen -t rsa -C "wkevin27@gmail.com"
 * 测试
     - `$ ssh -T git@github.com`
 * 然后就可以使用ssh方式访问gitlab/github了
-    - `git remote add xxx git@github.com:wkevin/GitChat.git`
-    - `git push xxx master`
+    - `git remote add xyz git@github.com:wkevin/GitChat.git`
+    - `git push xyz master`
 
 
 ## 如何与别人合作
