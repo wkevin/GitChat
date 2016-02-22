@@ -352,12 +352,14 @@ img {
 <li><a href="#github">为什么github成了程序员的麦加圣地</a></li>
 <li><a href="#github_1">公司访问不了外网的github，咋办</a></li>
 <li><a href="#remoteproxy">定义了外网和内网两个remote，proxy怎么同时支持</a></li>
+<li><a href="#sshremote">SSH访问remote的通常步骤是啥</a></li>
 <li><a href="#_3">如何与别人合作</a></li>
 <li><a href="#github_2">如何在github上与别人合作</a></li>
 <li><a href="#git_6">怎样才能第一时间得知git上有提交和更新</a></li>
 <li><a href="#git-fetch-git-pull">git fetch 还是 git pull</a></li>
 <li><a href="#clonefetchremote-repolog">如何不clone/fetch到本地看remote repo的log?</a></li>
 <li><a href="#commitpush">程序猿如何频繁地commit，但又低调地push</a></li>
+<li><a href="#http-pushnamepassword">通过http push时每次都要求输入name/password，能否避开</a></li>
 <li><a href="#_4">如何删除远程分支</a></li>
 <li><a href="#tag">如何删除远程tag</a></li>
 <li><a href="#_5">别人把远程分支删除了，我本地的对应分支怎么还在</a></li>
@@ -1223,7 +1225,8 @@ Checking connectivity... done.
 <li>如果你配置了http.proxy（全局or项目），则内网的remote可以使用ssh来连接。</li>
 <li>如果你没有配置http.proxy，则外网的remote可以使用ssh来链接，但要给<strong>ssh配置proxy</strong>（<a href="http://blog.csdn.net/qq634416025/article/details/42835409">参考1</a>、<a href="http://iyuan.iteye.com/blog/1672982">参考2</a>）</li>
 </ol>
-<p>OK，ssh访问remote，网上通常的步骤是：</p>
+<h2 id="sshremote"><a name="user-content-sshremote" href="#sshremote" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>SSH访问remote的通常步骤是啥</h2>
+<p>OK，书接上文。</p>
 <ul>
 <li>生成公钥和密钥<br />
 <pre><code class="cmd">$ ssh-keygen -t rsa -C &quot;wkevin27@gmail.com&quot;
@@ -1252,6 +1255,7 @@ Checking connectivity... done.
 </ul>
 </li>
 </ul>
+<p>各个开源项目托管网站对ssh的要求可能还会有些许差别，但都会在显著位置进行说明，如果如上操作后仍不能访问，请仔细查阅。</p>
 <h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何与别人合作</h2>
 <p>当面沟通必不可少，svn和git并不能解决所有问题，每个团队都可以有自己的分支策略、日志模版、合并规则、标签原则……</p>
 <h2 id="github_2"><a name="user-content-github_2" href="#github_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何在github上与别人合作</h2>
@@ -1334,6 +1338,21 @@ Checking connectivity... done.
 </ul>
 </li>
 </ol>
+<h2 id="http-pushnamepassword"><a name="user-content-http-pushnamepassword" href="#http-pushnamepassword" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>通过http push时每次都要求输入name/password，能否避开</h2>
+<p>通过ssh push时都是不必输入用户名和密码的，http/https的都要，相当麻烦，可以这样解决：</p>
+<ul>
+<li>配置git<br />
+<pre><code class="cmd">$ git config credential.helper store
+</code></pre></li>
+<li>创建<code>.git-credentials</code>文件，替换其中的 name 和 password<br />
+<pre><code class="cmd">$ cd ~
+$ echo &quot;https://&lt;name&gt;:&lt;password&gt;@github.com&quot; &gt; .git-credentials
+$ cat .git-credentials
+https://&lt;name&gt;:&lt;password&gt;@github.com
+</code></pre></li>
+</ul>
+<p>欧儿了！</p>
+<p>需要注意的一点是：如果你打开了<strong>两步验证</strong>，则通常意义的password已经不能使用，网站会提供tocken给你替代password，请在 .git-credentials 文件中用 tocken 替代之。</p>
 <h2 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何删除远程分支</h2>
 <ul>
 <li>删除本地分支是： <code>git branch remove &lt;branchName&gt;</code></li>
