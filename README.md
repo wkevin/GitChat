@@ -1226,7 +1226,7 @@ github上有这样几个卓越的组织（Orgnization):
     - 维护git源码
         + Hamano(gitster)并没有加入到这个Orgnization中，而只是fork到自己账号下，然后PR到 git/git，看来gitster只是想当程序员，不想当管理者和传教士——大概源于日本人和中国人类似，都比较低调。
     - 管理和维护 [git-scm.com](http://git-scm.com) 网站
-* [progit](https://github.com/progit):目前有[位成员](https://github.com/orgs/progit/people)，牵头人 [Scott Chacon](https://github.com/schacon) 和 [Ben Straub](https://github.com/ben)，两人目前都供职于github公司，比较重要的贡献有
+* [progit](https://github.com/progit):目前有[15位成员](https://github.com/orgs/progit/people)，牵头人 [Scott Chacon](https://github.com/schacon) 和 [Ben Straub](https://github.com/ben)，两人目前都供职于github公司，其他人多是从事翻译工作。比较重要的贡献有
     - 写了《Pro git》这本书，此书被翻译成多种语言，被奉为经典。
 
 
@@ -1236,9 +1236,8 @@ github上有这样几个卓越的组织（Orgnization):
 当然，我明白你说的是中文资料。
 
 * Pro Git:根正苗红的书
-    - [英文版-v2](http://git-scm.com/book/en/v2)
-    - [中文版-v2](http://git-scm.com/book/zh/v2)，[国内备份](http://www.kancloud.cn/kancloud/progit)
-    - [中文版-v1](http://git-scm.com/book/zh/v1)， [国内备份](http://git.oschina.net/progit/)
+    - 第2版：[中文官方在线版](http://git-scm.com/book/zh/v2)、[中文国内在线版](http://www.kancloud.cn/kancloud/progit)、[英文官方在线版](http://git-scm.com/book/en/v2)
+    - 第1版：[中文官方在线版](http://git-scm.com/book/zh/v1)、[中文国内在线版](http://git.oschina.net/progit/)
 * [Git Community Book 中文版](http://gitbook.liuhui998.com/index.html)
 * [git简明教程](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 
@@ -1283,7 +1282,7 @@ google 或 bing 上搜索图片：**git cheat sheet** —— 不要在baidu上�
 
 # Round 6 : 奇技淫巧
 
-![](img/black-trevally-sardines-sw.jpg)
+![](img/resting-lions-tanzania-sw.jpg))
 
 ## 从当前库中快速导出一个节点(commit、tag)另作他用
 
@@ -1497,6 +1496,8 @@ git clone newrepo.git
 这个命令会带来冲突，请谨慎使用
 
 # Round 7 : 原理拾趣
+
+![](img/black-trevally-sardines-sw.jpg
 
 ## git和SVN在元数据存储上有什么区别
 
