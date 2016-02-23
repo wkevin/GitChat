@@ -1282,7 +1282,7 @@ google 或 bing 上搜索图片：**git cheat sheet** —— 不要在baidu上�
 
 # Round 6 : 奇技淫巧
 
-![](img/resting-lions-tanzania-sw.jpg))
+![](img/resting-lions-tanzania-sw.jpg)
 
 ## 从当前库中快速导出一个节点(commit、tag)另作他用
 
@@ -1497,7 +1497,7 @@ git clone newrepo.git
 
 # Round 7 : 原理拾趣
 
-![](img/black-trevally-sardines-sw.jpg
+![](img/black-trevally-sardines-sw.jpg)
 
 ## git和SVN在元数据存储上有什么区别
 
