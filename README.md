@@ -8,6 +8,7 @@
 
 git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs/user-manual.html)，和官方宝书（[英文版](http://git-scm.com/book/en/v2)、[中文版](http://git-scm.com/book/zh/v2)、[国内备份](http://www.kancloud.cn/kancloud/progit)），如果你读来无碍，请忽视本文，本文与它们相比只是个小人书、连环画，或者作为它们的一个补充。我在写每个Topic的时候也都在想：是不是书里已经有了？我是不是重复了？是不是删掉算了？—— 经常在知识点完整和拾遗之间反复权衡，但想到碎片化阅读越来越普及、学东西主要靠百度的今天，我写点东西发出来应该也是有益的。
 
+>特别提示：本文自绘图用的是svg格式，Chrome或FF才能这确显示。
 
 --- 
 
@@ -27,11 +28,12 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [oneline太简陋了，我想一行里面看到hash、author、date、message](#onelinehashauthordatemessage)
     - [git log 已经很好了，但好像还是缺点啥](#git-log_3)
     - [git log --fuller 中的 author 和 commit 啥关系](#git-log-fuller-author-commit)
+    - [看log的时候能否把修改了哪些文件也列出来](#log)
     - [我要能像TortoiseSVN那样左右两栏对比看diff](#tortoisesvndiff)
     - [修改完了为什么不是直接提交，而是git add](#git-add)
     - [我用ubuntu，我要修改git commit时的默认编辑器](#ubuntugit-commit)
 - [Round 3 : 并发](#round-3)
-    - [我想做个分支（branch），怎么做](#branch)
+    - [我想使用个分支（branch），怎么做](#branch)
     - [如何在分支间来回切换](#_1)
     - [删除分支总是想用git branch delete](#git-branch-delete)
     - [merge是怎么玩儿的](#merge)
@@ -67,13 +69,15 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [从当前库中快速导出一个节点(commit、tag)另作他用](#committag)
     - [导出某个子目录及其log成为一个新的repo](#logrepo)
     - [分支2需改bug，但我正在分支1上编码并不想commit怎么办](#2bug1commit)
-    - [我反悔了，我要回退！](#_7)
-    - [暂存一个文件的部分改动](#_8)
-    - [能否从不同的分支里选择某次提交并且把它合并到当前的分支](#_9)
+    - [git commit错了，我要反悔](#git-commit)
+    - [暂存一个文件的部分改动](#_7)
+    - [能否从不同的分支里选择某次提交并且把它合并到当前的分支](#_8)
 - [Round 7 : 原理拾趣](#round-7)
     - [git和SVN在元数据存储上有什么区别](#gitsvn)
     - [git 的对象（object）](#git-object)
     - [git 的快照存储有点不可思议，如何做到好又多的](#git_13)
+    - [git checkout 原理图](#git-checkout)
+    - [git reset 原理图](#git-reset)
 
 <!-- /MarkdownTOC -->
 
@@ -598,7 +602,11 @@ $ git commit --author=wkevin --date='2016-01-30 22:04:04 +0800'
 在没有github之前，一个开源项目通常还是只设置几个有权限的提交人，大家想贡献代码就发patch给有权限的人，然后有权人commit。但自从有了github，发明了fork（fork并不属于git，而是github的独创哦）和PR（Pull-Request），让这个过程更加的轻便，也让项目的发展更加《失控》，有能力的人可以在自己的领地fork并发展一个项目，PR或不PR给原作者全凭个人喜好，原作者如果“懒政”，其他人完全可以独立发展。—— 每个人都在自己的库里commit，使得committer和author通常都是一个人，大家都是通过PR给其他人，而不是发送patch了。—— 所以 `--author` 这个参数已经很久不用一次了。
 
 
+## 看log的时候能否把修改了哪些文件也列出来
 
+```cmd
+$ git log --stat
+```
 
 ## 我要能像TortoiseSVN那样左右两栏对比看diff
 
@@ -772,7 +780,7 @@ DESCRIPTION
 
 ## 我用ubuntu，我要修改git commit时的默认编辑器
 
-`git cimmit`会自动打开系统默认的编辑器来让你写log，如下修改：
+`git commit`会自动打开系统默认的编辑器来让你写log，如下修改：
 
 ```cmd
 ubuntu$ update-alternatives --config editor
@@ -792,49 +800,26 @@ ubuntu$ update-alternatives --config editor
 
 ![](img/boy-buffaloes-india-sw.jpg)
 
-## 我想做个分支（branch），怎么做
+## 我想使用个分支（branch），怎么做
 
 好了，这里要提到一个非常重要的概念了，很多git书籍都会强调的一点：**git的branch只是个指针** —— 也常被称作“**git的必杀技**”。
 
-网文非常多，自行搜索一下 `git branch` 吧，或者执行:
+下面这几步非常有必要：
 
-```cmd
-$ git help branch
-```
+* 看一下《Pro Git》中的[分支这一章](http://www.kancloud.cn/kancloud/progit/70182)
+* 网文非常多，自行搜索一下 `git branch` 
+* `$ git help branch`
+
+我来概要的描述一些要点
+
+* `git init`后会自动创建一个master分支，它并不是一个多么特殊的分支，跟其他分支没什么区别。
+* git中的3个区：本地工作目录、索引区、库 —— 分支信息保存在库中，工作目录和索引区都对应库中的某个分支。《Pro Git》中的[分支这一章](http://www.kancloud.cn/kancloud/progit/70182)中的图大多都是画的库中的样子，请注意还有工作目录和索引区。
+* git的库中保存单元是[git 的对象（object）](#git-object)，我们通常脑海中出现的像一颗树一样成长的分支树是由一个个commit对象连成的。
+* HEAD指针比较特殊，可以将 HEAD 想象为当前分支的别名
+* 
 
 ## 如何在分支间来回切换
 
-概要：
-
-* `git checkout file`：用暂存区的file覆盖工作区的file
-* `git checkout branch`：HEAD指向branch，然后去覆盖暂存区和工作区
-* `git checkout --detach branch`：游离指向branch，然后去覆盖暂存区和工作区
-* `git checkout commit`：游离指向commit，，然后去覆盖暂存区和工作区
-* `git checkout branch/commit file`：那指针指向的file去覆盖暂存区和工作区的file，所以暂存区会有待提交内容
-
-详细：
-
-* `git checkout <./file>`
-    - HEAD 不会切换
-    - 用暂存区的file覆盖工作区中对应的文件，暂存区的不变
-        + **如果没有未提交的修改，暂存区和HEAD是相同的**
-        + 如果暂存区刚才有未提交的修改，后续仍可commit
-    - 覆盖：意味着所有修改会丢失；但新增的文件不丢失。
-* `git checkout <branch>`
-    - HEAD 会被切换
-    - 用 <branch> 中的文件覆盖工作区中对应的文件
-    - 切换的当前branch时：本地修改不会丢失，也不必提交
-    - 切换的其他branch时：本地修改要先提交，-f 强切修改会丢失
-* `git checkout --detach [<branch>]`
-    - HEAD 不变
-        + `git checkout --detach`：会从当前 HEAD 创建游离指针
-        + `git checkout --detach anotherBranch`：会从 anotherBranch 指针创建游离指针
-    - 从<branch>处创建一个**游离**的branch，并覆盖到本地工作区
-    - 从当前branch创建游离分支时：本地修改不会丢失，也不必提交
-    - 从其他branch创建游离分支时：本地修改要先提交，-f 强切修改会丢失
-* `git checkout [--detach] <commit>`
-    - 游离一个branch
-* `git checkout [[-b|-B|--orphan] <new_branch>] [<start_point>]`
 
 ## 删除分支总是想用git branch delete
 
@@ -1422,7 +1407,60 @@ git clone newrepo.git
 * git stash clear: 清空Git栈。此时使用gitg等图形化工具会发现，原来stash的哪些节点都消失了。
 * git stash apply：将以前一半的工作应用回来
 
-## 我反悔了，我要回退！
+## git commit错了，我要反悔
+
+* 两个文件已经被修改
+```cmd
+$ git st
+On branch master
+Your branch is ahead of 'origin/master' by 1 commit.
+  (use "git push" to publish your local commits)
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   README.html
+        modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+* master分支比origin/master分支多提交一个test
+```cmd
+$ git br
+* master                7c57a6f [origin/master: ahead 1] test
+  remotes/origin/HEAD   -> origin/master
+  remotes/origin/master cd9a45b 笔误
+  remotes/zte/master    cd9a45b 笔误
+```
+* 使用`git reset`，拿origin/master 或 origin/HEAD 去覆盖当前（本地）分支
+```cmd
+$ git reset origin/HEAD
+Unstaged changes after reset:
+M       README.html
+M       README.md
+```
+* 本地master分支已经被覆盖掉
+```cmd
+$ git br
+* master                cd9a45b [origin/master] 笔误
+  remotes/origin/HEAD   -> origin/master
+  remotes/origin/master cd9a45b 笔误
+  remotes/zte/master    cd9a45b 笔误
+```
+* 工作目录中的文件并没有被覆盖，已经修改的文件也安全
+```cmd
+$ git st
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+        modified:   README.html
+        modified:   README.md
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
 
 为什么把“反悔”放在奇技淫巧中——因为git不提倡反悔，男子汉大豆腐做了不悔、悔了不做。
 
@@ -1649,6 +1687,43 @@ $ git ls-tree f1683d3e
     - `svn commit`的时候是提交到网络服务器的，存在网络时延的问题，`git commit`只有本地操作
     - `svn commit`的时候要实时计算diff，`git add/commit`不存在diff计算，`git add`时会做对象的生成，但git对象的生成是执行压缩算法 —— 执行diff计算和执行压缩算法在当前水平的CPU能力下已不分伯仲
     - git虽然耗损更多的磁盘空间，但现在最不值钱的就是磁盘空间了
+
+## git checkout 原理图
+
+
+* `git checkout file`：用暂存区的file覆盖工作区的file
+* `git checkout branch`：HEAD指向branch，然后去覆盖暂存区和工作区
+* `git checkout --detach branch`：游离指向branch，然后去覆盖暂存区和工作区
+* `git checkout commit`：游离指向commit，，然后去覆盖暂存区和工作区
+* `git checkout branch/commit file`：拿指针指向的file去覆盖暂存区和工作区的file，所以暂存区会有待提交内容
+
+详细：
+
+* `git checkout <./file>`
+    - HEAD 不会切换
+    - 用暂存区的file覆盖工作区中对应的文件，暂存区的不变
+        + **如果没有未提交的修改，暂存区和HEAD是相同的**
+        + 如果暂存区刚才有未提交的修改，后续仍可commit
+    - 覆盖：意味着所有修改会丢失；但新增的文件不丢失。
+* `git checkout <branch>`
+    - HEAD 会被切换
+    - 用 <branch> 中的文件覆盖工作区中对应的文件
+    - 切换的当前branch时：本地修改不会丢失，也不必提交
+    - 切换的其他branch时：本地修改要先提交，-f 强切修改会丢失
+* `git checkout --detach [<branch>]`
+    - HEAD 不变
+        + `git checkout --detach`：会从当前 HEAD 创建游离指针
+        + `git checkout --detach anotherBranch`：会从 anotherBranch 指针创建游离指针
+    - 从<branch>处创建一个**游离**的branch，并覆盖到本地工作区
+    - 从当前branch创建游离分支时：本地修改不会丢失，也不必提交
+    - 从其他branch创建游离分支时：本地修改要先提交，-f 强切修改会丢失
+* `git checkout [--detach] <commit>`
+    - 游离一个branch
+* `git checkout [[-b|-B|--orphan] <new_branch>] [<start_point>]`
+
+## git reset 原理图
+
+
 
 ---
 

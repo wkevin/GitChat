@@ -312,6 +312,9 @@ img {
 <p>读一本Git的书和读一篇Git的文章给人的知识含量是不同的，但给人的愉悦感也是迥异的。本文不想让您有读书的感觉、不追求知识全面、架构完整，但也不想只罗列一些git的知识点，搞的像一个Tip集。本文会从实际使用的角度，以聊天问答的形式，从浅入深，逐步展露git的若干方面。</p>
 <p>本文分Round进行，每局并不以git命令的逻辑来分类，而是以<strong>使用git完成任务的水平来分解阶段</strong>。一些问题原本来自于我和朋友们的聊天，闲聊之余，记录成集，不要期待有什么高深的理论，让你每读完一个Round，可以小试牛刀，然后烹茶小饮、若有所思……是我最想要的。</p>
 <p>git 有自己的 <a href="https://www.kernel.org/pub/software/scm/git/docs/user-manual.html">user manunal</a>，和官方宝书（<a href="http://git-scm.com/book/en/v2">英文版</a>、<a href="http://git-scm.com/book/zh/v2">中文版</a>、<a href="http://www.kancloud.cn/kancloud/progit">国内备份</a>），如果你读来无碍，请忽视本文，本文与它们相比只是个小人书、连环画，或者作为它们的一个补充。我在写每个Topic的时候也都在想：是不是书里已经有了？我是不是重复了？是不是删掉算了？—— 经常在知识点完整和拾遗之间反复权衡，但想到碎片化阅读越来越普及、学东西主要靠百度的今天，我写点东西发出来应该也是有益的。</p>
+<blockquote>
+<p>特别提示：本文自绘图用的是svg格式，Chrome或FF才能这确显示。</p>
+</blockquote>
 <hr />
 <!-- MarkdownTOC -->
 
@@ -332,13 +335,14 @@ img {
 <li><a href="#onelinehashauthordatemessage">oneline太简陋了，我想一行里面看到hash、author、date、message</a></li>
 <li><a href="#git-log_3">git log 已经很好了，但好像还是缺点啥</a></li>
 <li><a href="#git-log-fuller-author-commit">git log &ndash;fuller 中的 author 和 commit 啥关系</a></li>
+<li><a href="#log">看log的时候能否把修改了哪些文件也列出来</a></li>
 <li><a href="#tortoisesvndiff">我要能像TortoiseSVN那样左右两栏对比看diff</a></li>
 <li><a href="#git-add">修改完了为什么不是直接提交，而是git add</a></li>
 <li><a href="#ubuntugit-commit">我用ubuntu，我要修改git commit时的默认编辑器</a></li>
 </ul>
 </li>
 <li><a href="#round-3">Round 3 : 并发</a><ul>
-<li><a href="#branch">我想做个分支（branch），怎么做</a></li>
+<li><a href="#branch">我想使用个分支（branch），怎么做</a></li>
 <li><a href="#_1">如何在分支间来回切换</a></li>
 <li><a href="#git-branch-delete">删除分支总是想用git branch delete</a></li>
 <li><a href="#merge">merge是怎么玩儿的</a></li>
@@ -389,6 +393,8 @@ img {
 <li><a href="#gitsvn">git和SVN在元数据存储上有什么区别</a></li>
 <li><a href="#git-object">git 的对象（object）</a></li>
 <li><a href="#git_13">git 的快照存储有点不可思议，如何做到好又多的</a></li>
+<li><a href="#git-checkout">git checkout 原理图</a></li>
+<li><a href="#git-reset">git reset 原理图</a></li>
 </ul>
 </li>
 </ul>
@@ -829,6 +835,10 @@ bf36ab9 Sun Jan 31 12:19:33 2016 wkevin 2.1的日记
 
 <p>上面的命令可以在commit的同时指定提交内容的author和AUTHOR_DATE，这个恐怕要靠提交者（committer）的记忆力和公德心了，把这段代码真实author的名字和写就时间录进去，而不是让git默认的把自己的name和提交时间（COMMITTER_DATE）录入库中。</p>
 <p>在没有github之前，一个开源项目通常还是只设置几个有权限的提交人，大家想贡献代码就发patch给有权限的人，然后有权人commit。但自从有了github，发明了fork（fork并不属于git，而是github的独创哦）和PR（Pull-Request），让这个过程更加的轻便，也让项目的发展更加《失控》，有能力的人可以在自己的领地fork并发展一个项目，PR或不PR给原作者全凭个人喜好，原作者如果“懒政”，其他人完全可以独立发展。—— 每个人都在自己的库里commit，使得committer和author通常都是一个人，大家都是通过PR给其他人，而不是发送patch了。—— 所以 <code>--author</code> 这个参数已经很久不用一次了。</p>
+<h2 id="log"><a name="user-content-log" href="#log" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>看log的时候能否把修改了哪些文件也列出来</h2>
+<pre><code class="cmd">$ git log --stat
+</code></pre>
+
 <h2 id="tortoisesvndiff"><a name="user-content-tortoisesvndiff" href="#tortoisesvndiff" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我要能像TortoiseSVN那样左右两栏对比看diff</h2>
 <p>这个必须有！</p>
 <blockquote>
@@ -992,7 +1002,7 @@ DESCRIPTION
 <li>使用<code>git checkout</code>命令随时从SA反悔，文件会从SA移除，是否覆盖</li>
 </ul>
 <h2 id="ubuntugit-commit"><a name="user-content-ubuntugit-commit" href="#ubuntugit-commit" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我用ubuntu，我要修改git commit时的默认编辑器</h2>
-<p><code>git cimmit</code>会自动打开系统默认的编辑器来让你写log，如下修改：</p>
+<p><code>git commit</code>会自动打开系统默认的编辑器来让你写log，如下修改：</p>
 <pre><code class="cmd">ubuntu$ update-alternatives --config editor
 </code></pre>
 
@@ -1003,57 +1013,23 @@ DESCRIPTION
 <p>第二局，Over!</p>
 <h1 id="round-3"><a name="user-content-round-3" href="#round-3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 3 : 并发</h1>
 <p><img alt="" src="img/boy-buffaloes-india-sw.jpg" /></p>
-<h2 id="branch"><a name="user-content-branch" href="#branch" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我想做个分支（branch），怎么做</h2>
+<h2 id="branch"><a name="user-content-branch" href="#branch" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我想使用个分支（branch），怎么做</h2>
 <p>好了，这里要提到一个非常重要的概念了，很多git书籍都会强调的一点：<strong>git的branch只是个指针</strong> —— 也常被称作“<strong>git的必杀技</strong>”。</p>
-<p>网文非常多，自行搜索一下 <code>git branch</code> 吧，或者执行:</p>
-<pre><code class="cmd">$ git help branch
-</code></pre>
-
+<p>下面这几步非常有必要：</p>
+<ul>
+<li>看一下《Pro Git》中的<a href="http://www.kancloud.cn/kancloud/progit/70182">分支这一章</a></li>
+<li>网文非常多，自行搜索一下 <code>git branch</code> </li>
+<li><code>$ git help branch</code></li>
+</ul>
+<p>我来概要的描述一些要点</p>
+<ul>
+<li><code>git init</code>后会自动创建一个master分支，它并不是一个多么特殊的分支，跟其他分支没什么区别。</li>
+<li>git中的3个区：本地工作目录、索引区、库 —— 分支信息保存在库中，工作目录和索引区都对应库中的某个分支。《Pro Git》中的<a href="http://www.kancloud.cn/kancloud/progit/70182">分支这一章</a>中的图大多都是画的库中的样子，请注意还有工作目录和索引区。</li>
+<li>git的库中保存单元是<a href="#git-object">git 的对象（object）</a>，我们通常脑海中出现的像一颗树一样成长的分支树是由一个个commit对象连成的。</li>
+<li>HEAD指针比较特殊，可以将 HEAD 想象为当前分支的别名</li>
+<li></li>
+</ul>
 <h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何在分支间来回切换</h2>
-<p>概要：</p>
-<ul>
-<li><code>git checkout file</code>：用暂存区的file覆盖工作区的file</li>
-<li><code>git checkout branch</code>：HEAD指向branch，然后去覆盖暂存区和工作区</li>
-<li><code>git checkout --detach branch</code>：游离指向branch，然后去覆盖暂存区和工作区</li>
-<li><code>git checkout commit</code>：游离指向commit，，然后去覆盖暂存区和工作区</li>
-<li><code>git checkout branch/commit file</code>：那指针指向的file去覆盖暂存区和工作区的file，所以暂存区会有待提交内容</li>
-</ul>
-<p>详细：</p>
-<ul>
-<li><code>git checkout &lt;./file&gt;</code><ul>
-<li>HEAD 不会切换</li>
-<li>用暂存区的file覆盖工作区中对应的文件，暂存区的不变<ul>
-<li><strong>如果没有未提交的修改，暂存区和HEAD是相同的</strong></li>
-<li>如果暂存区刚才有未提交的修改，后续仍可commit</li>
-</ul>
-</li>
-<li>覆盖：意味着所有修改会丢失；但新增的文件不丢失。</li>
-</ul>
-</li>
-<li><code>git checkout &lt;branch&gt;</code><ul>
-<li>HEAD 会被切换</li>
-<li>用 <branch> 中的文件覆盖工作区中对应的文件</li>
-<li>切换的当前branch时：本地修改不会丢失，也不必提交</li>
-<li>切换的其他branch时：本地修改要先提交，-f 强切修改会丢失</li>
-</ul>
-</li>
-<li><code>git checkout --detach [&lt;branch&gt;]</code><ul>
-<li>HEAD 不变<ul>
-<li><code>git checkout --detach</code>：会从当前 HEAD 创建游离指针</li>
-<li><code>git checkout --detach anotherBranch</code>：会从 anotherBranch 指针创建游离指针</li>
-</ul>
-</li>
-<li>从<branch>处创建一个<strong>游离</strong>的branch，并覆盖到本地工作区</li>
-<li>从当前branch创建游离分支时：本地修改不会丢失，也不必提交</li>
-<li>从其他branch创建游离分支时：本地修改要先提交，-f 强切修改会丢失</li>
-</ul>
-</li>
-<li><code>git checkout [--detach] &lt;commit&gt;</code><ul>
-<li>游离一个branch</li>
-</ul>
-</li>
-<li><code>git checkout [[-b|-B|--orphan] &lt;new_branch&gt;] [&lt;start_point&gt;]</code></li>
-</ul>
 <h2 id="git-branch-delete"><a name="user-content-git-branch-delete" href="#git-branch-delete" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>删除分支总是想用git branch delete</h2>
 <p>曾经我也愤怒过这个事情：</p>
 <ul>
@@ -1422,7 +1398,7 @@ https://&lt;name&gt;:&lt;password&gt;@github.com
 <li>管理和维护 <a href="http://git-scm.com">git-scm.com</a> 网站</li>
 </ul>
 </li>
-<li><a href="https://github.com/progit">progit</a>:目前有<a href="https://github.com/orgs/progit/people">位成员</a>，牵头人 <a href="https://github.com/schacon">Scott Chacon</a> 和 <a href="https://github.com/ben">Ben Straub</a>，两人目前都供职于github公司，比较重要的贡献有<ul>
+<li><a href="https://github.com/progit">progit</a>:目前有<a href="https://github.com/orgs/progit/people">15位成员</a>，牵头人 <a href="https://github.com/schacon">Scott Chacon</a> 和 <a href="https://github.com/ben">Ben Straub</a>，两人目前都供职于github公司，其他人多是从事翻译工作。比较重要的贡献有<ul>
 <li>写了《Pro git》这本书，此书被翻译成多种语言，被奉为经典。</li>
 </ul>
 </li>
@@ -1432,9 +1408,8 @@ https://&lt;name&gt;:&lt;password&gt;@github.com
 当然，我明白你说的是中文资料。</p>
 <ul>
 <li>Pro Git:根正苗红的书<ul>
-<li><a href="http://git-scm.com/book/en/v2">英文版-v2</a></li>
-<li><a href="http://git-scm.com/book/zh/v2">中文版-v2</a>，<a href="http://www.kancloud.cn/kancloud/progit">国内备份</a></li>
-<li><a href="http://git-scm.com/book/zh/v1">中文版-v1</a>， <a href="http://git.oschina.net/progit/">国内备份</a></li>
+<li>第2版：<a href="http://git-scm.com/book/zh/v2">中文官方在线版</a>、<a href="http://www.kancloud.cn/kancloud/progit">中文国内在线版</a>、<a href="http://git-scm.com/book/en/v2">英文官方在线版</a></li>
+<li>第1版：<a href="http://git-scm.com/book/zh/v1">中文官方在线版</a>、<a href="http://git.oschina.net/progit/">中文国内在线版</a></li>
 </ul>
 </li>
 <li><a href="http://gitbook.liuhui998.com/index.html">Git Community Book 中文版</a></li>
@@ -1470,7 +1445,7 @@ https://&lt;name&gt;:&lt;password&gt;@github.com
 </li>
 </ul>
 <h1 id="round-6"><a name="user-content-round-6" href="#round-6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 6 : 奇技淫巧</h1>
-<p><img alt="" src="img/black-trevally-sardines-sw.jpg" /></p>
+<p><img alt="" src="img/resting-lions-tanzania-sw.jpg" /></p>
 <h2 id="committag"><a name="user-content-committag" href="#committag" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>从当前库中快速导出一个节点(commit、tag)另作他用</h2>
 <p>比如：</p>
 <ul>
@@ -1669,6 +1644,7 @@ $ git br
 <p><code>git cherry-pick [commit_hash]</code></p>
 <p>这个命令会带来冲突，请谨慎使用</p>
 <h1 id="round-7"><a name="user-content-round-7" href="#round-7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 7 : 原理拾趣</h1>
+<p><img alt="" src="img/black-trevally-sardines-sw.jpg" /></p>
 <h2 id="gitsvn"><a name="user-content-gitsvn" href="#gitsvn" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git和SVN在元数据存储上有什么区别</h2>
 <p>svn是基于增量存储的，两次提交对于repo来说只保存变化量，git不使用svn的增量方式保存数据，而是使用快照。因为git的分布式特性，并没有一颗树一样成长的repo，repo更像是一张网式的成长，节点与节点之间可能会绕很远才能找到亲戚关系，所以增量无从谈起。</p>
 <p>来看下面这个过程：</p>
@@ -1826,6 +1802,51 @@ committer wkevin &lt;wkevin@users.noreply.github.com&gt; 1454556117 +0800
 </ul>
 </li>
 </ul>
+<h2 id="git-checkout"><a name="user-content-git-checkout" href="#git-checkout" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git checkout 原理图</h2>
+<ul>
+<li><code>git checkout file</code>：用暂存区的file覆盖工作区的file</li>
+<li><code>git checkout branch</code>：HEAD指向branch，然后去覆盖暂存区和工作区</li>
+<li><code>git checkout --detach branch</code>：游离指向branch，然后去覆盖暂存区和工作区</li>
+<li><code>git checkout commit</code>：游离指向commit，，然后去覆盖暂存区和工作区</li>
+<li><code>git checkout branch/commit file</code>：拿指针指向的file去覆盖暂存区和工作区的file，所以暂存区会有待提交内容</li>
+</ul>
+<p>详细：</p>
+<ul>
+<li><code>git checkout &lt;./file&gt;</code><ul>
+<li>HEAD 不会切换</li>
+<li>用暂存区的file覆盖工作区中对应的文件，暂存区的不变<ul>
+<li><strong>如果没有未提交的修改，暂存区和HEAD是相同的</strong></li>
+<li>如果暂存区刚才有未提交的修改，后续仍可commit</li>
+</ul>
+</li>
+<li>覆盖：意味着所有修改会丢失；但新增的文件不丢失。</li>
+</ul>
+</li>
+<li><code>git checkout &lt;branch&gt;</code><ul>
+<li>HEAD 会被切换</li>
+<li>用 <branch> 中的文件覆盖工作区中对应的文件</li>
+<li>切换的当前branch时：本地修改不会丢失，也不必提交</li>
+<li>切换的其他branch时：本地修改要先提交，-f 强切修改会丢失</li>
+</ul>
+</li>
+<li><code>git checkout --detach [&lt;branch&gt;]</code><ul>
+<li>HEAD 不变<ul>
+<li><code>git checkout --detach</code>：会从当前 HEAD 创建游离指针</li>
+<li><code>git checkout --detach anotherBranch</code>：会从 anotherBranch 指针创建游离指针</li>
+</ul>
+</li>
+<li>从<branch>处创建一个<strong>游离</strong>的branch，并覆盖到本地工作区</li>
+<li>从当前branch创建游离分支时：本地修改不会丢失，也不必提交</li>
+<li>从其他branch创建游离分支时：本地修改要先提交，-f 强切修改会丢失</li>
+</ul>
+</li>
+<li><code>git checkout [--detach] &lt;commit&gt;</code><ul>
+<li>游离一个branch</li>
+</ul>
+</li>
+<li><code>git checkout [[-b|-B|--orphan] &lt;new_branch&gt;] [&lt;start_point&gt;]</code></li>
+</ul>
+<h2 id="git-reset"><a name="user-content-git-reset" href="#git-reset" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git reset 原理图</h2>
 <hr />
 <p><strong>跋</strong></p>
 <p>本文本来只是我个人使用git多年来的学习笔记和备忘录，2015年底陆续有一些项目上的要求同事朋友们开始使用git，我当然乐于答疑释惑。和大家互动了之后，发现直接拿笔记给别人看是不妥当的，因为笔记从头到尾没有难度梯度，大家更希望我分享的是一篇由简入难的文章。—— 听取用户需求，重新编排文章，并且查漏补缺……终于在2016年春节假期中成文。</p>
