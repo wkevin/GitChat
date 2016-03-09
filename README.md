@@ -734,7 +734,7 @@ git在 `git commit` 之前首先要 `git add`，从svn转移过来的同学会�
 
 1、2、3状态在本地工作目录，4状态属于暂存区，5状态属于git库。
 
-![](img/git-state-and-area.svg)
+<embed src="img/git-stat-and-area.svg" type="image/svg+xml" />
 
 如果我修改了一下README.md，`git add`了一下，然后又修改了一下，用`git st`的打印是这样的：
 
@@ -1619,11 +1619,12 @@ $ git ls-tree f1683d3e
 
 ## git add/commit 原理图
 
-![](img/git-add.svg)
+<embed src="img/git-add.svg" type="image/svg+xml" />
 
 ## git checkout 原理图
 
-![](img/git-checkout.svg)
+<embed src="img/git-checkout.svg" type="image/svg+xml" />
+
 
 * `git checkout file`：用暂存区的file覆盖工作区的file
 * `git checkout branch`：HEAD指向branch，然后去覆盖暂存区和工作区
@@ -1657,7 +1658,8 @@ $ git ls-tree f1683d3e
 
 ## git reset 原理图
 
-![](img/git-reset.svg)
+<embed src="img/git-reset.svg" type="image/svg+xml" />
+
 
 `git reset [-q] [<tree-ish>] [--] <paths>…`
 `git reset (--patch | -p) [<tree-ish>] [--] [<paths>…]`
