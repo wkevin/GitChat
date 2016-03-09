@@ -384,15 +384,18 @@ img {
 <li><a href="#committag">从当前库中快速导出一个节点(commit、tag)另作他用</a></li>
 <li><a href="#logrepo">导出某个子目录及其log成为一个新的repo</a></li>
 <li><a href="#2bug1commit">分支2需改bug，但我正在分支1上编码并不想commit怎么办</a></li>
-<li><a href="#_7">我反悔了，我要回退！</a></li>
-<li><a href="#_8">暂存一个文件的部分改动</a></li>
-<li><a href="#_9">能否从不同的分支里选择某次提交并且把它合并到当前的分支</a></li>
+<li><a href="#git-add_1">git add错了，我要丢弃暂存区的修改</a></li>
+<li><a href="#edit">edit错了，我要丢弃本地目录中的修改</a></li>
+<li><a href="#git-commitcommit">git commit错了，我要丢弃某个commit节点</a></li>
+<li><a href="#_7">暂存一个文件的部分改动</a></li>
+<li><a href="#_8">能否从不同的分支里选择某次提交并且把它合并到当前的分支</a></li>
 </ul>
 </li>
 <li><a href="#round-7">Round 7 : 原理拾趣</a><ul>
 <li><a href="#gitsvn">git和SVN在元数据存储上有什么区别</a></li>
 <li><a href="#git-object">git 的对象（object）</a></li>
 <li><a href="#git_13">git 的快照存储有点不可思议，如何做到好又多的</a></li>
+<li><a href="#git-addcommit">git add/commit 原理图</a></li>
 <li><a href="#git-checkout">git checkout 原理图</a></li>
 <li><a href="#git-reset">git reset 原理图</a></li>
 </ul>
@@ -1568,9 +1571,22 @@ git clone newrepo.git
 <li>git stash clear: 清空Git栈。此时使用gitg等图形化工具会发现，原来stash的哪些节点都消失了。</li>
 <li>git stash apply：将以前一半的工作应用回来</li>
 </ul>
-<h2 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我反悔了，我要回退！</h2>
-<p>为什么把“反悔”放在奇技淫巧中——因为git不提倡反悔，男子汉大豆腐做了不悔、悔了不做。</p>
-<p>但人生不如意十之八九，学会放弃也是难能可贵的。</p>
+<h2 id="git-add_1"><a name="user-content-git-add_1" href="#git-add_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git add错了，我要丢弃暂存区的修改</h2>
+<p><strong>仅丢弃暂存区的修改，不丢弃本地目录的修改</strong></p>
+<ul>
+<li><code>git reset [--soft] HEAD</code>: 用HEAD分支覆盖一下暂存区,不影响本地文件</li>
+</ul>
+<p><strong>丢弃暂存区&amp;本地目录的修改</strong></p>
+<ul>
+<li><code>git checkout HEAD .</code> 或指定文件 <code>git checkout HEAD file</code>:用当前分支的库中文件覆盖暂存区和本地的</li>
+<li><code>git reset --hard HEAD</code> 用HEAD覆盖一下暂存区和本地目录<ul>
+<li>git reset &ndash;hard HEAD</li>
+<li>git reset &ndash;hard HEAD~1</li>
+<li>git reset &ndash;hard HEAD~5</li>
+</ul>
+</li>
+</ul>
+<h2 id="edit"><a name="user-content-edit" href="#edit" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>edit错了，我要丢弃本地目录中的修改</h2>
 <ul>
 <li><code>git clean -df</code>：丢弃untracked的文件，不丢弃modified的文件<ul>
 <li>git clean -f: 删除 untracked files</li>
@@ -1584,63 +1600,23 @@ git clone newrepo.git
 </li>
 </ul>
 </li>
-<li><code>git checkout .</code>：用缓存或HEAD中的文件覆盖本地文件，这些文件中的修改都丢弃掉了，但新增的文件不会被丢弃</li>
-<li>git stash #把所有没有提交的修改暂存到stash里面。可用git stash pop回复。</li>
-<li>git reset &ndash;soft HASH #返回到某个节点。保留修改</li>
-<li>git reset &ndash;hard HASH #返回到某个节点，不保留修改。<ul>
-<li>git reset &ndash;hard HEAD</li>
-<li>git reset &ndash;hard HEAD~1</li>
-<li>git reset &ndash;hard HEAD~5</li>
+<li><code>git checkout HEAD .</code>:同上条</li>
+<li><code>git reset --hard HEAD</code>:同上条</li>
 </ul>
-</li>
+<h2 id="git-commitcommit"><a name="user-content-git-commitcommit" href="#git-commitcommit" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git commit错了，我要丢弃某个commit节点</h2>
+<ul>
+<li><code>git reset commitHash~1</code>: 即可让HEAD指向commitHash前一个commit，即：丢弃commitHash</li>
 </ul>
 <p>回退远程</p>
 <ol>
 <li>git reset &ndash;soft hashcode remoteRepo</li>
 <li>把本地的回退了，然后把远程branch删掉，然后push新的</li>
 </ol>
-<p><strong>git reset</strong></p>
-<p><code>git reset [-q] [&lt;tree-ish&gt;] [--] &lt;paths&gt;…</code><br />
-<code>git reset (--patch | -p) [&lt;tree-ish&gt;] [--] [&lt;paths&gt;…]</code><br />
-<code>git reset [--soft | --mixed [-N] | --hard | --merge | --keep] [-q] [&lt;commit&gt;]</code></p>
-<ul>
-<li>图中3个动作：<ol>
-<li>替换引用的指向。引用指向新的提交ID。</li>
-<li>替换暂存区。替换后，暂存区的内容和引用指向的目录树一致。</li>
-<li>替换工作区。替换后，工作区的内容变得和暂存区一致，也和HEAD所指向的目录树内容相同。</li>
-</ol>
-</li>
-<li>3个参数：<ul>
-<li>&ndash;hard: 执行上图中的全部动作1、2、3</li>
-<li>&ndash;soft: 执行上图中的全部动作1</li>
-<li>&ndash;mixed:执行上图中的全部动作1、2，—— 默认操作</li>
-</ul>
-</li>
-<li>举例：<ul>
-<li><code>git reset</code>==<code>git reset HEAD</code>：用HEAD重置暂存区，工作区不受影响，相当于回滚/撤销 <code>git add</code></li>
-<li><code>git reset -- filename</code> == <code>git reset HEAD filename</code>：仅将文件的改动撤出暂存区，暂存区中其他文件不改变。</li>
-<li><code>git reset --soft HEAD^</code>：工作区和暂存区不改变，但是HEAD和当前分支引用向前回退一次<ul>
-<li>用途：提交了之后，你又发现代码没有提交完整，或者你想重新编辑一下再提交</li>
-</ul>
-</li>
-<li><code>git reset --hard</code> == <code>git reset --hard HEAD</code>: 用HEAD覆盖暂存区和工作区，即：丢弃所有本地修改</li>
-</ul>
-</li>
-<li>重置可以朝前，也可以朝后<br />
-    <pre><code class="cmd">$ git br
-* master ecfc106 2
-  new    ab3fa01 3
-$ git reset --soft new
-$ git br
-* master ab3fa01 3
-  new    ab3fa01 3
-</code></pre></li>
-</ul>
-<h2 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>暂存一个文件的部分改动</h2>
+<h2 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>暂存一个文件的部分改动</h2>
 <p>比如说，你对一个文件进行了多次修改并且想把他们分别提交。这种情况下，你可以在添加命令(add)中加上-p选项</p>
 <p><code>git add -p [file_name]</code></p>
 <p>会逐段（hunk）提示你是否add。</p>
-<h2 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>能否从不同的分支里选择某次提交并且把它合并到当前的分支</h2>
+<h2 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>能否从不同的分支里选择某次提交并且把它合并到当前的分支</h2>
 <p><code>git cherry-pick [commit_hash]</code></p>
 <p>这个命令会带来冲突，请谨慎使用</p>
 <h1 id="round-7"><a name="user-content-round-7" href="#round-7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 7 : 原理拾趣</h1>
@@ -1802,13 +1778,16 @@ committer wkevin &lt;wkevin@users.noreply.github.com&gt; 1454556117 +0800
 </ul>
 </li>
 </ul>
+<h2 id="git-addcommit"><a name="user-content-git-addcommit" href="#git-addcommit" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git add/commit 原理图</h2>
+<p><img alt="" src="img/git-add.svg" /></p>
 <h2 id="git-checkout"><a name="user-content-git-checkout" href="#git-checkout" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git checkout 原理图</h2>
+<p><img alt="" src="img/git-checkout.svg" /></p>
 <ul>
 <li><code>git checkout file</code>：用暂存区的file覆盖工作区的file</li>
 <li><code>git checkout branch</code>：HEAD指向branch，然后去覆盖暂存区和工作区</li>
 <li><code>git checkout --detach branch</code>：游离指向branch，然后去覆盖暂存区和工作区</li>
-<li><code>git checkout commit</code>：游离指向commit，，然后去覆盖暂存区和工作区</li>
-<li><code>git checkout branch/commit file</code>：拿指针指向的file去覆盖暂存区和工作区的file，所以暂存区会有待提交内容</li>
+<li><code>git checkout commithush</code>：游离指针指向某次commit，，然后去覆盖暂存区和工作区</li>
+<li><code>git checkout branch/commithush file</code>：拿指针指向的file去覆盖暂存区和工作区的file，所以暂存区会有待提交内容</li>
 </ul>
 <p>详细：</p>
 <ul>
@@ -1847,6 +1826,43 @@ committer wkevin &lt;wkevin@users.noreply.github.com&gt; 1454556117 +0800
 <li><code>git checkout [[-b|-B|--orphan] &lt;new_branch&gt;] [&lt;start_point&gt;]</code></li>
 </ul>
 <h2 id="git-reset"><a name="user-content-git-reset" href="#git-reset" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git reset 原理图</h2>
+<p><img alt="" src="img/git-reset.svg" /></p>
+<p><code>git reset [-q] [&lt;tree-ish&gt;] [--] &lt;paths&gt;…</code><br />
+<code>git reset (--patch | -p) [&lt;tree-ish&gt;] [--] [&lt;paths&gt;…]</code><br />
+<code>git reset [--soft | --mixed [-N] | --hard | --merge | --keep] [-q] [&lt;commit&gt;]</code></p>
+<ul>
+<li>图中3个动作：<ol>
+<li>替换引用的指向。引用指向新的提交ID。</li>
+<li>替换暂存区。替换后，暂存区的内容和引用指向的目录树一致。</li>
+<li>替换工作区。替换后，工作区的内容变得和暂存区一致，也和HEAD所指向的目录树内容相同。</li>
+</ol>
+</li>
+<li>3个参数：<ul>
+<li>&ndash;hard: 执行上图中的全部动作1、2、3</li>
+<li>&ndash;soft: 执行上图中的全部动作1</li>
+<li>&ndash;mixed:执行上图中的全部动作1、2，—— 默认操作</li>
+</ul>
+</li>
+<li>举例：<ul>
+<li><code>git reset</code>==<code>git reset HEAD</code>：用HEAD重置暂存区，工作区不受影响，相当于回滚/撤销 <code>git add</code></li>
+<li><code>git reset -- filename</code> == <code>git reset HEAD filename</code>：仅将文件的改动撤出暂存区，暂存区中其他文件不改变。</li>
+<li><code>git reset --soft HEAD^</code>：工作区和暂存区不改变，但是HEAD和当前分支引用向前回退一次<ul>
+<li>用途：提交了之后，你又发现代码没有提交完整，或者你想重新编辑一下再提交</li>
+</ul>
+</li>
+<li><code>git reset --hard</code> == <code>git reset --hard HEAD</code>: 用HEAD覆盖暂存区和工作区，即：丢弃所有本地修改</li>
+</ul>
+</li>
+<li>重置可以朝前，也可以朝后<br />
+<pre><code class="cmd">$ git br
+* master ecfc106 2
+  new    ab3fa01 3
+$ git reset --soft new
+$ git br
+* master ab3fa01 3
+  new    ab3fa01 3
+</code></pre></li>
+</ul>
 <hr />
 <p><strong>跋</strong></p>
 <p>本文本来只是我个人使用git多年来的学习笔记和备忘录，2015年底陆续有一些项目上的要求同事朋友们开始使用git，我当然乐于答疑释惑。和大家互动了之后，发现直接拿笔记给别人看是不妥当的，因为笔记从头到尾没有难度梯度，大家更希望我分享的是一篇由简入难的文章。—— 听取用户需求，重新编排文章，并且查漏补缺……终于在2016年春节假期中成文。</p>
