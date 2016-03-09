@@ -1407,64 +1407,22 @@ git clone newrepo.git
 * git stash clear: 清空Git栈。此时使用gitg等图形化工具会发现，原来stash的哪些节点都消失了。
 * git stash apply：将以前一半的工作应用回来
 
-## git commit错了，我要反悔
+## git add错了，我要丢弃暂存区的修改
 
-* 两个文件已经被修改
-```cmd
-$ git st
-On branch master
-Your branch is ahead of 'origin/master' by 1 commit.
-  (use "git push" to publish your local commits)
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
+**仅丢弃暂存区的修改，不丢弃本地目录的修改**
 
-        modified:   README.html
-        modified:   README.md
+* `git reset [--soft] HEAD`: 用HEAD分支覆盖一下暂存区,不影响本地文件
 
-no changes added to commit (use "git add" and/or "git commit -a")
-```
-* master分支比origin/master分支多提交一个test
-```cmd
-$ git br
-* master                7c57a6f [origin/master: ahead 1] test
-  remotes/origin/HEAD   -> origin/master
-  remotes/origin/master cd9a45b 笔误
-  remotes/zte/master    cd9a45b 笔误
-```
-* 使用`git reset`，拿origin/master 或 origin/HEAD 去覆盖当前（本地）分支
-```cmd
-$ git reset origin/HEAD
-Unstaged changes after reset:
-M       README.html
-M       README.md
-```
-* 本地master分支已经被覆盖掉
-```cmd
-$ git br
-* master                cd9a45b [origin/master] 笔误
-  remotes/origin/HEAD   -> origin/master
-  remotes/origin/master cd9a45b 笔误
-  remotes/zte/master    cd9a45b 笔误
-```
-* 工作目录中的文件并没有被覆盖，已经修改的文件也安全
-```cmd
-$ git st
-On branch master
-Your branch is up-to-date with 'origin/master'.
-Changes not staged for commit:
-  (use "git add <file>..." to update what will be committed)
-  (use "git checkout -- <file>..." to discard changes in working directory)
+**丢弃暂存区&本地目录的修改**
 
-        modified:   README.html
-        modified:   README.md
+* `git checkout HEAD .` 或指定文件 `git checkout HEAD file`:用当前分支的库中文件覆盖暂存区和本地的
+* `git reset --hard HEAD` 用HEAD覆盖一下暂存区和本地目录
+    - git reset --hard HEAD
+    - git reset --hard HEAD~1
+    - git reset --hard HEAD~5
 
-no changes added to commit (use "git add" and/or "git commit -a")
-```
 
-为什么把“反悔”放在奇技淫巧中——因为git不提倡反悔，男子汉大豆腐做了不悔、悔了不做。
-
-但人生不如意十之八九，学会放弃也是难能可贵的。
+## edit错了，我要丢弃本地目录中的修改
 
 * `git clean -df`：丢弃untracked的文件，不丢弃modified的文件
     * git clean -f: 删除 untracked files
@@ -1474,50 +1432,18 @@ no changes added to commit (use "git add" and/or "git commit -a")
         * git clean -nxfd
         * git clean -nf
         * git clean -nfd
-* `git checkout .`：用缓存或HEAD中的文件覆盖本地文件，这些文件中的修改都丢弃掉了，但新增的文件不会被丢弃
-* git stash #把所有没有提交的修改暂存到stash里面。可用git stash pop回复。
-* git reset --soft HASH #返回到某个节点。保留修改
-* git reset --hard HASH #返回到某个节点，不保留修改。
-    - git reset --hard HEAD
-    - git reset --hard HEAD~1
-    - git reset --hard HEAD~5
+* `git checkout HEAD .`:同上条
+* `git reset --hard HEAD`:同上条
+
+## git commit错了，我要丢弃某个commit节点
+
+* `git reset commitHash~1`: 即可让HEAD指向commitHash前一个commit，即：丢弃commitHash
 
 回退远程
 
 1. git reset --soft hashcode remoteRepo
 2. 把本地的回退了，然后把远程branch删掉，然后push新的
 
-**git reset**
-
-`git reset [-q] [<tree-ish>] [--] <paths>…`
-`git reset (--patch | -p) [<tree-ish>] [--] [<paths>…]`
-`git reset [--soft | --mixed [-N] | --hard | --merge | --keep] [-q] [<commit>]`
-
-
-* 图中3个动作：
-    1. 替换引用的指向。引用指向新的提交ID。
-    2. 替换暂存区。替换后，暂存区的内容和引用指向的目录树一致。
-    3. 替换工作区。替换后，工作区的内容变得和暂存区一致，也和HEAD所指向的目录树内容相同。
-* 3个参数：
-    * --hard: 执行上图中的全部动作1、2、3
-    * --soft: 执行上图中的全部动作1
-    * --mixed:执行上图中的全部动作1、2，—— 默认操作
-* 举例：
-    - `git reset`==`git reset HEAD`：用HEAD重置暂存区，工作区不受影响，相当于回滚/撤销 `git add`
-    - `git reset -- filename` == `git reset HEAD filename`：仅将文件的改动撤出暂存区，暂存区中其他文件不改变。
-    - `git reset --soft HEAD^`：工作区和暂存区不改变，但是HEAD和当前分支引用向前回退一次
-        + 用途：提交了之后，你又发现代码没有提交完整，或者你想重新编辑一下再提交
-    - `git reset --hard` == `git reset --hard HEAD`: 用HEAD覆盖暂存区和工作区，即：丢弃所有本地修改
-* 重置可以朝前，也可以朝后
-    ```cmd
-    $ git br
-    * master ecfc106 2
-      new    ab3fa01 3
-    $ git reset --soft new
-    $ git br
-    * master ab3fa01 3
-      new    ab3fa01 3
-    ```
 
 ## 暂存一个文件的部分改动
 
@@ -1688,14 +1614,19 @@ $ git ls-tree f1683d3e
     - `svn commit`的时候要实时计算diff，`git add/commit`不存在diff计算，`git add`时会做对象的生成，但git对象的生成是执行压缩算法 —— 执行diff计算和执行压缩算法在当前水平的CPU能力下已不分伯仲
     - git虽然耗损更多的磁盘空间，但现在最不值钱的就是磁盘空间了
 
+## git add/commit 原理图
+
+![](img/git-add.svg)
+
 ## git checkout 原理图
 
+![](img/git-checkout.svg)
 
 * `git checkout file`：用暂存区的file覆盖工作区的file
 * `git checkout branch`：HEAD指向branch，然后去覆盖暂存区和工作区
 * `git checkout --detach branch`：游离指向branch，然后去覆盖暂存区和工作区
-* `git checkout commit`：游离指向commit，，然后去覆盖暂存区和工作区
-* `git checkout branch/commit file`：拿指针指向的file去覆盖暂存区和工作区的file，所以暂存区会有待提交内容
+* `git checkout commithush`：游离指针指向某次commit，，然后去覆盖暂存区和工作区
+* `git checkout branch/commithush file`：拿指针指向的file去覆盖暂存区和工作区的file，所以暂存区会有待提交内容
 
 详细：
 
@@ -1723,7 +1654,37 @@ $ git ls-tree f1683d3e
 
 ## git reset 原理图
 
+![](img/git-reset.svg)
 
+`git reset [-q] [<tree-ish>] [--] <paths>…`
+`git reset (--patch | -p) [<tree-ish>] [--] [<paths>…]`
+`git reset [--soft | --mixed [-N] | --hard | --merge | --keep] [-q] [<commit>]`
+
+
+* 图中3个动作：
+    1. 替换引用的指向。引用指向新的提交ID。
+    2. 替换暂存区。替换后，暂存区的内容和引用指向的目录树一致。
+    3. 替换工作区。替换后，工作区的内容变得和暂存区一致，也和HEAD所指向的目录树内容相同。
+* 3个参数：
+    * --hard: 执行上图中的全部动作1、2、3
+    * --soft: 执行上图中的全部动作1
+    * --mixed:执行上图中的全部动作1、2，—— 默认操作
+* 举例：
+    - `git reset`==`git reset HEAD`：用HEAD重置暂存区，工作区不受影响，相当于回滚/撤销 `git add`
+    - `git reset -- filename` == `git reset HEAD filename`：仅将文件的改动撤出暂存区，暂存区中其他文件不改变。
+    - `git reset --soft HEAD^`：工作区和暂存区不改变，但是HEAD和当前分支引用向前回退一次
+        + 用途：提交了之后，你又发现代码没有提交完整，或者你想重新编辑一下再提交
+    - `git reset --hard` == `git reset --hard HEAD`: 用HEAD覆盖暂存区和工作区，即：丢弃所有本地修改
+* 重置可以朝前，也可以朝后
+```cmd
+$ git br
+* master ecfc106 2
+  new    ab3fa01 3
+$ git reset --soft new
+$ git br
+* master ab3fa01 3
+  new    ab3fa01 3
+```
 
 ---
 
