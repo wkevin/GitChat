@@ -313,7 +313,7 @@ img {
 <p>本文分Round进行，每局并不以git命令的逻辑来分类，而是以<strong>使用git完成任务的水平来分解阶段</strong>。一些问题原本来自于我和朋友们的聊天，闲聊之余，记录成集，不要期待有什么高深的理论，让你每读完一个Round，可以小试牛刀，然后烹茶小饮、若有所思……是我最想要的。</p>
 <p>git 有自己的 <a href="https://www.kernel.org/pub/software/scm/git/docs/user-manual.html">user manunal</a>，和官方宝书（<a href="http://git-scm.com/book/en/v2">英文版</a>、<a href="http://git-scm.com/book/zh/v2">中文版</a>、<a href="http://www.kancloud.cn/kancloud/progit">国内备份</a>），如果你读来无碍，请忽视本文，本文与它们相比只是个小人书、连环画，或者作为它们的一个补充。我在写每个Topic的时候也都在想：是不是书里已经有了？我是不是重复了？是不是删掉算了？—— 经常在知识点完整和拾遗之间反复权衡，但想到碎片化阅读越来越普及、学东西主要靠百度的今天，我写点东西发出来应该也是有益的。</p>
 <blockquote>
-<p>特别提示：本文自绘图用的是svg格式，Chrome或FF才能这确显示。</p>
+<p>特别提示：本文自绘图用的是svg格式，Chrome或FF才能正确显示。</p>
 </blockquote>
 <hr />
 <!-- MarkdownTOC -->
@@ -385,7 +385,7 @@ img {
 <li><a href="#logrepo">导出某个子目录及其log成为一个新的repo</a></li>
 <li><a href="#2bug1commit">分支2需改bug，但我正在分支1上编码并不想commit怎么办</a></li>
 <li><a href="#git-add_1">git add错了，我要丢弃暂存区的修改</a></li>
-<li><a href="#edit">edit错了，我要丢弃本地目录中的修改</a></li>
+<li><a href="#modify">modify 错了，我要丢弃本地目录中的修改</a></li>
 <li><a href="#git-commitcommit">git commit错了，我要丢弃某个commit节点</a></li>
 <li><a href="#_7">暂存一个文件的部分改动</a></li>
 <li><a href="#_8">能否从不同的分支里选择某次提交并且把它合并到当前的分支</a></li>
@@ -397,6 +397,7 @@ img {
 <li><a href="#git_13">git 的快照存储有点不可思议，如何做到好又多的</a></li>
 <li><a href="#git-addcommit">git add/commit 原理图</a></li>
 <li><a href="#git-checkout">git checkout 原理图</a></li>
+<li><a href="#git-fetchpull">git fetch/pull 原理图</a></li>
 <li><a href="#git-reset">git reset 原理图</a></li>
 </ul>
 </li>
@@ -965,7 +966,7 @@ $ git config --global difftool.dm.cmd 'diffmerge &quot;$LOCAL&quot; &quot;$REMOT
 <li>git库（repository）</li>
 </ol>
 <p>1、2、3状态在本地工作目录，4状态属于暂存区，5状态属于git库。</p>
-<p><img alt="" src="img/git-state-and-area.svg" /></p>
+<p><embed src="img/git-state-and-area.svg" type="image/svg+xml" /></p>
 <p>如果我修改了一下README.md，<code>git add</code>了一下，然后又修改了一下，用<code>git st</code>的打印是这样的：</p>
 <pre><code class="cmd">$ git st
 On branch master
@@ -1016,6 +1017,7 @@ DESCRIPTION
 <p>第二局，Over!</p>
 <h1 id="round-3"><a name="user-content-round-3" href="#round-3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 3 : 并发</h1>
 <p><img alt="" src="img/boy-buffaloes-india-sw.jpg" /></p>
+<p>并发：并行开发，将会涉及分支（创建、查询、删除……）、标签等。</p>
 <h2 id="branch"><a name="user-content-branch" href="#branch" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我想使用个分支（branch），怎么做</h2>
 <p>好了，这里要提到一个非常重要的概念了，很多git书籍都会强调的一点：<strong>git的branch只是个指针</strong> —— 也常被称作“<strong>git的必杀技</strong>”。</p>
 <p>下面这几步非常有必要：</p>
@@ -1586,7 +1588,7 @@ git clone newrepo.git
 </ul>
 </li>
 </ul>
-<h2 id="edit"><a name="user-content-edit" href="#edit" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>edit错了，我要丢弃本地目录中的修改</h2>
+<h2 id="modify"><a name="user-content-modify" href="#modify" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>modify 错了，我要丢弃本地目录中的修改</h2>
 <ul>
 <li><code>git clean -df</code>：丢弃untracked的文件，不丢弃modified的文件<ul>
 <li>git clean -f: 删除 untracked files</li>
@@ -1786,8 +1788,8 @@ committer wkevin &lt;wkevin@users.noreply.github.com&gt; 1454556117 +0800
 <li><code>git checkout file</code>：用暂存区的file覆盖工作区的file</li>
 <li><code>git checkout branch</code>：HEAD指向branch，然后去覆盖暂存区和工作区</li>
 <li><code>git checkout --detach branch</code>：游离指向branch，然后去覆盖暂存区和工作区</li>
-<li><code>git checkout commithush</code>：游离指针指向某次commit，，然后去覆盖暂存区和工作区</li>
-<li><code>git checkout branch/commithush file</code>：拿指针指向的file去覆盖暂存区和工作区的file，所以暂存区会有待提交内容</li>
+<li><code>git checkout commithash</code>：游离指针指向某次commit，，然后去覆盖暂存区和工作区</li>
+<li><code>git checkout branch/commithash file</code>：拿指针指向的file去覆盖暂存区和工作区的file，所以暂存区会有待提交内容</li>
 </ul>
 <p>详细：</p>
 <ul>
@@ -1825,6 +1827,8 @@ committer wkevin &lt;wkevin@users.noreply.github.com&gt; 1454556117 +0800
 </li>
 <li><code>git checkout [[-b|-B|--orphan] &lt;new_branch&gt;] [&lt;start_point&gt;]</code></li>
 </ul>
+<h2 id="git-fetchpull"><a name="user-content-git-fetchpull" href="#git-fetchpull" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git fetch/pull 原理图</h2>
+<p><embed src="img/git-remote.svg" type="image/svg+xml" /></p>
 <h2 id="git-reset"><a name="user-content-git-reset" href="#git-reset" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git reset 原理图</h2>
 <p><embed src="img/git-reset.svg" type="image/svg+xml" /></p>
 <p><code>git reset [-q] [&lt;tree-ish&gt;] [--] &lt;paths&gt;…</code><br />

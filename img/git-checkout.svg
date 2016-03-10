@@ -24,6 +24,20 @@
        orient="auto"
        refY="0.0"
        refX="0.0"
+       id="marker5771"
+       style="overflow:visible;"
+       inkscape:isstock="true">
+      <path
+         id="path5773"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#008000;stroke-width:1pt;stroke-opacity:1;fill:#008000;fill-opacity:1"
+         transform="scale(0.4) rotate(180) translate(10,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
        id="marker24001"
        style="overflow:visible;"
        inkscape:isstock="true">
@@ -157,9 +171,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.0513889"
-     inkscape:cx="360"
-     inkscape:cy="225"
+     inkscape:zoom="1.125"
+     inkscape:cx="442.94399"
+     inkscape:cy="156.55556"
      inkscape:document-units="px"
      inkscape:current-layer="layer2"
      showgrid="true"
@@ -168,7 +182,7 @@
      inkscape:window-x="0"
      inkscape:window-y="541"
      inkscape:window-maximized="1"
-     inkscape:snap-global="true"
+     inkscape:snap-global="false"
      inkscape:snap-bbox="true"
      inkscape:object-nodes="true">
     <inkscape:grid
@@ -197,12 +211,12 @@
     <image
        sodipodi:absref="/home/kevin/workspace/GitChat/img/git-state-and-area.svg"
        xlink:href="git-state-and-area.svg"
-       y="0"
-       x="0"
-       id="image11227"
-       preserveAspectRatio="none"
+       width="720"
        height="450"
-       width="720" />
+       preserveAspectRatio="none"
+       id="image11227"
+       x="0"
+       y="0" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -221,8 +235,8 @@
        sodipodi:linespacing="117.99999%"
        x="71.200226"
        y="77.181557"><tspan
-   id="tspan4568"
-   style="font-size:17.5px;line-height:117.99999475%;fill:#ff00ff;fill-opacity:1">git checkout file</tspan></text>
+         id="tspan4568"
+         style="font-size:17.5px;line-height:117.99999475%;fill:#ff00ff;fill-opacity:1">git checkout file</tspan></text>
     <path
        sodipodi:nodetypes="cc"
        inkscape:connector-curvature="0"
@@ -236,8 +250,8 @@
        id="text15217"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:117.99999475%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
-   style="font-size:17.5px;line-height:117.99999475%;fill:#0000ff"
-   id="tspan15219">git checkout xxxbranch</tspan></text>
+         style="font-size:17.5px;line-height:117.99999475%;fill:#0000ff"
+         id="tspan15219">git checkout xxxbranch</tspan></text>
     <path
        style="fill:none;fill-rule:evenodd;stroke:#1b24d4;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2,1;stroke-opacity:1;marker-end:url(#marker19370);stroke-dashoffset:0"
        d="M 660,160 630,290"
@@ -264,13 +278,13 @@
        style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker21794)" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:117.99999475%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#008000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:117.99999475%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#008000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        id="text22302"
        sodipodi:linespacing="117.99999%"
-       x="571.80731"
-       y="318.67316"><tspan
+       x="658.9184"
+       y="200.45091"><tspan
          id="tspan22304"
-         style="font-size:12.5px;line-height:117.99999475%;fill:#008000;">detached branch</tspan></text>
+         style="font-size:12.5px;line-height:117.99999475%;fill:#008000">游离分支</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:117.99999475%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#008000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
@@ -278,14 +292,14 @@
        sodipodi:linespacing="117.99999%"
        x="312.66376"
        y="412.15695"><tspan
-   id="tspan22440"
-   style="font-size:17.5px;line-height:117.99999475%;fill:#008000;fill-opacity:1">git checkout --detach xxxbranch</tspan><tspan
-   style="font-size:17.5px;line-height:117.99999475%;fill:#008000;fill-opacity:1"
-   id="tspan22442" /><tspan
-   style="font-size:17.5px;line-height:117.99999475%;fill:#008000;fill-opacity:1"
-   id="tspan22444" /><tspan
-   style="font-size:17.5px;line-height:117.99999475%;fill:#008000;fill-opacity:1"
-   id="tspan22446" /></text>
+         id="tspan22440"
+         style="font-size:17.5px;line-height:117.99999475%;fill:#008000;fill-opacity:1">git checkout --detach xxxbranch</tspan><tspan
+         style="font-size:17.5px;line-height:117.99999475%;fill:#008000;fill-opacity:1"
+         id="tspan22442" /><tspan
+         style="font-size:17.5px;line-height:117.99999475%;fill:#008000;fill-opacity:1"
+         id="tspan22444" /><tspan
+         style="font-size:17.5px;line-height:117.99999475%;fill:#008000;fill-opacity:1"
+         id="tspan22446" /></text>
     <text
        y="432.15695"
        x="312.66376"
@@ -294,7 +308,7 @@
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:117.99999475%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#008000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
          style="font-size:17.5px;line-height:117.99999475%;fill:#008000;fill-opacity:1"
-         id="tspan22457">git checkout commitHush</tspan></text>
+         id="tspan22457">git checkout commithash</tspan></text>
     <path
        sodipodi:nodetypes="cc"
        inkscape:connector-curvature="0"
@@ -312,10 +326,37 @@
        x="328.00339"
        sodipodi:linespacing="117.99999%"
        id="text25481"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:117.99999475%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ea7b0d;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:117.99999475%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#ea7b0d;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
        xml:space="preserve"><tspan
-   style="font-size:17.5px;line-height:117.99999475%;fill:#ea7b0d;fill-opacity:1;"
-   id="tspan25483">git checkout branch/commitHush file</tspan></text>
+         style="font-size:17.5px;line-height:117.99999475%;fill:#ea7b0d;fill-opacity:1"
+         id="tspan25483">git checkout branch/commithash file</tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4383"
+       d="m 676.8573,175.02831 -58.2353,-30"
+       style="fill:none;fill-rule:evenodd;stroke:#008000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:45px;line-height:120.00000477%;font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono Bold';text-align:center;writing-mode:lr-tb;text-anchor:middle;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       x="683.85083"
+       y="188.52762"
+       id="text6147"
+       sodipodi:linespacing="120%"><tspan
+         sodipodi:role="line"
+         id="tspan6149"
+         x="683.85083"
+         y="188.52762"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'DejaVu Sans Mono';-inkscape-font-specification:'DejaVu Sans Mono';fill:#008000">x</tspan></text>
+    <text
+       y="422.67313"
+       x="596.47394"
+       sodipodi:linespacing="117.99999%"
+       id="text4382"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:40px;line-height:117.99999475%;font-family:Sans;-inkscape-font-specification:'Sans, Normal';text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#008000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       xml:space="preserve"><tspan
+         style="font-size:20px;line-height:117.99999475%;fill:#008000"
+         id="tspan4384">HEAD被游离</tspan></text>
   </g>
   <use
      xlink:href="git-state-and-area.svg"

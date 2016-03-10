@@ -8,7 +8,7 @@
 
 git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs/user-manual.html)，和官方宝书（[英文版](http://git-scm.com/book/en/v2)、[中文版](http://git-scm.com/book/zh/v2)、[国内备份](http://www.kancloud.cn/kancloud/progit)），如果你读来无碍，请忽视本文，本文与它们相比只是个小人书、连环画，或者作为它们的一个补充。我在写每个Topic的时候也都在想：是不是书里已经有了？我是不是重复了？是不是删掉算了？—— 经常在知识点完整和拾遗之间反复权衡，但想到碎片化阅读越来越普及、学东西主要靠百度的今天，我写点东西发出来应该也是有益的。
 
->特别提示：本文自绘图用的是svg格式，Chrome或FF才能这确显示。
+>特别提示：本文自绘图用的是svg格式，Chrome或FF才能正确显示。
 
 --- 
 
@@ -70,7 +70,7 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [导出某个子目录及其log成为一个新的repo](#logrepo)
     - [分支2需改bug，但我正在分支1上编码并不想commit怎么办](#2bug1commit)
     - [git add错了，我要丢弃暂存区的修改](#git-add_1)
-    - [edit错了，我要丢弃本地目录中的修改](#edit)
+    - [modify 错了，我要丢弃本地目录中的修改](#modify)
     - [git commit错了，我要丢弃某个commit节点](#git-commitcommit)
     - [暂存一个文件的部分改动](#_7)
     - [能否从不同的分支里选择某次提交并且把它合并到当前的分支](#_8)
@@ -80,6 +80,7 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [git 的快照存储有点不可思议，如何做到好又多的](#git_13)
     - [git add/commit 原理图](#git-addcommit)
     - [git checkout 原理图](#git-checkout)
+    - [git fetch/pull 原理图](#git-fetchpull)
     - [git reset 原理图](#git-reset)
 
 <!-- /MarkdownTOC -->
@@ -734,7 +735,7 @@ git在 `git commit` 之前首先要 `git add`，从svn转移过来的同学会�
 
 1、2、3状态在本地工作目录，4状态属于暂存区，5状态属于git库。
 
-<embed src="img/git-stat-and-area.svg" type="image/svg+xml" />
+<embed src="img/git-state-and-area.svg" type="image/svg+xml" />
 
 如果我修改了一下README.md，`git add`了一下，然后又修改了一下，用`git st`的打印是这样的：
 
@@ -802,6 +803,8 @@ ubuntu$ update-alternatives --config editor
 # Round 3 : 并发
 
 ![](img/boy-buffaloes-india-sw.jpg)
+
+并发：并行开发，将会涉及分支（创建、查询、删除……）、标签等。
 
 ## 我想使用个分支（branch），怎么做
 
@@ -1425,7 +1428,7 @@ git clone newrepo.git
     - git reset --hard HEAD~5
 
 
-## edit错了，我要丢弃本地目录中的修改
+## modify 错了，我要丢弃本地目录中的修改
 
 * `git clean -df`：丢弃untracked的文件，不丢弃modified的文件
     * git clean -f: 删除 untracked files
@@ -1629,8 +1632,8 @@ $ git ls-tree f1683d3e
 * `git checkout file`：用暂存区的file覆盖工作区的file
 * `git checkout branch`：HEAD指向branch，然后去覆盖暂存区和工作区
 * `git checkout --detach branch`：游离指向branch，然后去覆盖暂存区和工作区
-* `git checkout commithush`：游离指针指向某次commit，，然后去覆盖暂存区和工作区
-* `git checkout branch/commithush file`：拿指针指向的file去覆盖暂存区和工作区的file，所以暂存区会有待提交内容
+* `git checkout commithash`：游离指针指向某次commit，，然后去覆盖暂存区和工作区
+* `git checkout branch/commithash file`：拿指针指向的file去覆盖暂存区和工作区的file，所以暂存区会有待提交内容
 
 详细：
 
@@ -1655,6 +1658,10 @@ $ git ls-tree f1683d3e
 * `git checkout [--detach] <commit>`
     - 游离一个branch
 * `git checkout [[-b|-B|--orphan] <new_branch>] [<start_point>]`
+
+## git fetch/pull 原理图
+
+<embed src="img/git-remote.svg" type="image/svg+xml" />
 
 ## git reset 原理图
 
