@@ -45,6 +45,8 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [到哪里找开源项目](#_2)
     - [为什么github成了程序员的麦加圣地](#github)
     - [公司访问不了外网的github，咋办](#github_1)
+        - [使用 git config 配置](#git-config)
+        - [使用 shell 环境变量配置](#shell)
     - [定义了外网和内网两个remote，proxy怎么同时支持](#remoteproxy)
     - [SSH访问remote的通常步骤是啥](#sshremote)
     - [如何与别人合作](#_3)
@@ -968,6 +970,11 @@ $ git log --pretty=oneline --graph
 
 ## 公司访问不了外网的github，咋办
 
+git会使用“git confing配置”和“shell变量配置”两类：
+
+<embed src="img/git-proxy.svg" />
+
+### 使用 git config 配置
 ```cmd
 $ git config --global http.proxy http://<proxyserver>:<port>
 $ git config --global https.proxy http://<proxyserver>:<port>
@@ -1008,6 +1015,37 @@ remote: Total 64 (delta 0), reused 0 (delta 0), pack-reused 59
 Unpacking objects: 100% (64/64), done.
 Checking connectivity... done.
 ```
+
+### 使用 shell 环境变量配置
+
+* 首先查看是否已经有了环境变量
+```cmd
+$ export |grep proxy
+$
+```
+* 定义环境变量
+```cmd
+$ export http_proxy="http://proxysz.zte.com.cn:80/"
+$ export https_proxy="https://proxysz.zte.com.cn:80/"
+$ 
+```
+* 再次查询: OK
+```cmd
+$ export |grep proxy
+declare -x http_proxy="http://proxysz.zte.com.cn:80/"
+declare -x https_proxy="https://proxysz.zte.com.cn:80/"
+$ 
+```
+* git应该以及可以链接外网了
+* 临时想连接内网（临时不用proxy），咋办
+```cmd
+$ export -n http_proxy  //export -n 只是标记此变量不再是环境变量，但仍然是shell变量
+$ set |grep http_proxy
+http_proxy=http://proxysz.zte.com.cn:80/   //set命令仍然能够查看到
+$ export http_proxy     //再次export即可
+```
+
+
 
 ## 定义了外网和内网两个remote，proxy怎么同时支持
 

@@ -306,7 +306,7 @@ img {
   display: block;
   margin:auto;
 } 
-</style><title>README</title></head><body><article class="markdown-body"><h1>Git 聊天入门</h1>
+</style><title>gitchat</title></head><body><article class="markdown-body"><h1>Git 聊天入门</h1>
 
 <p><strong>序</strong></p>
 <p>读一本Git的书和读一篇Git的文章给人的知识含量是不同的，但给人的愉悦感也是迥异的。本文不想让您有读书的感觉、不追求知识全面、架构完整，但也不想只罗列一些git的知识点，搞的像一个Tip集。本文会从实际使用的角度，以聊天问答的形式，从浅入深，逐步展露git的若干方面。</p>
@@ -355,7 +355,11 @@ img {
 <li><a href="#git_5">想看看别人的git库了</a></li>
 <li><a href="#_2">到哪里找开源项目</a></li>
 <li><a href="#github">为什么github成了程序员的麦加圣地</a></li>
-<li><a href="#github_1">公司访问不了外网的github，咋办</a></li>
+<li><a href="#github_1">公司访问不了外网的github，咋办</a><ul>
+<li><a href="#git-config">使用 git config 配置</a></li>
+<li><a href="#shell">使用 shell 环境变量配置</a></li>
+</ul>
+</li>
 <li><a href="#remoteproxy">定义了外网和内网两个remote，proxy怎么同时支持</a></li>
 <li><a href="#sshremote">SSH访问remote的通常步骤是啥</a></li>
 <li><a href="#_3">如何与别人合作</a></li>
@@ -1160,6 +1164,9 @@ $ git config --global mergetool.diffmerge.cmd 'diffmerge --merge --result=&quot;
 <h2 id="github"><a name="user-content-github" href="#github" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>为什么github成了程序员的麦加圣地</h2>
 <p>不解释，它就是那么酷！ &ndash; 谁用谁知道</p>
 <h2 id="github_1"><a name="user-content-github_1" href="#github_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>公司访问不了外网的github，咋办</h2>
+<p>git会使用“git confing配置”和“shell变量配置”两类：</p>
+<p><embed src="img/git-proxy.svg" /></p>
+<h3 id="git-config"><a name="user-content-git-config" href="#git-config" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用 git config 配置</h3>
 <pre><code class="cmd">$ git config --global http.proxy http://&lt;proxyserver&gt;:&lt;port&gt;
 $ git config --global https.proxy http://&lt;proxyserver&gt;:&lt;port&gt;
 </code></pre>
@@ -1193,6 +1200,31 @@ remote: Compressing objects: 100% (5/5), done.
 remote: Total 64 (delta 0), reused 0 (delta 0), pack-reused 59
 Unpacking objects: 100% (64/64), done.
 Checking connectivity... done.
+</code></pre></li>
+</ul>
+<h3 id="shell"><a name="user-content-shell" href="#shell" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用 shell 环境变量配置</h3>
+<ul>
+<li>首先查看是否已经有了环境变量<br />
+<pre><code class="cmd">$ export |grep proxy
+$
+</code></pre></li>
+<li>定义环境变量<br />
+<pre><code class="cmd">$ export http_proxy=&quot;http://proxysz.zte.com.cn:80/&quot;
+$ export https_proxy=&quot;https://proxysz.zte.com.cn:80/&quot;
+$ 
+</code></pre></li>
+<li>再次查询: OK<br />
+<pre><code class="cmd">$ export |grep proxy
+declare -x http_proxy=&quot;http://proxysz.zte.com.cn:80/&quot;
+declare -x https_proxy=&quot;https://proxysz.zte.com.cn:80/&quot;
+$ 
+</code></pre></li>
+<li>git应该以及可以链接外网了</li>
+<li>临时想连接内网（临时不用proxy），咋办<br />
+<pre><code class="cmd">$ export -n http_proxy  //export -n 只是标记此变量不再是环境变量，但仍然是shell变量
+$ set |grep http_proxy
+http_proxy=http://proxysz.zte.com.cn:80/   //set命令仍然能够查看到
+$ export http_proxy     //再次export即可
 </code></pre></li>
 </ul>
 <h2 id="remoteproxy"><a name="user-content-remoteproxy" href="#remoteproxy" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>定义了外网和内网两个remote，proxy怎么同时支持</h2>
