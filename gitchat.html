@@ -356,11 +356,11 @@ img {
 <li><a href="#git_5">想看看别人的git库了</a></li>
 <li><a href="#_3">到哪里找开源项目</a></li>
 <li><a href="#github">为什么github成了程序员的麦加圣地</a></li>
-<li><a href="#github_1">公司访问不了外网的github，咋办</a></li>
+<li><a href="#proxygithub">公司内如何穿过Proxy访问github</a></li>
 <li><a href="#remoteproxy">定义了外网和内网两个remote，proxy怎么同时支持</a></li>
 <li><a href="#sshremote">SSH访问remote的通常步骤是啥</a></li>
 <li><a href="#_4">如何与别人合作</a></li>
-<li><a href="#github_2">如何在github上与别人合作</a></li>
+<li><a href="#github_1">如何在github上与别人合作</a></li>
 <li><a href="#git_6">怎样才能第一时间得知git上有提交和更新</a></li>
 <li><a href="#git-pullgit-fetch-git-merge">为什么说不要用git pull，而是用git fetch + git merge代替</a></li>
 <li><a href="#clonefetchremote-repolog">如何不clone/fetch到本地看remote repo的log?</a></li>
@@ -379,6 +379,7 @@ img {
 <li><a href="#git_10">git有哪些好的入门的资料</a></li>
 <li><a href="#git_11">git命令我掌握的七七八八了，怎么整理一下</a></li>
 <li><a href="#git_12">重新梳理git的软件</a></li>
+<li><a href="#git_13">整理git的外网托管网站</a></li>
 </ul>
 </li>
 <li><a href="#round-6">Round 6 : 奇技淫巧</a><ul>
@@ -395,7 +396,7 @@ img {
 <li><a href="#round-7">Round 7 : 原理拾趣</a><ul>
 <li><a href="#gitsvn">git和SVN在元数据存储上有什么区别</a></li>
 <li><a href="#git-object">git 的对象（object）</a></li>
-<li><a href="#git_13">git 的快照存储有点不可思议，如何做到好又多的</a></li>
+<li><a href="#git_14">git 的快照存储有点不可思议，如何做到好又多的</a></li>
 <li><a href="#git-addcommit">git add/commit 原理图</a></li>
 <li><a href="#git-checkout">git checkout 原理图</a></li>
 <li><a href="#git-fetchpull">git fetch/pull 原理图</a></li>
@@ -1305,7 +1306,10 @@ $ git config --global mergetool.diffmerge.cmd 'diffmerge --merge --result=&quot;
 <p>近几年，微软更是几乎放弃了自家的CodePlex，转投github，开源自己的.NET都在github上了。</p>
 <h2 id="github"><a name="user-content-github" href="#github" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>为什么github成了程序员的麦加圣地</h2>
 <p>不解释，它就是那么酷！ &ndash; 谁用谁知道</p>
-<h2 id="github_1"><a name="user-content-github_1" href="#github_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>公司访问不了外网的github，咋办</h2>
+<ul>
+<li><a href="http://www.xuanfengge.com/github-cheats.html">GitHub秘籍，为你解读Git与Github酷而少知的功能</a></li>
+</ul>
+<h2 id="proxygithub"><a name="user-content-proxygithub" href="#proxygithub" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>公司内如何穿过Proxy访问github</h2>
 <p>git会使用“git confing配置”和“shell变量配置”两类：</p>
 <p><embed src="img/git-proxy.svg" /></p>
 <h3 id="git-config"><a name="user-content-git-config" href="#git-config" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用 git config 配置</h3>
@@ -1414,7 +1418,7 @@ $ export http_proxy     //再次export即可
 <p>各个开源项目托管网站对ssh的要求可能还会有些许差别，但都会在显著位置进行说明，如果如上操作后仍不能访问，请仔细查阅。</p>
 <h2 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何与别人合作</h2>
 <p>当面沟通必不可少，svn和git并不能解决所有问题，每个团队都可以有自己的分支策略、日志模版、合并规则、标签原则……</p>
-<h2 id="github_2"><a name="user-content-github_2" href="#github_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何在github上与别人合作</h2>
+<h2 id="github_1"><a name="user-content-github_1" href="#github_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何在github上与别人合作</h2>
 <p>github的工作流： <a href="https://guides.github.com/introduction/flow/">Understanding the GitHub Flow</a></p>
 <h2 id="git_6"><a name="user-content-git_6" href="#git_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>怎样才能第一时间得知git上有提交和更新</h2>
 <p>和团队成员保持紧密合作在敏捷中非常重要，SVN的时候有一个非常优秀的软件 CommitMonitor，能够监控SVNServer的更新，图标是一双大眼睛，悄悄的躲在任务栏，发现更新大眼睛变成红色转啊转的。</p>
@@ -1625,6 +1629,16 @@ https://&lt;name&gt;:&lt;password&gt;@github.com
 </ul>
 </li>
 </ul>
+<h2 id="git_13"><a name="user-content-git_13" href="#git_13" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>整理git的外网托管网站</h2>
+<p>git库的托管网站（git host）有很多，github并不是唯一的选择，github最困扰开发者的一点就是：它丫竟然不交钱不给创建私有库。</p>
+<p>下面介绍几个其他的：</p>
+<ul>
+<li><a href="https://bitbucket.org">Bitbucket</a>: 流行最广的给开免费私有库的网站，可以创建无限多个私有库，充分满足了不想开源、不敢开源、和羞于开源的广大程序员们。</li>
+<li><a href="http://git.oschina.net">开源中国oschina的git</a>：开源中国在2013年创建的，号称全面、永久开放私有库，立志做中国的github，不知道是哪一天，突然它自己改名字了，叫：码云，我勒个去。</li>
+<li><a href="http://code.csdn.net">CSDN Code</a>：</li>
+</ul>
+<p>这里有一个表格，对比各个git host： <a href="https://git.wiki.kernel.org/index.php/GitHosting">https://git.wiki.kernel.org/index.php/GitHosting</a> ，关注 <strong>Free private repositories</strong>，提供免费服务的也不老少，但大部分只是提供git的基本托管，并没有github的fork、PR、gist、gitbook……等服务。</p>
+<p>如果你要开发一个开源的模块来扬名，请使用github；如果要开发一个秘密的、需要保密的大项目，请使用Bitbucket；如果只是玩一玩，请使用码云（毕竟速度要快一点）。</p>
 <h1 id="round-6"><a name="user-content-round-6" href="#round-6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 6 : 奇技淫巧</h1>
 <p><img alt="" src="img/resting-lions-tanzania-sw.jpg" /></p>
 <h2 id="committag"><a name="user-content-committag" href="#committag" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>从当前库中快速导出一个节点(commit、tag)另作他用</h2>
@@ -1922,7 +1936,7 @@ $ git ls-tree e3426a5
 .vim.*
 </code></pre></li>
 </ul>
-<h2 id="git_13"><a name="user-content-git_13" href="#git_13" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git 的快照存储有点不可思议，如何做到好又多的</h2>
+<h2 id="git_14"><a name="user-content-git_14" href="#git_14" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git 的快照存储有点不可思议，如何做到好又多的</h2>
 <ul>
 <li>继续前面的话题，我们往前查几个commit对象，试图发现的更多一些<br />
 <pre><code class="cmd">$ git show --pretty=raw 48eda25
