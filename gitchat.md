@@ -11,7 +11,7 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
 
 --- 
 
-<!-- MarkdownTOC -->
+<!-- MarkdownTOC depth=2 -->
 
 - [Round 1 : 起步](#round-1)
     - [git在哪里](#git)
@@ -35,28 +35,29 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [我想使用个分支（branch），怎么做](#branch)
     - [如何在分支间来回切换](#_1)
     - [删除分支总是想用git branch delete](#git-branch-delete)
-    - [merge是怎么玩儿的](#merge)
-    - [分支要合并到主干或其他分支，怎么merge](#merge_1)
-    - [git merge 有没有图形化的工具](#git-merge)
-    - [git分支之间的关系咋看](#git_4)
+    - [分支的合并（git merge）有哪几种场景](#git-merge)
+    - [合并时如何处理分支中的“垃圾”log](#log_1)
+    - [“把特性分支合入主干”和“把主干合入特性分支”有什么区别](#_2)
+    - [git merge 有没有图形化的工具](#git-merge_1)
+    - [git分支之间的关系能否图示](#git_4)
 - [Round 4 : 协作](#round-4)
     - [想看看别人的git库了](#git_5)
-    - [到哪里找开源项目](#_2)
+    - [到哪里找开源项目](#_3)
     - [为什么github成了程序员的麦加圣地](#github)
-    - [公司访问不了外网的github，咋办](#github_1)
+    - [公司内如何穿过Proxy访问github](#proxygithub)
     - [定义了外网和内网两个remote，proxy怎么同时支持](#remoteproxy)
     - [SSH访问remote的通常步骤是啥](#sshremote)
-    - [如何与别人合作](#_3)
-    - [如何在github上与别人合作](#github_2)
+    - [如何与别人合作](#_4)
+    - [如何在github上与别人合作](#github_1)
     - [怎样才能第一时间得知git上有提交和更新](#git_6)
-    - [git fetch 还是 git pull](#git-fetch-git-pull)
+    - [为什么说不要用git pull，而是用git fetch + git merge代替](#git-pullgit-fetch-git-merge)
     - [如何不clone/fetch到本地看remote repo的log?](#clonefetchremote-repolog)
     - [程序猿如何频繁地commit，但又低调地push](#commitpush)
     - [通过http push时每次都要求输入name/password，能否避开](#http-pushnamepassword)
-    - [如何删除远程分支](#_4)
+    - [如何删除远程分支](#_5)
     - [如何删除远程tag](#tag)
-    - [别人把远程分支删除了，我本地的对应分支怎么还在](#_5)
-    - [维持树的整洁](#_6)
+    - [别人把远程分支删除了，我本地的对应分支怎么还在](#_6)
+    - [维持树的整洁](#_7)
     - [Git多用户间协作还有什么引人入胜之处](#git_7)
 - [Round 5 : 整理](#round-5)
     - [git从何而来](#git_8)
@@ -64,6 +65,7 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [git有哪些好的入门的资料](#git_10)
     - [git命令我掌握的七七八八了，怎么整理一下](#git_11)
     - [重新梳理git的软件](#git_12)
+    - [整理git的外网托管网站](#git_13)
 - [Round 6 : 奇技淫巧](#round-6)
     - [从当前库中快速导出一个节点(commit、tag)另作他用](#committag)
     - [导出某个子目录及其log成为一个新的repo](#logrepo)
@@ -71,12 +73,12 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [git add错了，我要丢弃暂存区的修改](#git-add_1)
     - [modify 错了，我要丢弃本地目录中的修改](#modify)
     - [git commit错了，我要丢弃某个commit节点](#git-commitcommit)
-    - [暂存一个文件的部分改动](#_7)
-    - [能否从不同的分支里选择某次提交并且把它合并到当前的分支](#_8)
+    - [暂存一个文件的部分改动](#_8)
+    - [能否从不同的分支里选择某次提交并且把它合并到当前的分支](#_9)
 - [Round 7 : 原理拾趣](#round-7)
     - [git和SVN在元数据存储上有什么区别](#gitsvn)
     - [git 的对象（object）](#git-object)
-    - [git 的快照存储有点不可思议，如何做到好又多的](#git_13)
+    - [git 的快照存储有点不可思议，如何做到好又多的](#git_14)
     - [git add/commit 原理图](#git-addcommit)
     - [git checkout 原理图](#git-checkout)
     - [git fetch/pull 原理图](#git-fetchpull)
@@ -858,23 +860,165 @@ ubuntu$ update-alternatives --config editor
     - `git worktree     <subcommand>`
 * 剩下的基本都是： `git <command> <option>`
 
-## merge是怎么玩儿的
+## 分支的合并（git merge）有哪几种场景
 
-## 分支要合并到主干或其他分支，怎么merge
+`git merge` = `diff` + `patch`
 
-merge有几个场景，按场景来学习更带劲：
+假定：本地工作目录是b1(HEAD)的，希望从b2合并过来，b1和b2从同一个节点C3继承
 
-* 本地工作目录是branch1的，希望从branch2合并过来，branch1和branch1从同一个节点继承，branch2比branch1多了若干次提交
-    - branch1在继承节点后没有修改
-    - branch1在继承节点后有修改但没有暂存
-    - branch1在继承节点后有修改并且都暂存了，但还没有提交
-    - branch1在继承节点后有修改却只有一部分暂存了
-    - branch1在继承节点后有提交，无暂存态和修改态的文件
-* 
+初始状态：
+```
+              b1(HEAD)
+              |
+C1 --- C2 --- C3
+              |
+              b2
+```
+
+1. b2自C3后没有提交，无论本地文件有无修改、有无暂存、b1有无新提交：`git merge b2`后，b1都**不发生任何变化**
+```
+                            b1(HEAD)
+                            |
+C1 --- C2 --- C3 --- C6 --- C7
+              |
+              b2
+```
+2. b2自C3后有提交
+    1. b1在C3后有修改但没有暂存，或有暂存没有提交，都是禁止merge操作的
+    2. b1在C3后没有提交
+        * merge前状态
+        ```
+                      b1(HEAD)
+                      |
+        C1 --- C2 --- C3
+                       \
+                       C4 --- C5
+                              |
+                              b2
+        ```
+        * `git merge b2`后，b1快速前移（fast-forward）到b2
+        ```
+                                    b1(HEAD)
+                                    |
+        C1 --- C2 --- C3 --- C4 --- C5
+                                    |
+                                    b2
+        ```
+        * `git merge --no-ff b2`后，b1即使可以快速前移（fast-forward），也会生成一个commit，就像b1有提交似得，其实C6里面没有任何文件的修改，只是为给自己和团队人员提个醒，此处做过一次合并 —— merge一个anotated tag的时候用此默认参数
+        ```
+                                b1(HEAD)
+                                |
+        C1 --- C2 --- C3 ------ C6
+                       \       /
+                       C4 --- C5
+                              |
+                              b2
+        ```
+            
+    3. b1在C3后有提交
+        * merge前状态
+        ```
+                            b1(HEAD)
+                            |
+        C1 --- C2 --- C3 -- C6
+                       \       
+                       C4 --- C5
+                              |
+                              b2
+        ```
+        * `git merge b2`后，
+            - 如果没有冲突
+                + 默认参数是： --commit/--edit/，即：会产生一次commit，自动生成log但会弹出编辑器给用户编辑，并且`git log b1`的时候会列出C1/2/3/4/5/6/7所有的提交信息
+                ```
+                                          b1(HEAD)
+                                          |
+                C1 --- C2 --- C3 -- C6 -- C7
+                               \         /
+                               C4 --- C5
+                                      |
+                                      b2
+                ```
+                + `git merge --no-edit b2`可以不弹出编辑器给用户编辑log
+                + `git merge --no-commit b2`可以避免自动生成commit，而只是把b2的差异合并到本地文件，并add到暂存区，后续由开发者自己提交。提交后的新节点C7仍是有两个父节点的（C5、C6）
+                ```
+                                       本地文件&暂存区 -- git commit
+                                       /     /           \
+                                      /     /             \ b1(HEAD)
+                                     /     /               \|
+                C1 --- C2 --- C3 -- C6 -- / ---------------C7
+                               \         /                 /
+                               C4 --- C5  ----------------/
+                                      |
+                                      b2
+                ```
+                + `git merge -squash b2`：sqush单词的意思是挤压、压扁。此命令可以把b2中的差异提交合并成diff，patch到本地文件并add，用户commit后生成的新节点和b2没有任何关系（`git log`是看不到b2的所有提交的），可以理解为纯粹从b2拿差异过来，但又不和b2发生关系。—— 常用于在主干上合并一个没有完成的特性分支，或者两个相互依赖的分支不定时的互相合并。
+                ```
+                                       本地文件&暂存区 -- git commit
+                                       /     /           \
+                                      /     /             \ b1(HEAD)
+                                     /     /               \|
+                C1 --- C2 --- C3 -- C6 -- / ---------------C7
+                               \         /               
+                               C4 --- C5 
+                                      |
+                                      b2
+                ```
+            - 如果有冲突，则会在本地文件中记录差异(diff)
+            ```
+                                   本地文件(diff文件)
+                                      /  /
+                                b1(HEAD)/
+                                |      /
+            C1 --- C2 --- C3 -- C6    /
+                           \         /
+                           C4 --- C5
+                                  |
+                                  b2
+            ```
+                + 需要手工（使用vi、notepad++、sublimetext等删除诸如"==="和"***"）或`git mergetool confilctfile`两种方式之一修改冲突文件，手工修改完毕后还需`git add`，`git mergetool`退出时git默认会把冲突文件add到暂存区，最后`git commit`，此时会发现默认的log已经被自动加上了
+                ```
+                                 本地文件(diff文件) -- "手工+git add"或"git mergetool" -- "git commit"
+                                       /     /                                            \
+                                      /     /                                              \ b1(HEAD)
+                                     /     /                                                \|
+                C1 --- C2 --- C3 -- C6 -- / ------------------------------------------------C7
+                               \         /                                                  /
+                               C4 --- C5 --------------------------------------------------/
+                                      |
+                                      b2
+                ```
+
+
+## 合并时如何处理分支中的“垃圾”log
+
+我想你所表达的所谓“垃圾”只是针对分支要合并到主干了，这些log显得琐碎而多余，针对主干来说是“垃圾”，在分支开发过程中这些肯定不是垃圾，而是有效的防护网，也是向领导汇报工作时的“烂笔头”。
+
+我建议你在分支开发过程中可以适当的多提交一些、提交细一些，不但可以省去单独写“工作日志”，也利于回忆和追溯，如果领导在关注这个git库，也能让领导感觉每天都在努力，挣一些情感分。
+
+但毕竟好又多的log信息合入主干的话还是要认真思考一下是不是要保留所有log
+
+* **Yes**:那就直接`git merge featurebranch master`
+* **No**:那还是悠着点`git merge --squash featurebranch master` —— 具体原理参考 [分支的合并（git merge）有哪几种场景](#git-merge) 已描述
+
+
+## “把特性分支合入主干”和“把主干合入特性分支”有什么区别
+
+这个问题问的好，很多一开始接触git的同学基本意识不到这个问题。这已经不是git本身的问题了，而是使用git的团队之间的工作流规范了。
+
+* **把特性分支合入主干**：通常是特性分支开发完毕了，测试通过了，是时候在主干上构建版本了，才把分支合入主干
+    - 此时通常会遇到前面讲的“处理分支中的垃圾log”问题，处理办法前文已述
+    - 合入主干后分支通常会删除，留着特性分支不删除的习惯是不合适的，用句成语来形容就是：敝帚自珍
+    - 删除后还想再继续，`git branch featurebranch`再开一个就是了，名字都可以相同
+    - 通常我们的特性分支是根据用户故事/工单而来的，一个长期不删除的分支说明了任务分解的不合理或需求的不明确，一旦出现这样的问题还是尽快和用户讨论需求并合理的分解。
+* **把主干合入特性分支**：通常是主干在不停的合入较稳定的代码，主干也想不定期/或定期的同步过来，以免和主干背离太远
+    - 定期同步主干到特性分支是个好习惯，可以尽快的发现团队成员做了什么，是不是对我的当前分支有影响和冲突……有了冲突要今早发现、尽快处理才是敏捷，对冲突采取鸵鸟策略是不明智的。
+    - 涉及的命令有：
+        + `git rebase master`
+        + `git pull --rebase` 如果有冲突会停住，然后`git mergetool`解决冲突，`git rebase --continue`继续
 
 ## git merge 有没有图形化的工具
 
-和 `git difftool` 类似，也有 `git mergetool`。
+和 `git difftool` 类似，也有 `git mergetool`，但mergetool不是用来merge的，而是用来处理merge后的冲突文件的。
 
 * 通用配置
 ```cmd
@@ -898,7 +1042,7 @@ $ git config --global mergetool.diffmerge.trustExitCode true
     $ git config --global mergetool.diffmerge.cmd 'diffmerge --merge --result="$MERGED" "$LOCAL" "$(if test -f "$BASE"; then echo "$BASE"; else echo "$LOCAL"; fi)" "$REMOTE"'
     ```
 
-## git分支之间的关系咋看
+## git分支之间的关系能否图示
 
 ```cmd
 $ git log --pretty=oneline --graph
@@ -969,8 +1113,15 @@ $ git log --pretty=oneline --graph
 
 不解释，它就是那么酷！ -- 谁用谁知道
 
-## 公司访问不了外网的github，咋办
+* [GitHub秘籍，为你解读Git与Github酷而少知的功能](http://www.xuanfengge.com/github-cheats.html)
 
+## 公司内如何穿过Proxy访问github
+
+git会使用“git confing配置”和“shell变量配置”两类：
+
+<embed src="img/git-proxy.svg" />
+
+### 使用 git config 配置
 ```cmd
 $ git config --global http.proxy http://<proxyserver>:<port>
 $ git config --global https.proxy http://<proxyserver>:<port>
@@ -1011,6 +1162,37 @@ remote: Total 64 (delta 0), reused 0 (delta 0), pack-reused 59
 Unpacking objects: 100% (64/64), done.
 Checking connectivity... done.
 ```
+
+### 使用 shell 环境变量配置
+
+* 首先查看是否已经有了环境变量
+```cmd
+$ export |grep proxy
+$
+```
+* 定义环境变量
+```cmd
+$ export http_proxy="http://proxysz.zte.com.cn:80/"
+$ export https_proxy="https://proxysz.zte.com.cn:80/"
+$ 
+```
+* 再次查询: OK
+```cmd
+$ export |grep proxy
+declare -x http_proxy="http://proxysz.zte.com.cn:80/"
+declare -x https_proxy="https://proxysz.zte.com.cn:80/"
+$ 
+```
+* git应该以及可以链接外网了
+* 临时想连接内网（临时不用proxy），咋办
+```cmd
+$ export -n http_proxy  //export -n 只是标记此变量不再是环境变量，但仍然是shell变量
+$ set |grep http_proxy
+http_proxy=http://proxysz.zte.com.cn:80/   //set命令仍然能够查看到
+$ export http_proxy     //再次export即可
+```
+
+
 
 ## 定义了外网和内网两个remote，proxy怎么同时支持
 
@@ -1089,8 +1271,11 @@ git和svn有所不同，svn 有 server，监控器只需要监控server即可，
 使用 RSS Reader（图中使用的是Snafer）订阅的效果：
 ![](img/gitlab-rss-reader.png)
 
-## git fetch 还是 git pull
+## 为什么说不要用git pull，而是用git fetch + git merge代替
 
+git pull的问题是它把过程的细节都隐藏了起来，以至于你不用去了解git中各种类型分支的区别和使用方法。当然，多数时候这是没问题的，但一旦代码有问题，你很难找到出错的地方。看起来git pull的用法会使你吃惊，简单看一下git的使用文档应该就能说服你。
+
+将下载（fetch）和合并（merge）放到一个命令里的另外一个弊端是，你的本地工作目录在未经确认的情况下就会被远程分支更新。当然，除非你关闭所有的安全选项，否则git pull在你本地工作目录还不至于造成不可挽回的损失，但很多时候我们宁愿做的慢一些，也不愿意返工重来。 
 
 
 ## 如何不clone/fetch到本地看remote repo的log?
@@ -1276,6 +1461,20 @@ google 或 bing 上搜索图片：**git cheat sheet** —— 不要在baidu上�
         * 第二代重新建立了github项目[Git for Windows](https://github.com/git-for-windows/git)，基于 msys2（不再属于MinGW），英语有自信的可以读读它的[背景](https://github.com/git-for-windows/git/wiki)
     + [TortoiseGit](http://code.google.com/p/tortoisegit/)：类似TortoiseSVN，可以做图标重绘。
 
+
+## 整理git的外网托管网站
+
+git库的托管网站（git host）有很多，github并不是唯一的选择，github最困扰开发者的一点就是：它丫竟然不交钱不给创建私有库。
+
+下面介绍几个其他的：
+
+* [Bitbucket](https://bitbucket.org): 流行最广的给开免费私有库的网站，可以创建无限多个私有库，充分满足了不想开源、不敢开源、和羞于开源的广大程序员们。
+* [开源中国oschina的git](http://git.oschina.net)：开源中国在2013年创建的，号称全面、永久开放私有库，立志做中国的github，不知道是哪一天，突然它自己改名字了，叫：码云，我勒个去。
+* [CSDN Code](http://code.csdn.net)：
+
+这里有一个表格，对比各个git host： https://git.wiki.kernel.org/index.php/GitHosting ，关注 **Free private repositories**，提供免费服务的也不老少，但大部分只是提供git的基本托管，并没有github的fork、PR、gist、gitbook……等服务。
+
+如果你要开发一个开源的模块来扬名，请使用github；如果要开发一个秘密的、需要保密的大项目，请使用Bitbucket；如果只是玩一玩，请使用码云（毕竟速度要快一点）。
 
 # Round 6 : 奇技淫巧
 

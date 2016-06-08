@@ -313,7 +313,7 @@ img {
 <p>本文分Round进行，每局并不以git命令的逻辑来分类，而是以<strong>使用git完成任务的水平来分解阶段</strong>。一些问题原本来自于我和朋友们的聊天，闲聊之余，记录成集，不要期待有什么高深的理论，让你每读完一个Round，可以小试牛刀，然后烹茶小饮、若有所思……是我最想要的。</p>
 <p>git 有自己的 <a href="https://www.kernel.org/pub/software/scm/git/docs/user-manual.html">user manunal</a>，和官方宝书（<a href="http://git-scm.com/book/en/v2">英文版</a>、<a href="http://git-scm.com/book/zh/v2">中文版</a>、<a href="http://www.kancloud.cn/kancloud/progit">国内备份</a>），如果你读来无碍，请忽视本文，本文与它们相比只是个小人书、连环画，或者作为它们的一个补充。我在写每个Topic的时候也都在想：是不是书里已经有了？我是不是重复了？是不是删掉算了？—— 经常在知识点完整和拾遗之间反复权衡，但想到碎片化阅读越来越普及、学东西主要靠百度的今天，我写点东西发出来应该也是有益的。</p>
 <hr />
-<!-- MarkdownTOC -->
+<!-- MarkdownTOC depth=2 -->
 
 <ul>
 <li><a href="#round-1">Round 1 : 起步</a><ul>
@@ -342,30 +342,31 @@ img {
 <li><a href="#branch">我想使用个分支（branch），怎么做</a></li>
 <li><a href="#_1">如何在分支间来回切换</a></li>
 <li><a href="#git-branch-delete">删除分支总是想用git branch delete</a></li>
-<li><a href="#merge">merge是怎么玩儿的</a></li>
-<li><a href="#merge_1">分支要合并到主干或其他分支，怎么merge</a></li>
-<li><a href="#git-merge">git merge 有没有图形化的工具</a></li>
-<li><a href="#git_4">git分支之间的关系咋看</a></li>
+<li><a href="#git-merge">分支的合并（git merge）有哪几种场景</a></li>
+<li><a href="#log_1">合并时如何处理分支中的“垃圾”log</a></li>
+<li><a href="#_2">“把特性分支合入主干”和“把主干合入特性分支”有什么区别</a></li>
+<li><a href="#git-merge_1">git merge 有没有图形化的工具</a></li>
+<li><a href="#git_4">git分支之间的关系能否图示</a></li>
 </ul>
 </li>
 <li><a href="#round-4">Round 4 : 协作</a><ul>
 <li><a href="#git_5">想看看别人的git库了</a></li>
-<li><a href="#_2">到哪里找开源项目</a></li>
+<li><a href="#_3">到哪里找开源项目</a></li>
 <li><a href="#github">为什么github成了程序员的麦加圣地</a></li>
-<li><a href="#github_1">公司访问不了外网的github，咋办</a></li>
+<li><a href="#proxygithub">公司内如何穿过Proxy访问github</a></li>
 <li><a href="#remoteproxy">定义了外网和内网两个remote，proxy怎么同时支持</a></li>
 <li><a href="#sshremote">SSH访问remote的通常步骤是啥</a></li>
-<li><a href="#_3">如何与别人合作</a></li>
-<li><a href="#github_2">如何在github上与别人合作</a></li>
+<li><a href="#_4">如何与别人合作</a></li>
+<li><a href="#github_1">如何在github上与别人合作</a></li>
 <li><a href="#git_6">怎样才能第一时间得知git上有提交和更新</a></li>
-<li><a href="#git-fetch-git-pull">git fetch 还是 git pull</a></li>
+<li><a href="#git-pullgit-fetch-git-merge">为什么说不要用git pull，而是用git fetch + git merge代替</a></li>
 <li><a href="#clonefetchremote-repolog">如何不clone/fetch到本地看remote repo的log?</a></li>
 <li><a href="#commitpush">程序猿如何频繁地commit，但又低调地push</a></li>
 <li><a href="#http-pushnamepassword">通过http push时每次都要求输入name/password，能否避开</a></li>
-<li><a href="#_4">如何删除远程分支</a></li>
+<li><a href="#_5">如何删除远程分支</a></li>
 <li><a href="#tag">如何删除远程tag</a></li>
-<li><a href="#_5">别人把远程分支删除了，我本地的对应分支怎么还在</a></li>
-<li><a href="#_6">维持树的整洁</a></li>
+<li><a href="#_6">别人把远程分支删除了，我本地的对应分支怎么还在</a></li>
+<li><a href="#_7">维持树的整洁</a></li>
 <li><a href="#git_7">Git多用户间协作还有什么引人入胜之处</a></li>
 </ul>
 </li>
@@ -375,6 +376,7 @@ img {
 <li><a href="#git_10">git有哪些好的入门的资料</a></li>
 <li><a href="#git_11">git命令我掌握的七七八八了，怎么整理一下</a></li>
 <li><a href="#git_12">重新梳理git的软件</a></li>
+<li><a href="#git_13">整理git的外网托管网站</a></li>
 </ul>
 </li>
 <li><a href="#round-6">Round 6 : 奇技淫巧</a><ul>
@@ -384,14 +386,14 @@ img {
 <li><a href="#git-add_1">git add错了，我要丢弃暂存区的修改</a></li>
 <li><a href="#modify">modify 错了，我要丢弃本地目录中的修改</a></li>
 <li><a href="#git-commitcommit">git commit错了，我要丢弃某个commit节点</a></li>
-<li><a href="#_7">暂存一个文件的部分改动</a></li>
-<li><a href="#_8">能否从不同的分支里选择某次提交并且把它合并到当前的分支</a></li>
+<li><a href="#_8">暂存一个文件的部分改动</a></li>
+<li><a href="#_9">能否从不同的分支里选择某次提交并且把它合并到当前的分支</a></li>
 </ul>
 </li>
 <li><a href="#round-7">Round 7 : 原理拾趣</a><ul>
 <li><a href="#gitsvn">git和SVN在元数据存储上有什么区别</a></li>
 <li><a href="#git-object">git 的对象（object）</a></li>
-<li><a href="#git_13">git 的快照存储有点不可思议，如何做到好又多的</a></li>
+<li><a href="#git_14">git 的快照存储有点不可思议，如何做到好又多的</a></li>
 <li><a href="#git-addcommit">git add/commit 原理图</a></li>
 <li><a href="#git-checkout">git checkout 原理图</a></li>
 <li><a href="#git-fetchpull">git fetch/pull 原理图</a></li>
@@ -1069,22 +1071,167 @@ DESCRIPTION
 </li>
 <li>剩下的基本都是： <code>git &lt;command&gt; &lt;option&gt;</code></li>
 </ul>
-<h2 id="merge"><a name="user-content-merge" href="#merge" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>merge是怎么玩儿的</h2>
-<h2 id="merge_1"><a name="user-content-merge_1" href="#merge_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>分支要合并到主干或其他分支，怎么merge</h2>
-<p>merge有几个场景，按场景来学习更带劲：</p>
+<h2 id="git-merge"><a name="user-content-git-merge" href="#git-merge" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>分支的合并（git merge）有哪几种场景</h2>
+<p><code>git merge</code> = <code>diff</code> + <code>patch</code></p>
+<p>假定：本地工作目录是b1(HEAD)的，希望从b2合并过来，b1和b2从同一个节点C3继承</p>
+<p>初始状态：<br />
+<pre><code>              b1(HEAD)
+              |
+C1 --- C2 --- C3
+              |
+              b2
+</code></pre></p>
+<ol>
+<li>b2自C3后没有提交，无论本地文件有无修改、有无暂存、b1有无新提交：<code>git merge b2</code>后，b1都<strong>不发生任何变化</strong><br />
+<pre><code>                            b1(HEAD)
+                            |
+C1 --- C2 --- C3 --- C6 --- C7
+              |
+              b2
+</code></pre></li>
+<li>
+<p>b2自C3后有提交</p>
+<ol>
+<li>b1在C3后有修改但没有暂存，或有暂存没有提交，都是禁止merge操作的</li>
+<li>
+<p>b1在C3后没有提交</p>
 <ul>
-<li>本地工作目录是branch1的，希望从branch2合并过来，branch1和branch1从同一个节点继承，branch2比branch1多了若干次提交<ul>
-<li>branch1在继承节点后没有修改</li>
-<li>branch1在继承节点后有修改但没有暂存</li>
-<li>branch1在继承节点后有修改并且都暂存了，但还没有提交</li>
-<li>branch1在继承节点后有修改却只有一部分暂存了</li>
-<li>branch1在继承节点后有提交，无暂存态和修改态的文件</li>
+<li>merge前状态<br />
+<pre><code>              b1(HEAD)
+              |
+C1 --- C2 --- C3
+               \
+               C4 --- C5
+                      |
+                      b2
+</code></pre></li>
+<li><code>git merge b2</code>后，b1快速前移（fast-forward）到b2<br />
+<pre><code>                            b1(HEAD)
+                            |
+C1 --- C2 --- C3 --- C4 --- C5
+                            |
+                            b2
+</code></pre></li>
+<li><code>git merge --no-ff b2</code>后，b1即使可以快速前移（fast-forward），也会生成一个commit，就像b1有提交似得，其实C6里面没有任何文件的修改，只是为给自己和团队人员提个醒，此处做过一次合并 —— merge一个anotated tag的时候用此默认参数<br />
+<pre><code>                        b1(HEAD)
+                        |
+C1 --- C2 --- C3 ------ C6
+               \       /
+               C4 --- C5
+                      |
+                      b2
+</code></pre></li>
 </ul>
 </li>
-<li></li>
+<li>
+<p>b1在C3后有提交</p>
+<ul>
+<li>merge前状态<br />
+<pre><code>                    b1(HEAD)
+                    |
+C1 --- C2 --- C3 -- C6
+               \       
+               C4 --- C5
+                      |
+                      b2
+</code></pre></li>
+<li><code>git merge b2</code>后，<ul>
+<li>如果没有冲突<ul>
+<li>默认参数是： &ndash;commit/&ndash;edit/，即：会产生一次commit，自动生成log但会弹出编辑器给用户编辑，并且<code>git log b1</code>的时候会列出C1/2/3/4/5/6/7所有的提交信息<br />
+<pre><code>                          b1(HEAD)
+                          |
+C1 --- C2 --- C3 -- C6 -- C7
+               \         /
+               C4 --- C5
+                      |
+                      b2
+</code></pre></li>
+<li><code>git merge --no-edit b2</code>可以不弹出编辑器给用户编辑log</li>
+<li><code>git merge --no-commit b2</code>可以避免自动生成commit，而只是把b2的差异合并到本地文件，并add到暂存区，后续由开发者自己提交。提交后的新节点C7仍是有两个父节点的（C5、C6）<br />
+<pre><code>                       本地文件&amp;暂存区 -- git commit
+                       /     /           \
+                      /     /             \ b1(HEAD)
+                     /     /               \|
+C1 --- C2 --- C3 -- C6 -- / ---------------C7
+               \         /                 /
+               C4 --- C5  ----------------/
+                      |
+                      b2
+</code></pre></li>
+<li><code>git merge -squash b2</code>：sqush单词的意思是挤压、压扁。此命令可以把b2中的差异提交合并成diff，patch到本地文件并add，用户commit后生成的新节点和b2没有任何关系（<code>git log</code>是看不到b2的所有提交的），可以理解为纯粹从b2拿差异过来，但又不和b2发生关系。—— 常用于在主干上合并一个没有完成的特性分支，或者两个相互依赖的分支不定时的互相合并。<br />
+<pre><code>                       本地文件&amp;暂存区 -- git commit
+                       /     /           \
+                      /     /             \ b1(HEAD)
+                     /     /               \|
+C1 --- C2 --- C3 -- C6 -- / ---------------C7
+               \         /               
+               C4 --- C5 
+                      |
+                      b2
+</code></pre></li>
 </ul>
-<h2 id="git-merge"><a name="user-content-git-merge" href="#git-merge" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git merge 有没有图形化的工具</h2>
-<p>和 <code>git difftool</code> 类似，也有 <code>git mergetool</code>。</p>
+</li>
+<li>如果有冲突，则会在本地文件中记录差异(diff)<br />
+<pre><code>                       本地文件(diff文件)
+                          /  /
+                    b1(HEAD)/
+                    |      /
+C1 --- C2 --- C3 -- C6    /
+               \         /
+               C4 --- C5
+                      |
+                      b2
+</code></pre><ul>
+<li>需要手工（使用vi、notepad++、sublimetext等删除诸如&rdquo;===&rdquo;和&rdquo;***&rdquo;）或<code>git mergetool confilctfile</code>两种方式之一修改冲突文件，手工修改完毕后还需<code>git add</code>，<code>git mergetool</code>退出时git默认会把冲突文件add到暂存区，最后<code>git commit</code>，此时会发现默认的log已经被自动加上了<br />
+<pre><code>                 本地文件(diff文件) -- &quot;手工+git add&quot;或&quot;git mergetool&quot; -- &quot;git commit&quot;
+                       /     /                                            \
+                      /     /                                              \ b1(HEAD)
+                     /     /                                                \|
+C1 --- C2 --- C3 -- C6 -- / ------------------------------------------------C7
+               \         /                                                  /
+               C4 --- C5 --------------------------------------------------/
+                      |
+                      b2
+</code></pre></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="log_1"><a name="user-content-log_1" href="#log_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>合并时如何处理分支中的“垃圾”log</h2>
+<p>我想你所表达的所谓“垃圾”只是针对分支要合并到主干了，这些log显得琐碎而多余，针对主干来说是“垃圾”，在分支开发过程中这些肯定不是垃圾，而是有效的防护网，也是向领导汇报工作时的“烂笔头”。</p>
+<p>我建议你在分支开发过程中可以适当的多提交一些、提交细一些，不但可以省去单独写“工作日志”，也利于回忆和追溯，如果领导在关注这个git库，也能让领导感觉每天都在努力，挣一些情感分。</p>
+<p>但毕竟好又多的log信息合入主干的话还是要认真思考一下是不是要保留所有log</p>
+<ul>
+<li><strong>Yes</strong>:那就直接<code>git merge featurebranch master</code></li>
+<li><strong>No</strong>:那还是悠着点<code>git merge --squash featurebranch master</code> —— 具体原理参考 <a href="#git-merge">分支的合并（git merge）有哪几种场景</a> 已描述</li>
+</ul>
+<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>“把特性分支合入主干”和“把主干合入特性分支”有什么区别</h2>
+<p>这个问题问的好，很多一开始接触git的同学基本意识不到这个问题。这已经不是git本身的问题了，而是使用git的团队之间的工作流规范了。</p>
+<ul>
+<li><strong>把特性分支合入主干</strong>：通常是特性分支开发完毕了，测试通过了，是时候在主干上构建版本了，才把分支合入主干<ul>
+<li>此时通常会遇到前面讲的“处理分支中的垃圾log”问题，处理办法前文已述</li>
+<li>合入主干后分支通常会删除，留着特性分支不删除的习惯是不合适的，用句成语来形容就是：敝帚自珍</li>
+<li>删除后还想再继续，<code>git branch featurebranch</code>再开一个就是了，名字都可以相同</li>
+<li>通常我们的特性分支是根据用户故事/工单而来的，一个长期不删除的分支说明了任务分解的不合理或需求的不明确，一旦出现这样的问题还是尽快和用户讨论需求并合理的分解。</li>
+</ul>
+</li>
+<li><strong>把主干合入特性分支</strong>：通常是主干在不停的合入较稳定的代码，主干也想不定期/或定期的同步过来，以免和主干背离太远<ul>
+<li>定期同步主干到特性分支是个好习惯，可以尽快的发现团队成员做了什么，是不是对我的当前分支有影响和冲突……有了冲突要今早发现、尽快处理才是敏捷，对冲突采取鸵鸟策略是不明智的。</li>
+<li>涉及的命令有：<ul>
+<li><code>git rebase master</code></li>
+<li><code>git pull --rebase</code> 如果有冲突会停住，然后<code>git mergetool</code>解决冲突，<code>git rebase --continue</code>继续</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="git-merge_1"><a name="user-content-git-merge_1" href="#git-merge_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git merge 有没有图形化的工具</h2>
+<p>和 <code>git difftool</code> 类似，也有 <code>git mergetool</code>，但mergetool不是用来merge的，而是用来处理merge后的冲突文件的。</p>
 <ul>
 <li>通用配置<br />
 <pre><code class="cmd">$ git config --global mergetool.diffmerge.trustExitCode true
@@ -1109,7 +1256,7 @@ $ git config --global mergetool.diffmerge.cmd 'diffmerge --merge --result=&quot;
 </ul>
 </li>
 </ul>
-<h2 id="git_4"><a name="user-content-git_4" href="#git_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git分支之间的关系咋看</h2>
+<h2 id="git_4"><a name="user-content-git_4" href="#git_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git分支之间的关系能否图示</h2>
 <pre><code class="cmd">$ git log --pretty=oneline --graph
 
 * 94688f21cc5d8bc85f1783b4c8b98b3288d712cb improve readme
@@ -1144,7 +1291,7 @@ $ git config --global mergetool.diffmerge.cmd 'diffmerge --merge --result=&quot;
 </ul>
 <p>一幅图说明问题：</p>
 <p><img alt="" src="img/git-pull-push.png" /></p>
-<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>到哪里找开源项目</h2>
+<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>到哪里找开源项目</h2>
 <p>开源项目托管网站（及其开始支持git的时间）有：</p>
 <ul>
 <li><a href="http://github.com">github</a>(2008.2)</li>
@@ -1162,7 +1309,13 @@ $ git config --global mergetool.diffmerge.cmd 'diffmerge --merge --result=&quot;
 <p>近几年，微软更是几乎放弃了自家的CodePlex，转投github，开源自己的.NET都在github上了。</p>
 <h2 id="github"><a name="user-content-github" href="#github" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>为什么github成了程序员的麦加圣地</h2>
 <p>不解释，它就是那么酷！ &ndash; 谁用谁知道</p>
-<h2 id="github_1"><a name="user-content-github_1" href="#github_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>公司访问不了外网的github，咋办</h2>
+<ul>
+<li><a href="http://www.xuanfengge.com/github-cheats.html">GitHub秘籍，为你解读Git与Github酷而少知的功能</a></li>
+</ul>
+<h2 id="proxygithub"><a name="user-content-proxygithub" href="#proxygithub" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>公司内如何穿过Proxy访问github</h2>
+<p>git会使用“git confing配置”和“shell变量配置”两类：</p>
+<p><embed src="img/git-proxy.svg" /></p>
+<h3 id="git-config"><a name="user-content-git-config" href="#git-config" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用 git config 配置</h3>
 <pre><code class="cmd">$ git config --global http.proxy http://&lt;proxyserver&gt;:&lt;port&gt;
 $ git config --global https.proxy http://&lt;proxyserver&gt;:&lt;port&gt;
 </code></pre>
@@ -1196,6 +1349,31 @@ remote: Compressing objects: 100% (5/5), done.
 remote: Total 64 (delta 0), reused 0 (delta 0), pack-reused 59
 Unpacking objects: 100% (64/64), done.
 Checking connectivity... done.
+</code></pre></li>
+</ul>
+<h3 id="shell"><a name="user-content-shell" href="#shell" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用 shell 环境变量配置</h3>
+<ul>
+<li>首先查看是否已经有了环境变量<br />
+<pre><code class="cmd">$ export |grep proxy
+$
+</code></pre></li>
+<li>定义环境变量<br />
+<pre><code class="cmd">$ export http_proxy=&quot;http://proxysz.zte.com.cn:80/&quot;
+$ export https_proxy=&quot;https://proxysz.zte.com.cn:80/&quot;
+$ 
+</code></pre></li>
+<li>再次查询: OK<br />
+<pre><code class="cmd">$ export |grep proxy
+declare -x http_proxy=&quot;http://proxysz.zte.com.cn:80/&quot;
+declare -x https_proxy=&quot;https://proxysz.zte.com.cn:80/&quot;
+$ 
+</code></pre></li>
+<li>git应该以及可以链接外网了</li>
+<li>临时想连接内网（临时不用proxy），咋办<br />
+<pre><code class="cmd">$ export -n http_proxy  //export -n 只是标记此变量不再是环境变量，但仍然是shell变量
+$ set |grep http_proxy
+http_proxy=http://proxysz.zte.com.cn:80/   //set命令仍然能够查看到
+$ export http_proxy     //再次export即可
 </code></pre></li>
 </ul>
 <h2 id="remoteproxy"><a name="user-content-remoteproxy" href="#remoteproxy" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>定义了外网和内网两个remote，proxy怎么同时支持</h2>
@@ -1241,9 +1419,9 @@ Checking connectivity... done.
 </li>
 </ul>
 <p>各个开源项目托管网站对ssh的要求可能还会有些许差别，但都会在显著位置进行说明，如果如上操作后仍不能访问，请仔细查阅。</p>
-<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何与别人合作</h2>
+<h2 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何与别人合作</h2>
 <p>当面沟通必不可少，svn和git并不能解决所有问题，每个团队都可以有自己的分支策略、日志模版、合并规则、标签原则……</p>
-<h2 id="github_2"><a name="user-content-github_2" href="#github_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何在github上与别人合作</h2>
+<h2 id="github_1"><a name="user-content-github_1" href="#github_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何在github上与别人合作</h2>
 <p>github的工作流： <a href="https://guides.github.com/introduction/flow/">Understanding the GitHub Flow</a></p>
 <h2 id="git_6"><a name="user-content-git_6" href="#git_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>怎样才能第一时间得知git上有提交和更新</h2>
 <p>和团队成员保持紧密合作在敏捷中非常重要，SVN的时候有一个非常优秀的软件 CommitMonitor，能够监控SVNServer的更新，图标是一双大眼睛，悄悄的躲在任务栏，发现更新大眼睛变成红色转啊转的。</p>
@@ -1274,7 +1452,9 @@ Checking connectivity... done.
 <img alt="" src="img/gitlab-rss-feed-group.png" /></p>
 <p>使用 RSS Reader（图中使用的是Snafer）订阅的效果：<br />
 <img alt="" src="img/gitlab-rss-reader.png" /></p>
-<h2 id="git-fetch-git-pull"><a name="user-content-git-fetch-git-pull" href="#git-fetch-git-pull" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git fetch 还是 git pull</h2>
+<h2 id="git-pullgit-fetch-git-merge"><a name="user-content-git-pullgit-fetch-git-merge" href="#git-pullgit-fetch-git-merge" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>为什么说不要用git pull，而是用git fetch + git merge代替</h2>
+<p>git pull的问题是它把过程的细节都隐藏了起来，以至于你不用去了解git中各种类型分支的区别和使用方法。当然，多数时候这是没问题的，但一旦代码有问题，你很难找到出错的地方。看起来git pull的用法会使你吃惊，简单看一下git的使用文档应该就能说服你。</p>
+<p>将下载（fetch）和合并（merge）放到一个命令里的另外一个弊端是，你的本地工作目录在未经确认的情况下就会被远程分支更新。当然，除非你关闭所有的安全选项，否则git pull在你本地工作目录还不至于造成不可挽回的损失，但很多时候我们宁愿做的慢一些，也不愿意返工重来。 </p>
 <h2 id="clonefetchremote-repolog"><a name="user-content-clonefetchremote-repolog" href="#clonefetchremote-repolog" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何不clone/fetch到本地看remote repo的log?</h2>
 <h2 id="commitpush"><a name="user-content-commitpush" href="#commitpush" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>程序猿如何频繁地commit，但又低调地push</h2>
 <p>SVN和git面对同样的一个问题：大部分程序猿是含蓄、内敛的，他既希望频繁的commit，让svn/git帮他记住每一步，但并不想把这些过程信息全都公诸于众，而只是把阶段性成果推送给大家或服务器。</p>
@@ -1338,7 +1518,7 @@ https://&lt;name&gt;:&lt;password&gt;@github.com
 </ul>
 <p>欧儿了！</p>
 <p>需要注意的一点是：如果你打开了<strong>两步验证</strong>，则通常意义的password已经不能使用，网站会提供tocken给你替代password，请在 .git-credentials 文件中用 tocken 替代之。</p>
-<h2 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何删除远程分支</h2>
+<h2 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何删除远程分支</h2>
 <ul>
 <li>删除本地分支是： <code>git branch remove &lt;branchName&gt;</code></li>
 <li>删除远程分支：<ul>
@@ -1360,13 +1540,13 @@ https://&lt;name&gt;:&lt;password&gt;@github.com
 </ul>
 </li>
 </ul>
-<h2 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>别人把远程分支删除了，我本地的对应分支怎么还在</h2>
+<h2 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>别人把远程分支删除了，我本地的对应分支怎么还在</h2>
 <p>张三删除了某个branch并push到github，李四<code>git fetch/pull</code>之后该branch在李四本地库里是仍然存在的，如何删除之？</p>
 <ol>
 <li><code>git fetch -p</code></li>
 <li><code>git remote prune origin</code></li>
 </ol>
-<h2 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>维持树的整洁</h2>
+<h2 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>维持树的整洁</h2>
 <p><a href="http://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a> </p>
 <p>方法就是：在git push之前，先git fetch，再git rebase</p>
 <p>git rebase（衍合）</p>
@@ -1452,6 +1632,16 @@ https://&lt;name&gt;:&lt;password&gt;@github.com
 </ul>
 </li>
 </ul>
+<h2 id="git_13"><a name="user-content-git_13" href="#git_13" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>整理git的外网托管网站</h2>
+<p>git库的托管网站（git host）有很多，github并不是唯一的选择，github最困扰开发者的一点就是：它丫竟然不交钱不给创建私有库。</p>
+<p>下面介绍几个其他的：</p>
+<ul>
+<li><a href="https://bitbucket.org">Bitbucket</a>: 流行最广的给开免费私有库的网站，可以创建无限多个私有库，充分满足了不想开源、不敢开源、和羞于开源的广大程序员们。</li>
+<li><a href="http://git.oschina.net">开源中国oschina的git</a>：开源中国在2013年创建的，号称全面、永久开放私有库，立志做中国的github，不知道是哪一天，突然它自己改名字了，叫：码云，我勒个去。</li>
+<li><a href="http://code.csdn.net">CSDN Code</a>：</li>
+</ul>
+<p>这里有一个表格，对比各个git host： <a href="https://git.wiki.kernel.org/index.php/GitHosting">https://git.wiki.kernel.org/index.php/GitHosting</a> ，关注 <strong>Free private repositories</strong>，提供免费服务的也不老少，但大部分只是提供git的基本托管，并没有github的fork、PR、gist、gitbook……等服务。</p>
+<p>如果你要开发一个开源的模块来扬名，请使用github；如果要开发一个秘密的、需要保密的大项目，请使用Bitbucket；如果只是玩一玩，请使用码云（毕竟速度要快一点）。</p>
 <h1 id="round-6"><a name="user-content-round-6" href="#round-6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 6 : 奇技淫巧</h1>
 <p><img alt="" src="img/resting-lions-tanzania-sw.jpg" /></p>
 <h2 id="committag"><a name="user-content-committag" href="#committag" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>从当前库中快速导出一个节点(commit、tag)另作他用</h2>
@@ -1617,11 +1807,11 @@ git clone newrepo.git
 <li>git reset &ndash;soft hashcode remoteRepo</li>
 <li>把本地的回退了，然后把远程branch删掉，然后push新的</li>
 </ol>
-<h2 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>暂存一个文件的部分改动</h2>
+<h2 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>暂存一个文件的部分改动</h2>
 <p>比如说，你对一个文件进行了多次修改并且想把他们分别提交。这种情况下，你可以在添加命令(add)中加上-p选项</p>
 <p><code>git add -p [file_name]</code></p>
 <p>会逐段（hunk）提示你是否add。</p>
-<h2 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>能否从不同的分支里选择某次提交并且把它合并到当前的分支</h2>
+<h2 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>能否从不同的分支里选择某次提交并且把它合并到当前的分支</h2>
 <p><code>git cherry-pick [commit_hash]</code></p>
 <p>这个命令会带来冲突，请谨慎使用</p>
 <h1 id="round-7"><a name="user-content-round-7" href="#round-7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 7 : 原理拾趣</h1>
@@ -1749,7 +1939,7 @@ $ git ls-tree e3426a5
 .vim.*
 </code></pre></li>
 </ul>
-<h2 id="git_13"><a name="user-content-git_13" href="#git_13" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git 的快照存储有点不可思议，如何做到好又多的</h2>
+<h2 id="git_14"><a name="user-content-git_14" href="#git_14" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git 的快照存储有点不可思议，如何做到好又多的</h2>
 <ul>
 <li>继续前面的话题，我们往前查几个commit对象，试图发现的更多一些<br />
 <pre><code class="cmd">$ git show --pretty=raw 48eda25
