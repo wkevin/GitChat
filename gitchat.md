@@ -8,7 +8,6 @@
 
 git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs/user-manual.html)，和官方宝书（[英文版](http://git-scm.com/book/en/v2)、[中文版](http://git-scm.com/book/zh/v2)、[国内备份](http://www.kancloud.cn/kancloud/progit)），如果你读来无碍，请忽视本文，本文与它们相比只是个小人书、连环画，或者作为它们的一个补充。我在写每个Topic的时候也都在想：是不是书里已经有了？我是不是重复了？是不是删掉算了？—— 经常在知识点完整和拾遗之间反复权衡，但想到碎片化阅读越来越普及、学东西主要靠百度的今天，我写点东西发出来应该也是有益的。
 
->特别提示：本文自绘图用的是svg格式，Chrome或FF才能正确显示。
 
 --- 
 
@@ -82,6 +81,10 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [git checkout 原理图](#git-checkout)
     - [git fetch/pull 原理图](#git-fetchpull)
     - [git reset 原理图](#git-reset)
+- [Round 8 : git与phabricator](#round-8-gitphabricator)
+    - [arc 为何物](#arc)
+    - [arc diff 初步](#arc-diff)
+    - [arc diff 为什么把我已有的commit log修改了](#arc-diff-commit-log)
 
 <!-- /MarkdownTOC -->
 
@@ -227,7 +230,7 @@ A  diary.md
 * `git commit`: 将文件从暂存态提交入库 —— 暂存就像回收站（删除前给你一个check的机会，多次操作放入回收站的文件可以一次清空），多次操作放入暂存，最后考虑成熟了，check OK了，再commit提交
 ```cmd
 $ git commit
-[master (root-commit) 14dd781] create mydiary
+aster (root-commit) 14dd781] create mydiary
  1 file changed, 4 insertions(+)
  create mode 100644 diary.md
 ```
@@ -638,7 +641,7 @@ $ git log --stat
 * 免费但不开源的
     - [DiffMerge](http://www.sourcegear.com/diffmerge/downloads.php) -- Win、Linux、OS.X
 * 开源的：
-    - [Meld](http://meldmerge.org) -- Win、Linxu、OS.X
+    - eld](http://meldmerge.org) -- Win、Linxu、OS.X
 
 用哪个呢？这是萝卜白菜的事情，不要纠结，你用惯了哪个就是哪个（我相信你的电脑上肯定已经有了一个文本比较工具，用它就是了，本着开放、开源、和跨平台的原则，我个人推荐Meld）。git调用它们的方法配置是大同小异。我不能每种软件在每个系统中都试一遍，所以只能条目列在这里，但我本人没搞过的就空着了，看官自己百度一下吧，照葫芦画瓢能力强的话也用不着百度。
 
@@ -1188,6 +1191,9 @@ git rebase 一般自己一个人开发时使用，用来保持提交记录的整
 * 司令与副官流程（Linux）
 ![](img/workflow.many.layers.png)
 
+
+
+
 # Round 5 : 整理
 
 ![](img/elephants-sand-river-sw.jpg)
@@ -1266,7 +1272,7 @@ google 或 bing 上搜索图片：**git cheat sheet** —— 不要在baidu上�
 
 - UI前端也有，比如github出品的 [github desktop](https://desktop.github.com)
 + [Git for Windows](https://github.com/git-for-windows/git)
-        * 第一代的名字叫[msysGit](https://github.com/msysgit/git)，基于 msys（属于 MinGW）—— 2015年底已废弃
+        * 第一代的名字叫sysGit](https://github.com/msysgit/git)，基于 msys（属于 MinGW）—— 2015年底已废弃
         * 第二代重新建立了github项目[Git for Windows](https://github.com/git-for-windows/git)，基于 msys2（不再属于MinGW），英语有自信的可以读读它的[背景](https://github.com/git-for-windows/git/wiki)
     + [TortoiseGit](http://code.google.com/p/tortoisegit/)：类似TortoiseSVN，可以做图标重绘。
 
@@ -1305,7 +1311,7 @@ $ git br
 * 首先看看现有哪些worktree
 ```cmd
 $ git worktree list
-E:/demo/GitChat.git  cf4edda [master]
+E:/demo/GitChat.git  cf4edda aster]
 ```
 * 在另外一个文件夹，用当前分支，创建一份新的工作拷贝
 ```cmd
@@ -1323,7 +1329,7 @@ $ git branch -vv
 * master   cf4edda [origin/master] 修订proxy的使用方法
 
 $ git worktree list
-E:/demo/GitChat.git  cf4edda [master]
+E:/demo/GitChat.git  cf4edda aster]
 E:/demo/forCompare   cf4edda [4compare]
 ```
 * 进入新创建的文件夹中，可以查看到
@@ -1353,7 +1359,7 @@ HEAD is now at 5d21d8b new file:   img/git-state-and-area.svg
 * 删除worktree：`git prune`能够删除目标文件已经被删除的worktree
 ```cmd
 $ git worktree list
-E:/demo/GitChat.git  cf4edda [master]
+E:/demo/GitChat.git  cf4edda aster]
 E:/demo/forCompare   cf4edda [4compare]
 E:/demo/new          5d21d8b [new]
 E:/demo/new1         12205fd [new1]
@@ -1362,7 +1368,7 @@ E:/demo/new2         5d21d8b [new2]
 $ rm -rf ../new2
 
 $ git worktree list
-E:/demo/GitChat.git  cf4edda [master]
+E:/demo/GitChat.git  cf4edda aster]
 E:/demo/forCompare   cf4edda [4compare]
 E:/demo/new          5d21d8b [new]
 E:/demo/new1         12205fd [new1]
@@ -1371,7 +1377,7 @@ E:/demo/new2         5d21d8b [new2]
 $ git worktree prune
 
 $ git worktree list
-E:/demo/GitChat.git  cf4edda [master]
+E:/demo/GitChat.git  cf4edda aster]
 E:/demo/forCompare   cf4edda [4compare]
 E:/demo/new          5d21d8b [new]
 E:/demo/new1         12205fd [new1]
@@ -1381,7 +1387,7 @@ $ rm -rf ../new ../new1 ../forCompare/
 $ git worktree prune
 
 $ git worktree list
-E:/demo/GitChat.git  cf4edda [master]
+E:/demo/GitChat.git  cf4edda aster]
 ```
 
 ## 导出某个子目录及其log成为一个新的repo
@@ -1540,7 +1546,7 @@ index 17944e2..a0be055 100644
 --- a/README.md
 +++ b/README.md
 @@ -31,21 +31,24 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
-     - [merge是怎么玩儿的](#merge)
+     - erge是怎么玩儿的](#merge)
  - [Round 4](#round4)
 ```
 * `git show --pretty=raw <commit-object-name>` 还能更多的查看 commit 对象所指向的tree对象
@@ -1697,6 +1703,183 @@ $ git br
 * master ab3fa01 3
   new    ab3fa01 3
 ```
+
+# Round 8 : git与phabricator
+
+## arc 为何物
+
+* arc 全称是 arcanist，百度给出的中文翻译是：巧匠。  
+* arc 是Facebook的Phabricator系统中用户端的命令行工具，配合pha提交变更评审的。
+* arc 的安装还有点折腾，要先在本机安装PHP，和一个php的工具集：libphutil
+    - windows的安装后，目录下包括下面3个主要部件：
+    ```
+    Phabricator/--arc/--arcanist
+                |     |-libphutil
+                |-xampplite-win32-1.7.3
+    ```
+        + arcantist是arc的主程序：https://github.com/phacility/arcanist.git
+        + libphutil是php的工具集：https://github.com/phacility/libphutil.git
+        + xampplite是apache+php+mysql+perl的一个打包，160+M，要知道phabricator整个才180+M。
+* arc 包含很多子命令，
+    - `arc help`：列出来子命令看看
+    - `arc diff`：调用`svn diff`或`git diff`生成差异并发送给phabricator生成评审单
+    - `arc list`：列出当前peding的revision —— revision要说明一下：pha生产的每个评审单都对应一个revision，可以理解为svn/git的一次提交，但又不在用户的svn/git上体现，可以理解为pha上也驻留这一个svn/git，来存储评审单信息，每单对应一个revision。
+    - `arc patch`：将pha上的revision变更patch到本地工作拷贝上
+    - `arc amend`：更新git commit的message，即：可以把pha上某个revision的message应用到本地git的某个commit上
+    - `arc commit`：svn专用，pha上评审完毕后，将本地的变更做`svn commit`
+    - `arc land`：git专用，pha上评审完毕后，将本地分支做`git push`，所以需要有 origin
+    - `arc lint`：静态代码分析，不要以为arc只是生成评审单的，它还内嵌了一堆的lint工具，python的、java的、js的……五花八门，在`Phabricator\arc\arcanist\src\lint\linter\__tests__`这个目录下列出了这些lint工具
+    - `arc unit`：执行单元测试，这个就需要用户自己来指定单元测试工具了
+    - `arc close-revision`：使用arc关闭某个revision，而不必上pha上鼠标点点点啦
+    - …… 还有n多，不一一列举了，头晕
+* arc 的 configuration
+    - 和git类似，git有`git config --[global/system/local] xxx ...`，arc也有`arc set-config --[user/local] xxx ...`
+    - 和git类似，git查看config有`git config -l`，arc也有`arc get-config`
+
+
+## arc diff 初步
+
+* SVN中，`arc diff`会把未提交的本地工作拷贝中的变更生成评审单，执行`arc diff`之前不需要也不能执行`svn commit`，最终评审完，用`arc commit`来代替`svn commit`
+* git中则完全不一样，`arc diff <commit>`之前需要首先`git add`&`git commit`，**如果本地工作拷贝中有变更，arc diff会自动替你add和commit**
+* git中的`arc diff <startCommit>`是把git中两个commit之间（即：一个range）的变更提交到pha上生成评审单
+    - 哪个两个commit节点？
+        + startCommit 和 HEAD
+        + startCommit如果缺失，则默认使用 `git merge-base origin/master HEAD` —— 这又是个啥东东？`git help merge-base`，意思是找到 origin/master 和 HEAD 之间的最近祖先节点。
+        + `git help merge-base`中有几个例子，其中一个是：
+        ```
+             o---o---o---B
+            /
+        ---o---1---o---o---o---A
+        ```
+            * `git merge-base A B `将返回节点1，好好体会一下，呵呵。
+        + 所以为了不出乱子，最好自己指定 startCommit
+
+实战一下：
+
+* 创建一个temp的git repo
+```
+10036143@A20939270 MINGW32 /f/temp (master)
+$ git log
+*  75c616b | 2016-06-08 15:55:19 +0800 |  wkevin  hah
+*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create
+```
+* `arc diff`
+    - 会提示错误，没有指定 origin/master，因为默认startComiit是`git merge-base origin/master HEAD`嘛
+* `arc diff 7584`
+    - 可以创建评审单的，因为是拿 HEAD（即75c6）与7584比较
+    - `git show HEAD` 可以查看 HEAD 指向哪个节点
+* `arc diff 7584 --preview`
+    - 可以在pha上创建评审单，但跳过指定评委等步骤，单子已经在pha上有了，可以先看看，后续在pha上慢慢指定评委等
+    - 这是专门给处女座准备的啊
+* 有一点需要说明：
+    - `arc diff`会根据工作拷贝的相关信息（比如 path, branch name, local commit hashes, and local tree hashes）来自动创建和关联一个pha上的revision，这让一些掌控欲比较强的人可能有些恼火，可以手工指定
+        + `arc diff --create <startCommit>`:在pha上创建一个新的revision
+        + `arc diff --update Dxxxx <startCommit>`：在pha上一个已有的revision（编号Dxxxx）上做增量
+
+
+## arc diff 为什么把我已有的commit log修改了
+
+在上面的步骤中有一个奇怪的地方：执行完`arc diff xxxx`后，原有的HEAD节点被arc重新创建的一个节点所替代
+
+* 执行`arc diff 7584`后，75c6被替代为了26c0
+```
+$ git l
+*  26c0efc | 2016-06-08 15:55:19 +0800 |  wkevin  hah
+*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create
+```
+* 再次执行`arc diff 7584`后，26c0被替代为了e6db
+```
+$ git l
+*  e6db93c | 2016-06-08 15:55:19 +0800 |  wkevin  hah
+*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create
+```
+* 再次执行`arc diff 7584`后，e6db被替代为了7c29
+```
+$ git l
+*  7c29204 | 2016-06-08 15:55:19 +0800 |  wkevin  hah
+*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create
+```
+* 但其实75c6、26c0、e6db都还是存在的，`git show`可以看到
+```
+$ git show 75c6
+commit 75c616b3a6de15e7004c231486a91e338ae023a6
+Author: wkevin <wkevin27@gmail.com>
+Date:   Wed Jun 8 15:55:19 2016 +0800
+
+    hah
+```
+* 再做点修改并提交一下
+```
+$ git l
+*  1cce5be | 2016-06-08 16:05:27 +0800 |  wkevin  neww
+*  7c29204 | 2016-06-08 15:55:19 +0800 |  wkevin  hah
+*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create
+```
+* 做一次有本地修改的实验，即：修改一下文件，但不 `git commit -a`
+* `arc diff HEAD^`，会首先把未提交的变更进行提交，并且更新（amend）当前commit的message，然后向已有的revision进行update
+```
+$ arc diff HEAD^
+You have uncommitted changes in this working copy.
+
+  Working copy: F:\temp\
+
+  Unstaged changes in working copy:
+    README.md
+
+    Do you want to amend this change to the current commit? [y/N] y
+
+Linting...
+No lint engine configured for this project.
+Running unit tests...
+No unit test engine is configured for this project.
+SKIP STAGING Unable to determine repository for this change.
+Updated an existing Differential revision:
+        Revision URI: http://pha.zte.com.cn/D30449
+
+Included changes:
+  M       README.md
+```
+* 现在的情况：1cce5be 又被 20ae4c5 替代了
+```
+$ git l
+*  20ae4c5 | 2016-06-08 16:05:27 +0800 |  wkevin  neww
+*  7c29204 | 2016-06-08 15:55:19 +0800 |  wkevin  hah
+*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create
+```
+* 再次对文件进行修改，但也不`git commit -a`
+* `arc diff --update D30449 20ae`：正常，能够提交到pha，执行完后的结果是：
+```
+$ git l
+*  b8e5d1c | 2016-06-08 16:45:25 +0800 |  wkevin  no
+*  20ae4c5 | 2016-06-08 16:05:27 +0800 |  wkevin  neww
+*  7c29204 | 2016-06-08 15:55:19 +0800 |  wkevin  hah
+*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create
+```
+* 再次对文件进行修改，但也不`git commit -a`
+* `arc diff --update D30449 HEAD`：失败，理论上 HEAD和前一步的 20ae 一个道理啊，为啥失败？错误提示说diff是空的，结果是新的commit也产生了：
+```
+Can't parse an empty diff!
+(Run with `--trace` for a full exception trace.)
+
+$ git l
+*  601136e | 2016-06-08 16:49:41 +0800 |  wkevin  how
+*  b8e5d1c | 2016-06-08 16:45:25 +0800 |  wkevin  no
+*  20ae4c5 | 2016-06-08 16:05:27 +0800 |  wkevin  neww
+*  7c29204 | 2016-06-08 15:55:19 +0800 |  wkevin  hah
+*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create
+```
+
+最终只能这么理解了：
+
+* 步骤：
+    1. `arc diff <startCommit>`：首先使用当前的本地工作拷贝自动做`git commit`，创建一个节点（称为 endCommit）
+    2. HEAD 随即被指向 endCommit
+    3. 再拿 HEAD（即endCommit）与 startCommit 执行 `git diff`，输出的内容提交到 pha
+* 对前文疑惑的解释：
+    - `arc diff --update D30449 20ae`能够成功，但`arc diff --update D30449 HEAD`失败：因为HEAD并不是`arc diff`之前的HEAD，而是`arc diff`中间进行`git commit`之后的HEAD
+    - `arc diff` 无论任何情况下都会创建一个commit，并不是替代原有的commit，而是在原有的节点上创建一个新的节点
+
+
 
 ---
 
