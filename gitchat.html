@@ -405,6 +405,8 @@ img {
 <li><a href="#arc_1">arc的安装和配置</a></li>
 <li><a href="#arc-diff">arc diff 初步</a></li>
 <li><a href="#arc-diff-commit-log">arc diff 为什么把我已有的commit log修改了</a></li>
+<li><a href="#arc-diff_1">如何避免arc diff玷污现有节点</a></li>
+<li><a href="#_10">如何创建只包含部分文件的评审单</a></li>
 </ul>
 </li>
 </ul>
@@ -2188,7 +2190,7 @@ $ git log
 </li>
 </ul>
 <h2 id="arc-diff-commit-log"><a name="user-content-arc-diff-commit-log" href="#arc-diff-commit-log" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>arc diff 为什么把我已有的commit log修改了</h2>
-<p>在上面的步骤中有一个奇怪的地方：执行完<code>arc diff xxxx</code>后，原有的HEAD节点被arc重新创建的一个节点所替代</p>
+<p>在上面的步骤中有一个奇怪的地方：执行完<code>arc diff xxxx</code>后，<strong>原有的HEAD节点被arc重新创建的一个节点所替代</strong></p>
 <ul>
 <li>执行<code>arc diff 7584</code>后，75c6被替代为了26c0<br />
 <pre><code>$ git l
@@ -2213,13 +2215,17 @@ Date:   Wed Jun 8 15:55:19 2016 +0800
 
     hah
 </code></pre></li>
-<li>再做点修改并提交一下<br />
+</ul>
+<p>事情变得很蹊跷，arc为什么要新建一个commit呢？</p>
+<p>下面再来验证一下：如果本地有modified（待add）或stagging（待commit）文件的话，<code>arc diff</code>是不是也会新建一个commit呢？</p>
+<ul>
+<li>当前状态<br />
 <pre><code>$ git l
 *  1cce5be | 2016-06-08 16:05:27 +0800 |  wkevin  neww
 *  7c29204 | 2016-06-08 15:55:19 +0800 |  wkevin  hah
 *  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create
 </code></pre></li>
-<li>做一次有本地修改的实验，即：修改一下文件，但不 <code>git commit -a</code></li>
+<li>做一些有本地修改，但不 <code>git commit -a</code></li>
 <li><code>arc diff HEAD^</code>，会首先把未提交的变更进行提交，并且更新（amend）当前commit的message，然后向已有的revision进行update<br />
 <pre><code>$ arc diff HEAD^
 You have uncommitted changes in this working copy.
@@ -2242,46 +2248,65 @@ Updated an existing Differential revision:
 Included changes:
   M       README.md
 </code></pre></li>
-<li>现在的情况：1cce5be 又被 20ae4c5 替代了<br />
+<li>1cce5be 又被 20ae4c5 替代了，而不是在 1cce5be 的基础上新建一个commit<br />
 <pre><code>$ git l
-*  20ae4c5 | 2016-06-08 16:05:27 +0800 |  wkevin  neww
-*  7c29204 | 2016-06-08 15:55:19 +0800 |  wkevin  hah
-*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create
-</code></pre></li>
-<li>再次对文件进行修改，但也不<code>git commit -a</code></li>
-<li><code>arc diff --update D30449 20ae</code>：正常，能够提交到pha，执行完后的结果是：<br />
-<pre><code>$ git l
-*  b8e5d1c | 2016-06-08 16:45:25 +0800 |  wkevin  no
-*  20ae4c5 | 2016-06-08 16:05:27 +0800 |  wkevin  neww
-*  7c29204 | 2016-06-08 15:55:19 +0800 |  wkevin  hah
-*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create
-</code></pre></li>
-<li>再次对文件进行修改，但也不<code>git commit -a</code></li>
-<li><code>arc diff --update D30449 HEAD</code>：失败，理论上 HEAD和前一步的 20ae 一个道理啊，为啥失败？错误提示说diff是空的，结果是新的commit也产生了：<br />
-<pre><code>Can't parse an empty diff!
-(Run with `--trace` for a full exception trace.)
-
-$ git l
-*  601136e | 2016-06-08 16:49:41 +0800 |  wkevin  how
-*  b8e5d1c | 2016-06-08 16:45:25 +0800 |  wkevin  no
 *  20ae4c5 | 2016-06-08 16:05:27 +0800 |  wkevin  neww
 *  7c29204 | 2016-06-08 15:55:19 +0800 |  wkevin  hah
 *  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create
 </code></pre></li>
 </ul>
-<p>最终只能这么理解了：</p>
-<ul>
-<li>步骤：<ol>
-<li><code>arc diff &lt;startCommit&gt;</code>：首先使用当前的本地工作拷贝自动做<code>git commit</code>，创建一个节点（称为 endCommit）</li>
-<li>HEAD 随即被指向 endCommit</li>
+<p>为了解开这个谜团，我们来跟踪一下<code>arc diff</code>的操作</p>
+<p><code>arc diff --trace &lt;startCommit&gt;</code></p>
+<p>摘录一部分打印：</p>
+<p><pre><code>&gt;&gt;&gt; [1] &lt;http&gt; http://pha.zte.com.cn/api/user.whoami
+&gt;&gt;&gt; [2] &lt;exec&gt; $ git diff --no-ext-diff --no-textconv --raw 'HEAD' --
+&gt;&gt;&gt; [3] &lt;exec&gt; $ git ls-files --others --exclude-standard
+&gt;&gt;&gt; [4] &lt;exec&gt; $ git diff-files --name-only
+&gt;&gt;&gt; [6] &lt;exec&gt; $ git rev-parse 'HEAD'
+&gt;&gt;&gt; [7] &lt;exec&gt; $ git merge-base 'f8c1' 'd6efce6e8804ecb027762e0151ed071bc7d63b6d'
+&gt;&gt;&gt; [8] &lt;exec&gt; $ git log --first-parent --format=medium 'f8c101daaf75121dd4f1f1380b4dc5c1ed85cea0'..'d6efce6e8804ecb027762e0151ed071bc7d63b6d'
+</code></pre><br />
+首先到phabricator服务器上验证tocken，并根据 startCommit 做出一些判断</p>
+<pre><code>&gt;&gt;&gt; [16] &lt;event&gt; diff.willBuildMessage &lt;listeners = 0&gt;
+&gt;&gt;&gt; [17] &lt;conduit&gt; differential.getcommitmessage() &lt;bytes = 295&gt;
+&gt;&gt;&gt; [18] &lt;http&gt; http://pha.zte.com.cn/api/differential.getcommitmessage
+&gt;&gt;&gt; [19] &lt;exec&gt; $ git symbolic-ref --quiet HEAD
+&gt;&gt;&gt; [20] &lt;exec&gt; $ which 'editor'
+&gt;&gt;&gt; [21] &lt;exec&gt; $ editor  '/tmp/edit.cjol8q3bi1sg0kwk/new-commit'
+</code></pre>
+
+<p>然后到phabricator服务器上创建一个单，并根据pha的请求，打开editor，编辑评审单的信息</p>
+<pre><code>&gt;&gt;&gt; [22] &lt;exec&gt; $ git commit --amend --allow-empty -F '/tmp/8qihi3x4l2ww4o8w/10039-Vbjrxm'
+</code></pre>
+
+<p>关键是这里了，无条件的更新了当前 HEAD 节点的 message。</p>
+<p>其实 <code>git commit --amend</code> 的官方help中是这样解释的： Replace the tip of the current branch by creating a new commit. </p>
+<p>这样<code>arc diff &lt;startCommit&gt;</code>步骤就明朗了：</p>
+<ol>
+<li>提示用户填写评审单信息（Test Plans、Reviewers、Subscribers……），然后使用这些信息 <code>git commit --amend</code> 到当前分支的 HEAD 节点</li>
+<li>新的节点（即：新的HEAD） 成为 endCommit</li>
 <li>再拿 HEAD（即endCommit）与 startCommit 执行 <code>git diff</code>，输出的内容提交到 pha</li>
 </ol>
-</li>
-<li>对前文疑惑的解释：<ul>
-<li><code>arc diff --update D30449 20ae</code>能够成功，但<code>arc diff --update D30449 HEAD</code>失败：因为HEAD并不是<code>arc diff</code>之前的HEAD，而是<code>arc diff</code>中间进行<code>git commit</code>之后的HEAD</li>
-<li><code>arc diff</code> 无论任何情况下都会创建一个commit，并不是替代原有的commit，而是在原有的节点上创建一个新的节点</li>
+<p>arc 为什么要这么做？为什么要“玷污”我的现有节点？如果这个节点是其他分支的基础节点怎么办？…… —— 这个事情可以这么看：<code>arc diff</code>只是新建了一个commit，用来存储评审单的相关信息，并且把当前分支的HEAD指向了新建的commit，想好了这一点，事情其实很好办，下一节我们来规避它。</p>
+<h2 id="arc-diff_1"><a name="user-content-arc-diff_1" href="#arc-diff_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何避免arc diff玷污现有节点</h2>
+<p>创建专用于评审的分支</p>
+<ul>
+<li><code>git branch review</code></li>
+<li><code>git checkout review</code></li>
+<li><code>arc diff &lt;xxx&gt;</code> 或 <code>arc diff --preview &lt;xxx&gt;</code> //创建评审单或预审单（到pha网站上进行下一步的操作，可用于ubuntu下不能自动补全人名的环境）</li>
+<li><code>git checkout master</code></li>
+<li><code>git branch -D review</code>  //评审单一旦创建，review分支就没有存在的必要性了</li>
 </ul>
-</li>
+<h2 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何创建只包含部分文件的评审单</h2>
+<p>可能只希望评审方案文件（假设： design.md），但commit中包含相关的图片、svg、等文件，不需要提交到pha，如下处理：</p>
+<ul>
+<li><code>git branch review &lt;oneOldCommit&gt;</code> //从 design.md 创建或修改前的节点创建一个分支</li>
+<li><code>git checkout review</code></li>
+<li><code>git checkout master design.md</code>    //将master分支上的 design.md check 到 review 分支</li>
+<li><code>git commit -am "review for design.md"</code></li>
+<li><code>arc diff HEAD^</code> 或 <code>arc diff --preview HEAD^</code> </li>
+<li><code>git checkout master</code></li>
+<li><code>git branch -D review</code>  </li>
 </ul>
 <hr />
 <p><strong>跋</strong></p>
