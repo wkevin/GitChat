@@ -402,6 +402,7 @@ img {
 </li>
 <li><a href="#round-8-gitphabricator">Round 8 : git与phabricator</a><ul>
 <li><a href="#arc">arc 为何物</a></li>
+<li><a href="#arc_1">arc的安装和配置</a></li>
 <li><a href="#arc-diff">arc diff 初步</a></li>
 <li><a href="#arc-diff-commit-log">arc diff 为什么把我已有的commit log修改了</a></li>
 </ul>
@@ -2098,14 +2099,40 @@ $ git br
 </ul>
 </li>
 </ul>
+<h2 id="arc_1"><a name="user-content-arc_1" href="#arc_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>arc的安装和配置</h2>
+<p><strong>Windows下的安装</strong><br />
+略</p>
+<p><strong>Ubuntu下的安装</strong></p>
+<ul>
+<li>安装<ul>
+<li><code>sudo apt-get install php5 php5-curl</code></li>
+<li><code>cd somewhere</code> //arc的安装目录</li>
+<li><code>git clone https://github.com/phacility/libphutil.git</code></li>
+<li><code>git clone https://github.com/phacility/arcanist.git</code></li>
+<li><code>sudo ln -s arcanist/bin/arc /usr/local/bin/arc</code></li>
+<li><code>vi ~/.bashrc</code><ul>
+<li><code>source $somewhere/arcanist/resources/shell/bash-completion</code></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>配置<ul>
+<li><code>arc set-config $pha-server</code> //eg: <code>arc set-config http://pha.etz.com.cn</code></li>
+<li><code>arc install-certificate</code><ul>
+<li>到 $pha-server 上查找帮助，找到tocken，填到这里</li>
+<li>注意proxy的屏蔽</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 <h2 id="arc-diff"><a name="user-content-arc-diff" href="#arc-diff" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>arc diff 初步</h2>
 <ul>
 <li>SVN中，<code>arc diff</code>会把未提交的本地工作拷贝中的变更生成评审单，执行<code>arc diff</code>之前不需要也不能执行<code>svn commit</code>，最终评审完，用<code>arc commit</code>来代替<code>svn commit</code></li>
-<li>git中则完全不一样，<code>arc diff &lt;commit&gt;</code>之前需要首先<code>git add</code>&amp;<code>git commit</code>，<strong>如果本地工作拷贝中有变更，arc diff会自动替你add和commit</strong></li>
-<li>git中的<code>arc diff &lt;startCommit&gt;</code>是把git中两个commit之间（即：一个range）的变更提交到pha上生成评审单<ul>
-<li>哪个两个commit节点？<ul>
-<li>startCommit 和 HEAD</li>
-<li>startCommit如果缺失，则默认使用 <code>git merge-base origin/master HEAD</code> —— 这又是个啥东东？<code>git help merge-base</code>，意思是找到 origin/master 和 HEAD 之间的最近祖先节点。</li>
+<li>git中则完全不一样，<code>arc diff &lt;startCommit&gt;</code>之前需要首先<code>git add</code>&amp;<code>git commit</code>，<strong>如果本地工作拷贝中有变更，arc diff会自动替你add和commit</strong>，因为<code>arc diff</code>是把git中两个commit之间（即：一个range）的变更提交到pha上生成评审单，所以问题来了：两个commit节点是如何指定的？<ul>
+<li><strong>两个commit节点是：startCommit 和 HEAD</strong></li>
+<li>startCommit如果缺失，则默认使用 <code>git merge-base origin/master HEAD</code><ul>
+<li>这又是个啥东东？<code>git help merge-base</code>，意思是找到 origin/master 和 HEAD 之间的最近祖先节点。</li>
 <li><code>git help merge-base</code>中有几个例子，其中一个是：<br />
 <pre><code>     o---o---o---B
     /
@@ -2117,6 +2144,15 @@ $ git br
 <li>所以为了不出乱子，最好自己指定 startCommit</li>
 </ul>
 </li>
+</ul>
+</li>
+<li><code>arc diff</code>需要填写一些信息，所以执行过程中会跳入到一个编辑器中，windows版的arc会打开一个简陋的窗口，ubuntu版的arc就直接打开默认的编辑器（如vi）了。需要填写的信息有：<ul>
+<li>Test Plan - 必填，详细说明你的测试计划；</li>
+<li>Reviewers - 必填，审查人的账户，多个使用&rdquo;,&rdquo;隔开；<ul>
+<li>在ubuntu下，用vi编辑此信息时，不会自动不全人名，则需要到phabricator网站上的搜索窗口，找到需要的人，把TA的账号写在此处</li>
+</ul>
+</li>
+<li>Subscribers - 非必填订阅人，多个使用&rdquo;,&rdquo;隔开。</li>
 </ul>
 </li>
 </ul>

@@ -85,6 +85,7 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [git reset 原理图](#git-reset)
 - [Round 8 : git与phabricator](#round-8-gitphabricator)
     - [arc 为何物](#arc)
+    - [arc的安装和配置](#arc_1)
     - [arc diff 初步](#arc-diff)
     - [arc diff 为什么把我已有的commit log修改了](#arc-diff-commit-log)
 
@@ -1935,15 +1936,34 @@ $ git br
     - 和git类似，git有`git config --[global/system/local] xxx ...`，arc也有`arc set-config --[user/local] xxx ...`
     - 和git类似，git查看config有`git config -l`，arc也有`arc get-config`
 
+## arc的安装和配置
+
+**Windows下的安装**
+略
+
+**Ubuntu下的安装**
+
+* 安装
+    * `sudo apt-get install php5 php5-curl`
+    * `cd somewhere` //arc的安装目录
+    * `git clone https://github.com/phacility/libphutil.git `
+    * `git clone https://github.com/phacility/arcanist.git `
+    * `sudo ln -s arcanist/bin/arc /usr/local/bin/arc`
+    * `vi ~/.bashrc`
+        - `source $somewhere/arcanist/resources/shell/bash-completion`
+* 配置
+    - `arc set-config $pha-server` //eg: `arc set-config http://pha.etz.com.cn`
+    - `arc install-certificate`
+        + 到 $pha-server 上查找帮助，找到tocken，填到这里
+        + 注意proxy的屏蔽
 
 ## arc diff 初步
 
 * SVN中，`arc diff`会把未提交的本地工作拷贝中的变更生成评审单，执行`arc diff`之前不需要也不能执行`svn commit`，最终评审完，用`arc commit`来代替`svn commit`
-* git中则完全不一样，`arc diff <commit>`之前需要首先`git add`&`git commit`，**如果本地工作拷贝中有变更，arc diff会自动替你add和commit**
-* git中的`arc diff <startCommit>`是把git中两个commit之间（即：一个range）的变更提交到pha上生成评审单
-    - 哪个两个commit节点？
-        + startCommit 和 HEAD
-        + startCommit如果缺失，则默认使用 `git merge-base origin/master HEAD` —— 这又是个啥东东？`git help merge-base`，意思是找到 origin/master 和 HEAD 之间的最近祖先节点。
+* git中则完全不一样，`arc diff <startCommit>`之前需要首先`git add`&`git commit`，**如果本地工作拷贝中有变更，arc diff会自动替你add和commit**，因为`arc diff`是把git中两个commit之间（即：一个range）的变更提交到pha上生成评审单，所以问题来了：两个commit节点是如何指定的？
+    - **两个commit节点是：startCommit 和 HEAD**
+    - startCommit如果缺失，则默认使用 `git merge-base origin/master HEAD`
+        + 这又是个啥东东？`git help merge-base`，意思是找到 origin/master 和 HEAD 之间的最近祖先节点。
         + `git help merge-base`中有几个例子，其中一个是：
         ```
              o---o---o---B
@@ -1952,6 +1972,11 @@ $ git br
         ```
             * `git merge-base A B `将返回节点1，好好体会一下，呵呵。
         + 所以为了不出乱子，最好自己指定 startCommit
+* `arc diff`需要填写一些信息，所以执行过程中会跳入到一个编辑器中，windows版的arc会打开一个简陋的窗口，ubuntu版的arc就直接打开默认的编辑器（如vi）了。需要填写的信息有：
+    - Test Plan - 必填，详细说明你的测试计划；
+    - Reviewers - 必填，审查人的账户，多个使用","隔开；
+        + 在ubuntu下，用vi编辑此信息时，不会自动不全人名，则需要到phabricator网站上的搜索窗口，找到需要的人，把TA的账号写在此处
+    - Subscribers - 非必填订阅人，多个使用","隔开。
 
 实战一下：
 
