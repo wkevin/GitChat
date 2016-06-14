@@ -417,7 +417,7 @@ img {
 <p><img alt="" src="img/run-buffalo.jpg" /></p>
 <h2 id="git"><a name="user-content-git" href="#git" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git在哪里</h2>
 <ul>
-<li>Unix系（Ubuntu/Fedora/MAC-OS.X/……）默认就有，打开terminal，输入<code>git --version</code>，就在那里了</li>
+<li>Unix系（Ubuntu/Fedora/macOS/……）默认就有，打开terminal，输入<code>git --version</code>，就在那里了</li>
 <li>Windows上要安装：<a href="https://github.com/git-for-windows/git">Git for Windows</a></li>
 </ul>
 <h2 id="git-for-windows"><a name="user-content-git-for-windows" href="#git-for-windows" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Git for Windows 咋用</h2>
@@ -868,24 +868,24 @@ bf36ab9 Sun Jan 31 12:19:33 2016 wkevin 2.1的日记
 <p><code>git difftool</code> 命令能够调用的第三方比较工具有很多，列几个本人用过的：</p>
 <ul>
 <li>收费的<ul>
-<li><a href="http://www.scootersoftware.com">Beyond Compare</a> &ndash; Win、Linux、OS.X</li>
-<li><a href="http://www.araxis.com">Araxis Merge</a> &ndash; Win、OS.X</li>
+<li><a href="http://www.scootersoftware.com">Beyond Compare</a> &ndash; Win、Linux、macOS</li>
+<li><a href="http://www.araxis.com">Araxis Merge</a> &ndash; Win、macOS</li>
 <li><a href="http://www.ultraedit.com/products/ultracompare.html">UltraCompare</a> &ndash; Win,本来是UE的一个插件，近几年独立出来了</li>
 </ul>
 </li>
 <li>免费但不开源的<ul>
-<li><a href="http://www.sourcegear.com/diffmerge/downloads.php">DiffMerge</a> &ndash; Win、Linux、OS.X</li>
+<li><a href="http://www.sourcegear.com/diffmerge/downloads.php">DiffMerge</a> &ndash; Win、Linux、macOS</li>
 </ul>
 </li>
 <li>开源的：<ul>
-<li>eld](<a href="http://meldmerge.org">http://meldmerge.org</a>) &ndash; Win、Linxu、OS.X</li>
+<li><a href="http://meldmerge.org">Meld</a> &ndash; Win、Linxu、macOS</li>
 </ul>
 </li>
 </ul>
 <p>用哪个呢？这是萝卜白菜的事情，不要纠结，你用惯了哪个就是哪个（我相信你的电脑上肯定已经有了一个文本比较工具，用它就是了，本着开放、开源、和跨平台的原则，我个人推荐Meld）。git调用它们的方法配置是大同小异。我不能每种软件在每个系统中都试一遍，所以只能条目列在这里，但我本人没搞过的就空着了，看官自己百度一下吧，照葫芦画瓢能力强的话也用不着百度。</p>
 <ul>
 <li><strong>Araxis Merge</strong><ul>
-<li>OS.X: <code>vi ~/.gitconfig</code>，加入：<br />
+<li>macOS: <code>vi ~/.gitconfig</code>，加入：<br />
 <pre><code>difftool.prompt=false
 diff.tool=araxis
 merge.tool=araxis
@@ -897,7 +897,7 @@ difftool.araxis.path=/Applications/Araxis Merge.app/Contents/Utilities/compare
 </ul>
 </li>
 <li><strong>BeyondCompare</strong><ul>
-<li>OS.X</li>
+<li>macOS</li>
 <li>Linux</li>
 <li>Windows<br />
 <pre><code class="cmd">$ git config --global diff.tool bc3
@@ -906,7 +906,7 @@ $ git config --global difftool.bc3.path &quot;c:/program files/beyond compare 3/
 </ul>
 </li>
 <li><strong>DiffMerge</strong><ul>
-<li>OS.X</li>
+<li>macOS</li>
 <li>Linux</li>
 <li>Windows<br />
 <pre><code class="cmd">$ git config --global diff.tool diffmerge
@@ -915,7 +915,7 @@ $ git config --global difftool.diffmerge.cmd 'diffmerge &quot;$LOCAL&quot; &quot
 </ul>
 </li>
 <li><strong>Meld</strong><ul>
-<li>OS.X</li>
+<li>macOS</li>
 <li>Linux</li>
 <li>Windows</li>
 </ul>
@@ -1240,7 +1240,7 @@ C1 --- C2 --- C3 -- C6 -- / ------------------------------------------------C7
 <pre><code class="cmd">$ git config --global mergetool.diffmerge.trustExitCode true
 </code></pre></li>
 <li><strong>BeyondCompare</strong><ul>
-<li>OS.X</li>
+<li>macOS</li>
 <li>Linux</li>
 <li>Windows<br />
 <pre><code class="cmd">$ git config --global merge.tool bc3
@@ -1250,7 +1250,7 @@ $ git mergetool
 </ul>
 </li>
 <li><strong>DiffMerge</strong><ul>
-<li>OS.X</li>
+<li>macOS</li>
 <li>Linux</li>
 <li>Windows<br />
 <pre><code class="cmd">$ git config --global merge.tool diffmerge
@@ -1442,7 +1442,7 @@ $ export http_proxy     //再次export即可
 <li>git-notifier： <a href="http://www.icir.org/robin/git-notifier">http://www.icir.org/robin/git-notifier</a></li>
 </ul>
 </li>
-<li>OS.X 平台<ul>
+<li>macOS 平台<ul>
 <li>Gitifier：<a href="https://github.com/nschum/Gitifier">https://github.com/nschum/Gitifier</a></li>
 </ul>
 </li>

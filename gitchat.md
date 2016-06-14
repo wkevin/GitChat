@@ -102,7 +102,7 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
 
 ## git在哪里
 
-* Unix系（Ubuntu/Fedora/MAC-OS.X/……）默认就有，打开terminal，输入`git --version`，就在那里了
+* Unix系（Ubuntu/Fedora/macOS/……）默认就有，打开terminal，输入`git --version`，就在那里了
 * Windows上要安装：[Git for Windows](https://github.com/git-for-windows/git)
 
 ## Git for Windows 咋用
@@ -640,18 +640,18 @@ $ git log --stat
 `git difftool` 命令能够调用的第三方比较工具有很多，列几个本人用过的：
 
 * 收费的
-    - [Beyond Compare](http://www.scootersoftware.com) -- Win、Linux、OS.X
-    - [Araxis Merge](http://www.araxis.com) -- Win、OS.X
+    - [Beyond Compare](http://www.scootersoftware.com) -- Win、Linux、macOS
+    - [Araxis Merge](http://www.araxis.com) -- Win、macOS
     - [UltraCompare](http://www.ultraedit.com/products/ultracompare.html) -- Win,本来是UE的一个插件，近几年独立出来了
 * 免费但不开源的
-    - [DiffMerge](http://www.sourcegear.com/diffmerge/downloads.php) -- Win、Linux、OS.X
+    - [DiffMerge](http://www.sourcegear.com/diffmerge/downloads.php) -- Win、Linux、macOS
 * 开源的：
-    - eld](http://meldmerge.org) -- Win、Linxu、OS.X
+    - [Meld](http://meldmerge.org) -- Win、Linxu、macOS
 
 用哪个呢？这是萝卜白菜的事情，不要纠结，你用惯了哪个就是哪个（我相信你的电脑上肯定已经有了一个文本比较工具，用它就是了，本着开放、开源、和跨平台的原则，我个人推荐Meld）。git调用它们的方法配置是大同小异。我不能每种软件在每个系统中都试一遍，所以只能条目列在这里，但我本人没搞过的就空着了，看官自己百度一下吧，照葫芦画瓢能力强的话也用不着百度。
 
 * **Araxis Merge**
-    - OS.X: `vi ~/.gitconfig`，加入：
+    - macOS: `vi ~/.gitconfig`，加入：
     ```
     difftool.prompt=false
     diff.tool=araxis
@@ -662,7 +662,7 @@ $ git log --stat
     - Linux
     - Windows
 * **BeyondCompare**
-    - OS.X
+    - macOS
     - Linux
     - Windows
     ```cmd
@@ -670,7 +670,7 @@ $ git log --stat
     $ git config --global difftool.bc3.path "c:/program files/beyond compare 3/bcomp.exe"
     ```
 * **DiffMerge**
-    - OS.X
+    - macOS
     - Linux
     - Windows
     ```cmd
@@ -678,7 +678,7 @@ $ git log --stat
     $ git config --global difftool.diffmerge.cmd 'diffmerge "$LOCAL" "$REMOTE"'
     ```
 * **Meld**
-    - OS.X
+    - macOS
     - Linux
     - Windows
 
@@ -1028,7 +1028,7 @@ C1 --- C2 --- C3 --- C6 --- C7
 $ git config --global mergetool.diffmerge.trustExitCode true
 ```
 * **BeyondCompare**
-    - OS.X
+    - macOS
     - Linux
     - Windows
     ```cmd
@@ -1037,7 +1037,7 @@ $ git config --global mergetool.diffmerge.trustExitCode true
     $ git mergetool
     ```
 * **DiffMerge**
-    - OS.X
+    - macOS
     - Linux
     - Windows
     ```cmd
@@ -1258,7 +1258,7 @@ git和svn有所不同，svn 有 server，监控器只需要监控server即可，
     - GitMon：https://github.com/spajus/gitmon
     - git-dude： https://github.com/sickill/git-dude
     - git-notifier： http://www.icir.org/robin/git-notifier
-- OS.X 平台
+- macOS 平台
     + Gitifier：https://github.com/nschum/Gitifier
 
 但经过我的试用，功能还都不完善，希望它们早日成熟、好用。
