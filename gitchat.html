@@ -384,9 +384,10 @@ img {
 <li><a href="#committag">从当前库中快速导出一个节点(commit、tag)另作他用</a></li>
 <li><a href="#logrepo">导出某个子目录及其log成为一个新的repo</a></li>
 <li><a href="#2bug1commit">分支2需改bug，但我正在分支1上编码并不想commit怎么办</a></li>
-<li><a href="#git-add_1">git add错了，我要丢弃暂存区的修改</a></li>
 <li><a href="#modify">modify 错了，我要丢弃本地目录中的修改</a></li>
-<li><a href="#git-commitcommit">git commit错了，我要丢弃某个commit节点</a></li>
+<li><a href="#add">add 错了，我要丢弃暂存区的修改</a></li>
+<li><a href="#commit-commit">commit 错了，我要丢弃某个commit节点</a></li>
+<li><a href="#push-remote">push 错了，我要丢弃remote上的某个节点</a></li>
 <li><a href="#_9">暂存一个文件的部分改动</a></li>
 <li><a href="#_10">能否从不同的分支里选择某次提交并且把它合并到当前的分支</a></li>
 </ul>
@@ -1821,21 +1822,6 @@ git clone newrepo.git
 <li>git stash clear: 清空Git栈。此时使用gitg等图形化工具会发现，原来stash的哪些节点都消失了。</li>
 <li>git stash apply：将以前一半的工作应用回来</li>
 </ul>
-<h2 id="git-add_1"><a name="user-content-git-add_1" href="#git-add_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git add错了，我要丢弃暂存区的修改</h2>
-<p><strong>仅丢弃暂存区的修改，不丢弃本地目录的修改</strong></p>
-<ul>
-<li><code>git reset [--soft] HEAD</code>: 用HEAD分支覆盖一下暂存区,不影响本地文件</li>
-</ul>
-<p><strong>丢弃暂存区&amp;本地目录的修改</strong></p>
-<ul>
-<li><code>git checkout HEAD .</code> 或指定文件 <code>git checkout HEAD file</code>:用当前分支的库中文件覆盖暂存区和本地的</li>
-<li><code>git reset --hard HEAD</code> 用HEAD覆盖一下暂存区和本地目录<ul>
-<li>git reset &ndash;hard HEAD</li>
-<li>git reset &ndash;hard HEAD~1</li>
-<li>git reset &ndash;hard HEAD~5</li>
-</ul>
-</li>
-</ul>
 <h2 id="modify"><a name="user-content-modify" href="#modify" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>modify 错了，我要丢弃本地目录中的修改</h2>
 <ul>
 <li><code>git clean -df</code>：丢弃untracked的文件，不丢弃modified的文件<ul>
@@ -1853,13 +1839,43 @@ git clone newrepo.git
 <li><code>git checkout HEAD .</code>:同上条</li>
 <li><code>git reset --hard HEAD</code>:同上条</li>
 </ul>
-<h2 id="git-commitcommit"><a name="user-content-git-commitcommit" href="#git-commitcommit" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git commit错了，我要丢弃某个commit节点</h2>
+<h2 id="add"><a name="user-content-add" href="#add" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>add 错了，我要丢弃暂存区的修改</h2>
+<p><strong>仅丢弃暂存区的修改，不丢弃本地目录的修改</strong></p>
+<ul>
+<li><code>git reset [--soft] HEAD</code>: 用HEAD分支覆盖一下暂存区,不影响本地文件</li>
+</ul>
+<p><strong>丢弃暂存区&amp;本地目录的修改</strong></p>
+<ul>
+<li><code>git checkout HEAD .</code> 或指定文件 <code>git checkout HEAD file</code>:用当前分支的库中文件覆盖暂存区和本地的</li>
+<li><code>git reset --hard HEAD</code> 用HEAD覆盖一下暂存区和本地目录<ul>
+<li>git reset &ndash;hard HEAD</li>
+<li>git reset &ndash;hard HEAD~1</li>
+<li>git reset &ndash;hard HEAD~5</li>
+</ul>
+</li>
+</ul>
+<h2 id="commit-commit"><a name="user-content-commit-commit" href="#commit-commit" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>commit 错了，我要丢弃某个commit节点</h2>
 <ul>
 <li><code>git reset commitHash~1</code>: 即可让HEAD指向commitHash前一个commit，即：丢弃commitHash</li>
 </ul>
-<p>回退远程</p>
+<p>上面这3个丢弃都用到了 <code>git reset</code> 命令，这是个危险的命令，没有搞懂之前一定要慎重，否则丢了就可能找不回来了。</p>
+<p>理解 <code>git reset</code> 请参考下文<strong>git 原理</strong>章节中的 <strong>git reset 原理图</strong></p>
+<h2 id="push-remote"><a name="user-content-push-remote" href="#push-remote" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>push 错了，我要丢弃remote上的某个节点</h2>
+<p>管理员： 胆子越来越大了啊，都push到server里了，还要删除，羞不羞啊 :)<br />
+程序员： 给个机会吧，这几个commit确实不想push到server上。<br />
+管理员： 有没有想过server上的这个分支已经被N多同学fetch过了，已经基于它做开发了，你reset了几个节点，别人会出错的！<br />
+程序员： 不会的，这个分支只有我一个人用<br />
+管理员： 哪个分支啊？<br />
+程序员： master<br />
+管理员： 啥？ master分支 O_O ，你有没有看gitlab的帮助文档，master分支被gitlab保护了，保护分支除了只允许Master角色有写权限外，还不允许任何人对其<code>git push --force</code>操作，也不允许任何人删除保护分支的。<br />
+程序员： 有这一说？我说 <code>git push --force origin master:master</code> 咋提示我失败呢</p>
+<p>十几分钟后……</p>
+<p>程序员： 我研究了gitlab的权限说明： <a href="https://about.gitlab.com/2014/11/26/keeping-your-code-protected/">https://about.gitlab.com/2014/11/26/keeping-your-code-protected/</a> ，保护分支是可以取消保护的<br />
+管理员： shit，这都被你找到了，好吧，我承认是可以，就在 project - seetings 里面，只给你这一次机会啊，快去吧。</p>
+<p>终于可以霸王硬上弓了。上弓方法有三：</p>
 <ol>
-<li>git reset &ndash;soft hashcode remoteRepo</li>
+<li><code>git reset xxx</code> 先回退本地，然后 <code>git push --force origin master:master</code></li>
+<li><code>git reset --soft hashcode remoteRepo</code></li>
 <li>把本地的回退了，然后把远程branch删掉，然后push新的</li>
 </ol>
 <h2 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>暂存一个文件的部分改动</h2>

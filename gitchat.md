@@ -71,9 +71,10 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [从当前库中快速导出一个节点(commit、tag)另作他用](#committag)
     - [导出某个子目录及其log成为一个新的repo](#logrepo)
     - [分支2需改bug，但我正在分支1上编码并不想commit怎么办](#2bug1commit)
-    - [git add错了，我要丢弃暂存区的修改](#git-add_1)
     - [modify 错了，我要丢弃本地目录中的修改](#modify)
-    - [git commit错了，我要丢弃某个commit节点](#git-commitcommit)
+    - [add 错了，我要丢弃暂存区的修改](#add)
+    - [commit 错了，我要丢弃某个commit节点](#commit-commit)
+    - [push 错了，我要丢弃remote上的某个节点](#push-remote)
     - [暂存一个文件的部分改动](#_9)
     - [能否从不同的分支里选择某次提交并且把它合并到当前的分支](#_10)
 - [Round 7 : 原理拾趣](#round-7)
@@ -1686,20 +1687,6 @@ git clone newrepo.git
 * git stash clear: 清空Git栈。此时使用gitg等图形化工具会发现，原来stash的哪些节点都消失了。
 * git stash apply：将以前一半的工作应用回来
 
-## git add错了，我要丢弃暂存区的修改
-
-**仅丢弃暂存区的修改，不丢弃本地目录的修改**
-
-* `git reset [--soft] HEAD`: 用HEAD分支覆盖一下暂存区,不影响本地文件
-
-**丢弃暂存区&本地目录的修改**
-
-* `git checkout HEAD .` 或指定文件 `git checkout HEAD file`:用当前分支的库中文件覆盖暂存区和本地的
-* `git reset --hard HEAD` 用HEAD覆盖一下暂存区和本地目录
-    - git reset --hard HEAD
-    - git reset --hard HEAD~1
-    - git reset --hard HEAD~5
-
 
 ## modify 错了，我要丢弃本地目录中的修改
 
@@ -1714,15 +1701,49 @@ git clone newrepo.git
 * `git checkout HEAD .`:同上条
 * `git reset --hard HEAD`:同上条
 
-## git commit错了，我要丢弃某个commit节点
+## add 错了，我要丢弃暂存区的修改
+
+**仅丢弃暂存区的修改，不丢弃本地目录的修改**
+
+* `git reset [--soft] HEAD`: 用HEAD分支覆盖一下暂存区,不影响本地文件
+
+**丢弃暂存区&本地目录的修改**
+
+* `git checkout HEAD .` 或指定文件 `git checkout HEAD file`:用当前分支的库中文件覆盖暂存区和本地的
+* `git reset --hard HEAD` 用HEAD覆盖一下暂存区和本地目录
+    - git reset --hard HEAD
+    - git reset --hard HEAD~1
+    - git reset --hard HEAD~5
+
+## commit 错了，我要丢弃某个commit节点
 
 * `git reset commitHash~1`: 即可让HEAD指向commitHash前一个commit，即：丢弃commitHash
 
-回退远程
+上面这3个丢弃都用到了 `git reset` 命令，这是个危险的命令，没有搞懂之前一定要慎重，否则丢了就可能找不回来了。
 
-1. git reset --soft hashcode remoteRepo
-2. 把本地的回退了，然后把远程branch删掉，然后push新的
+理解 `git reset` 请参考下文**git 原理**章节中的 **git reset 原理图**
 
+## push 错了，我要丢弃remote上的某个节点
+
+管理员： 胆子越来越大了啊，都push到server里了，还要删除，羞不羞啊 :)  
+程序员： 给个机会吧，这几个commit确实不想push到server上。  
+管理员： 有没有想过server上的这个分支已经被N多同学fetch过了，已经基于它做开发了，你reset了几个节点，别人会出错的！
+程序员： 不会的，这个分支只有我一个人用
+管理员： 哪个分支啊？
+程序员： master
+管理员： 啥？ master分支 O_O ，你有没有看gitlab的帮助文档，master分支被gitlab保护了，保护分支除了只允许Master角色有写权限外，还不允许任何人对其`git push --force`操作，也不允许任何人删除保护分支的。
+程序员： 有这一说？我说 `git push --force origin master:master` 咋提示我失败呢
+
+十几分钟后……
+
+程序员： 我研究了gitlab的权限说明： https://about.gitlab.com/2014/11/26/keeping-your-code-protected/ ，保护分支是可以取消保护的
+管理员： shit，这都被你找到了，好吧，我承认是可以，就在 project - seetings 里面，只给你这一次机会啊，快去吧。
+
+终于可以霸王硬上弓了。上弓方法有三：
+
+1. `git reset xxx` 先回退本地，然后 `git push --force origin master:master`
+2. `git reset --soft hashcode remoteRepo`
+3. 把本地的回退了，然后把远程branch删掉，然后push新的
 
 ## 暂存一个文件的部分改动
 
