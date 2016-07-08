@@ -347,26 +347,27 @@ img {
 <li><a href="#_2">“把特性分支合入主干”和“把主干合入特性分支”有什么区别</a></li>
 <li><a href="#git-merge_1">git merge 有没有图形化的工具</a></li>
 <li><a href="#git_4">git分支之间的关系能否图示</a></li>
+<li><a href="#_3">分支名能否用中文</a></li>
 </ul>
 </li>
 <li><a href="#round-4">Round 4 : 协作</a><ul>
 <li><a href="#git_5">想看看别人的git库了</a></li>
-<li><a href="#_3">到哪里找开源项目</a></li>
+<li><a href="#_4">到哪里找开源项目</a></li>
 <li><a href="#github">为什么github成了程序员的麦加圣地</a></li>
 <li><a href="#proxygithub">公司内如何穿过Proxy访问github</a></li>
 <li><a href="#remoteproxy">定义了外网和内网两个remote，proxy怎么同时支持</a></li>
 <li><a href="#sshremote">SSH访问remote的通常步骤是啥</a></li>
-<li><a href="#_4">如何与别人合作</a></li>
+<li><a href="#_5">如何与别人合作</a></li>
 <li><a href="#github_1">如何在github上与别人合作</a></li>
 <li><a href="#git_6">怎样才能第一时间得知git上有提交和更新</a></li>
 <li><a href="#git-pullgit-fetch-git-merge">为什么说不要用git pull，而是用git fetch + git merge代替</a></li>
 <li><a href="#clonefetchremote-repolog">如何不clone/fetch到本地看remote repo的log?</a></li>
 <li><a href="#commitpush">程序猿如何频繁地commit，但又低调地push</a></li>
 <li><a href="#http-pushnamepassword">通过http push时每次都要求输入name/password，能否避开</a></li>
-<li><a href="#_5">如何删除远程分支</a></li>
+<li><a href="#_6">如何删除远程分支</a></li>
 <li><a href="#tag">如何删除远程tag</a></li>
-<li><a href="#_6">别人把远程分支删除了，我本地的对应分支怎么还在</a></li>
-<li><a href="#_7">维持树的整洁</a></li>
+<li><a href="#_7">别人把远程分支删除了，我本地的对应分支怎么还在</a></li>
+<li><a href="#_8">维持树的整洁</a></li>
 <li><a href="#git_7">Git多用户间协作还有什么引人入胜之处</a></li>
 </ul>
 </li>
@@ -386,8 +387,8 @@ img {
 <li><a href="#git-add_1">git add错了，我要丢弃暂存区的修改</a></li>
 <li><a href="#modify">modify 错了，我要丢弃本地目录中的修改</a></li>
 <li><a href="#git-commitcommit">git commit错了，我要丢弃某个commit节点</a></li>
-<li><a href="#_8">暂存一个文件的部分改动</a></li>
-<li><a href="#_9">能否从不同的分支里选择某次提交并且把它合并到当前的分支</a></li>
+<li><a href="#_9">暂存一个文件的部分改动</a></li>
+<li><a href="#_10">能否从不同的分支里选择某次提交并且把它合并到当前的分支</a></li>
 </ul>
 </li>
 <li><a href="#round-7">Round 7 : 原理拾趣</a><ul>
@@ -406,7 +407,7 @@ img {
 <li><a href="#arc-diff">arc diff 初步</a></li>
 <li><a href="#arc-diff-commit-log">arc diff 为什么把我已有的commit log修改了</a></li>
 <li><a href="#arc-diff_1">如何避免arc diff玷污现有节点</a></li>
-<li><a href="#_10">如何创建只包含部分文件的评审单</a></li>
+<li><a href="#_11">如何创建只包含部分文件的评审单</a></li>
 </ul>
 </li>
 </ul>
@@ -1279,6 +1280,57 @@ $ git config --global mergetool.diffmerge.cmd 'diffmerge --merge --result=&quot;
 * 3d7cdeec5f90a16934a2cfd35a089c78aa0e4816 remove duplicate item in: who uses it
 </code></pre>
 
+<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>分支名能否用中文</h2>
+<p>关于分支的命名，可以用一条git命令来检查： git check-ref-format —— 它的返回值为0表示git接受此命名，否则不接受。比如：</p>
+<pre><code class="cmd">kevin@T410:~$ git check-ref-format &quot;refs/heads/zte&quot; 
+kevin@T410:~$ echo $?
+0
+kevin@T410:~$ git check-ref-format &quot;refs/heads/z.t.e&quot; 
+kevin@T410:~$ echo $?
+0
+kevin@T410:~$ git check-ref-format &quot;refs/heads/zt..e&quot; 
+kevin@T410:~$ echo $?
+1
+kevin@T410:~$ git check-ref-format &quot;refs/heads/@zte&quot; 
+kevin@T410:~$ echo $?
+0
+kevin@T410:~$ git check-ref-format &quot;refs/heads/z~t^e&quot; 
+kevin@T410:~$ echo $?
+1
+kevin@T410:~$ git check-ref-format &quot;refs/heads/z:t?e&quot; 
+kevin@T410:~$ echo $?
+1
+</code></pre>
+
+<p>先解释一下 ref/hedas ：分支和tag都是指针，ref就是指针的意思，所有branch和tag在.git/config中都是以 ref/&hellip; 命名的，如果不加 ref ， check-ref-format 命令将不能正确识别。</p>
+<p>可以发现两个点 .. 、~、^、:、? 这些都是不允许的，斜杠允许但不允许在末尾。</p>
+<p>最后，来看看你最关心的中文名：</p>
+<pre><code class="cmd">kevin@T410:~$ git check-ref-format &quot;refs/heads/中兴&quot; 
+kevin@T410:~$ echo $?
+0
+</code></pre>
+
+<p>是允许的。</p>
+<p>那么branch/tag的命名到底规则如何呢？</p>
+<p>看git帮助即可：</p>
+<pre><code class="cmd">$ git help check-ref-format
+</code></pre>
+
+<p>里面是这样解释的：</p>
+<pre><code>Git imposes the following rules on how references are named:
+
+1. They can include slash / for hierarchical (directory) grouping, but no slash-separated component can begin with a dot .  or end with the sequence .lock.
+2. They must contain at least one /. This enforces the presence of a category like heads/, tags/ etc. but the actual names are not restricted. If the --allow-oneleveloption is used, this rule is waived.
+3. They cannot have two consecutive dots ..  anywhere.
+4. They cannot have ASCII control characters (i.e. bytes whose values are lower than \040, or \177 DEL), space, tilde ~, caret ^, or colon : anywhere.
+5. They cannot have question-mark ?, asterisk *, or open bracket [ anywhere. See the --refspec-pattern option below for an exception to this rule.
+6. They cannot begin or end with a slash / or contain multiple consecutive slashes (see the --normalize option below for an exception to this rule)
+7. They cannot end with a dot ..
+8. They cannot contain a sequence @{.
+9. They cannot be the single character @.
+10. They cannot contain a \.
+</code></pre>
+
 <hr />
 <p>学会了分支操作（创建、合并、冲突……）是与人合作的基础，你是否已经准备好了走出个人的宇宙，拥抱开源的大世界了！</p>
 <p>第3局，Over！</p>
@@ -1294,7 +1346,7 @@ $ git config --global mergetool.diffmerge.cmd 'diffmerge --merge --result=&quot;
 </ul>
 <p>一幅图说明问题：</p>
 <p><img alt="" src="img/git-pull-push.png" /></p>
-<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>到哪里找开源项目</h2>
+<h2 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>到哪里找开源项目</h2>
 <p>开源项目托管网站（及其开始支持git的时间）有：</p>
 <ul>
 <li><a href="http://github.com">github</a>(2008.2)</li>
@@ -1422,7 +1474,7 @@ $ export http_proxy     //再次export即可
 </li>
 </ul>
 <p>各个开源项目托管网站对ssh的要求可能还会有些许差别，但都会在显著位置进行说明，如果如上操作后仍不能访问，请仔细查阅。</p>
-<h2 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何与别人合作</h2>
+<h2 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何与别人合作</h2>
 <p>当面沟通必不可少，svn和git并不能解决所有问题，每个团队都可以有自己的分支策略、日志模版、合并规则、标签原则……</p>
 <h2 id="github_1"><a name="user-content-github_1" href="#github_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何在github上与别人合作</h2>
 <p>github的工作流： <a href="https://guides.github.com/introduction/flow/">Understanding the GitHub Flow</a></p>
@@ -1521,7 +1573,7 @@ https://&lt;name&gt;:&lt;password&gt;@github.com
 </ul>
 <p>欧儿了！</p>
 <p>需要注意的一点是：如果你打开了<strong>两步验证</strong>，则通常意义的password已经不能使用，网站会提供tocken给你替代password，请在 .git-credentials 文件中用 tocken 替代之。</p>
-<h2 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何删除远程分支</h2>
+<h2 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何删除远程分支</h2>
 <ul>
 <li>删除本地分支是： <code>git branch remove &lt;branchName&gt;</code></li>
 <li>删除远程分支：<ul>
@@ -1543,13 +1595,13 @@ https://&lt;name&gt;:&lt;password&gt;@github.com
 </ul>
 </li>
 </ul>
-<h2 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>别人把远程分支删除了，我本地的对应分支怎么还在</h2>
+<h2 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>别人把远程分支删除了，我本地的对应分支怎么还在</h2>
 <p>张三删除了某个branch并push到github，李四<code>git fetch/pull</code>之后该branch在李四本地库里是仍然存在的，如何删除之？</p>
 <ol>
 <li><code>git fetch -p</code></li>
 <li><code>git remote prune origin</code></li>
 </ol>
-<h2 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>维持树的整洁</h2>
+<h2 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>维持树的整洁</h2>
 <p><a href="http://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a> </p>
 <p>方法就是：在git push之前，先git fetch，再git rebase</p>
 <p>git rebase（衍合）</p>
@@ -1810,11 +1862,11 @@ git clone newrepo.git
 <li>git reset &ndash;soft hashcode remoteRepo</li>
 <li>把本地的回退了，然后把远程branch删掉，然后push新的</li>
 </ol>
-<h2 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>暂存一个文件的部分改动</h2>
+<h2 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>暂存一个文件的部分改动</h2>
 <p>比如说，你对一个文件进行了多次修改并且想把他们分别提交。这种情况下，你可以在添加命令(add)中加上-p选项</p>
 <p><code>git add -p [file_name]</code></p>
 <p>会逐段（hunk）提示你是否add。</p>
-<h2 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>能否从不同的分支里选择某次提交并且把它合并到当前的分支</h2>
+<h2 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>能否从不同的分支里选择某次提交并且把它合并到当前的分支</h2>
 <p><code>git cherry-pick [commit_hash]</code></p>
 <p>这个命令会带来冲突，请谨慎使用</p>
 <h1 id="round-7"><a name="user-content-round-7" href="#round-7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 7 : 原理拾趣</h1>
@@ -2297,7 +2349,7 @@ Included changes:
 <li><code>git checkout master</code></li>
 <li><code>git branch -D review</code>  //评审单一旦创建，review分支就没有存在的必要性了</li>
 </ul>
-<h2 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何创建只包含部分文件的评审单</h2>
+<h2 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何创建只包含部分文件的评审单</h2>
 <p>可能只希望评审方案文件（假设： design.md），但commit中包含相关的图片、svg、等文件，不需要提交到pha，如下处理：</p>
 <ul>
 <li><code>git branch review &lt;oneOldCommit&gt;</code> //从 design.md 创建或修改前的节点创建一个分支</li>

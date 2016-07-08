@@ -40,24 +40,25 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [“把特性分支合入主干”和“把主干合入特性分支”有什么区别](#_2)
     - [git merge 有没有图形化的工具](#git-merge_1)
     - [git分支之间的关系能否图示](#git_4)
+    - [分支名能否用中文](#_3)
 - [Round 4 : 协作](#round-4)
     - [想看看别人的git库了](#git_5)
-    - [到哪里找开源项目](#_3)
+    - [到哪里找开源项目](#_4)
     - [为什么github成了程序员的麦加圣地](#github)
     - [公司内如何穿过Proxy访问github](#proxygithub)
     - [定义了外网和内网两个remote，proxy怎么同时支持](#remoteproxy)
     - [SSH访问remote的通常步骤是啥](#sshremote)
-    - [如何与别人合作](#_4)
+    - [如何与别人合作](#_5)
     - [如何在github上与别人合作](#github_1)
     - [怎样才能第一时间得知git上有提交和更新](#git_6)
     - [为什么说不要用git pull，而是用git fetch + git merge代替](#git-pullgit-fetch-git-merge)
     - [如何不clone/fetch到本地看remote repo的log?](#clonefetchremote-repolog)
     - [程序猿如何频繁地commit，但又低调地push](#commitpush)
     - [通过http push时每次都要求输入name/password，能否避开](#http-pushnamepassword)
-    - [如何删除远程分支](#_5)
+    - [如何删除远程分支](#_6)
     - [如何删除远程tag](#tag)
-    - [别人把远程分支删除了，我本地的对应分支怎么还在](#_6)
-    - [维持树的整洁](#_7)
+    - [别人把远程分支删除了，我本地的对应分支怎么还在](#_7)
+    - [维持树的整洁](#_8)
     - [Git多用户间协作还有什么引人入胜之处](#git_7)
 - [Round 5 : 整理](#round-5)
     - [git从何而来](#git_8)
@@ -73,8 +74,8 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [git add错了，我要丢弃暂存区的修改](#git-add_1)
     - [modify 错了，我要丢弃本地目录中的修改](#modify)
     - [git commit错了，我要丢弃某个commit节点](#git-commitcommit)
-    - [暂存一个文件的部分改动](#_8)
-    - [能否从不同的分支里选择某次提交并且把它合并到当前的分支](#_9)
+    - [暂存一个文件的部分改动](#_9)
+    - [能否从不同的分支里选择某次提交并且把它合并到当前的分支](#_10)
 - [Round 7 : 原理拾趣](#round-7)
     - [git和SVN在元数据存储上有什么区别](#gitsvn)
     - [git 的对象（object）](#git-object)
@@ -89,7 +90,7 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [arc diff 初步](#arc-diff)
     - [arc diff 为什么把我已有的commit log修改了](#arc-diff-commit-log)
     - [如何避免arc diff玷污现有节点](#arc-diff_1)
-    - [如何创建只包含部分文件的评审单](#_10)
+    - [如何创建只包含部分文件的评审单](#_11)
 
 <!-- /MarkdownTOC -->
 
@@ -1065,6 +1066,70 @@ $ git log --pretty=oneline --graph
 |/
 * 0f974bf34fdc420c3a7dc0a6c5c5fc620fa9dd89 improve readme
 * 3d7cdeec5f90a16934a2cfd35a089c78aa0e4816 remove duplicate item in: who uses it
+```
+
+## 分支名能否用中文
+
+关于分支的命名，可以用一条git命令来检查： git check-ref-format —— 它的返回值为0表示git接受此命名，否则不接受。比如：
+
+```cmd
+kevin@T410:~$ git check-ref-format "refs/heads/zte" 
+kevin@T410:~$ echo $?
+0
+kevin@T410:~$ git check-ref-format "refs/heads/z.t.e" 
+kevin@T410:~$ echo $?
+0
+kevin@T410:~$ git check-ref-format "refs/heads/zt..e" 
+kevin@T410:~$ echo $?
+1
+kevin@T410:~$ git check-ref-format "refs/heads/@zte" 
+kevin@T410:~$ echo $?
+0
+kevin@T410:~$ git check-ref-format "refs/heads/z~t^e" 
+kevin@T410:~$ echo $?
+1
+kevin@T410:~$ git check-ref-format "refs/heads/z:t?e" 
+kevin@T410:~$ echo $?
+1
+```
+
+先解释一下 ref/hedas ：分支和tag都是指针，ref就是指针的意思，所有branch和tag在.git/config中都是以 ref/... 命名的，如果不加 ref ， check-ref-format 命令将不能正确识别。
+
+可以发现两个点 .. 、~、^、:、? 这些都是不允许的，斜杠允许但不允许在末尾。
+
+最后，来看看你最关心的中文名：
+
+```cmd
+kevin@T410:~$ git check-ref-format "refs/heads/中兴" 
+kevin@T410:~$ echo $?
+0
+```
+
+是允许的。
+
+那么branch/tag的命名到底规则如何呢？
+
+看git帮助即可：
+
+```cmd
+$ git help check-ref-format
+```
+
+里面是这样解释的：
+
+```
+Git imposes the following rules on how references are named:
+
+1. They can include slash / for hierarchical (directory) grouping, but no slash-separated component can begin with a dot .  or end with the sequence .lock.
+2. They must contain at least one /. This enforces the presence of a category like heads/, tags/ etc. but the actual names are not restricted. If the --allow-oneleveloption is used, this rule is waived.
+3. They cannot have two consecutive dots ..  anywhere.
+4. They cannot have ASCII control characters (i.e. bytes whose values are lower than \040, or \177 DEL), space, tilde ~, caret ^, or colon : anywhere.
+5. They cannot have question-mark ?, asterisk *, or open bracket [ anywhere. See the --refspec-pattern option below for an exception to this rule.
+6. They cannot begin or end with a slash / or contain multiple consecutive slashes (see the --normalize option below for an exception to this rule)
+7. They cannot end with a dot ..
+8. They cannot contain a sequence @{.
+9. They cannot be the single character @.
+10. They cannot contain a \.
 ```
 
 ---
