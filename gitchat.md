@@ -1486,15 +1486,25 @@ github上有这样几个卓越的组织（Orgnization):
 读到这里是需要系统的了解、学习一下git的时候了，
 当然，我明白你说的是中文资料。
 
+**官方Specification**
+
+* [Git Man Page](https://www.kernel.org/pub/software/scm/git/docs/): 即： git help 命令的输出
+* [Git User Manual](https://www.kernel.org/pub/software/scm/git/docs/user-manual.html)
+* Git Tutorial： [Part1](https://www.kernel.org/pub/software/scm/git/docs/gittutorial.html) -- 即 `man gittutorial`; [Part2](https://www.kernel.org/pub/software/scm/git/docs/gittutorial-2.html) -- 即 `man gittutorial-2`
+* [How to](https://www.kernel.org/pub/software/scm/git/docs/howto/)
+
+**Book**
+
 * Pro Git:根正苗红的书
     - 第2版：[中文官方在线版](http://git-scm.com/book/zh/v2)、[中文国内在线版](http://www.kancloud.cn/kancloud/progit)、[英文官方在线版](http://git-scm.com/book/en/v2)
     - 第1版：[中文官方在线版](http://git-scm.com/book/zh/v1)、[中文国内在线版](http://git.oschina.net/progit/)
 * [Git Community Book 中文版](http://gitbook.liuhui998.com/index.html)
 * [git简明教程](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 
-但是有时候英文资料是不可避免的：
+**Website**
 
-* [git wiki](http://git.wiki.kernel.org)
+* [git 维基百科]: https://en.wikipedia.org/wiki/Git_(software)
+* [git SCM wiki](http://git.wiki.kernel.org) -- 2011年已停止更新
 
 ## git命令我掌握的七七八八了，怎么整理一下
 

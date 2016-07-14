@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-param=" -f markdown -t revealjs --standalone --variable=theme:white --highlight-style=zenburn --variable=css:default.css"
+param=" -f markdown+simple_tables -t revealjs --standalone --variable=theme:night --highlight-style=zenburn --variable=css:default.css"
 
 if [ $# -eq 0 ]
 then
