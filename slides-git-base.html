@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="wkevin">
-  <title>Git 基础</title>
+  <title> Git 基础篇</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -67,12 +67,12 @@ code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
     <div class="slides">
 
 <section>
-  <h1 class="title">Git 基础</h1>
+  <h1 class="title"><img src="img/logo.png" /><br>Git 基础篇</h1>
   <h2 class="author">wkevin</h2>
   <h3 class="date">ZTE</h3>
 </section>
 
-<section><section id="slides操作提示" class="titleslide slide level1"><h1>Slides操作提示</h1></section><section id="section" class="slide level2">
+<section><section id="slides操作提示-请按空格键" class="titleslide slide level1"><h1>Slides操作提示<br><br>请按空格键</h1></section><section id="section" class="slide level2">
 <h1></h1>
 <table>
 <thead>
@@ -104,8 +104,12 @@ code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
 </tr>
 </tbody>
 </table>
+<br><br>
+<h1>
+请按 Esc 键
+</h1>
 </section></section>
-<section><section id="git-基础概念" class="titleslide slide level1"><h1>Git 基础概念</h1></section><section id="vcs-version-control-system" class="slide level2">
+<section><section id="源起" class="titleslide slide level1"><h1>源起</h1></section><section id="vcs-version-control-system" class="slide level2">
 <h1>VCS (Version Control System)</h1>
 <ul>
 <li><strong>SCCS</strong>(Source Code Control System) -- 1970+, M.J.Rochkind</li>
@@ -178,6 +182,7 @@ code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
 <li>第1版：<a href="http://git-scm.com/book/zh/v1">中文官方在线版</a>、<a href="http://git.oschina.net/progit/">中文国内在线版</a></li>
 </ul></li>
 <li><a href="http://gitbook.liuhui998.com/index.html">Git Community Book 中文版</a></li>
+<li><a href="https://book.douban.com/subject/3405742/">Version Control with Git,《Git版本控制》</a></li>
 <li><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">git简明教程</a></li>
 </ul>
 </section><section id="website" class="slide level2">
@@ -188,8 +193,8 @@ code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
 <li><a href="http://git.wiki.kernel.org">git SCM wiki</a> -- 2011年已停止更新</li>
 </ul>
 </section></section>
-<section><section id="git-常用命令" class="titleslide slide level1"><h1>Git 常用命令</h1></section><section id="section-1" class="slide level2">
-<h1></h1>
+<section><section id="git-常用命令" class="titleslide slide level1"><h1>Git 常用命令</h1></section><section id="git-help-给出的关键命令" class="slide level2">
+<h1>git help 给出的关键命令</h1>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> help
    <span class="kw">add</span>        Add file contents to the index
    <span class="kw">bisect</span>     Find by binary search the change that introduced a bug
@@ -214,9 +219,22 @@ code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
    <span class="kw">tag</span>        Create, list, delete or verify a tag object signed with GPG</code></pre></div>
 </section><section id="practice" class="slide level2">
 <h1>Practice</h1>
-<p>写出至少5个git的命令</p>
+<blockquote>
+<p>快速记忆，请写出至少5个git的命令</p>
+</blockquote>
+</section><section id="git的逻辑分区及几个关键命令" class="slide level2">
+<h1>Git的逻辑分区及几个关键命令</h1>
+<p><img src="img/git-logic-field.png" width="70%" /></p>
+</section><section id="practice-1" class="slide level2">
+<h1>Practice</h1>
+<blockquote>
+<p>请绘出上页的图</p>
+</blockquote>
+</section><section id="wkevin版的绘图" class="slide level2">
+<h1>wkevin版的绘图</h1>
+<p><img src="img/git-common-cmd.png" width="100%" /></p>
 </section></section>
-<section><section id="git-my-diary-一个完整的日记示例" class="titleslide slide level1"><h1>git my diary<br>一个完整的日记示例</h1></section><section id="最基本的两个配置name-和-email" class="slide level2">
+<section><section id="git-my-diary-一个完整的日记示例" class="titleslide slide level1"><h1>Git my diary<br>一个完整的日记示例</h1></section><section id="最基本的两个配置name-和-email" class="slide level2">
 <h1>最基本的两个配置：name 和 email</h1>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> config --global user.name wkevin
 $ <span class="kw">git</span> config --global user.emal wkevin27@gmail.com</code></pre></div>
@@ -329,7 +347,7 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <span class="kw">Date</span>:   Sun Jan 31 11:39:55 2016 +0800
 
     <span class="kw">create</span> mydiary</code></pre></div>
-</section><section id="section-2" class="slide level2">
+</section><section id="section-1" class="slide level2">
 <h1></h1>
 <p>每天可以随时写日记、随时<code>git add</code>、适时<code>git commit</code>，经过一段时间，你的diary库就越来越让你爱不释手了</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log
@@ -351,9 +369,14 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 
     <span class="kw">create</span> mydiary</code></pre></div>
 <p>git 和 svn 不同，没有一个数字递增的节点号，而是一串40Bytes的哈希字符，指定一个提交只需要给出这个字符串即可，当然不能让你每次都把40个字符全输入一遍，只需要输入够区分提交的即可（一般是前7位），如果咱的库规模还很小，前4位也行哦（上文中的“6784”）</p>
+</section><section id="practice-2" class="slide level2">
+<h1>Practice</h1>
+<blockquote>
+<p>请简要的按顺序写出上面例子中用到的git命令</p>
+</blockquote>
 </section></section>
-<section><section id="git-revesion" class="titleslide slide level1"><h1>Git Revesion</h1></section><section id="描述-git-revision" class="slide level2">
-<h1>描述 git revision</h1>
+<section><section id="git-revesion" class="titleslide slide level1"><h1>Git Revesion</h1></section><section id="git-revision-的描述" class="slide level2">
+<h1>git revision 的描述</h1>
 <ul>
 <li><code>&lt;sha1&gt;</code>: e.g. dae86e</li>
 <li><code>&lt;describeOutput&gt;</code>: e.g. v1.2.3</li>
@@ -373,14 +396,14 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <div class="foottext">
 <br><br>详细：<code>git help revisions</code> 或 <code>man gitrevisions</code>
 </div>
-</section><section id="描述-git-revision-range" class="slide level2">
-<h1>描述 git revision range</h1>
+</section><section id="git-revision-range-的描述" class="slide level2">
+<h1>git revision range 的描述</h1>
 <ul>
 <li><code>&lt;rev&gt;</code>: 从rev到结束的所有revision都包括进来</li>
 <li><code>^&lt;rev&gt;</code>: 从rev到结束的所有revision都抛弃掉</li>
 <li><code>&lt;rev1&gt; &lt;rev2&gt;</code>: “rev1到结束”和“rev2到结束”取并集，即：rev1或rev2到结束最多的那个range</li>
 <li><code>&lt;rev1&gt; ^&lt;rev2&gt;</code> == <code>^&lt;rev2&gt; &lt;rev1&gt;</code>: “rev1到结束”和“rev2到结束”取并集，即：rev1 和 rev2 之间，但不包括rev2，rev1和rev2无时间先后</li>
-<li><code>&lt;rev1&gt;..&lt;rev2&gt;</code>: 从rev1（但不包括rev1）到rev2，按时间先后，rev1要在rev2时间前面</li>
+<li><code>&lt;rev1&gt;..&lt;rev2&gt;</code>: 从rev2往前，到rev1（但不包括rev1）或rev1所在的分支的交汇点，rev1或rev1与rev2分支交汇点要在rev2的时间前面</li>
 <li><code>&lt;rev1&gt;...&lt;rev2&gt;</code>:</li>
 <li><code>&lt;rev&gt;^@</code>： rev的所有parent，不包括 rev</li>
 <li><code>&lt;rev&gt;^!</code>: 仅rev</li>
@@ -388,9 +411,11 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <div class="foottext">
 <br><br>详细：<code>git help revisions</code> 或 <code>man gitrevisions</code>
 </div>
-</section><section id="practice-1" class="slide level2">
+</section><section id="practice-3" class="slide level2">
 <h1>Practice</h1>
+<blockquote>
 <p>使用 git log 查看</p>
+</blockquote>
 <div class="fragment">
 只看 zte 分支的 revision
 </div>
@@ -412,7 +437,7 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <div class="fragment">
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log master@<span class="dt">{12}</span></code></pre></div>
 </div>
-</section><section id="practice-2" class="slide level2">
+</section><section id="practice-4" class="slide level2">
 <h1>Practice</h1>
 <div class="fragment">
 只看近一个月的 revision
@@ -494,6 +519,46 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <span class="kw">alias.sab</span>=submodule add -b master
 <span class="kw">alias.sur</span>=submodule update --remote
 <span class="kw">alias.tg</span>=log --format=format:<span class="st">&#39;%C(auto) %h | %ai | %ci | %d  | %Cred %an %Cgreen %s&#39;</span>  --simplify-by-decoration</code></pre></div>
+</section></section>
+<section><section id="git-add" class="titleslide slide level1"><h1>git add</h1></section><section id="focal-point" class="slide level2">
+<h1>Focal Point</h1>
+<ul>
+<li>git add onefile</li>
+<li>git add .</li>
+<li>git add onefolder/.</li>
+</ul>
+</section><section id="stage" class="slide level2">
+<h1>stage</h1>
+<ol type="1">
+<li>名词：舞台、讲台，比如：戏剧表演的舞台、国际政治的舞台；阶段，类似phase，比如：stage one/two意思是第一/二阶段，three-stage rocket意思是三级火箭</li>
+<li>动词：上演、举行、组织，类似play、organize，比如：stage a football match，举办足球赛</li>
+</ol>
+<p><br><br> stage本身并没有暂存的意思，git中可以理解为把文件放到一个舞台上上演一下，进而文件进入到一个新的阶段。——用这个词可以说是一箭三雕</p>
+</section><section id="git-help-stage" class="slide level2">
+<h1>git help stage</h1>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ot">$git</span> <span class="kw">help</span> stage
+
+<span class="kw">GIT-STAGE</span>(1)                                              <span class="kw">Git</span> Manual                                              GIT-STAGE(1)
+<span class="kw">NAME</span>
+       <span class="kw">git-stage</span> - Add file contents to the staging area
+<span class="kw">SYNOPSIS</span>
+       <span class="kw">git</span> stage args...
+<span class="kw">DESCRIPTION</span>
+       <span class="kw">This</span> is a synonym for git-add(1)<span class="kw">.</span> <span class="kw">Please</span> refer to the documentation of that command.</code></pre></div>
+<ul>
+<li>help中可以发现： <code>git stage</code> 是同义于 <code>git add</code></li>
+<li><strong>staging area</strong>： 舞台区、阶段区、进而翻译为暂存区 —— 如果让我翻译，我会译为：<strong>检视区</strong>。</li>
+</ul>
+</section><section id="暂存区-回收站" class="slide level2">
+<h1>暂存区 ～ 回收站</h1>
+<ul>
+<li>把文件放在回收站是给操作人一个检视的机会和反悔的机会，操作妥当后再彻底删除，彻底删除后再想反悔就要费劲了。</li>
+<li>git的staging area也是给用户一个<strong>检视的机会</strong>和<strong>反悔的机会</strong>，用户可以：
+<ul>
+<li>使用<code>git add</code>或<code>git stage</code>命令随时向SA增加文件，和回收站不同的是后进入SA的文件会覆盖前面进入的</li>
+<li>使用<code>git checkout</code>命令随时从SA反悔，文件会从SA移除，是否覆盖</li>
+</ul></li>
+</ul>
 </section><section id="gitignore" class="slide level2">
 <h1>.gitignore</h1>
 <ul>
@@ -518,6 +583,44 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <span class="kw">104</span>  
 <span class="kw">105</span>  <span class="co"># Kdevelop4</span>
 <span class="kw">106</span>  *.kdev4</code></pre></div>
+</section></section>
+<section><section id="git-commit" class="titleslide slide level1"><h1>git commit</h1></section><section id="focal-point-1" class="slide level2">
+<h1>Focal Point</h1>
+<ul>
+<li>git commit -a/--all : 提交所有已暂存、未暂存、未追踪的文件</li>
+<li>git commit -m &quot;xxx&quot;</li>
+<li>git commit : 没有 -m &quot;xxx&quot;, git 会调用一个外部编辑器
+<ul>
+<li>编辑器保存退出 &amp;&amp; message不为空： 则算一次成功的提交</li>
+<li>不保存退出 || message为空： 提交作废</li>
+</ul></li>
+</ul>
+</section><section id="ubuntu-的编辑器" class="slide level2">
+<h1>Ubuntu 的编辑器</h1>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">update-alternatives</span> --config editor
+<span class="kw">There</span> are 8 choices for the alternative editor (providing /usr/bin/editor)<span class="kw">.</span>
+
+  <span class="kw">Selection</span>    Path                 Priority   Status
+<span class="kw">------------------------------------------------------------</span>
+<span class="kw">*</span> 0            /usr/bin/vim.gnome    60        auto mode
+  <span class="kw">1</span>            /bin/ed              -100       manual mode
+  <span class="kw">2</span>            /bin/nano             40        manual mode
+  <span class="kw">3</span>            /usr/bin/vim.athena   50        manual mode
+  <span class="kw">4</span>            /usr/bin/vim.basic    30        manual mode
+  <span class="kw">5</span>            /usr/bin/vim.gnome    60        manual mode
+  <span class="kw">6</span>            /usr/bin/vim.gtk      50        manual mode
+  <span class="kw">7</span>            /usr/bin/vim.nox      40        manual mode
+  <span class="kw">8</span>            /usr/bin/vim.tiny     10        manual mode
+
+<span class="kw">Press</span> enter to keep the current choice[*], or type selection number: </code></pre></div>
+</section></section>
+<section><section id="git-rm" class="titleslide slide level1"><h1>git rm</h1></section><section id="删除文件" class="slide level2">
+<h1>删除文件</h1>
+<ul>
+<li>直接使用 rm 删除，会让 git 认为文件丢失（missing状态）</li>
+<li>git rm 才能让 git 争取识别用户意图</li>
+<li>git rm 操作后文件本地工作目录中的文件即被删除， git commit 时删除对象库中的。</li>
+</ul>
 </section></section>
 <section><section id="git-log" class="titleslide slide level1"><h1>git log</h1></section><section id="git-shortlog" class="slide level2">
 <h1>git shortlog</h1>
@@ -624,15 +727,226 @@ $ <span class="kw">git</span> status -s</code></pre></div>
  <span class="kw">9238c69</span> <span class="kw">|</span> <span class="kw">2016-06-08</span> 17:19:33 +0800 <span class="kw">|</span> <span class="kw">2016-06-08</span> 17:19:33 +0800 <span class="kw">|</span>  <span class="kw">wkevin</span>  新增 Round8：git与phabricator
  <span class="kw">1631166</span> <span class="kw">|</span> <span class="kw">2016-05-25</span> 16:09:06 +0800 <span class="kw">|</span> <span class="kw">2016-05-25</span> 16:09:06 +0800 <span class="kw">|</span>  <span class="kw">wkevin</span>  增加：整理git的外网托管网站</code></pre></div>
 </section></section>
-<section><section id="git-diff" class="titleslide slide level1"><h1>git diff</h1></section></section>
-<section><section id="git-branch" class="titleslide slide level1"><h1>git branch</h1></section></section>
-<section><section id="git-checkout" class="titleslide slide level1"><h1>git checkout</h1></section></section>
-<section><section id="git-merge" class="titleslide slide level1"><h1>git merge</h1></section></section>
-<section><section id="git-rebase" class="titleslide slide level1"><h1>git rebase</h1></section></section>
-<section><section id="git-reset" class="titleslide slide level1"><h1>git reset</h1></section></section>
-<section><section id="git-show" class="titleslide slide level1"><h1>git show</h1></section></section>
-<section><section id="最后的几点建议" class="titleslide slide level1"><h1>最后的几点建议</h1></section><section id="section-3" class="slide level2">
-<h1></h1>
+<section><section id="git-diff" class="titleslide slide level1"><h1>git diff</h1></section><section id="比较对象" class="slide level2">
+<h1>比较对象</h1>
+<table>
+<thead>
+<tr class="header">
+<th>命令</th>
+<th>比较对象</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>git diff</code></td>
+<td>工作目录～索引区</td>
+</tr>
+<tr class="even">
+<td><code>git diff --cached</code></td>
+<td>索引区～对象库</td>
+</tr>
+<tr class="odd">
+<td><code>git diff &lt;rev&gt;</code></td>
+<td>工作目录~rev</td>
+</tr>
+<tr class="even">
+<td><code>git diff &lt;rev1&gt; &lt;rev2&gt;</code><br><code>git diff &lt;rev1&gt;..&lt;rev2&gt;</code></td>
+<td>rev1~rev2</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section><section id="结果显示" class="slide level2">
+<h1>结果显示</h1>
+<table>
+<thead>
+<tr class="header">
+<th>命令</th>
+<th>结果显示</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>git diff</code></td>
+<td>结果是变更文件，和patch形式的文本</td>
+</tr>
+<tr class="even">
+<td><code>git diff --stat</code></td>
+<td>结果只显示变更文件，和变更的内容幅度</td>
+</tr>
+<tr class="odd">
+<td><code>git diff --name-only</code></td>
+<td>结果只显示变更文件的文件名</td>
+</tr>
+<tr class="even">
+<td><code>git diff --name-stat</code></td>
+<td>结果显示变更文件的文件名，和增删改的状态</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section><section id="git-diff-与-git-log" class="slide level2">
+<h1>git diff 与 git log</h1>
+<ul>
+<li>git diff 不关心待比较文件的历史，也不关心分支，只关注当前对象本身</li>
+<li>git log 更关注文件的来龙去脉，即对象的parent、son……</li>
+</ul>
+</section><section id="practice-5" class="slide level2">
+<h1>Practice</h1>
+<blockquote>
+<p>比较当前HEAD版本和上一个HEAD版本</p>
+</blockquote>
+<div class="fragment">
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> diff HEAD^ HEAD</code></pre></div>
+</div>
+</section><section id="practice-6" class="slide level2">
+<h1>Practice</h1>
+<blockquote>
+<p>比较3者的异同：<br />
+1. $ git diff topic master<br />
+2. $ git diff topic..master<br />
+3. $ git diff topic...master</p>
+</blockquote>
+<div class="fragment">
+<ol type="1">
+<li>Changes between the tips of the topic and the master branches.</li>
+<li>Same as above.</li>
+<li>Changes that occurred on the master branch since when the topic branch was started off it.</li>
+</ol>
+</div>
+</section><section id="git-difftool" class="slide level2">
+<h1>git difftool</h1>
+<p><img src="img/git-difftool-merge.png" width="80%" /></p>
+<div class="foottext">
+设置方法请search，或查看《Git聊天入门》
+</div>
+</section></section>
+<section><section id="git-branch" class="titleslide slide level1"><h1>git branch</h1></section><section id="focal-point-2" class="slide level2">
+<h1>Focal Point</h1>
+<table>
+<tbody>
+<tr class="odd">
+<td>git branch</td>
+<td>查看所有分支</td>
+</tr>
+<tr class="even">
+<td>git branch -v</td>
+<td>查看所有分支，和当前最新的commit</td>
+</tr>
+<tr class="odd">
+<td>git branch -vv</td>
+<td>查看所有分支，和当前最新的commit<br>和upstream</td>
+</tr>
+<tr class="even">
+<td>git branch xyz</td>
+<td>创建 xyz 分支</td>
+</tr>
+<tr class="odd">
+<td>git branch -d xyz</td>
+<td>删除 xyz 分支，如果分支尚未合入主干<br>或upstream，则失败</td>
+</tr>
+<tr class="even">
+<td>git branch -D xyz</td>
+<td>删除 xyz 分支，强制</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</section><section id="branch-is-ref" class="slide level2">
+<h1>branch is ref</h1>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">GitChat.git</span>$ tree .git/refs
+<span class="kw">.git/refs</span>
+├── <span class="kw">heads</span>
+│   ├── <span class="kw">master</span>
+│   └── <span class="kw">zte</span>
+├── <span class="kw">remotes</span>
+│   ├── <span class="kw">origin</span>
+│   │   ├── <span class="kw">HEAD</span>
+│   │   └── <span class="kw">master</span>
+│   └── <span class="kw">zte</span>
+│       ├── <span class="kw">master</span>
+│       └── <span class="kw">zte</span>
+└── <span class="kw">tags</span>
+
+<span class="kw">5</span> directories, 6 files</code></pre></div>
+</section><section id="practice-7" class="slide level2">
+<h1>Practice</h1>
+<blockquote>
+<p>查看某 branch 内commit的关系</p>
+</blockquote>
+<div class="fragment">
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">GitChat.git</span>$ git log --oneline --graph
+<span class="kw">*</span> 384453f 开始写《Git基础》的Slides
+<span class="kw">*</span> 04e9afe 增加Slides功能
+<span class="kw">*</span> ade6a93 新增章节：push 错了，我要丢弃remote上的某个节点
+<span class="kw">*</span> 145fedb 增加章节：分支名能否用中文
+<span class="kw">*</span> 9bdce19 笔误
+<span class="kw">*</span> 5136879 WWDC2016中刚刚宣布OS.X更名为macOS，本文即刻修改
+<span class="kw">*</span> b748256 增加章节：如何避免arc diff玷污现有节点； 如何创建只包含部分文件的评审单
+<span class="kw">*</span> d6efce6 增加章节： arc diff的ubuntu安装
+<span class="kw">*</span>   f8c101d Merge remote-tracking branch <span class="st">&#39;zte/master&#39;</span>
+<span class="kw">|\ </span> 
+<span class="kw">|</span> <span class="kw">*</span> 1631166 增加：整理git的外网托管网站
+<span class="kw">|</span> <span class="kw">*</span> 5d200a3 新增：分支的合并（git merge）有哪几种场景，合并时如何处理分支中的“垃圾”log
+<span class="kw">|</span> <span class="kw">*</span> 11f41a5 完善 git proxy 的描述
+<span class="kw">*</span> <span class="kw">|</span> <span class="kw">9238c69</span> 新增 Round8：git与phabricator
+<span class="kw">|/</span>  
+<span class="kw">*</span> 9d8d843 使用 rawgit.com 展示</code></pre></div>
+</div>
+</section><section id="practice-8" class="slide level2">
+<h1>Practice</h1>
+<blockquote>
+<p>查看所有 branch 的commit的关系</p>
+</blockquote>
+<div class="fragment">
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">GitChat.git</span>$ git log --oneline --graph --all
+<span class="kw">*</span>   5e0725b Merge branch <span class="st">&#39;master&#39;</span> into zte
+<span class="kw">|\ </span> 
+<span class="kw">|</span> <span class="kw">*</span> 384453f 开始写《Git基础》的Slides
+<span class="kw">|</span> <span class="kw">*</span> 04e9afe 增加Slides功能
+<span class="kw">*</span> <span class="kw">|</span>   <span class="kw">21376f0</span> Merge branch <span class="st">&#39;master&#39;</span> into zte
+<span class="kw">|\ \ </span> 
+<span class="kw">|</span> <span class="kw">|/</span>  
+<span class="kw">|</span> <span class="kw">*</span> ade6a93 新增章节：push 错了，我要丢弃remote上的某个节点
+<span class="kw">*</span> <span class="kw">|</span>   <span class="kw">f7d4f08</span> Merge branch <span class="st">&#39;master&#39;</span> into zte
+<span class="kw">|\ \ </span> 
+<span class="kw">|</span> <span class="kw">|/</span>  
+<span class="kw">|</span> <span class="kw">*</span> 145fedb 增加章节：分支名能否用中文
+<span class="kw">*</span> <span class="kw">|</span> <span class="kw">e668a52</span> 增加一点zte公司内部的解释
+<span class="kw">|/</span>  
+<span class="kw">*</span> 9bdce19 笔误
+<span class="kw">*</span> 5136879 WWDC2016中刚刚宣布OS.X更名为macOS，本文即刻修改
+<span class="kw">*</span> b748256 增加章节：如何避免arc diff玷污现有节点； 如何创
+<span class="kw">*</span> d6efce6 增加章节： arc diff的ubuntu安装</code></pre></div>
+</div>
+</section><section id="practice-9" class="slide level2">
+<h1>Practice</h1>
+<blockquote>
+<p>查看某个 commit 所属的 branch</p>
+</blockquote>
+<div class="fragment">
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">GitChat.git</span>$ git branch --contains 9d8d
+<span class="kw">*</span> master
+  <span class="kw">zte</span></code></pre></div>
+</div>
+</section></section>
+<section><section id="git-checkout" class="titleslide slide level1"><h1>git checkout</h1></section><section id="略" class="slide level2">
+<h1>略</h1>
+</section></section>
+<section><section id="git-merge" class="titleslide slide level1"><h1>git merge</h1></section><section id="branchmerge千变万化的工作流" class="slide level2">
+<h1>branch+merge=千变万化的工作流</h1>
+</section></section>
+<section><section id="跋" class="titleslide slide level1"><h1>跋</h1></section><section id="最后的几点建议" class="slide level2">
+<h1>最后的几点建议</h1>
 <ul>
 <li>
 使用命令行，远离GUI
@@ -641,7 +955,30 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 使用SSH，减小重复操作
 </li>
 </ul>
+</section><section id="next-step" class="slide level2">
+<h1>Next Step</h1>
+<table>
+<tbody>
+<tr class="odd">
+<td><strong>1. Git 基础篇</strong></td>
+<td>基本命令的使用</td>
+</tr>
+<tr class="even">
+<td><strong>2. Git 深入篇</strong></td>
+<td>基本命令的原理图、复杂命令</td>
+</tr>
+<tr class="odd">
+<td><strong>3. Git 工作流</strong></td>
+<td>团队工作模式、约束的最佳实践</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
 </section></section>
+<section><section id="end-thank-you" class="titleslide slide level1"><h1>End<br><br>Thank you!</h1></section></section>
     </div>
   </div>
 

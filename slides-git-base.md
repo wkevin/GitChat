@@ -1,10 +1,11 @@
-% Git 基础
+% ![](img/logo.png)<br>Git 基础篇
 % wkevin
 % ZTE
 
-# Slides操作提示
+# Slides操作提示<br><br>请按空格键
 
 ##
+
 
 |按键|效果|
 |---|---|
@@ -14,7 +15,10 @@
 |Esc|二维显示Slides地图<br>箭头：移动<br>Enter：选中|
 |   |   |
 
-# Git 基础概念
+<br><br>
+<h1>请按 Esc 键</h1>
+
+# 源起
 
 ## VCS (Version Control System)
 
@@ -72,6 +76,7 @@ Hamano现在google，他的github帐号为：[gitster](https://github.com/gitste
     - 第2版：[中文官方在线版](http://git-scm.com/book/zh/v2)、[中文国内在线版](http://www.kancloud.cn/kancloud/progit)、[英文官方在线版](http://git-scm.com/book/en/v2)
     - 第1版：[中文官方在线版](http://git-scm.com/book/zh/v1)、[中文国内在线版](http://git.oschina.net/progit/)
 * [Git Community Book 中文版](http://gitbook.liuhui998.com/index.html)
+* [Version Control with Git,《Git版本控制》](https://book.douban.com/subject/3405742/)
 * [git简明教程](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 
 ## Website
@@ -83,7 +88,7 @@ Hamano现在google，他的github帐号为：[gitster](https://github.com/gitste
 
 # Git 常用命令
 
-## 
+## git help 给出的关键命令
 
 ```bash
 $ git help
@@ -112,10 +117,23 @@ $ git help
 
 ## Practice
 
-写出至少5个git的命令
+>快速记忆，请写出至少5个git的命令
+
+## Git的逻辑分区及几个关键命令
+
+<img src="img/git-logic-field.png" width="70%" />
+
+## Practice
+
+>请绘出上页的图
+
+## wkevin版的绘图
+
+<img src="img/git-common-cmd.png" width="100%" />
 
 
-# git my diary<br>一个完整的日记示例
+
+# Git my diary<br>一个完整的日记示例
 
 
 ## 最基本的两个配置：name 和 email
@@ -299,10 +317,13 @@ Date:   Sun Jan 31 11:39:55 2016 +0800
 
 git 和 svn 不同，没有一个数字递增的节点号，而是一串40Bytes的哈希字符，指定一个提交只需要给出这个字符串即可，当然不能让你每次都把40个字符全输入一遍，只需要输入够区分提交的即可（一般是前7位），如果咱的库规模还很小，前4位也行哦（上文中的“6784”）
 
+## Practice
+
+>请简要的按顺序写出上面例子中用到的git命令
 
 # Git Revesion
 
-## 描述 git revision
+## git revision 的描述
 
 * `<sha1>`: e.g. dae86e
 * `<describeOutput>`: e.g. v1.2.3
@@ -317,13 +338,13 @@ git 和 svn 不同，没有一个数字递增的节点号，而是一串40Bytes�
 
 <div class="foottext"><br><br>详细：`git help revisions` 或 `man gitrevisions`</div>
 
-## 描述 git revision range
+## git revision range 的描述
 
 * `<rev>`: 从rev到结束的所有revision都包括进来
 * `^<rev>`: 从rev到结束的所有revision都抛弃掉
 * `<rev1> <rev2>`: “rev1到结束”和“rev2到结束”取并集，即：rev1或rev2到结束最多的那个range
 * `<rev1> ^<rev2>` == `^<rev2> <rev1>`: “rev1到结束”和“rev2到结束”取并集，即：rev1 和 rev2 之间，但不包括rev2，rev1和rev2无时间先后
-* `<rev1>..<rev2>`: 从rev1（但不包括rev1）到rev2，按时间先后，rev1要在rev2时间前面
+* `<rev1>..<rev2>`: 从rev2往前，到rev1（但不包括rev1）或rev1所在的分支的交汇点，rev1或rev1与rev2分支交汇点要在rev2的时间前面
 * `<rev1>...<rev2>`: 
 * `<rev>^@`： rev的所有parent，不包括 rev
 * `<rev>^!`: 仅rev
@@ -333,7 +354,7 @@ git 和 svn 不同，没有一个数字递增的节点号，而是一串40Bytes�
 
 ## Practice
 
-使用 git log 查看
+>使用 git log 查看
 
 <div class="fragment">只看 zte 分支的 revision</div> 
 <div class="fragment">
@@ -439,6 +460,47 @@ alias.sur=submodule update --remote
 alias.tg=log --format=format:'%C(auto) %h | %ai | %ci | %d  | %Cred %an %Cgreen %s'  --simplify-by-decoration
 ```
 
+
+# git add
+
+## Focal Point
+
+* git add onefile
+* git add .
+* git add onefolder/.
+
+## stage 
+
+1. 名词：舞台、讲台，比如：戏剧表演的舞台、国际政治的舞台；阶段，类似phase，比如：stage one/two意思是第一/二阶段，three-stage rocket意思是三级火箭
+2. 动词：上演、举行、组织，类似play、organize，比如：stage a football match，举办足球赛
+
+<br><br>
+stage本身并没有暂存的意思，git中可以理解为把文件放到一个舞台上上演一下，进而文件进入到一个新的阶段。——用这个词可以说是一箭三雕
+
+## git help stage
+
+```bash
+$git help stage
+
+GIT-STAGE(1)                                              Git Manual                                              GIT-STAGE(1)
+NAME
+       git-stage - Add file contents to the staging area
+SYNOPSIS
+       git stage args...
+DESCRIPTION
+       This is a synonym for git-add(1). Please refer to the documentation of that command.
+```
+
+* help中可以发现： `git stage` 是同义于 `git add` 
+* **staging area**： 舞台区、阶段区、进而翻译为暂存区 —— 如果让我翻译，我会译为：**检视区**。
+
+## 暂存区 ～ 回收站
+
+* 把文件放在回收站是给操作人一个检视的机会和反悔的机会，操作妥当后再彻底删除，彻底删除后再想反悔就要费劲了。
+* git的staging area也是给用户一个**检视的机会**和**反悔的机会**，用户可以：
+    * 使用`git add`或`git stage`命令随时向SA增加文件，和回收站不同的是后进入SA的文件会覆盖前面进入的
+    * 使用`git checkout`命令随时从SA反悔，文件会从SA移除，是否覆盖
+
 ## .gitignore
 
 * 当前目录下的忽略文件、目录的列表，如：编译过程文件……
@@ -464,6 +526,46 @@ linux.git$ cat .gitignore
 105  # Kdevelop4
 106  *.kdev4
 ```
+
+# git commit
+
+## Focal Point
+
+* git commit -a/--all : 提交所有已暂存、未暂存、未追踪的文件
+* git commit -m "xxx"
+* git commit : 没有 -m "xxx", git 会调用一个外部编辑器
+    - 编辑器保存退出 && message不为空： 则算一次成功的提交
+    - 不保存退出 || message为空： 提交作废
+
+## Ubuntu 的编辑器
+
+```bash
+$ update-alternatives --config editor
+There are 8 choices for the alternative editor (providing /usr/bin/editor).
+
+  Selection    Path                 Priority   Status
+------------------------------------------------------------
+* 0            /usr/bin/vim.gnome    60        auto mode
+  1            /bin/ed              -100       manual mode
+  2            /bin/nano             40        manual mode
+  3            /usr/bin/vim.athena   50        manual mode
+  4            /usr/bin/vim.basic    30        manual mode
+  5            /usr/bin/vim.gnome    60        manual mode
+  6            /usr/bin/vim.gtk      50        manual mode
+  7            /usr/bin/vim.nox      40        manual mode
+  8            /usr/bin/vim.tiny     10        manual mode
+
+Press enter to keep the current choice[*], or type selection number: 
+```
+
+# git rm
+
+## 删除文件
+
+* 直接使用 rm 删除，会让 git 认为文件丢失（missing状态）
+* git rm 才能让 git 争取识别用户意图
+* git rm 操作后文件本地工作目录中的文件即被删除， git commit 时删除对象库中的。
+
 
 # git log
 
@@ -596,23 +698,187 @@ GitChat.git$ git lg
 
 # git diff
 
+## 比较对象
+
+|命令|比较对象|
+|---|---|
+|`git diff`|工作目录～索引区|
+|`git diff --cached`|索引区～对象库|
+|`git diff <rev>`|工作目录~rev|
+|`git diff <rev1> <rev2>`<br>`git diff <rev1>..<rev2>`|rev1~rev2|
+|   |   |
+
+## 结果显示
+
+|命令|结果显示|
+|---|---|
+|`git diff `|结果是变更文件，和patch形式的文本|
+|`git diff --stat`|结果只显示变更文件，和变更的内容幅度|
+|`git diff --name-only`|结果只显示变更文件的文件名|
+|`git diff --name-stat`|结果显示变更文件的文件名，和增删改的状态|
+|   |   |
+
+## git diff 与 git log
+
+* git diff 不关心待比较文件的历史，也不关心分支，只关注当前对象本身
+* git log 更关注文件的来龙去脉，即对象的parent、son……
+
+## Practice
+
+
+>比较当前HEAD版本和上一个HEAD版本
+
+<div class="fragment">
+```bash
+$ git diff HEAD^ HEAD
+```
+</div>
+
+## Practice
+
+>比较3者的异同：  
+1. $ git diff topic master   
+2. $ git diff topic..master   
+3. $ git diff topic...master  
+
+<div class="fragment">
+1. Changes between the tips of the topic and the master branches.
+2. Same as above.
+3. Changes that occurred on the master branch since when the topic branch was started off it.
+</div>
+
+## git difftool
+
+<img src="img/git-difftool-merge.png" width="80%" />
+
+<div class="foottext">设置方法请search，或查看《Git聊天入门》</div>
+
 # git branch
+
+## Focal Point
+
+|   |   |
+|---|---|
+|git branch|查看所有分支|
+|git branch -v|查看所有分支，和当前最新的commit|
+|git branch -vv|查看所有分支，和当前最新的commit<br>和upstream|
+|git branch xyz|创建 xyz 分支|
+|git branch -d xyz|删除 xyz 分支，如果分支尚未合入主干<br>或upstream，则失败|
+|git branch -D xyz|删除 xyz 分支，强制|
+|   |   |
+
+
+## branch is ref
+
+```bash
+GitChat.git$ tree .git/refs
+.git/refs
+├── heads
+│   ├── master
+│   └── zte
+├── remotes
+│   ├── origin
+│   │   ├── HEAD
+│   │   └── master
+│   └── zte
+│       ├── master
+│       └── zte
+└── tags
+
+5 directories, 6 files
+```
+
+## Practice
+
+>查看某 branch 内commit的关系
+
+<div class="fragment">
+```bash
+GitChat.git$ git log --oneline --graph
+* 384453f 开始写《Git基础》的Slides
+* 04e9afe 增加Slides功能
+* ade6a93 新增章节：push 错了，我要丢弃remote上的某个节点
+* 145fedb 增加章节：分支名能否用中文
+* 9bdce19 笔误
+* 5136879 WWDC2016中刚刚宣布OS.X更名为macOS，本文即刻修改
+* b748256 增加章节：如何避免arc diff玷污现有节点； 如何创建只包含部分文件的评审单
+* d6efce6 增加章节： arc diff的ubuntu安装
+*   f8c101d Merge remote-tracking branch 'zte/master'
+|\  
+| * 1631166 增加：整理git的外网托管网站
+| * 5d200a3 新增：分支的合并（git merge）有哪几种场景，合并时如何处理分支中的“垃圾”log
+| * 11f41a5 完善 git proxy 的描述
+* | 9238c69 新增 Round8：git与phabricator
+|/  
+* 9d8d843 使用 rawgit.com 展示
+```
+</div>
+
+## Practice
+
+>查看所有 branch 的commit的关系
+
+<div class="fragment">
+```bash
+GitChat.git$ git log --oneline --graph --all
+*   5e0725b Merge branch 'master' into zte
+|\  
+| * 384453f 开始写《Git基础》的Slides
+| * 04e9afe 增加Slides功能
+* |   21376f0 Merge branch 'master' into zte
+|\ \  
+| |/  
+| * ade6a93 新增章节：push 错了，我要丢弃remote上的某个节点
+* |   f7d4f08 Merge branch 'master' into zte
+|\ \  
+| |/  
+| * 145fedb 增加章节：分支名能否用中文
+* | e668a52 增加一点zte公司内部的解释
+|/  
+* 9bdce19 笔误
+* 5136879 WWDC2016中刚刚宣布OS.X更名为macOS，本文即刻修改
+* b748256 增加章节：如何避免arc diff玷污现有节点； 如何创
+* d6efce6 增加章节： arc diff的ubuntu安装
+```
+</div>
+
+## Practice
+
+>查看某个 commit 所属的 branch
+
+<div class="fragment">
+```bash
+GitChat.git$ git branch --contains 9d8d
+* master
+  zte
+```
+</div>
 
 # git checkout
 
+## 略
+
 # git merge
 
-# git rebase
+## branch+merge=千变万化的工作流
 
-# git reset
 
-# git show
+# 跋
 
-# 最后的几点建议
-
-## 
+## 最后的几点建议
 
 <ul>
 <li>使用命令行，远离GUI</li>
 <li class="fragment">使用SSH，减小重复操作</li>
 </ul>
+
+## Next Step
+
+|   |   |
+|---|---|
+|**1. Git 基础篇**|基本命令的使用|
+|**2. Git 深入篇**|基本命令的原理图、复杂命令|
+|**3. Git 工作流**|团队工作模式、约束的最佳实践|
+|   |   |
+
+# End<br><br>Thank you!
