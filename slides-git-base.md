@@ -695,6 +695,9 @@ GitChat.git$ git lg
  1631166 | 2016-05-25 16:09:06 +0800 | 2016-05-25 16:09:06 +0800 |  wkevin  增加：整理git的外网托管网站
 ```
 
+## gitk
+
+![](img/gitk.png)
 
 # git diff
 
@@ -717,6 +720,132 @@ GitChat.git$ git lg
 |`git diff --name-only`|结果只显示变更文件的文件名|
 |`git diff --name-stat`|结果显示变更文件的文件名，和增删改的状态|
 |   |   |
+
+## linux diff
+
+diff f1 f2 == f1与f2之间的差异 == f1 -> f2 的变化过程
+
+<br>
+
+|diff shell 命令|3种输出格式|
+|---|---|
+|$ diff f1 f2|正常格式（normal diff）|
+|$ diff f1 f2 -c|上下文格式（context diff）|
+|$ diff f1 f2 -u|合并格式（unified diff）|
+|   |   |
+
+**diff f1 f2 =X= diff f2 f1**
+
+## linux diff 2
+
+两个文件： 1.txt、2.txt，并列显示内容如下：
+
+```bash
+$ diff 1.txt 2.txt -y
+1               1
+2               2
+3             | 7
+4               4
+5             <
+6               6
+7               7
+              > 8
+```
+
+##
+
+```bash
+$ diff 1.txt 2.txt       
+3c3    
+< 3    
+---
+> 7    
+5d4    
+< 5    
+7a7    
+> 8    
+```
+
+* 3c3: 1.txt的第3行 change 为2.txt的第3行
+* < 3 / > 7: change 方式为 1.txt 删除字符3， 2.txt 增加字符7
+* 5d4: 1.txt的第5行 delete
+* ……
+
+##
+
+```bash
+$ diff 1.txt 2.txt -c
+*** 1.txt 2016-07-16 19:20:03.593327527 +0800
+--- 2.txt 2016-07-16 19:20:38.829329212 +0800
+***************
+*** 1,7 ****
+  1
+  2
+! 3
+  4
+- 5
+  6
+  7
+--- 1,7 ----
+  1
+  2
+! 7
+  4
+  6
+  7
++ 8
+```
+
+* "***"表示变动前的文件
+* "---"表示变动后的文件
+
+##
+
+```bash
+$ diff 1.txt 2.txt -u
+--- 1.txt 2016-07-16 19:20:03.593327527 +0800
++++ 2.txt 2016-07-16 19:20:38.829329212 +0800
+@@ -1,7 +1,7 @@
+ 1
+ 2
+-3
++7
+ 4
+-5
+ 6
+ 7
++8
+```
+
+* "---"表示变动前的文件
+* "+++"表示变动后的文件
+
+## Practice
+
+> diff 2.txt 1.txt -u
+
+<div class="fragment">
+```bash
+$ diff 2.txt 1.txt -u
+--- 2.txt 2016-07-16 19:20:38.829329212 +0800
++++ 1.txt 2016-07-16 19:20:03.593327527 +0800
+@@ -1,7 +1,7 @@
+ 1
+ 2
+-7
++3
+ 4
++5
+ 6
+ 7
+-8
+```
+</div>
+
+## Practice
+
+> git diff 使用的是哪种 diff 形式？
+
 
 ## git diff 与 git log
 
@@ -860,16 +989,42 @@ GitChat.git$ git branch --contains 9d8d
 
 # git merge
 
-## branch+merge=千变万化的工作流
+## Focal Point
 
+* 不必从干净的工作目录开始合并
+* 但劝你最好从干净的工作目录开始合并，除非你想把自己搞晕
+* merge 前做好解决冲突的心理准备
+* merge 前看清除当前所处的 branch
 
-# 跋
+## 合并冲突
 
-## 最后的几点建议
+步骤：
+
+1. git merge rev //糟糕，冲突了
+2. git diff  //看看啥冲突，此时的 git diff 和平常的稍有不同
+3. vi conflictFile 或 git mergetool //解决冲突，最后记得删掉各种标记符号
+4. git add   //重新add
+5. git commit //里面会有 merge 的提示
+
+## Practice
+
+>演示合并冲突、及解决
+
+## 合并策略
+
+* 退化合并
+* 常规合并
+* 特殊合并
+
+# 最后
+
+## 几点建议
 
 <ul>
 <li>使用命令行，远离GUI</li>
-<li class="fragment">使用SSH，减小重复操作</li>
+<li class="fragment">使用快捷键，随时调出命令行</li>
+<li class="fragment">使用简文本，尽量抛弃word、excel、powerpoint等富文本</li>
+<li class="fragment">发扬Git之开源、共享精神</li>
 </ul>
 
 ## Next Step

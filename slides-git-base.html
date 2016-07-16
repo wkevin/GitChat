@@ -726,6 +726,11 @@ $ <span class="kw">git</span> status -s</code></pre></div>
  <span class="kw">f8c101d</span> <span class="kw">|</span> <span class="kw">2016-06-08</span> 17:21:39 +0800 <span class="kw">|</span> <span class="kw">2016-06-08</span> 17:21:39 +0800 <span class="kw">|</span>  <span class="kw">wkevin</span>  Merge remote-tracking branch <span class="st">&#39;zte/master&#39;</span>
  <span class="kw">9238c69</span> <span class="kw">|</span> <span class="kw">2016-06-08</span> 17:19:33 +0800 <span class="kw">|</span> <span class="kw">2016-06-08</span> 17:19:33 +0800 <span class="kw">|</span>  <span class="kw">wkevin</span>  新增 Round8：git与phabricator
  <span class="kw">1631166</span> <span class="kw">|</span> <span class="kw">2016-05-25</span> 16:09:06 +0800 <span class="kw">|</span> <span class="kw">2016-05-25</span> 16:09:06 +0800 <span class="kw">|</span>  <span class="kw">wkevin</span>  增加：整理git的外网托管网站</code></pre></div>
+</section><section id="gitk" class="slide level2">
+<h1>gitk</h1>
+<figure>
+<img src="img/gitk.png" />
+</figure>
 </section></section>
 <section><section id="git-diff" class="titleslide slide level1"><h1>git diff</h1></section><section id="比较对象" class="slide level2">
 <h1>比较对象</h1>
@@ -791,13 +796,143 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 </tr>
 </tbody>
 </table>
+</section><section id="linux-diff" class="slide level2">
+<h1>linux diff</h1>
+<p>diff f1 f2 == f1与f2之间的差异 == f1 -&gt; f2 的变化过程</p>
+<p><br></p>
+<table>
+<thead>
+<tr class="header">
+<th>diff shell 命令</th>
+<th>3种输出格式</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>$ diff f1 f2</td>
+<td>正常格式（normal diff）</td>
+</tr>
+<tr class="even">
+<td>$ diff f1 f2 -c</td>
+<td>上下文格式（context diff）</td>
+</tr>
+<tr class="odd">
+<td>$ diff f1 f2 -u</td>
+<td>合并格式（unified diff）</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>diff f1 f2 =X= diff f2 f1</strong></p>
+</section><section id="linux-diff-2" class="slide level2">
+<h1>linux diff 2</h1>
+<p>两个文件： 1.txt、2.txt，并列显示内容如下：</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">diff</span> 1.txt 2.txt -y
+<span class="kw">1</span>               1
+<span class="kw">2</span>               2
+<span class="kw">3</span>             <span class="kw">|</span> <span class="kw">7</span>
+<span class="kw">4</span>               4
+<span class="kw">5</span>             <span class="kw">&lt;</span>
+<span class="kw">6</span>               6
+<span class="kw">7</span>               7
+              <span class="kw">&gt;</span> <span class="kw">8</span></code></pre></div>
+</section><section id="section-2" class="slide level2">
+<h1></h1>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">diff</span> 1.txt 2.txt       
+<span class="kw">3c3</span>    
+<span class="kw">&lt;</span> <span class="kw">3</span>    
+<span class="kw">---</span>
+<span class="kw">&gt;</span> <span class="kw">7</span>    
+<span class="kw">5d4</span>    
+<span class="kw">&lt;</span> <span class="kw">5</span>    
+<span class="kw">7a7</span>    
+<span class="kw">&gt;</span> <span class="kw">8</span>    </code></pre></div>
+<ul>
+<li>3c3: 1.txt的第3行 change 为2.txt的第3行</li>
+<li>&lt; 3 / &gt; 7: change 方式为 1.txt 删除字符3， 2.txt 增加字符7</li>
+<li>5d4: 1.txt的第5行 delete</li>
+<li>……</li>
+</ul>
+</section><section id="section-3" class="slide level2">
+<h1></h1>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">diff</span> 1.txt 2.txt -c
+<span class="kw">***</span> 1.txt 2016-07-16 19:20:03.593327527 +0800
+<span class="kw">---</span> 2.txt 2016-07-16 19:20:38.829329212 +0800
+<span class="kw">***************</span>
+<span class="kw">***</span> 1,7 ****
+  <span class="kw">1</span>
+  <span class="kw">2</span>
+! <span class="kw">3</span>
+  <span class="kw">4</span>
+<span class="kw">-</span> 5
+  <span class="kw">6</span>
+  <span class="kw">7</span>
+<span class="kw">---</span> 1,7 ----
+  <span class="kw">1</span>
+  <span class="kw">2</span>
+! <span class="kw">7</span>
+  <span class="kw">4</span>
+  <span class="kw">6</span>
+  <span class="kw">7</span>
+<span class="kw">+</span> 8</code></pre></div>
+<ul>
+<li>&quot;***&quot;表示变动前的文件</li>
+<li>&quot;---&quot;表示变动后的文件</li>
+</ul>
+</section><section id="section-4" class="slide level2">
+<h1></h1>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">diff</span> 1.txt 2.txt -u
+<span class="kw">---</span> 1.txt 2016-07-16 19:20:03.593327527 +0800
+<span class="kw">+++</span> 2.txt 2016-07-16 19:20:38.829329212 +0800
+<span class="kw">@@</span> -1,7 +1,7 @@
+ <span class="kw">1</span>
+ <span class="kw">2</span>
+<span class="kw">-3</span>
+<span class="kw">+7</span>
+ <span class="kw">4</span>
+<span class="kw">-5</span>
+ <span class="kw">6</span>
+ <span class="kw">7</span>
+<span class="kw">+8</span></code></pre></div>
+<ul>
+<li>&quot;---&quot;表示变动前的文件</li>
+<li>&quot;+++&quot;表示变动后的文件</li>
+</ul>
+</section><section id="practice-5" class="slide level2">
+<h1>Practice</h1>
+<blockquote>
+<p>diff 2.txt 1.txt -u</p>
+</blockquote>
+<div class="fragment">
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">diff</span> 2.txt 1.txt -u
+<span class="kw">---</span> 2.txt 2016-07-16 19:20:38.829329212 +0800
+<span class="kw">+++</span> 1.txt 2016-07-16 19:20:03.593327527 +0800
+<span class="kw">@@</span> -1,7 +1,7 @@
+ <span class="kw">1</span>
+ <span class="kw">2</span>
+<span class="kw">-7</span>
+<span class="kw">+3</span>
+ <span class="kw">4</span>
+<span class="kw">+5</span>
+ <span class="kw">6</span>
+ <span class="kw">7</span>
+<span class="kw">-8</span></code></pre></div>
+</div>
+</section><section id="practice-6" class="slide level2">
+<h1>Practice</h1>
+<blockquote>
+<p>git diff 使用的是哪种 diff 形式？</p>
+</blockquote>
 </section><section id="git-diff-与-git-log" class="slide level2">
 <h1>git diff 与 git log</h1>
 <ul>
 <li>git diff 不关心待比较文件的历史，也不关心分支，只关注当前对象本身</li>
 <li>git log 更关注文件的来龙去脉，即对象的parent、son……</li>
 </ul>
-</section><section id="practice-5" class="slide level2">
+</section><section id="practice-7" class="slide level2">
 <h1>Practice</h1>
 <blockquote>
 <p>比较当前HEAD版本和上一个HEAD版本</p>
@@ -805,7 +940,7 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <div class="fragment">
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> diff HEAD^ HEAD</code></pre></div>
 </div>
-</section><section id="practice-6" class="slide level2">
+</section><section id="practice-8" class="slide level2">
 <h1>Practice</h1>
 <blockquote>
 <p>比较3者的异同：<br />
@@ -878,7 +1013,7 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 └── <span class="kw">tags</span>
 
 <span class="kw">5</span> directories, 6 files</code></pre></div>
-</section><section id="practice-7" class="slide level2">
+</section><section id="practice-9" class="slide level2">
 <h1>Practice</h1>
 <blockquote>
 <p>查看某 branch 内commit的关系</p>
@@ -902,7 +1037,7 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <span class="kw">|/</span>  
 <span class="kw">*</span> 9d8d843 使用 rawgit.com 展示</code></pre></div>
 </div>
-</section><section id="practice-8" class="slide level2">
+</section><section id="practice-10" class="slide level2">
 <h1>Practice</h1>
 <blockquote>
 <p>查看所有 branch 的commit的关系</p>
@@ -928,7 +1063,7 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <span class="kw">*</span> b748256 增加章节：如何避免arc diff玷污现有节点； 如何创
 <span class="kw">*</span> d6efce6 增加章节： arc diff的ubuntu安装</code></pre></div>
 </div>
-</section><section id="practice-9" class="slide level2">
+</section><section id="practice-11" class="slide level2">
 <h1>Practice</h1>
 <blockquote>
 <p>查看某个 commit 所属的 branch</p>
@@ -942,17 +1077,51 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <section><section id="git-checkout" class="titleslide slide level1"><h1>git checkout</h1></section><section id="略" class="slide level2">
 <h1>略</h1>
 </section></section>
-<section><section id="git-merge" class="titleslide slide level1"><h1>git merge</h1></section><section id="branchmerge千变万化的工作流" class="slide level2">
-<h1>branch+merge=千变万化的工作流</h1>
+<section><section id="git-merge" class="titleslide slide level1"><h1>git merge</h1></section><section id="focal-point-3" class="slide level2">
+<h1>Focal Point</h1>
+<ul>
+<li>不必从干净的工作目录开始合并</li>
+<li>但劝你最好从干净的工作目录开始合并，除非你想把自己搞晕</li>
+<li>merge 前做好解决冲突的心理准备</li>
+<li>merge 前看清除当前所处的 branch</li>
+</ul>
+</section><section id="合并冲突" class="slide level2">
+<h1>合并冲突</h1>
+<p>步骤：</p>
+<ol type="1">
+<li>git merge rev //糟糕，冲突了</li>
+<li>git diff //看看啥冲突，此时的 git diff 和平常的稍有不同</li>
+<li>vi conflictFile 或 git mergetool //解决冲突，最后记得删掉各种标记符号</li>
+<li>git add //重新add</li>
+<li>git commit //里面会有 merge 的提示</li>
+</ol>
+</section><section id="practice-12" class="slide level2">
+<h1>Practice</h1>
+<blockquote>
+<p>演示合并冲突、及解决</p>
+</blockquote>
+</section><section id="合并策略" class="slide level2">
+<h1>合并策略</h1>
+<ul>
+<li>退化合并</li>
+<li>常规合并</li>
+<li>特殊合并</li>
+</ul>
 </section></section>
-<section><section id="跋" class="titleslide slide level1"><h1>跋</h1></section><section id="最后的几点建议" class="slide level2">
-<h1>最后的几点建议</h1>
+<section><section id="最后" class="titleslide slide level1"><h1>最后</h1></section><section id="几点建议" class="slide level2">
+<h1>几点建议</h1>
 <ul>
 <li>
 使用命令行，远离GUI
 </li>
 <li class="fragment">
-使用SSH，减小重复操作
+使用快捷键，随时调出命令行
+</li>
+<li class="fragment">
+使用简文本，尽量抛弃word、excel、powerpoint等富文本
+</li>
+<li class="fragment">
+发扬Git之开源、共享精神
 </li>
 </ul>
 </section><section id="next-step" class="slide level2">
