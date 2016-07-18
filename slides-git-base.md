@@ -2,18 +2,23 @@
 % wkevin
 % ZTE
 
-# Slides操作提示<br><br>请按空格键
+# Slides 操作提示<br><br>请按空格键
 
 ##
 
 
 |按键|效果|
 |---|---|
-|空格/Shift+空格|一维向后/前遍历每张Slides|
 |PageDown/PageUp|一维向后/前遍历每张Slides|
+|空格/Shift+空格<br>鼠标滚轮|向后/前播放历史中的每张Slides|
 |上/下/左/右箭头|二维展示每张Slides|
-|Esc|二维显示Slides地图<br>箭头：移动<br>Enter：选中|
+|Esc/o|二维显示Slides地图<br>箭头：移动<br>Enter：选中|
 |   |   |
+
+<aside class="notes">
+此段内容只有在speaker模式下的NOTES窗口可以看到。
+'s'进入speaker模式。
+</aside>
 
 <br><br>
 <h1>请按 Esc 键</h1>
@@ -47,20 +52,6 @@ Hamano现在google，他的github帐号为：[gitster](https://github.com/gitste
 
 ![](img/Hamano.jpg)
 
-## github上Git的卓越组织:
-
-* [git](https://github.com/git):
-    - 目前有[8位成员](https://github.com/orgs/git/people)，牵头人 [Scott Chacon](https://github.com/schacon)，他们充当管理者和传教士的角色
-    - 比较重要的贡献是：
-        - 维护git源码
-            + Hamano(gitster)并没有加入到这个Orgnization中，而只是fork到自己账号下，然后PR到 git/git，看来gitster只是想当程序员，不想当管理者和传教士——大概源于日本人和中国人类似，都比较低调。
-        - 管理和维护 [git-scm.com](http://git-scm.com) 网站
-* [progit](https://github.com/progit)
-    - 目前有[15位成员](https://github.com/orgs/progit/people)，牵头人 [Scott Chacon](https://github.com/schacon) 和 [Ben Straub](https://github.com/ben)，两人目前都供职于github公司，其他人多是从事翻译工作。
-    - 比较重要的贡献
-        - 写了《Pro git》这本书，此书被翻译成多种语言，被奉为经典。
-
-
 ## 官方Specification
 
 * [Git Man Page](https://www.kernel.org/pub/software/scm/git/docs/): 即： git help
@@ -72,7 +63,7 @@ Hamano现在google，他的github帐号为：[gitster](https://github.com/gitste
 
 ## Book
 
-* Pro Git:根正苗红的书
+* Pro Git
     - 第2版：[中文官方在线版](http://git-scm.com/book/zh/v2)、[中文国内在线版](http://www.kancloud.cn/kancloud/progit)、[英文官方在线版](http://git-scm.com/book/en/v2)
     - 第1版：[中文官方在线版](http://git-scm.com/book/zh/v1)、[中文国内在线版](http://git.oschina.net/progit/)
 * [Git Community Book 中文版](http://gitbook.liuhui998.com/index.html)
@@ -84,6 +75,19 @@ Hamano现在google，他的github帐号为：[gitster](https://github.com/gitste
 * [git-scm.com](http://git-scm.com)
 * [git 维基百科](https://en.wikipedia.org/wiki/Git_(software))
 * [git SCM wiki](http://git.wiki.kernel.org) -- 2011年已停止更新
+
+## github上Git的卓越组织
+
+* [git](https://github.com/git):
+    - 目前有[8位成员](https://github.com/orgs/git/people)，牵头人 [Scott Chacon](https://github.com/schacon)，他们充当管理者和传教士的角色
+    - 比较重要的贡献是：
+        - 维护git源码
+            + Hamano(gitster)并没有加入到这个Orgnization中，而只是fork到自己账号下，然后PR到 git/git，看来gitster只是想当程序员，不想当管理者和传教士——大概源于日本人和中国人类似，都比较低调。
+        - 管理和维护 [git-scm.com](http://git-scm.com) 网站
+* [progit](https://github.com/progit)
+    - 目前有[15位成员](https://github.com/orgs/progit/people)，牵头人 [Scott Chacon](https://github.com/schacon) 和 [Ben Straub](https://github.com/ben)，两人目前都供职于github公司，其他人多是从事翻译工作。
+    - 比较重要的贡献
+        - 写了《Pro git》这本书，此书被翻译成多种语言，被奉为经典。
 
 
 # Git 常用命令
@@ -1013,8 +1017,25 @@ GitChat.git$ git branch --contains 9d8d
 ## 合并策略
 
 * 退化合并
+    - already up-to-date
+    - fast-forward
 * 常规合并
+    - resolve ：两分支合并
+    - recursive ：两分支，但多个合并基础的合并
+    - octopus ：多分支合并
 * 特殊合并
+    - ours
+    - subtree
+
+<div class="foottext"><br><br>完整的策略列表： git help merge -- 搜索 **MERGE STRATEGIES**</div>
+
+## 合并策略的选择
+
+* git根据用户的merge命令参数决定使用哪种策略
+* 用户也可以 -s strategy 指定策略
+    - git merge -s resolve ...
+    - git merge -s ours ...
+    - git merge -s subtree ...
 
 # 最后
 
@@ -1025,6 +1046,7 @@ GitChat.git$ git branch --contains 9d8d
 <li class="fragment">使用快捷键，随时调出命令行</li>
 <li class="fragment">使用简文本，尽量抛弃word、excel、powerpoint等富文本</li>
 <li class="fragment">发扬Git之开源、共享精神</li>
+<li class="fragment">敞开胸怀、学习新知识：git和svn是可以共存的</li>
 </ul>
 
 ## Next Step
