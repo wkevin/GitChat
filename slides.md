@@ -1,4 +1,4 @@
-% ![](img/logo.png)<br>Git 基础篇
+% ![](img/logo.png)
 % wkevin
 % ZTE
 
@@ -89,6 +89,11 @@ Hamano现在google，他的github帐号为：[gitster](https://github.com/gitste
     - 比较重要的贡献
         - 写了《Pro git》这本书，此书被翻译成多种语言，被奉为经典。
 
+## Git 比 SVN 好在哪
+
+先把这个问题放一放，最后来回答。
+
+换个问题：我要掌握哪些git知识才能领略到它的好？
 
 # Git 常用命令
 
@@ -531,6 +536,10 @@ linux.git$ cat .gitignore
 106  *.kdev4
 ```
 
+## 原理图
+
+<embed src="img/git-add.svg" type="image/svg+xml" style="background-color:white" />
+
 # git commit
 
 ## Focal Point
@@ -921,6 +930,9 @@ GitChat.git$ tree .git/refs
 5 directories, 6 files
 ```
 
+* tag 可以理解为仅是指针
+* branch 不仅仅是指针，还包括向前追溯的一串节点信息
+
 ## Practice
 
 >查看某 branch 内commit的关系
@@ -989,7 +1001,10 @@ GitChat.git$ git branch --contains 9d8d
 
 # git checkout
 
-## 略
+## 原理图
+
+<embed src="img/git-checkout.svg" type="image/svg+xml" style="background-color:white" />
+
 
 # git merge
 
@@ -998,7 +1013,7 @@ GitChat.git$ git branch --contains 9d8d
 * 不必从干净的工作目录开始合并
 * 但劝你最好从干净的工作目录开始合并，除非你想把自己搞晕
 * merge 前做好解决冲突的心理准备
-* merge 前看清除当前所处的 branch
+* merge 前看清楚当前所处的 branch
 
 ## 合并冲突
 
@@ -1031,11 +1046,84 @@ GitChat.git$ git branch --contains 9d8d
 
 ## 合并策略的选择
 
-* git根据用户的merge命令参数决定使用哪种策略
-* 用户也可以 -s strategy 指定策略
+* git会根据用户的merge命令参数自动决定使用哪种策略
+* 用户也可以 -s strategy 指定策略 —— **慎重**
     - git merge -s resolve ...
     - git merge -s ours ...
     - git merge -s subtree ...
+    - git merge --no-ff
+
+# git reset
+
+## 原理图
+
+<embed src="img/git-reset.svg" type="image/svg+xml" style="background-color:white" />
+
+# git rebase
+
+# git remote
+
+## 原理图
+
+<embed src="img/git-remote.svg" type="image/svg+xml" style="background-color:white" />
+
+
+# git pull
+
+# git push
+
+# Git Object
+
+# Git Workflow<br>工作流
+
+## 工作流是一种约定
+
+* 工作流是软件团队成员之间的约定
+* 约定内容包括：
+    - 对分支的定义
+    - 对合并触发时机的定义
+    - 对repo的分布、fork的定义
+    - repo的人员分工的定义
+    - 对权限的约定： 
+        + git的分布式特性让“一个领导或管理员统管权限”变得无法操作
+        + 可以适当运用gitlab等软件来约束权限，但它并不能解决所有问题
+
+## 工作流因团队而异
+
+* 不同的团队需要根据人员（能力、规模）、时间、发布策略等制定不同的工作流
+    - 单机工作流
+    - 小团队工作流
+    - 分布式工作流
+* 请在立项阶段就考虑 git 的工作流
+* 可以在《版本构建说明》中详细描述本团队的工作流
+* 请在每个sprint都审视工作流是否合适、运转正常
+
+## 长期分支～特性分支
+
+* 建议：
+    - 不要为团队只定义一个master分支做长期分支
+    - 请至少定义出这样几个长期分支：
+        + 稳定、随时可发布的长期分支
+        + 较稳定、供二次开发者或VIP用户使用的长期分支
+        + 较稳定、供团队合并特性分支的长期分支
+        + 不稳定的前沿长期分支
+    - 特性分支的使用
+
+## Centralized Workflow<br>集中式工作流
+
+![](img/centralized_workflow.png)
+
+## Integration-Manager Workflow<br>集成管理者工作流
+
+![](img/integration-manager.png)
+
+## Dictator and Lieutenants Workflow<br>司令官与副官工作流
+
+![](img/benevolent-dictator.png)
+
+## github/gitlab 的管理方式
+
+[Understanding the GitHub Flow](https://guides.github.com/introduction/flow/)
 
 # 最后
 
@@ -1046,16 +1134,8 @@ GitChat.git$ git branch --contains 9d8d
 <li class="fragment">使用快捷键，随时调出命令行</li>
 <li class="fragment">使用简文本，尽量抛弃word、excel、powerpoint等富文本</li>
 <li class="fragment">发扬Git之开源、共享精神</li>
-<li class="fragment">敞开胸怀、学习新知识：git和svn是可以共存的</li>
+<li class="fragment">敞开胸怀、学习新知识</li>
+<li class="fragment">git和svn是可以共存的</li>
 </ul>
-
-## Next Step
-
-|   |   |
-|---|---|
-|**1. Git 基础篇**|基本命令的使用|
-|**2. Git 深入篇**|基本命令的原理图、复杂命令|
-|**3. Git 工作流**|团队工作模式、约束的最佳实践|
-|   |   |
 
 # End<br><br>Thank you!

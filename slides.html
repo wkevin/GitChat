@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="wkevin">
-  <title> Git 基础篇</title>
+  <title></title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -67,7 +67,7 @@ code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
     <div class="slides">
 
 <section>
-  <h1 class="title"><img src="img/logo.png" /><br>Git 基础篇</h1>
+  <h1 class="title"><img src="img/logo.png" /></h1>
   <h2 class="author">wkevin</h2>
   <h3 class="date">ZTE</h3>
 </section>
@@ -195,6 +195,10 @@ code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
 </ul></li>
 </ul></li>
 </ul>
+</section><section id="git-比-svn-好在哪" class="slide level2">
+<h1>Git 比 SVN 好在哪</h1>
+<p>先把这个问题放一放，最后来回答。</p>
+<p>换个问题：我要掌握哪些git知识才能领略到它的好？</p>
 </section></section>
 <section><section id="git-常用命令" class="titleslide slide level1"><h1>Git 常用命令</h1></section><section id="git-help-给出的关键命令" class="slide level2">
 <h1>git help 给出的关键命令</h1>
@@ -586,6 +590,9 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <span class="kw">104</span>  
 <span class="kw">105</span>  <span class="co"># Kdevelop4</span>
 <span class="kw">106</span>  *.kdev4</code></pre></div>
+</section><section id="原理图" class="slide level2">
+<h1>原理图</h1>
+<embed src="img/git-add.svg" type="image/svg+xml" style="background-color:white" />
 </section></section>
 <section><section id="git-commit" class="titleslide slide level1"><h1>git commit</h1></section><section id="focal-point-1" class="slide level2">
 <h1>Focal Point</h1>
@@ -1016,6 +1023,10 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 └── <span class="kw">tags</span>
 
 <span class="kw">5</span> directories, 6 files</code></pre></div>
+<ul>
+<li>tag 可以理解为仅是指针</li>
+<li>branch 不仅仅是指针，还包括向前追溯的一串节点信息</li>
+</ul>
 </section><section id="practice-9" class="slide level2">
 <h1>Practice</h1>
 <blockquote>
@@ -1077,8 +1088,9 @@ $ <span class="kw">git</span> status -s</code></pre></div>
   <span class="kw">zte</span></code></pre></div>
 </div>
 </section></section>
-<section><section id="git-checkout" class="titleslide slide level1"><h1>git checkout</h1></section><section id="略" class="slide level2">
-<h1>略</h1>
+<section><section id="git-checkout" class="titleslide slide level1"><h1>git checkout</h1></section><section id="原理图-1" class="slide level2">
+<h1>原理图</h1>
+<embed src="img/git-checkout.svg" type="image/svg+xml" style="background-color:white" />
 </section></section>
 <section><section id="git-merge" class="titleslide slide level1"><h1>git merge</h1></section><section id="focal-point-3" class="slide level2">
 <h1>Focal Point</h1>
@@ -1086,7 +1098,7 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <li>不必从干净的工作目录开始合并</li>
 <li>但劝你最好从干净的工作目录开始合并，除非你想把自己搞晕</li>
 <li>merge 前做好解决冲突的心理准备</li>
-<li>merge 前看清除当前所处的 branch</li>
+<li>merge 前看清楚当前所处的 branch</li>
 </ul>
 </section><section id="合并冲突" class="slide level2">
 <h1>合并冲突</h1>
@@ -1129,14 +1141,92 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 </section><section id="合并策略的选择" class="slide level2">
 <h1>合并策略的选择</h1>
 <ul>
-<li>git根据用户的merge命令参数决定使用哪种策略</li>
-<li>用户也可以 -s strategy 指定策略
+<li>git会根据用户的merge命令参数自动决定使用哪种策略</li>
+<li>用户也可以 -s strategy 指定策略 —— <strong>慎重</strong>
 <ul>
 <li>git merge -s resolve ...</li>
 <li>git merge -s ours ...</li>
 <li>git merge -s subtree ...</li>
+<li>git merge --no-ff</li>
 </ul></li>
 </ul>
+</section></section>
+<section><section id="git-reset" class="titleslide slide level1"><h1>git reset</h1></section><section id="原理图-2" class="slide level2">
+<h1>原理图</h1>
+<embed src="img/git-reset.svg" type="image/svg+xml" style="background-color:white" />
+</section></section>
+<section><section id="git-rebase" class="titleslide slide level1"><h1>git rebase</h1></section></section>
+<section><section id="git-remote" class="titleslide slide level1"><h1>git remote</h1></section><section id="原理图-3" class="slide level2">
+<h1>原理图</h1>
+<embed src="img/git-remote.svg" type="image/svg+xml" style="background-color:white" />
+</section></section>
+<section><section id="git-pull" class="titleslide slide level1"><h1>git pull</h1></section></section>
+<section><section id="git-push" class="titleslide slide level1"><h1>git push</h1></section></section>
+<section><section id="git-object" class="titleslide slide level1"><h1>Git Object</h1></section></section>
+<section><section id="git-workflow-工作流" class="titleslide slide level1"><h1>Git Workflow<br>工作流</h1></section><section id="工作流是一种约定" class="slide level2">
+<h1>工作流是一种约定</h1>
+<ul>
+<li>工作流是软件团队成员之间的约定</li>
+<li>约定内容包括：
+<ul>
+<li>对分支的定义</li>
+<li>对合并触发时机的定义</li>
+<li>对repo的分布、fork的定义</li>
+<li>repo的人员分工的定义</li>
+<li>对权限的约定：
+<ul>
+<li>git的分布式特性让“一个领导或管理员统管权限”变得无法操作</li>
+<li>可以适当运用gitlab等软件来约束权限，但它并不能解决所有问题</li>
+</ul></li>
+</ul></li>
+</ul>
+</section><section id="工作流因团队而异" class="slide level2">
+<h1>工作流因团队而异</h1>
+<ul>
+<li>不同的团队需要根据人员（能力、规模）、时间、发布策略等制定不同的工作流
+<ul>
+<li>单机工作流</li>
+<li>小团队工作流</li>
+<li>分布式工作流</li>
+</ul></li>
+<li>请在立项阶段就考虑 git 的工作流</li>
+<li>可以在《版本构建说明》中详细描述本团队的工作流</li>
+<li>请在每个sprint都审视工作流是否合适、运转正常</li>
+</ul>
+</section><section id="长期分支特性分支" class="slide level2">
+<h1>长期分支～特性分支</h1>
+<ul>
+<li>建议：
+<ul>
+<li>不要为团队只定义一个master分支做长期分支</li>
+<li>请至少定义出这样几个长期分支：
+<ul>
+<li>稳定、随时可发布的长期分支</li>
+<li>较稳定、供二次开发者或VIP用户使用的长期分支</li>
+<li>较稳定、供团队合并特性分支的长期分支</li>
+<li>不稳定的前沿长期分支</li>
+</ul></li>
+<li>特性分支的使用</li>
+</ul></li>
+</ul>
+</section><section id="centralized-workflow-集中式工作流" class="slide level2">
+<h1>Centralized Workflow<br>集中式工作流</h1>
+<figure>
+<img src="img/centralized_workflow.png" />
+</figure>
+</section><section id="integration-manager-workflow-集成管理者工作流" class="slide level2">
+<h1>Integration-Manager Workflow<br>集成管理者工作流</h1>
+<figure>
+<img src="img/integration-manager.png" />
+</figure>
+</section><section id="dictator-and-lieutenants-workflow-司令官与副官工作流" class="slide level2">
+<h1>Dictator and Lieutenants Workflow<br>司令官与副官工作流</h1>
+<figure>
+<img src="img/benevolent-dictator.png" />
+</figure>
+</section><section id="githubgitlab-的管理方式" class="slide level2">
+<h1>github/gitlab 的管理方式</h1>
+<p><a href="https://guides.github.com/introduction/flow/">Understanding the GitHub Flow</a></p>
 </section></section>
 <section><section id="最后" class="titleslide slide level1"><h1>最后</h1></section><section id="几点建议" class="slide level2">
 <h1>几点建议</h1>
@@ -1154,31 +1244,12 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 发扬Git之开源、共享精神
 </li>
 <li class="fragment">
-敞开胸怀、学习新知识：git和svn是可以共存的
+敞开胸怀、学习新知识
+</li>
+<li class="fragment">
+git和svn是可以共存的
 </li>
 </ul>
-</section><section id="next-step" class="slide level2">
-<h1>Next Step</h1>
-<table>
-<tbody>
-<tr class="odd">
-<td><strong>1. Git 基础篇</strong></td>
-<td>基本命令的使用</td>
-</tr>
-<tr class="even">
-<td><strong>2. Git 深入篇</strong></td>
-<td>基本命令的原理图、复杂命令</td>
-</tr>
-<tr class="odd">
-<td><strong>3. Git 工作流</strong></td>
-<td>团队工作模式、约束的最佳实践</td>
-</tr>
-<tr class="even">
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
 </section></section>
 <section><section id="end-thank-you" class="titleslide slide level1"><h1>End<br><br>Thank you!</h1></section></section>
     </div>
