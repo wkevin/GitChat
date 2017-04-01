@@ -308,7 +308,8 @@ img {
 } 
 </style><title>gitchat</title></head><body><article class="markdown-body"><h1>Git 聊天入门</h1>
 
-<p><strong>序</strong></p>
+<p>俊建 Kevin</p>
+<p><strong>自序</strong></p>
 <p>读一本Git的书和读一篇Git的文章给人的知识含量是不同的，但给人的愉悦感也是迥异的。本文不想让您有读书的感觉、不追求知识全面、架构完整，但也不想只罗列一些git的知识点，搞的像一个Tip集。本文会从实际使用的角度，以聊天问答的形式，从浅入深，逐步展露git的若干方面。</p>
 <p>本文分Round进行，每局并不以git命令的逻辑来分类，而是以<strong>使用git完成任务的水平来分解阶段</strong>。一些问题原本来自于我和朋友们的聊天，闲聊之余，记录成集，不要期待有什么高深的理论，让你每读完一个Round，可以小试牛刀，然后烹茶小饮、若有所思……是我最想要的。</p>
 <p>git 有自己的 <a href="https://www.kernel.org/pub/software/scm/git/docs/user-manual.html">user manunal</a>，和官方宝书（<a href="http://git-scm.com/book/en/v2">英文版</a>、<a href="http://git-scm.com/book/zh/v2">中文版</a>、<a href="http://www.kancloud.cn/kancloud/progit">国内备份</a>），如果你读来无碍，请忽视本文，本文与它们相比只是个小人书、连环画，或者作为它们的一个补充。我在写每个Topic的时候也都在想：是不是书里已经有了？我是不是重复了？是不是删掉算了？—— 经常在知识点完整和拾遗之间反复权衡，但想到碎片化阅读越来越普及、学东西主要靠百度的今天，我写点东西发出来应该也是有益的。</p>
@@ -316,97 +317,97 @@ img {
 <!-- MarkdownTOC depth=2 -->
 
 <ul>
-<li><a href="#round-1">Round 1 : 起步</a><ul>
-<li><a href="#git">git在哪里</a></li>
-<li><a href="#git-for-windows">Git for Windows 咋用</a></li>
-<li><a href="#git_1">先单机玩玩还是先弄来个别人的git库</a></li>
-<li><a href="#git_2">如何在本机git我的日记</a></li>
+<li><a href="#round-1--起步">Round 1 : 起步</a><ul>
+<li><a href="#git在哪里">git在哪里</a></li>
+<li><a href="#git-for-windows-咋用">Git for Windows 咋用</a></li>
+<li><a href="#先单机玩玩还是先弄来个别人的git库">先单机玩玩还是先弄来个别人的git库</a></li>
+<li><a href="#如何在本机git我的日记">如何在本机git我的日记</a></li>
 </ul>
 </li>
-<li><a href="#round-2">Round 2 : 优雅</a><ul>
-<li><a href="#addcommitstatus">每次都要敲add、commit、status，嫌累了</a></li>
-<li><a href="#git_3">有些文件不希望被git管理</a></li>
-<li><a href="#git-log">我要筛选 git log</a></li>
-<li><a href="#git-log_1">觉得 git log 中的时间看着困难，精简下呗</a></li>
-<li><a href="#git-log_2">我要定制 git log，不想一页看不了几条</a></li>
-<li><a href="#onelinehashauthordatemessage">oneline太简陋了，我想一行里面看到hash、author、date、message</a></li>
-<li><a href="#git-log_3">git log 已经很好了，但好像还是缺点啥</a></li>
-<li><a href="#git-log-fuller-author-commit">git log &ndash;fuller 中的 author 和 commit 啥关系</a></li>
-<li><a href="#log">看log的时候能否把修改了哪些文件也列出来</a></li>
-<li><a href="#tortoisesvndiff">我要能像TortoiseSVN那样左右两栏对比看diff</a></li>
-<li><a href="#git-add">修改完了为什么不是直接提交，而是git add</a></li>
-<li><a href="#ubuntugit-commit">我用ubuntu，我要修改git commit时的默认编辑器</a></li>
+<li><a href="#round-2--优雅">Round 2 : 优雅</a><ul>
+<li><a href="#每次都要敲add、commit、status，嫌累了">每次都要敲add、commit、status，嫌累了</a></li>
+<li><a href="#有些文件不希望被git管理">有些文件不希望被git管理</a></li>
+<li><a href="#我要筛选-git-log">我要筛选 git log</a></li>
+<li><a href="#觉得-git-log-中的时间看着困难，精简下呗">觉得 git log 中的时间看着困难，精简下呗</a></li>
+<li><a href="#我要定制-git-log，不想一页看不了几条">我要定制 git log，不想一页看不了几条</a></li>
+<li><a href="#oneline太简陋了，我想一行里面看到hash、author、date、message">oneline太简陋了，我想一行里面看到hash、author、date、message</a></li>
+<li><a href="#git-log-已经很好了，但好像还是缺点啥">git log 已经很好了，但好像还是缺点啥</a></li>
+<li><a href="#git-log---fuller-中的-author-和-commit-啥关系">git log &ndash;fuller 中的 author 和 commit 啥关系</a></li>
+<li><a href="#看log的时候能否把修改了哪些文件也列出来">看log的时候能否把修改了哪些文件也列出来</a></li>
+<li><a href="#我要能像tortoisesvn那样左右两栏对比看diff">我要能像TortoiseSVN那样左右两栏对比看diff</a></li>
+<li><a href="#修改完了为什么不是直接提交，而是git-add">修改完了为什么不是直接提交，而是git add</a></li>
+<li><a href="#我用ubuntu，我要修改git-commit时的默认编辑器">我用ubuntu，我要修改git commit时的默认编辑器</a></li>
 </ul>
 </li>
-<li><a href="#round-3">Round 3 : 并发</a><ul>
-<li><a href="#branch">我想使用个分支（branch），怎么做</a></li>
-<li><a href="#_1">如何在分支间来回切换</a></li>
-<li><a href="#git-branch-delete">删除分支总是想用git branch delete</a></li>
-<li><a href="#git-merge">分支的合并（git merge）有哪几种场景</a></li>
-<li><a href="#log_1">合并时如何处理分支中的“垃圾”log</a></li>
-<li><a href="#_2">“把特性分支合入主干”和“把主干合入特性分支”有什么区别</a></li>
-<li><a href="#git-merge_1">git merge 有没有图形化的工具</a></li>
-<li><a href="#git_4">git分支之间的关系能否图示</a></li>
+<li><a href="#round-3--并发">Round 3 : 并发</a><ul>
+<li><a href="#我想使用个分支（branch），怎么做">我想使用个分支（branch），怎么做</a></li>
+<li><a href="#如何在分支间来回切换">如何在分支间来回切换</a></li>
+<li><a href="#删除分支总是想用git-branch-delete">删除分支总是想用git branch delete</a></li>
+<li><a href="#分支的合并（git-merge）有哪几种场景">分支的合并（git merge）有哪几种场景</a></li>
+<li><a href="#合并时如何处理分支中的“垃圾”log">合并时如何处理分支中的“垃圾”log</a></li>
+<li><a href="#“把特性分支合入主干”和“把主干合入特性分支”有什么区别">“把特性分支合入主干”和“把主干合入特性分支”有什么区别</a></li>
+<li><a href="#git-merge-有没有图形化的工具">git merge 有没有图形化的工具</a></li>
+<li><a href="#git分支之间的关系能否图示">git分支之间的关系能否图示</a></li>
 </ul>
 </li>
-<li><a href="#round-4">Round 4 : 协作</a><ul>
-<li><a href="#git_5">想看看别人的git库了</a></li>
-<li><a href="#_3">到哪里找开源项目</a></li>
-<li><a href="#github">为什么github成了程序员的麦加圣地</a></li>
-<li><a href="#proxygithub">公司内如何穿过Proxy访问github</a></li>
-<li><a href="#remoteproxy">定义了外网和内网两个remote，proxy怎么同时支持</a></li>
-<li><a href="#sshremote">SSH访问remote的通常步骤是啥</a></li>
-<li><a href="#_4">如何与别人合作</a></li>
-<li><a href="#github_1">如何在github上与别人合作</a></li>
-<li><a href="#git_6">怎样才能第一时间得知git上有提交和更新</a></li>
-<li><a href="#git-pullgit-fetch-git-merge">为什么说不要用git pull，而是用git fetch + git merge代替</a></li>
-<li><a href="#clonefetchremote-repolog">如何不clone/fetch到本地看remote repo的log?</a></li>
-<li><a href="#commitpush">程序猿如何频繁地commit，但又低调地push</a></li>
-<li><a href="#http-pushnamepassword">通过http push时每次都要求输入name/password，能否避开</a></li>
-<li><a href="#_5">如何删除远程分支</a></li>
-<li><a href="#tag">如何删除远程tag</a></li>
-<li><a href="#_6">别人把远程分支删除了，我本地的对应分支怎么还在</a></li>
-<li><a href="#_7">维持树的整洁</a></li>
-<li><a href="#git_7">Git多用户间协作还有什么引人入胜之处</a></li>
+<li><a href="#round-4--协作">Round 4 : 协作</a><ul>
+<li><a href="#想看看别人的git库了">想看看别人的git库了</a></li>
+<li><a href="#到哪里找开源项目">到哪里找开源项目</a></li>
+<li><a href="#为什么github成了程序员的麦加圣地">为什么github成了程序员的麦加圣地</a></li>
+<li><a href="#公司内如何穿过proxy访问github">公司内如何穿过Proxy访问github</a></li>
+<li><a href="#定义了外网和内网两个remote，proxy怎么同时支持">定义了外网和内网两个remote，proxy怎么同时支持</a></li>
+<li><a href="#ssh访问remote的通常步骤是啥">SSH访问remote的通常步骤是啥</a></li>
+<li><a href="#如何与别人合作">如何与别人合作</a></li>
+<li><a href="#如何在github上与别人合作">如何在github上与别人合作</a></li>
+<li><a href="#怎样才能第一时间得知git上有提交和更新">怎样才能第一时间得知git上有提交和更新</a></li>
+<li><a href="#为什么说不要用git-pull，而是用git-fetch--git-merge代替">为什么说不要用git pull，而是用git fetch + git merge代替</a></li>
+<li><a href="#如何不clonefetch到本地看remote-repo的log">如何不clone/fetch到本地看remote repo的log?</a></li>
+<li><a href="#程序猿如何频繁地commit，但又低调地push">程序猿如何频繁地commit，但又低调地push</a></li>
+<li><a href="#通过http-push时每次都要求输入namepassword，能否避开">通过http push时每次都要求输入name/password，能否避开</a></li>
+<li><a href="#如何删除远程分支">如何删除远程分支</a></li>
+<li><a href="#如何删除远程tag">如何删除远程tag</a></li>
+<li><a href="#别人把远程分支删除了，我本地的对应分支怎么还在">别人把远程分支删除了，我本地的对应分支怎么还在</a></li>
+<li><a href="#维持树的整洁">维持树的整洁</a></li>
+<li><a href="#git多用户间协作还有什么引人入胜之处">Git多用户间协作还有什么引人入胜之处</a></li>
 </ul>
 </li>
-<li><a href="#round-5">Round 5 : 整理</a><ul>
-<li><a href="#git_8">git从何而来</a></li>
-<li><a href="#git_9">git去往何处</a></li>
-<li><a href="#git_10">git有哪些好的入门的资料</a></li>
-<li><a href="#git_11">git命令我掌握的七七八八了，怎么整理一下</a></li>
-<li><a href="#git_12">重新梳理git的软件</a></li>
-<li><a href="#git_13">整理git的外网托管网站</a></li>
+<li><a href="#round-5--整理">Round 5 : 整理</a><ul>
+<li><a href="#git从何而来">git从何而来</a></li>
+<li><a href="#git去往何处">git去往何处</a></li>
+<li><a href="#git有哪些好的入门的资料">git有哪些好的入门的资料</a></li>
+<li><a href="#git命令我掌握的七七八八了，怎么整理一下">git命令我掌握的七七八八了，怎么整理一下</a></li>
+<li><a href="#重新梳理git的软件">重新梳理git的软件</a></li>
+<li><a href="#整理git的外网托管网站">整理git的外网托管网站</a></li>
 </ul>
 </li>
-<li><a href="#round-6">Round 6 : 奇技淫巧</a><ul>
-<li><a href="#committag">从当前库中快速导出一个节点(commit、tag)另作他用</a></li>
-<li><a href="#logrepo">导出某个子目录及其log成为一个新的repo</a></li>
-<li><a href="#2bug1commit">分支2需改bug，但我正在分支1上编码并不想commit怎么办</a></li>
-<li><a href="#git-add_1">git add错了，我要丢弃暂存区的修改</a></li>
-<li><a href="#modify">modify 错了，我要丢弃本地目录中的修改</a></li>
-<li><a href="#git-commitcommit">git commit错了，我要丢弃某个commit节点</a></li>
-<li><a href="#_8">暂存一个文件的部分改动</a></li>
-<li><a href="#_9">能否从不同的分支里选择某次提交并且把它合并到当前的分支</a></li>
+<li><a href="#round-6--奇技淫巧">Round 6 : 奇技淫巧</a><ul>
+<li><a href="#从当前库中快速导出一个节点commit、tag另作他用">从当前库中快速导出一个节点(commit、tag)另作他用</a></li>
+<li><a href="#导出某个子目录及其log成为一个新的repo">导出某个子目录及其log成为一个新的repo</a></li>
+<li><a href="#分支2需改bug，但我正在分支1上编码并不想commit怎么办">分支2需改bug，但我正在分支1上编码并不想commit怎么办</a></li>
+<li><a href="#git-add错了，我要丢弃暂存区的修改">git add错了，我要丢弃暂存区的修改</a></li>
+<li><a href="#modify-错了，我要丢弃本地目录中的修改">modify 错了，我要丢弃本地目录中的修改</a></li>
+<li><a href="#git-commit错了，我要丢弃某个commit节点">git commit错了，我要丢弃某个commit节点</a></li>
+<li><a href="#暂存一个文件的部分改动">暂存一个文件的部分改动</a></li>
+<li><a href="#能否从不同的分支里选择某次提交并且把它合并到当前的分支">能否从不同的分支里选择某次提交并且把它合并到当前的分支</a></li>
 </ul>
 </li>
-<li><a href="#round-7">Round 7 : 原理拾趣</a><ul>
-<li><a href="#gitsvn">git和SVN在元数据存储上有什么区别</a></li>
-<li><a href="#git-object">git 的对象（object）</a></li>
-<li><a href="#git_14">git 的快照存储有点不可思议，如何做到好又多的</a></li>
-<li><a href="#git-addcommit">git add/commit 原理图</a></li>
-<li><a href="#git-checkout">git checkout 原理图</a></li>
-<li><a href="#git-fetchpull">git fetch/pull 原理图</a></li>
-<li><a href="#git-reset">git reset 原理图</a></li>
+<li><a href="#round-7--原理拾趣">Round 7 : 原理拾趣</a><ul>
+<li><a href="#git和svn在元数据存储上有什么区别">git和SVN在元数据存储上有什么区别</a></li>
+<li><a href="#git-的对象（object）">git 的对象（object）</a></li>
+<li><a href="#git-的快照存储有点不可思议，如何做到好又多的">git 的快照存储有点不可思议，如何做到好又多的</a></li>
+<li><a href="#git-addcommit-原理图">git add/commit 原理图</a></li>
+<li><a href="#git-checkout-原理图">git checkout 原理图</a></li>
+<li><a href="#git-fetchpull-原理图">git fetch/pull 原理图</a></li>
+<li><a href="#git-reset-原理图">git reset 原理图</a></li>
 </ul>
 </li>
-<li><a href="#round-8-gitphabricator">Round 8 : git与phabricator</a><ul>
-<li><a href="#arc">arc 为何物</a></li>
-<li><a href="#arc_1">arc的安装和配置</a></li>
-<li><a href="#arc-diff">arc diff 初步</a></li>
-<li><a href="#arc-diff-commit-log">arc diff 为什么把我已有的commit log修改了</a></li>
-<li><a href="#arc-diff_1">如何避免arc diff玷污现有节点</a></li>
-<li><a href="#_10">如何创建只包含部分文件的评审单</a></li>
+<li><a href="#round-8--git与phabricator">Round 8 : git与phabricator</a><ul>
+<li><a href="#arc-为何物">arc 为何物</a></li>
+<li><a href="#arc的安装和配置">arc的安装和配置</a></li>
+<li><a href="#arc-diff-初步">arc diff 初步</a></li>
+<li><a href="#arc-diff-为什么把我已有的commit-log修改了">arc diff 为什么把我已有的commit log修改了</a></li>
+<li><a href="#如何避免arc-diff玷污现有节点">如何避免arc diff玷污现有节点</a></li>
+<li><a href="#如何创建只包含部分文件的评审单">如何创建只包含部分文件的评审单</a></li>
 </ul>
 </li>
 </ul>
