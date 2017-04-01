@@ -352,7 +352,9 @@ img {
 </li>
 <li><a href="#round-4--协作">Round 4 : 协作</a><ul>
 <li><a href="#想看看别人的git库了">想看看别人的git库了</a></li>
-<li><a href="#到哪里找开源项目">到哪里找开源项目</a></li>
+<li><a href="#橡树与木棉">橡树与木棉</a></li>
+<li><a href="#git与github">git与github</a></li>
+<li><a href="#github与他的小伙伴们（到哪里找开源项目）">github与他的小伙伴们（到哪里找开源项目）</a></li>
 <li><a href="#为什么github成了程序员的麦加圣地">为什么github成了程序员的麦加圣地</a></li>
 <li><a href="#公司内如何穿过proxy访问github">公司内如何穿过Proxy访问github</a></li>
 <li><a href="#定义了外网和内网两个remote，proxy怎么同时支持">定义了外网和内网两个remote，proxy怎么同时支持</a></li>
@@ -1295,7 +1297,16 @@ $ git config --global mergetool.diffmerge.cmd 'diffmerge --merge --result=&quot;
 </ul>
 <p>一幅图说明问题：</p>
 <p><img alt="" src="img/git-pull-push.png" /></p>
-<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>到哪里找开源项目</h2>
+<p>最左边的remote和左边3个（repository、index、workspace)是同等地位的，意思是remote是远方某人的电脑，里面其实也包含了（repository、index、workspace)中的3个或2个，大家地位是平等的。</p>
+<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>橡树与木棉</h2>
+<p>svn中每个人的本机是client，数据库在server上，离开server，你看不到log，无法做commit。但git没有server的概念，或者说server就在每个人的本机上，无非是保存了repo的哪些东东。</p>
+<p>每两人之间互相分享、交换代码是通过： pull、push、fetch、clone 这几个命令来完成的，你是我的remote，我也是你的remote，大家彼此之间就像橡树与木棉，谁也不是攀援谁的凌霄花，谁也不是谁的痴情鸟儿，两个remote只是两颗近旁的橡树和木棉，根紧握在地下，叶相触在云里，仿佛永远分离，却又终身相依。</p>
+<p>我可以独立的生长，我commit代码不必次次都跟你商量，你也是，我们之间的每次push和pull都建立的互相尊重、地位平等的前提下，你不必绑架我，我也不限制你。</p>
+<h2 id="gitgithub"><a name="user-content-gitgithub" href="#gitgithub" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git与github</h2>
+<p>这个问题就像经典的C++与VC的区别，问了很多年了还是有刚出校门的同学在问，我后来一度觉得这不能怪同学们，谁叫他俩非要起这么相近的名字，让人傻傻分不清。</p>
+<p>git和github更加淋漓尽致的体现这个现象，也是git入门的必问问题之一。谁让github这帮小伙起了个这样的名字，人家sourceforge、googlecode、codeplex都不以自己所用的版本管理软件的名字来标榜自己，唯独github，为了显摆自己用了git，起了个git转发器（hub）这个名字 —— 呵呵，开玩笑了，仔细琢磨，你会发现hub（转发器）这个词选的真是绝了，太贴切了。</p>
+<p>git和github我用一句话就让你理解：就像BT和迅雷。——类似“迅雷使用BT协议，增加了权限、种子列表、热门榜单等”，github使用git协议，增加了权限、项目列表、热门榜单等。其他就不多解释了。</p>
+<h2 id="github"><a name="user-content-github" href="#github" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>github与他的小伙伴们（到哪里找开源项目）</h2>
 <p>开源项目托管网站（及其开始支持git的时间）有：</p>
 <ul>
 <li><a href="http://github.com">github</a>(2008.2)</li>
@@ -1311,7 +1322,8 @@ $ git config --global mergetool.diffmerge.cmd 'diffmerge --merge --result=&quot;
 <p>有个有趣的小插曲：CodePlex是微软家的，也开张好多年了，sourceforge时代就不愠不火，反正在大家眼里微软和开源本就是水火不容、盖茨/鲍尔默和托瓦茨也是井水不犯河水。但在2012年微软突然做出了一个有趣的决定：</p>
 <p><img alt="" src="img/codeplex.torvalds.png" /></p>
 <p>近几年，微软更是几乎放弃了自家的CodePlex，转投github，开源自己的.NET都在github上了。</p>
-<h2 id="github"><a name="user-content-github" href="#github" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>为什么github成了程序员的麦加圣地</h2>
+<p>2017年4月1日，愚人节这天微软宣布将关闭了codeplex，4月1日开始关闭新项目的创建，10月进入只读模式，12月15彻底over，结束codeplex 11年的生涯。回想当然用C# 和 ASP.NET 的时候，经常上codeplex上溜达，将随风而逝，成为回忆。</p>
+<h2 id="github_1"><a name="user-content-github_1" href="#github_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>为什么github成了程序员的麦加圣地</h2>
 <p>不解释，它就是那么酷！ &ndash; 谁用谁知道</p>
 <ul>
 <li><a href="http://www.xuanfengge.com/github-cheats.html">GitHub秘籍，为你解读Git与Github酷而少知的功能</a></li>
@@ -1425,7 +1437,7 @@ $ export http_proxy     //再次export即可
 <p>各个开源项目托管网站对ssh的要求可能还会有些许差别，但都会在显著位置进行说明，如果如上操作后仍不能访问，请仔细查阅。</p>
 <h2 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何与别人合作</h2>
 <p>当面沟通必不可少，svn和git并不能解决所有问题，每个团队都可以有自己的分支策略、日志模版、合并规则、标签原则……</p>
-<h2 id="github_1"><a name="user-content-github_1" href="#github_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何在github上与别人合作</h2>
+<h2 id="github_2"><a name="user-content-github_2" href="#github_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何在github上与别人合作</h2>
 <p>github的工作流： <a href="https://guides.github.com/introduction/flow/">Understanding the GitHub Flow</a></p>
 <h2 id="git_6"><a name="user-content-git_6" href="#git_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>怎样才能第一时间得知git上有提交和更新</h2>
 <p>和团队成员保持紧密合作在敏捷中非常重要，SVN的时候有一个非常优秀的软件 CommitMonitor，能够监控SVNServer的更新，图标是一双大眼睛，悄悄的躲在任务栏，发现更新大眼睛变成红色转啊转的。</p>

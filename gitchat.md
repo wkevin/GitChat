@@ -44,7 +44,9 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [git分支之间的关系能否图示](#git分支之间的关系能否图示)
 - [Round 4 : 协作](#round-4--协作)
     - [想看看别人的git库了](#想看看别人的git库了)
-    - [到哪里找开源项目](#到哪里找开源项目)
+    - [橡树与木棉](#橡树与木棉)
+    - [git与github](#git与github)
+    - [github与他的小伙伴们（到哪里找开源项目）](#github与他的小伙伴们（到哪里找开源项目）)
     - [为什么github成了程序员的麦加圣地](#为什么github成了程序员的麦加圣地)
     - [公司内如何穿过Proxy访问github](#公司内如何穿过proxy访问github)
     - [定义了外网和内网两个remote，proxy怎么同时支持](#定义了外网和内网两个remote，proxy怎么同时支持)
@@ -1092,7 +1094,25 @@ $ git log --pretty=oneline --graph
 
 ![](img/git-pull-push.png)
 
-## 到哪里找开源项目
+最左边的remote和左边3个（repository、index、workspace)是同等地位的，意思是remote是远方某人的电脑，里面其实也包含了（repository、index、workspace)中的3个或2个，大家地位是平等的。
+
+## 橡树与木棉
+
+svn中每个人的本机是client，数据库在server上，离开server，你看不到log，无法做commit。但git没有server的概念，或者说server就在每个人的本机上，无非是保存了repo的哪些东东。
+
+每两人之间互相分享、交换代码是通过： pull、push、fetch、clone 这几个命令来完成的，你是我的remote，我也是你的remote，大家彼此之间就像橡树与木棉，谁也不是攀援谁的凌霄花，谁也不是谁的痴情鸟儿，两个remote只是两颗近旁的橡树和木棉，根紧握在地下，叶相触在云里，仿佛永远分离，却又终身相依。
+
+我可以独立的生长，我commit代码不必次次都跟你商量，你也是，我们之间的每次push和pull都建立的互相尊重、地位平等的前提下，你不必绑架我，我也不限制你。
+
+## git与github
+
+这个问题就像经典的C++与VC的区别，问了很多年了还是有刚出校门的同学在问，我后来一度觉得这不能怪同学们，谁叫他俩非要起这么相近的名字，让人傻傻分不清。
+
+git和github更加淋漓尽致的体现这个现象，也是git入门的必问问题之一。谁让github这帮小伙起了个这样的名字，人家sourceforge、googlecode、codeplex都不以自己所用的版本管理软件的名字来标榜自己，唯独github，为了显摆自己用了git，起了个git转发器（hub）这个名字 —— 呵呵，开玩笑了，仔细琢磨，你会发现hub（转发器）这个词选的真是绝了，太贴切了。
+
+git和github我用一句话就让你理解：就像BT和迅雷。——类似“迅雷使用BT协议，增加了权限、种子列表、热门榜单等”，github使用git协议，增加了权限、项目列表、热门榜单等。其他就不多解释了。
+
+## github与他的小伙伴们（到哪里找开源项目）
 
 开源项目托管网站（及其开始支持git的时间）有：
 
@@ -1113,6 +1133,8 @@ $ git log --pretty=oneline --graph
 ![](img/codeplex.torvalds.png)
 
 近几年，微软更是几乎放弃了自家的CodePlex，转投github，开源自己的.NET都在github上了。
+
+2017年4月1日，愚人节这天微软宣布将关闭了codeplex，4月1日开始关闭新项目的创建，10月进入只读模式，12月15彻底over，结束codeplex 11年的生涯。回想当然用C# 和 ASP.NET 的时候，经常上codeplex上溜达，都将随风而逝，成为回忆。
 
 ## 为什么github成了程序员的麦加圣地
 
