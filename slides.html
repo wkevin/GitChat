@@ -112,6 +112,13 @@ code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
 请按 Esc 键
 </h1>
 </section></section>
+<section><section id="特别声明" class="titleslide slide level1"><h1>特别声明</h1></section><section id="section-1" class="slide level2">
+<h1></h1>
+<p>本文不是<strong>Git for Dummies</strong><br />
+因为傻瓜书不需要人来讲解</p>
+<p>本文目标是<br />
+<strong>让你执行每个git命令时知其然，并且知其所以然</strong></p>
+</section></section>
 <section><section id="源起" class="titleslide slide level1"><h1>源起</h1></section><section id="vcs-version-control-system" class="slide level2">
 <h1>VCS (Version Control System)</h1>
 <ul>
@@ -197,7 +204,7 @@ code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
 </ul>
 </section><section id="git-比-svn-好在哪" class="slide level2">
 <h1>Git 比 SVN 好在哪</h1>
-<p>先把这个问题放一放，最后来回答。</p>
+<p>先把这个问题放一放，<a href="#//git-vs-svn">最后来回答</a>。</p>
 <p>换个问题：我要掌握哪些git知识才能领略到它的好？</p>
 </section></section>
 <section><section id="git-常用命令" class="titleslide slide level1"><h1>Git 常用命令</h1></section><section id="git-help-给出的关键命令" class="slide level2">
@@ -354,7 +361,7 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <span class="kw">Date</span>:   Sun Jan 31 11:39:55 2016 +0800
 
     <span class="kw">create</span> mydiary</code></pre></div>
-</section><section id="section-1" class="slide level2">
+</section><section id="section-2" class="slide level2">
 <h1></h1>
 <p>每天可以随时写日记、随时<code>git add</code>、适时<code>git commit</code>，经过一段时间，你的diary库就越来越让你爱不释手了</p>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log
@@ -849,7 +856,7 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <span class="kw">6</span>               6
 <span class="kw">7</span>               7
               <span class="kw">&gt;</span> <span class="kw">8</span></code></pre></div>
-</section><section id="section-2" class="slide level2">
+</section><section id="section-3" class="slide level2">
 <h1></h1>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">diff</span> 1.txt 2.txt       
 <span class="kw">3c3</span>    
@@ -866,7 +873,7 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <li>5d4: 1.txt的第5行 delete</li>
 <li>……</li>
 </ul>
-</section><section id="section-3" class="slide level2">
+</section><section id="section-4" class="slide level2">
 <h1></h1>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">diff</span> 1.txt 2.txt -c
 <span class="kw">***</span> 1.txt 2016-07-16 19:20:03.593327527 +0800
@@ -892,7 +899,7 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <li>&quot;***&quot;表示变动前的文件</li>
 <li>&quot;---&quot;表示变动后的文件</li>
 </ul>
-</section><section id="section-4" class="slide level2">
+</section><section id="section-5" class="slide level2">
 <h1></h1>
 <div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">diff</span> 1.txt 2.txt -u
 <span class="kw">---</span> 1.txt 2016-07-16 19:20:03.593327527 +0800
@@ -1227,6 +1234,9 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 </section><section id="githubgitlab-的管理方式" class="slide level2">
 <h1>github/gitlab 的管理方式</h1>
 <p><a href="https://guides.github.com/introduction/flow/">Understanding the GitHub Flow</a></p>
+</section></section>
+<section><section id="git-vs-svn" class="titleslide slide level1"><h1>Git vs SVN</h1></section><section id="section-6" class="slide level2">
+<h1></h1>
 </section></section>
 <section><section id="最后" class="titleslide slide level1"><h1>最后</h1></section><section id="几点建议" class="slide level2">
 <h1>几点建议</h1>

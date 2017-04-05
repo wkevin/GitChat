@@ -23,6 +23,16 @@
 <br><br>
 <h1>请按 Esc 键</h1>
 
+# 特别声明
+
+## 
+
+本文不是**Git for Dummies**  
+因为傻瓜书不需要人来讲解  
+
+本文目标是  
+**让你执行每个git命令时知其然，并且知其所以然**
+
 # 源起
 
 ## VCS (Version Control System)
@@ -91,7 +101,7 @@ Hamano现在google，他的github帐号为：[gitster](https://github.com/gitste
 
 ## Git 比 SVN 好在哪
 
-先把这个问题放一放，最后来回答。
+先把这个问题放一放，[最后来回答](#/git-vs-svn)。
 
 换个问题：我要掌握哪些git知识才能领略到它的好？
 
@@ -1124,6 +1134,10 @@ GitChat.git$ git branch --contains 9d8d
 ## github/gitlab 的管理方式
 
 [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/)
+
+# Git vs SVN
+
+## 
 
 # 最后
 
