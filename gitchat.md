@@ -45,13 +45,15 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [分支名能否用中文](#_3)
 - [Round 4 : 协作](#round-4)
     - [想看看别人的git库了](#git_5)
-    - [到哪里找开源项目](#_4)
-    - [为什么github成了程序员的麦加圣地](#github)
+    - [橡树与木棉](#_4)
+    - [git与github](#gitgithub)
+    - [github与他的小伙伴们（到哪里找开源项目）](#github)
+    - [为什么github成了程序员的麦加圣地](#github_1)
     - [公司内如何穿过Proxy访问github](#proxygithub)
     - [定义了外网和内网两个remote，proxy怎么同时支持](#remoteproxy)
     - [SSH访问remote的通常步骤是啥](#sshremote)
     - [如何与别人合作](#_5)
-    - [如何在github上与别人合作](#github_1)
+    - [如何在github上与别人合作](#github_2)
     - [怎样才能第一时间得知git上有提交和更新](#git_6)
     - [为什么说不要用git pull，而是用git fetch + git merge代替](#git-pullgit-fetch-git-merge)
     - [如何不clone/fetch到本地看remote repo的log?](#clonefetchremote-repolog)
@@ -1231,19 +1233,7 @@ fatal: unable to access 'https://github.com/wkevin/GitChat.git/': Failed to conn
 $ git config --global http.proxy http://proxysz.zte.com.cn:80
 $ git config --global https.proxy http://proxysz.zte.com.cn:80
 ```
-* 写错url（https为http），提示url错误
-```cmd
-$ git clone http://github.com/wkevin/GitChat.git GC
-Cloning into 'GC'...
-fatal: unable to access 'http://github.com/wkevin/GitChat.git/': The requested URL returned error: 502
-```
-* 写对url，还是提示错误——这个就不应该了，看来是proxy出问题了
-```cmd
-$ git clone https://github.com/wkevin/GitChat.git GC
-Cloning into 'GC'...
-fatal: unable to access 'https://github.com/wkevin/GitChat.git/': Received HTTP code 502 from proxy after CONNECT
-```
-* 喝了杯茶，回来再试
+* 喝了杯茶，回来再试OK
 ```cmd
 $ git clone https://github.com/wkevin/GitChat.git GC
 Cloning into 'GC'...
@@ -1283,21 +1273,20 @@ http_proxy=http://proxysz.zte.com.cn:80/   //set命令仍然能够查看到
 $ export http_proxy     //再次export即可
 ```
 
-
-
 ## 定义了外网和内网两个remote，proxy怎么同时支持
 
 若你处在某个proxy之内，你的某个项目又有两个remote，分别在外网和公司内网，则会遇到这样的困扰：
 
 * 为git配置了http.proxy后，外网OK，内网的就连不上
-* 去掉http.proxy后，内文的remote OK，外网的又连不上
+* 去掉http.proxy后，内网的remote OK，外网的又连不上
 
-说实话如何配置 http.proxy & https.proxy ，使其同时支持proxy内、外的remote（其实是制定proxy的筛选策略） —— 我没搞定，我也没研究。
+解决这个问题有几种方法：
 
-能想到的解决策略有：
-
-1. 如果你配置了http.proxy（全局or项目），则内网的remote可以使用ssh来连接。
-2. 如果你没有配置http.proxy，则外网的remote可以使用ssh来链接，但要给**ssh配置proxy**（[参考1](http://blog.csdn.net/qq634416025/article/details/42835409)、[参考2](http://iyuan.iteye.com/blog/1672982)）
+1. 给不同的remote配专用的proxy： `git config --local --add remote.<name>.proxy ""`
+    - 第一次 `git clone` 要麻烦一点
+2. 一类remote用http.proxy，另一类remote用ssh
+    - 如果想外网的remote用ssh，要给**ssh配置proxy**（[参考1](http://blog.csdn.net/qq634416025/article/details/42835409)、[参考2](http://iyuan.iteye.com/blog/1672982)）
+3. shell中用`export http_proxy ...`来访问外网remote，另开一个shell则无此环境变量，可用于内网remote。
 
 ## SSH访问remote的通常步骤是啥
 

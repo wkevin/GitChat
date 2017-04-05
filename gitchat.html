@@ -1,7 +1,7 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><style>/* RESET
 =============================================================================*/
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark,{
   margin: 0;
   padding: 0;
   border: 0;
@@ -52,29 +52,33 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
   /*border-bottom: 3px solid #ccc;*/
   /*border-top: 1px solid #ccc;*/
-  background-color: #AEDD81;
+  /*background-color: #AEDD81;*/
   padding: 10px 0px 10px 0px;
   font-size: 28px;
   color: #000;
   text-align: center; 
+  border-bottom: 5px double #333333;
 }
 
 h2 {
-  background-color: #B2C8BB;
+  /*background-color: #B2C8BB;*/
   padding: 5px 0px 5px 10px;
   font-size: 24px;
   color: #000;
+  border-bottom: 3px ridge #666666;
 }
 
 h3 {
-  background-color: #99ccff;
+  /*background-color: #99ccff;*/
   padding: 5px 0px 5px 20px;
   font-size: 18px;
   color: #000;
+  border-bottom: 2px inset #CCCCCC;
 }
 
 h4 {
   font-size: 16px;
+  border-bottom: 2px inset #EEEEEE;
 }
 
 h5 {
@@ -82,7 +86,6 @@ h5 {
 }
 
 h6 {
-  color: #777;
   font-size: 14px;
 }
 
@@ -260,6 +263,9 @@ table {
 }
 table th {
   font-weight: bold;
+  text-align: center !important; /*内容居中，加上 !important 避免被 Markdown 样式覆盖*/
+  background: rgba(158,188,226,0.2); /*背景色*/
+  white-space: nowrap; /*表头内容强制在一行显示*/
 }
 
 table th, table td {
@@ -267,15 +273,29 @@ table th, table td {
   padding: 6px 13px;
 }
 
+table td:nth-child(1) {
+    white-space: nowrap; /*首列不换行*/
+}
+
 table tr {
   border-top: 1px solid #ccc;
   background-color: #fff;
+}
+
+table tr:hover {
+    background: #efefef; 
 }
 
 
 /* IMAGES
 =============================================================================*/
 
+embed {
+  max-width: 95%;
+  }
+div {
+  text-align: center;
+}
 img {
   max-width: 95%;
   clear: both;
@@ -308,7 +328,8 @@ img {
 } 
 </style><title>gitchat</title></head><body><article class="markdown-body"><h1>Git 聊天入门</h1>
 
-<p><strong>序</strong></p>
+<p>俊建 Kevin</p>
+<p><strong>自序</strong></p>
 <p>读一本Git的书和读一篇Git的文章给人的知识含量是不同的，但给人的愉悦感也是迥异的。本文不想让您有读书的感觉、不追求知识全面、架构完整，但也不想只罗列一些git的知识点，搞的像一个Tip集。本文会从实际使用的角度，以聊天问答的形式，从浅入深，逐步展露git的若干方面。</p>
 <p>本文分Round进行，每局并不以git命令的逻辑来分类，而是以<strong>使用git完成任务的水平来分解阶段</strong>。一些问题原本来自于我和朋友们的聊天，闲聊之余，记录成集，不要期待有什么高深的理论，让你每读完一个Round，可以小试牛刀，然后烹茶小饮、若有所思……是我最想要的。</p>
 <p>git 有自己的 <a href="https://www.kernel.org/pub/software/scm/git/docs/user-manual.html">user manunal</a>，和官方宝书（<a href="http://git-scm.com/book/en/v2">英文版</a>、<a href="http://git-scm.com/book/zh/v2">中文版</a>、<a href="http://www.kancloud.cn/kancloud/progit">国内备份</a>），如果你读来无碍，请忽视本文，本文与它们相比只是个小人书、连环画，或者作为它们的一个补充。我在写每个Topic的时候也都在想：是不是书里已经有了？我是不是重复了？是不是删掉算了？—— 经常在知识点完整和拾遗之间反复权衡，但想到碎片化阅读越来越普及、学东西主要靠百度的今天，我写点东西发出来应该也是有益的。</p>
@@ -352,13 +373,15 @@ img {
 </li>
 <li><a href="#round-4">Round 4 : 协作</a><ul>
 <li><a href="#git_5">想看看别人的git库了</a></li>
-<li><a href="#_4">到哪里找开源项目</a></li>
-<li><a href="#github">为什么github成了程序员的麦加圣地</a></li>
+<li><a href="#_4">橡树与木棉</a></li>
+<li><a href="#gitgithub">git与github</a></li>
+<li><a href="#github">github与他的小伙伴们（到哪里找开源项目）</a></li>
+<li><a href="#github_1">为什么github成了程序员的麦加圣地</a></li>
 <li><a href="#proxygithub">公司内如何穿过Proxy访问github</a></li>
 <li><a href="#remoteproxy">定义了外网和内网两个remote，proxy怎么同时支持</a></li>
 <li><a href="#sshremote">SSH访问remote的通常步骤是啥</a></li>
 <li><a href="#_5">如何与别人合作</a></li>
-<li><a href="#github_1">如何在github上与别人合作</a></li>
+<li><a href="#github_2">如何在github上与别人合作</a></li>
 <li><a href="#git_6">怎样才能第一时间得知git上有提交和更新</a></li>
 <li><a href="#git-pullgit-fetch-git-merge">为什么说不要用git pull，而是用git fetch + git merge代替</a></li>
 <li><a href="#clonefetchremote-repolog">如何不clone/fetch到本地看remote repo的log?</a></li>
@@ -1347,7 +1370,16 @@ kevin@T410:~$ echo $?
 </ul>
 <p>一幅图说明问题：</p>
 <p><img alt="" src="img/git-pull-push.png" /></p>
-<h2 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>到哪里找开源项目</h2>
+<p>最左边的remote和左边3个（repository、index、workspace)是同等地位的，意思是remote是远方某人的电脑，里面其实也包含了（repository、index、workspace)中的3个或2个，大家地位是平等的。</p>
+<h2 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>橡树与木棉</h2>
+<p>svn中每个人的本机是client，数据库在server上，离开server，你看不到log，无法做commit。但git没有server的概念，或者说server就在每个人的本机上，无非是保存了repo的哪些东东。</p>
+<p>每两人之间互相分享、交换代码是通过： pull、push、fetch、clone 这几个命令来完成的，你是我的remote，我也是你的remote，大家彼此之间就像橡树与木棉，谁也不是攀援谁的凌霄花，谁也不是谁的痴情鸟儿，两个remote只是两颗近旁的橡树和木棉，根紧握在地下，叶相触在云里，仿佛永远分离，却又终身相依。</p>
+<p>我可以独立的生长，我commit代码不必次次都跟你商量，你也是，我们之间的每次push和pull都建立的互相尊重、地位平等的前提下，你不必绑架我，我也不限制你。</p>
+<h2 id="gitgithub"><a name="user-content-gitgithub" href="#gitgithub" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git与github</h2>
+<p>这个问题就像经典的C++与VC的区别，问了很多年了还是有刚出校门的同学在问，我后来一度觉得这不能怪同学们，谁叫他俩非要起这么相近的名字，让人傻傻分不清。</p>
+<p>git和github更加淋漓尽致的体现这个现象，也是git入门的必问问题之一。谁让github这帮小伙起了个这样的名字，人家sourceforge、googlecode、codeplex都不以自己所用的版本管理软件的名字来标榜自己，唯独github，为了显摆自己用了git，起了个git转发器（hub）这个名字 —— 呵呵，开玩笑了，仔细琢磨，你会发现hub（转发器）这个词选的真是绝了，太贴切了。</p>
+<p>git和github我用一句话就让你理解：就像BT和迅雷。——类似“迅雷使用BT协议，增加了权限、种子列表、热门榜单等”，github使用git协议，增加了权限、项目列表、热门榜单等。其他就不多解释了。</p>
+<h2 id="github"><a name="user-content-github" href="#github" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>github与他的小伙伴们（到哪里找开源项目）</h2>
 <p>开源项目托管网站（及其开始支持git的时间）有：</p>
 <ul>
 <li><a href="http://github.com">github</a>(2008.2)</li>
@@ -1363,7 +1395,8 @@ kevin@T410:~$ echo $?
 <p>有个有趣的小插曲：CodePlex是微软家的，也开张好多年了，sourceforge时代就不愠不火，反正在大家眼里微软和开源本就是水火不容、盖茨/鲍尔默和托瓦茨也是井水不犯河水。但在2012年微软突然做出了一个有趣的决定：</p>
 <p><img alt="" src="img/codeplex.torvalds.png" /></p>
 <p>近几年，微软更是几乎放弃了自家的CodePlex，转投github，开源自己的.NET都在github上了。</p>
-<h2 id="github"><a name="user-content-github" href="#github" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>为什么github成了程序员的麦加圣地</h2>
+<p>2017年4月1日，愚人节这天微软宣布将关闭了codeplex，4月1日开始关闭新项目的创建，10月进入只读模式，12月15彻底over，结束codeplex 11年的生涯。回想当然用C# 和 ASP.NET 的时候，经常上codeplex上溜达，都将随风而逝，成为回忆。</p>
+<h2 id="github_1"><a name="user-content-github_1" href="#github_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>为什么github成了程序员的麦加圣地</h2>
 <p>不解释，它就是那么酷！ &ndash; 谁用谁知道</p>
 <ul>
 <li><a href="http://www.xuanfengge.com/github-cheats.html">GitHub秘籍，为你解读Git与Github酷而少知的功能</a></li>
@@ -1387,17 +1420,7 @@ fatal: unable to access 'https://github.com/wkevin/GitChat.git/': Failed to conn
 <pre><code class="cmd">$ git config --global http.proxy http://proxysz.zte.com.cn:80
 $ git config --global https.proxy http://proxysz.zte.com.cn:80
 </code></pre></li>
-<li>写错url（https为http），提示url错误<br />
-<pre><code class="cmd">$ git clone http://github.com/wkevin/GitChat.git GC
-Cloning into 'GC'...
-fatal: unable to access 'http://github.com/wkevin/GitChat.git/': The requested URL returned error: 502
-</code></pre></li>
-<li>写对url，还是提示错误——这个就不应该了，看来是proxy出问题了<br />
-<pre><code class="cmd">$ git clone https://github.com/wkevin/GitChat.git GC
-Cloning into 'GC'...
-fatal: unable to access 'https://github.com/wkevin/GitChat.git/': Received HTTP code 502 from proxy after CONNECT
-</code></pre></li>
-<li>喝了杯茶，回来再试<br />
+<li>喝了杯茶，回来再试OK<br />
 <pre><code class="cmd">$ git clone https://github.com/wkevin/GitChat.git GC
 Cloning into 'GC'...
 remote: Counting objects: 64, done.
@@ -1436,13 +1459,19 @@ $ export http_proxy     //再次export即可
 <p>若你处在某个proxy之内，你的某个项目又有两个remote，分别在外网和公司内网，则会遇到这样的困扰：</p>
 <ul>
 <li>为git配置了http.proxy后，外网OK，内网的就连不上</li>
-<li>去掉http.proxy后，内文的remote OK，外网的又连不上</li>
+<li>去掉http.proxy后，内网的remote OK，外网的又连不上</li>
 </ul>
-<p>说实话如何配置 http.proxy &amp; https.proxy ，使其同时支持proxy内、外的remote（其实是制定proxy的筛选策略） —— 我没搞定，我也没研究。</p>
-<p>能想到的解决策略有：</p>
+<p>解决这个问题有几种方法：</p>
 <ol>
-<li>如果你配置了http.proxy（全局or项目），则内网的remote可以使用ssh来连接。</li>
-<li>如果你没有配置http.proxy，则外网的remote可以使用ssh来链接，但要给<strong>ssh配置proxy</strong>（<a href="http://blog.csdn.net/qq634416025/article/details/42835409">参考1</a>、<a href="http://iyuan.iteye.com/blog/1672982">参考2</a>）</li>
+<li>给不同的remote配专用的proxy： <code>git config --local --add remote.&lt;name&gt;.proxy ""</code><ul>
+<li>第一次 <code>git clone</code> 要麻烦一点</li>
+</ul>
+</li>
+<li>一类remote用http.proxy，另一类remote用ssh<ul>
+<li>如果想外网的remote用ssh，要给<strong>ssh配置proxy</strong>（<a href="http://blog.csdn.net/qq634416025/article/details/42835409">参考1</a>、<a href="http://iyuan.iteye.com/blog/1672982">参考2</a>）</li>
+</ul>
+</li>
+<li>shell中用<code>export http_proxy ...</code>来访问外网remote，另开一个shell则无此环境变量，可用于内网remote。</li>
 </ol>
 <h2 id="sshremote"><a name="user-content-sshremote" href="#sshremote" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>SSH访问remote的通常步骤是啥</h2>
 <p>OK，书接上文。</p>
@@ -1477,7 +1506,7 @@ $ export http_proxy     //再次export即可
 <p>各个开源项目托管网站对ssh的要求可能还会有些许差别，但都会在显著位置进行说明，如果如上操作后仍不能访问，请仔细查阅。</p>
 <h2 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何与别人合作</h2>
 <p>当面沟通必不可少，svn和git并不能解决所有问题，每个团队都可以有自己的分支策略、日志模版、合并规则、标签原则……</p>
-<h2 id="github_1"><a name="user-content-github_1" href="#github_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何在github上与别人合作</h2>
+<h2 id="github_2"><a name="user-content-github_2" href="#github_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何在github上与别人合作</h2>
 <p>github的工作流： <a href="https://guides.github.com/introduction/flow/">Understanding the GitHub Flow</a></p>
 <h2 id="git_6"><a name="user-content-git_6" href="#git_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>怎样才能第一时间得知git上有提交和更新</h2>
 <p>和团队成员保持紧密合作在敏捷中非常重要，SVN的时候有一个非常优秀的软件 CommitMonitor，能够监控SVNServer的更新，图标是一双大眼睛，悄悄的躲在任务栏，发现更新大眼睛变成红色转啊转的。</p>
@@ -1650,6 +1679,14 @@ https://&lt;name&gt;:&lt;password&gt;@github.com
 <h2 id="git_10"><a name="user-content-git_10" href="#git_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git有哪些好的入门的资料</h2>
 <p>读到这里是需要系统的了解、学习一下git的时候了，<br />
 当然，我明白你说的是中文资料。</p>
+<p><strong>官方Specification</strong></p>
+<ul>
+<li><a href="https://www.kernel.org/pub/software/scm/git/docs/">Git Man Page</a>: 即： git help 命令的输出</li>
+<li><a href="https://www.kernel.org/pub/software/scm/git/docs/user-manual.html">Git User Manual</a></li>
+<li>Git Tutorial： <a href="https://www.kernel.org/pub/software/scm/git/docs/gittutorial.html">Part1</a> &ndash; 即 <code>man gittutorial</code>; <a href="https://www.kernel.org/pub/software/scm/git/docs/gittutorial-2.html">Part2</a> &ndash; 即 <code>man gittutorial-2</code></li>
+<li><a href="https://www.kernel.org/pub/software/scm/git/docs/howto/">How to</a></li>
+</ul>
+<p><strong>Book</strong></p>
 <ul>
 <li>Pro Git:根正苗红的书<ul>
 <li>第2版：<a href="http://git-scm.com/book/zh/v2">中文官方在线版</a>、<a href="http://www.kancloud.cn/kancloud/progit">中文国内在线版</a>、<a href="http://git-scm.com/book/en/v2">英文官方在线版</a></li>
@@ -1659,9 +1696,10 @@ https://&lt;name&gt;:&lt;password&gt;@github.com
 <li><a href="http://gitbook.liuhui998.com/index.html">Git Community Book 中文版</a></li>
 <li><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">git简明教程</a></li>
 </ul>
-<p>但是有时候英文资料是不可避免的：</p>
+<p><strong>Website</strong></p>
 <ul>
-<li><a href="http://git.wiki.kernel.org">git wiki</a></li>
+<li>[git 维基百科]: <a href="https://en.wikipedia.org/wiki/Git_">https://en.wikipedia.org/wiki/Git_</a>(software)</li>
+<li><a href="http://git.wiki.kernel.org">git SCM wiki</a> &ndash; 2011年已停止更新</li>
 </ul>
 <h2 id="git_11"><a name="user-content-git_11" href="#git_11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git命令我掌握的七七八八了，怎么整理一下</h2>
 <p>google 或 bing 上搜索图片：<strong>git cheat sheet</strong> —— 不要在baidu上搜索，结果你会很失望。</p>
