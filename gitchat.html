@@ -354,6 +354,7 @@ img {
 <li><a href="#git-log_3">git log 已经很好了，但好像还是缺点啥</a></li>
 <li><a href="#git-log-fuller-author-commit">git log &ndash;fuller 中的 author 和 commit 啥关系</a></li>
 <li><a href="#log">看log的时候能否把修改了哪些文件也列出来</a></li>
+<li><a href="#tag">看tag的时候能否把日期时间也列出来</a></li>
 <li><a href="#tortoisesvndiff">我要能像TortoiseSVN那样左右两栏对比看diff</a></li>
 <li><a href="#git-add">修改完了为什么不是直接提交，而是git add</a></li>
 <li><a href="#ubuntugit-commit">我用ubuntu，我要修改git commit时的默认编辑器</a></li>
@@ -388,7 +389,7 @@ img {
 <li><a href="#commitpush">程序猿如何频繁地commit，但又低调地push</a></li>
 <li><a href="#http-pushnamepassword">通过http push时每次都要求输入name/password，能否避开</a></li>
 <li><a href="#_6">如何删除远程分支</a></li>
-<li><a href="#tag">如何删除远程tag</a></li>
+<li><a href="#tag_1">如何删除远程tag</a></li>
 <li><a href="#_7">别人把远程分支删除了，我本地的对应分支怎么还在</a></li>
 <li><a href="#_8">维持树的整洁</a></li>
 <li><a href="#git_7">Git多用户间协作还有什么引人入胜之处</a></li>
@@ -874,6 +875,20 @@ bf36ab9 Sun Jan 31 12:19:33 2016 wkevin 2.1的日记
 <p>在没有github之前，一个开源项目通常还是只设置几个有权限的提交人，大家想贡献代码就发patch给有权限的人，然后有权人commit。但自从有了github，发明了fork（fork并不属于git，而是github的独创哦）和PR（Pull-Request），让这个过程更加的轻便，也让项目的发展更加《失控》，有能力的人可以在自己的领地fork并发展一个项目，PR或不PR给原作者全凭个人喜好，原作者如果“懒政”，其他人完全可以独立发展。—— 每个人都在自己的库里commit，使得committer和author通常都是一个人，大家都是通过PR给其他人，而不是发送patch了。—— 所以 <code>--author</code> 这个参数已经很久不用一次了。</p>
 <h2 id="log"><a name="user-content-log" href="#log" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>看log的时候能否把修改了哪些文件也列出来</h2>
 <pre><code class="cmd">$ git log --stat
+</code></pre>
+
+<h2 id="tag"><a name="user-content-tag" href="#tag" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>看tag的时候能否把日期时间也列出来</h2>
+<p><code>git tag</code> 貌似是完成不了这个任务，只能拜托<code>git log</code>了。</p>
+<p>关键是 <code>--simplify-by-decoration</code> 参数， refs/heads 和 refs/tags 都算一种 decoration，再联合 &ndash;tags 就可以了：</p>
+<pre><code class="cmd">$ git log --tags --simplify-by-decoration --pretty=&quot;format:%ci %d&quot;
+</code></pre>
+
+<p>下面这句可以按常规log来显示，每个hash后面跟的就是tag</p>
+<pre><code class="cmd">$ git log --decorate=full --simplify-by-decoration
+</code></pre>
+
+<p>或者用 for-each-ref 命令也是极好的：</p>
+<pre><code class="cmd">$ git for-each-ref --format=&quot;%(creatordate)  %(refname:short) &quot; refs/tags/*
 </code></pre>
 
 <h2 id="tortoisesvndiff"><a name="user-content-tortoisesvndiff" href="#tortoisesvndiff" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我要能像TortoiseSVN那样左右两栏对比看diff</h2>
@@ -1612,7 +1627,7 @@ https://&lt;name&gt;:&lt;password&gt;@github.com
 </ul>
 </li>
 </ul>
-<h2 id="tag"><a name="user-content-tag" href="#tag" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何删除远程tag</h2>
+<h2 id="tag_1"><a name="user-content-tag_1" href="#tag_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何删除远程tag</h2>
 <ul>
 <li>删除本地tag<ul>
 <li><code>git tag -d &lt;tagname&gt;</code></li>

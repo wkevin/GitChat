@@ -30,6 +30,7 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [git log 已经很好了，但好像还是缺点啥](#git-log_3)
     - [git log --fuller 中的 author 和 commit 啥关系](#git-log-fuller-author-commit)
     - [看log的时候能否把修改了哪些文件也列出来](#log)
+    - [看tag的时候能否把日期时间也列出来](#tag)
     - [我要能像TortoiseSVN那样左右两栏对比看diff](#tortoisesvndiff)
     - [修改完了为什么不是直接提交，而是git add](#git-add)
     - [我用ubuntu，我要修改git commit时的默认编辑器](#ubuntugit-commit)
@@ -60,7 +61,7 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
     - [程序猿如何频繁地commit，但又低调地push](#commitpush)
     - [通过http push时每次都要求输入name/password，能否避开](#http-pushnamepassword)
     - [如何删除远程分支](#_6)
-    - [如何删除远程tag](#tag)
+    - [如何删除远程tag](#tag_1)
     - [别人把远程分支删除了，我本地的对应分支怎么还在](#_7)
     - [维持树的整洁](#_8)
     - [Git多用户间协作还有什么引人入胜之处](#git_7)
@@ -624,6 +625,28 @@ $ git commit --author=wkevin --date='2016-01-30 22:04:04 +0800'
 
 ```cmd
 $ git log --stat
+```
+
+## 看tag的时候能否把日期时间也列出来
+
+`git tag` 貌似是完成不了这个任务，只能拜托`git log`了。
+
+关键是 `--simplify-by-decoration` 参数， refs/heads 和 refs/tags 都算一种 decoration，再联合 --tags 就可以了：
+
+```cmd
+$ git log --tags --simplify-by-decoration --pretty="format:%ci %d"
+```
+
+下面这句可以按常规log来显示，每个hash后面跟的就是tag
+
+```cmd
+$ git log --decorate=full --simplify-by-decoration
+```
+
+或者用 for-each-ref 命令也是极好的：
+
+```cmd
+$ git for-each-ref --format="%(creatordate)  %(refname:short) " refs/tags/*
 ```
 
 ## 我要能像TortoiseSVN那样左右两栏对比看diff
