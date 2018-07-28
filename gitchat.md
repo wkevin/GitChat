@@ -608,6 +608,25 @@ git config --global --replace-all alias.lg  "log --pretty=format:'%C(auto) %h | 
 
 ![](img/git-lg-by-linux.png)
 
+##总结：推荐alias配置
+```cmd
+git config --global --replace-all alias.st "status -sb"
+git config --global --replace-all alias.co "checkout"
+git config --global --replace-all alias.br "branch"
+git config --global --replace-all alias.mg "merge"
+git config --global --replace-all alias.ci "commit"
+git config --global --replace-all alias.ds "diff --staged"
+git config --global --replace-all alias.dt "difftool"
+git config --global --replace-all alias.mt "mergetool"
+git config --global --replace-all alias.last "log -1 HEAD"
+git config --global --replace-all alias.latest "for-each-ref --sort=-committerdate --format='%(committername)@%(refname:short) [%(committerdate:short)] %(contents)'"
+git config --global --replace-all alias.ls "log --pretty=format:'%C(yellow)%h %C(blue)%ad %C(red)%d %C(reset)%s %C(green)[%cn]' --decorate --date=short"
+git config --global --replace-all alias.hist "log --pretty=format:'%C(yellow)%h %C(red)%d %C(reset)%s %C(green)[%an] %C(blue)%ad' --topo-order --graph --date=short"
+git config --global --replace-all alias.type "cat-file -t"
+git config --global --replace-all alias.dump "cat-file -p"
+git config --global --replace-all alias.lg "log --pretty=format:'%C(auto) %h | %ai | %Cred %an %Cgreen %s'"
+```
+
 ## git log --fuller 中的 author 和 commit 啥关系
 
 必须要说了，git的设计者的设计思路是：希望提交人（执行`git commit`的人）能够把author写明白，而不是据为己有。所以git的作者（author）和提交人（commit）可以不是同一个人。
