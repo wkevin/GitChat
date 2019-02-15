@@ -2,8 +2,8 @@
 
 **给初学者入门用的章回体指南**
 
-* Article: [Git 聊天入门](http://rawgit.com/wkevin/GitChat/master/gitchat.html)
-* Slides: [GitChat Slides](http://rawgit.com/wkevin/GitChat/master/slides.html)
+* Article: [Git 聊天入门](http://wkevin.github.io/GitChat/gitchat.html)
+* Slides: [GitChat Slides](http://wkevin.github.io/GitChat/slides.html)
 
 **How to build slides**:
 
