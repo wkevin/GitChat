@@ -11,7 +11,7 @@
 git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs/user-manual.html)，和官方宝书（[英文版](http://git-scm.com/book/en/v2)、[中文版](http://git-scm.com/book/zh/v2)、[国内备份](http://www.kancloud.cn/kancloud/progit)），如果你读来无碍，请忽视本文，本文与它们相比只是个小人书、连环画，或者作为它们的一个补充。我在写每个Topic的时候也都在想：是不是书里已经有了？我是不是重复了？是不是删掉算了？—— 经常在知识点完整和拾遗之间反复权衡，但想到碎片化阅读越来越普及、学东西主要靠百度的今天，我写点东西发出来应该也是有益的。
 
 
---- 
+---
 
 <!-- MarkdownTOC depth=2 -->
 
@@ -171,7 +171,7 @@ $ cat >diary.md
 回家过年^C
 $ ls
 diary.md
-$ cat diary.md 
+$ cat diary.md
 # Diary
 
 ## 2016.1.31
@@ -214,7 +214,7 @@ nothing added to commit but untracked files present (use "git add" to track)
 ```
 * `git add filename`：将文件纳入管理，filename 支持通配符，最常用的就是点(.)表示所有文件
 ```cmd
-$ git add diary.md 
+$ git add diary.md
 ```
 * `git status` 显示此文件待提交（to be committed），此时文件已经开始被git管理了，文件进入一种暂存状态（stage），如果想反悔可以用`git rm --cached`使其进入unstage状态
 ```cmd
@@ -248,7 +248,7 @@ aster (root-commit) 14dd781] create mydiary
 ```
 * 执行 `git commit` 后会自动打开一个编辑器（编辑器是可配置的，以后再说怎么配置），比如 vi，进行提交log的撰写，保存退出即提交成功，不保存退出即放弃提交
 ```vi
-  1 
+  1
   2 # Please enter the commit message for your changes. Lines starting
   3 # with '#' will be ignored, and an empty message aborts the commit.
   4 # On branch master
@@ -405,7 +405,7 @@ no changes added to commit (use "git add" and/or "git commit -a")
 $ cat >.gitignore
 *.html
 ^C
-$ cat .gitignore 
+$ cat .gitignore
 *.html
 ```
 * diary.html 已经被自动忽略。
@@ -464,7 +464,7 @@ Date:   Sun Jan 31 12:20:26 2016 +0800
 * --author 的一个错误匹配
 ```cmd
 $ git log --author=wken
-$ 
+$
 ```
 * --author 上使用通配符
 ```cmd
@@ -608,6 +608,25 @@ git config --global --replace-all alias.lg  "log --pretty=format:'%C(auto) %h | 
 
 ![](img/git-lg-by-linux.png)
 
+## 总结：推荐alias配置
+```cmd
+git config --global --replace-all alias.st "status -sb"
+git config --global --replace-all alias.co "checkout"
+git config --global --replace-all alias.br "branch"
+git config --global --replace-all alias.mg "merge"
+git config --global --replace-all alias.ci "commit"
+git config --global --replace-all alias.ds "diff --staged"
+git config --global --replace-all alias.dt "difftool"
+git config --global --replace-all alias.mt "mergetool"
+git config --global --replace-all alias.last "log -1 HEAD"
+git config --global --replace-all alias.latest "for-each-ref --sort=-committerdate --format='%(committername)@%(refname:short) [%(committerdate:short)] %(contents)'"
+git config --global --replace-all alias.ls "log --pretty=format:'%C(yellow)%h %C(blue)%ad %C(red)%d %C(reset)%s %C(green)[%cn]' --decorate --date=short"
+git config --global --replace-all alias.hist "log --pretty=format:'%C(yellow)%h %C(red)%d %C(reset)%s %C(green)[%an] %C(blue)%ad' --topo-order --graph --date=short"
+git config --global --replace-all alias.type "cat-file -t"
+git config --global --replace-all alias.dump "cat-file -p"
+git config --global --replace-all alias.lg "log --pretty=format:'%C(auto) %h | %ai | %Cred %an %Cgreen %s'"
+```
+
 ## git log --fuller 中的 author 和 commit 啥关系
 
 必须要说了，git的设计者的设计思路是：希望提交人（执行`git commit`的人）能够把author写明白，而不是据为己有。所以git的作者（author）和提交人（commit）可以不是同一个人。
@@ -711,10 +730,14 @@ $ git for-each-ref --format="%(creatordate)  %(refname:short) " refs/tags/*
     - Linux
     - Windows
 
+    ```cmd
+    $ git config --global diff.tool meld
+    $ git config --global difftool.meld.path "/C/Program Files (x86)/Meld/Meld.exe
+    ```
 除此之外，还可以配置一项：
 
 ```cmd
-$ git config --global difftool.prompt false 
+$ git config --global difftool.prompt false
 ```
 
 OK，弄好了吧，我们来总结一下其知识点，如果不想看，可以跳过去看下条了。
@@ -850,7 +873,7 @@ ubuntu$ update-alternatives --config editor
 下面这几步非常有必要：
 
 * 看一下《Pro Git》中的[分支这一章](http://www.kancloud.cn/kancloud/progit/70182)
-* 网文非常多，自行搜索一下 `git branch` 
+* 网文非常多，自行搜索一下 `git branch`
 * `$ git help branch`
 
 我来概要的描述一些要点
@@ -859,7 +882,7 @@ ubuntu$ update-alternatives --config editor
 * git中的3个区：本地工作目录、索引区、库 —— 分支信息保存在库中，工作目录和索引区都对应库中的某个分支。《Pro Git》中的[分支这一章](http://www.kancloud.cn/kancloud/progit/70182)中的图大多都是画的库中的样子，请注意还有工作目录和索引区。
 * git的库中保存单元是[git 的对象（object）](#git-object)，我们通常脑海中出现的像一颗树一样成长的分支树是由一个个commit对象连成的。
 * HEAD指针比较特殊，可以将 HEAD 想象为当前分支的别名
-* 
+*
 
 ## 如何在分支间来回切换
 
@@ -946,7 +969,7 @@ C1 --- C2 --- C3 --- C6 --- C7
                               |
                               b2
         ```
-            
+
     3. b1在C3后有提交
         * merge前状态
         ```
@@ -991,7 +1014,7 @@ C1 --- C2 --- C3 --- C6 --- C7
                                      /     /               \|
                 C1 --- C2 --- C3 -- C6 -- / ---------------C7
                                \         /               
-                               C4 --- C5 
+                               C4 --- C5
                                       |
                                       b2
                 ```
@@ -1101,22 +1124,22 @@ $ git log --pretty=oneline --graph
 关于分支的命名，可以用一条git命令来检查： git check-ref-format —— 它的返回值为0表示git接受此命名，否则不接受。比如：
 
 ```cmd
-kevin@T410:~$ git check-ref-format "refs/heads/zte" 
+kevin@T410:~$ git check-ref-format "refs/heads/zte"
 kevin@T410:~$ echo $?
 0
-kevin@T410:~$ git check-ref-format "refs/heads/z.t.e" 
+kevin@T410:~$ git check-ref-format "refs/heads/z.t.e"
 kevin@T410:~$ echo $?
 0
-kevin@T410:~$ git check-ref-format "refs/heads/zt..e" 
+kevin@T410:~$ git check-ref-format "refs/heads/zt..e"
 kevin@T410:~$ echo $?
 1
-kevin@T410:~$ git check-ref-format "refs/heads/@zte" 
+kevin@T410:~$ git check-ref-format "refs/heads/@zte"
 kevin@T410:~$ echo $?
 0
-kevin@T410:~$ git check-ref-format "refs/heads/z~t^e" 
+kevin@T410:~$ git check-ref-format "refs/heads/z~t^e"
 kevin@T410:~$ echo $?
 1
-kevin@T410:~$ git check-ref-format "refs/heads/z:t?e" 
+kevin@T410:~$ git check-ref-format "refs/heads/z:t?e"
 kevin@T410:~$ echo $?
 1
 ```
@@ -1128,7 +1151,7 @@ kevin@T410:~$ echo $?
 最后，来看看你最关心的中文名：
 
 ```cmd
-kevin@T410:~$ git check-ref-format "refs/heads/中兴" 
+kevin@T410:~$ git check-ref-format "refs/heads/中兴"
 kevin@T410:~$ echo $?
 0
 ```
@@ -1278,14 +1301,14 @@ $
 ```cmd
 $ export http_proxy="http://proxysz.zte.com.cn:80/"
 $ export https_proxy="https://proxysz.zte.com.cn:80/"
-$ 
+$
 ```
 * 再次查询: OK
 ```cmd
 $ export |grep proxy
 declare -x http_proxy="http://proxysz.zte.com.cn:80/"
 declare -x https_proxy="https://proxysz.zte.com.cn:80/"
-$ 
+$
 ```
 * git应该以及可以链接外网了
 * 临时想连接内网（临时不用proxy），咋办
@@ -1325,7 +1348,7 @@ $ ssh-keygen -t rsa -C "wkevin27@gmail.com"
     - 可打开文件手工拷贝
     - 可 `clip < ~/.ssh/id_rsa.pub` 拷贝到粘贴板
 * 添加密钥到ssh-agent（可选）
-    - `$ eval "$(ssh-agent -s)"` 
+    - `$ eval "$(ssh-agent -s)"`
     - `$ ssh-add ~/.ssh/id_rsa`
 * 测试
     - `$ ssh -T git@github.com`
@@ -1378,7 +1401,7 @@ git和svn有所不同，svn 有 server，监控器只需要监控server即可，
 
 git pull的问题是它把过程的细节都隐藏了起来，以至于你不用去了解git中各种类型分支的区别和使用方法。当然，多数时候这是没问题的，但一旦代码有问题，你很难找到出错的地方。看起来git pull的用法会使你吃惊，简单看一下git的使用文档应该就能说服你。
 
-将下载（fetch）和合并（merge）放到一个命令里的另外一个弊端是，你的本地工作目录在未经确认的情况下就会被远程分支更新。当然，除非你关闭所有的安全选项，否则git pull在你本地工作目录还不至于造成不可挽回的损失，但很多时候我们宁愿做的慢一些，也不愿意返工重来。 
+将下载（fetch）和合并（merge）放到一个命令里的另外一个弊端是，你的本地工作目录在未经确认的情况下就会被远程分支更新。当然，除非你关闭所有的安全选项，否则git pull在你本地工作目录还不至于造成不可挽回的损失，但很多时候我们宁愿做的慢一些，也不愿意返工重来。
 
 
 ## 如何不clone/fetch到本地看remote repo的log?
@@ -1435,7 +1458,7 @@ https://<name>:<password>@github.com
 需要注意的一点是：如果你打开了**两步验证**，则通常意义的password已经不能使用，网站会提供tocken给你替代password，请在 .git-credentials 文件中用 tocken 替代之。
 
 ## 如何删除远程分支
-    
+
 * 删除本地分支是： `git branch remove <branchName>`
 * 删除远程分支：
     - `git push origin :<branchName>`
@@ -1459,7 +1482,7 @@ https://<name>:<password>@github.com
 
 ## 维持树的整洁
 
-[A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/) 
+[A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
 
 方法就是：在git push之前，先git fetch，再git rebase
 
@@ -2242,7 +2265,7 @@ $ git l
 
 关键是这里了，无条件的更新了当前 HEAD 节点的 message。
 
-其实 `git commit --amend` 的官方help中是这样解释的： Replace the tip of the current branch by creating a new commit. 
+其实 `git commit --amend` 的官方help中是这样解释的： Replace the tip of the current branch by creating a new commit.
 
 这样`arc diff <startCommit>`步骤就明朗了：
 
@@ -2271,7 +2294,7 @@ arc 为什么要这么做？为什么要“玷污”我的现有节点？如果�
 * `git checkout review`
 * `git checkout master design.md`    //将master分支上的 design.md check 到 review 分支
 * `git commit -am "review for design.md"`
-* `arc diff HEAD^` 或 `arc diff --preview HEAD^` 
+* `arc diff HEAD^` 或 `arc diff --preview HEAD^`
 * `git checkout master`
 * `git branch -D review`  
 
