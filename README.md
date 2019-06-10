@@ -12,7 +12,7 @@
     - `cd GitChat/`
     - `git submodule update --init --recursive`
 * Build Html
-    * `pandoc -s -S -H assets/markdown.css -f markdown -t html -o gitchat.html gitchat.md`
+    * `pandoc -s --template template.html  -f markdown+smart --toc -t html --metadata pagetitle=" " -o gitchat.html gitchat.md`
 * Build Slides
     - `pandoc slides.md -o slides.html -f markdown -t revealjs --standalone --variable=theme:white --highlight-style=zenburn --variable=center:false --variable=css:default.css`
         + **white** can be one of `ls reveal.js/css/theme`
