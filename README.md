@@ -5,13 +5,15 @@
 * Article: [Git 聊天入门](http://wkevin.github.io/GitChat/gitchat.html)
 * Slides: [GitChat Slides](http://wkevin.github.io/GitChat/slides.html)
 
-**How to build slides**:
+**How to build html and slides**:
 
 * Prepare
-    - `sudo apt-get install pandoc`
+    - `sudo apt-get install pandoc` // need pandoc version > 2.0
     - `cd GitChat/`
     - `git submodule update --init --recursive`
-* Build
+* Build Html
+    * `pandoc -s -S -H assets/markdown.css -f markdown -t html -o gitchat.html gitchat.md`
+* Build Slides
     - `pandoc slides.md -o slides.html -f markdown -t revealjs --standalone --variable=theme:white --highlight-style=zenburn --variable=center:false --variable=css:default.css`
         + **white** can be one of `ls reveal.js/css/theme`
         + **zenburn** can be one of: pygments(default),kae,monochrome,espresso,zenburn,haddock,tango

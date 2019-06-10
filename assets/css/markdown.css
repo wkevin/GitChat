@@ -17,7 +17,7 @@ body {
   color: #333;
   background-color: #fff;
   padding: 20px;
-  max-width: 900px;
+  /* max-width: 900px; */
   margin: 0 auto;
 }
 
@@ -326,3 +326,7 @@ img {
   display: block;
   margin:auto;
 } 
+
+.sourceCode {
+  text-align: left;
+}

@@ -48,7 +48,7 @@ code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
 code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
 code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
   </style>
-  <link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
+  <link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme">
   <link rel="stylesheet" href="default.css"/>
   <!-- Printing and PDF exports -->
   <script>
@@ -77,30 +77,30 @@ code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
 <table>
 <thead>
 <tr class="header">
-<th>按键</th>
-<th>效果</th>
+<th style="text-align: left;">按键</th>
+<th style="text-align: left;">效果</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>PageDown/PageUp</td>
-<td>一维向后/前遍历每张Slides</td>
+<td style="text-align: left;">PageDown/PageUp</td>
+<td style="text-align: left;">一维向后/前遍历每张Slides</td>
 </tr>
 <tr class="even">
-<td>空格/Shift+空格<br>鼠标滚轮</td>
-<td>向后/前播放历史中的每张Slides</td>
+<td style="text-align: left;">空格/Shift+空格<br>鼠标滚轮</td>
+<td style="text-align: left;">向后/前播放历史中的每张Slides</td>
 </tr>
 <tr class="odd">
-<td>上/下/左/右箭头</td>
-<td>二维展示每张Slides</td>
+<td style="text-align: left;">上/下/左/右箭头</td>
+<td style="text-align: left;">二维展示每张Slides</td>
 </tr>
 <tr class="even">
-<td>Esc/o</td>
-<td>二维显示Slides地图<br>箭头：移动<br>Enter：选中</td>
+<td style="text-align: left;">Esc/o</td>
+<td style="text-align: left;">二维显示Slides地图<br>箭头：移动<br>Enter：选中</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
@@ -474,26 +474,26 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th>command</th>
-<th>说明</th>
+<th style="text-align: left;">command</th>
+<th style="text-align: left;">说明</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>git config [--local]</td>
-<td>配置项保存到当前git项目(./.git)<br>仅本项目有效默认</td>
+<td style="text-align: left;">git config [--local]</td>
+<td style="text-align: left;">配置项保存到当前git项目(./.git)<br>仅本项目有效默认</td>
 </tr>
 <tr class="even">
-<td>git config --system</td>
-<td>配置项保存到系统(/etc/gitconfig)<br>所有git项目有效</td>
+<td style="text-align: left;">git config --system</td>
+<td style="text-align: left;">配置项保存到系统(/etc/gitconfig)<br>所有git项目有效</td>
 </tr>
 <tr class="odd">
-<td>git config --global</td>
-<td>配置项保存到用户根目录(~/.git/config)<br>当前用户的所有项目有效</td>
+<td style="text-align: left;">git config --global</td>
+<td style="text-align: left;">配置项保存到用户根目录(~/.git/config)<br>当前用户的所有项目有效</td>
 </tr>
 <tr class="even">
-<td>git config --file</td>
-<td>配置项保存到指定文件</td>
+<td style="text-align: left;">git config --file</td>
+<td style="text-align: left;">配置项保存到指定文件</td>
 </tr>
 </tbody>
 </table>
@@ -751,33 +751,33 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 </section></section>
 <section><section id="git-diff" class="titleslide slide level1"><h1>git diff</h1></section><section id="比较对象" class="slide level2">
 <h1>比较对象</h1>
-<table>
+<table style="width:11%;">
+<colgroup>
+<col style="width: 5%" />
+<col style="width: 5%" />
+</colgroup>
 <thead>
 <tr class="header">
-<th>命令</th>
-<th>比较对象</th>
+<th style="text-align: left;">命令</th>
+<th style="text-align: left;">比较对象</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>git diff</code></td>
-<td>工作目录～索引区</td>
+<td style="text-align: left;"><code>git diff</code></td>
+<td style="text-align: left;">工作目录～索引区</td>
 </tr>
 <tr class="even">
-<td><code>git diff --cached</code></td>
-<td>索引区～对象库</td>
+<td style="text-align: left;"><code>git diff --cached</code></td>
+<td style="text-align: left;">索引区～对象库</td>
 </tr>
 <tr class="odd">
-<td><code>git diff &lt;rev&gt;</code></td>
-<td>工作目录~rev</td>
+<td style="text-align: left;"><code>git diff &lt;rev&gt;</code></td>
+<td style="text-align: left;">工作目录<sub>rev| |<code>git diff &lt;rev1&gt; &lt;rev2&gt;</code><br><code>git diff &lt;rev1&gt;..&lt;rev2&gt;</code>|rev1</sub>rev2</td>
 </tr>
 <tr class="even">
-<td><code>git diff &lt;rev1&gt; &lt;rev2&gt;</code><br><code>git diff &lt;rev1&gt;..&lt;rev2&gt;</code></td>
-<td>rev1~rev2</td>
-</tr>
-<tr class="odd">
-<td></td>
-<td></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
@@ -786,30 +786,30 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th>命令</th>
-<th>结果显示</th>
+<th style="text-align: left;">命令</th>
+<th style="text-align: left;">结果显示</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><code>git diff</code></td>
-<td>结果是变更文件，和patch形式的文本</td>
+<td style="text-align: left;"><code>git diff</code></td>
+<td style="text-align: left;">结果是变更文件，和patch形式的文本</td>
 </tr>
 <tr class="even">
-<td><code>git diff --stat</code></td>
-<td>结果只显示变更文件，和变更的内容幅度</td>
+<td style="text-align: left;"><code>git diff --stat</code></td>
+<td style="text-align: left;">结果只显示变更文件，和变更的内容幅度</td>
 </tr>
 <tr class="odd">
-<td><code>git diff --name-only</code></td>
-<td>结果只显示变更文件的文件名</td>
+<td style="text-align: left;"><code>git diff --name-only</code></td>
+<td style="text-align: left;">结果只显示变更文件的文件名</td>
 </tr>
 <tr class="even">
-<td><code>git diff --name-stat</code></td>
-<td>结果显示变更文件的文件名，和增删改的状态</td>
+<td style="text-align: left;"><code>git diff --name-stat</code></td>
+<td style="text-align: left;">结果显示变更文件的文件名，和增删改的状态</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
@@ -820,26 +820,26 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <table>
 <thead>
 <tr class="header">
-<th>diff shell 命令</th>
-<th>3种输出格式</th>
+<th style="text-align: left;">diff shell 命令</th>
+<th style="text-align: left;">3种输出格式</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>$ diff f1 f2</td>
-<td>正常格式（normal diff）</td>
+<td style="text-align: left;">$ diff f1 f2</td>
+<td style="text-align: left;">正常格式（normal diff）</td>
 </tr>
 <tr class="even">
-<td>$ diff f1 f2 -c</td>
-<td>上下文格式（context diff）</td>
+<td style="text-align: left;">$ diff f1 f2 -c</td>
+<td style="text-align: left;">上下文格式（context diff）</td>
 </tr>
 <tr class="odd">
-<td>$ diff f1 f2 -u</td>
-<td>合并格式（unified diff）</td>
+<td style="text-align: left;">$ diff f1 f2 -u</td>
+<td style="text-align: left;">合并格式（unified diff）</td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
@@ -984,32 +984,32 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <table>
 <tbody>
 <tr class="odd">
-<td>git branch</td>
-<td>查看所有分支</td>
+<td style="text-align: left;">git branch</td>
+<td style="text-align: left;">查看所有分支</td>
 </tr>
 <tr class="even">
-<td>git branch -v</td>
-<td>查看所有分支，和当前最新的commit</td>
+<td style="text-align: left;">git branch -v</td>
+<td style="text-align: left;">查看所有分支，和当前最新的commit</td>
 </tr>
 <tr class="odd">
-<td>git branch -vv</td>
-<td>查看所有分支，和当前最新的commit<br>和upstream</td>
+<td style="text-align: left;">git branch -vv</td>
+<td style="text-align: left;">查看所有分支，和当前最新的commit<br>和upstream</td>
 </tr>
 <tr class="even">
-<td>git branch xyz</td>
-<td>创建 xyz 分支</td>
+<td style="text-align: left;">git branch xyz</td>
+<td style="text-align: left;">创建 xyz 分支</td>
 </tr>
 <tr class="odd">
-<td>git branch -d xyz</td>
-<td>删除 xyz 分支，如果分支尚未合入主干<br>或upstream，则失败</td>
+<td style="text-align: left;">git branch -d xyz</td>
+<td style="text-align: left;">删除 xyz 分支，如果分支尚未合入主干<br>或upstream，则失败</td>
 </tr>
 <tr class="even">
-<td>git branch -D xyz</td>
-<td>删除 xyz 分支，强制</td>
+<td style="text-align: left;">git branch -D xyz</td>
+<td style="text-align: left;">删除 xyz 分支，强制</td>
 </tr>
 <tr class="odd">
-<td></td>
-<td></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
 </tr>
 </tbody>
 </table>
@@ -1273,8 +1273,8 @@ git和svn是可以共存的
       // Full list of configuration options available at:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
-        // Enable slide navigation via mouse wheel
-        mouseWheel: true,
+        // Vertical centering of slides
+        center: false,
 
         // Optional reveal.js plugins
         dependencies: [

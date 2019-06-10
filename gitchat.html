@@ -1,493 +1,200 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><style>/* RESET
-=============================================================================*/
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="generator" content="pandoc">
+    <meta name="description" content="">
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark,{
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
+    <title></title>
 
-/* BODY
-=============================================================================*/
+    <!-- Bootstrap core CSS -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" >
 
-body {
-  font-family: Source Han Sans CN, Helvetica, arial, freesans, clean, sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
-  color: #333;
-  background-color: #fff;
-  padding: 20px;
-  max-width: 900px;
-  margin: 0 auto;
-}
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="https://maxcdn.bootstrapcdn.com/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-body>*:first-child {
-  margin-top: 0 !important;
-}
+    <!-- Custom styles for this template -->
+    <link href="assets/css/dashboard.css" rel="stylesheet">
 
-body>*:last-child {
-  margin-bottom: 0 !important;
-}
-
-/* BLOCKS
-=============================================================================*/
-
-p, blockquote, ul, ol, dl, table, pre {
-  margin: 15px 0;
-}
-
-/* HEADERS
-=============================================================================*/
-h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
-  font-size: inherit;
-}
-
-h1, h2, h3, h4, h5, h6 {
-  /*margin: 0px 0px 0px 0px;*/
-  margin: 20px 0 10px;
-  padding: 0;
-  font-weight: bold;
-}
-
-h1 {
-  /*border-bottom: 3px solid #ccc;*/
-  /*border-top: 1px solid #ccc;*/
-  /*background-color: #AEDD81;*/
-  padding: 10px 0px 10px 0px;
-  font-size: 28px;
-  color: #000;
-  text-align: center; 
-  border-bottom: 5px double #333333;
-}
-
-h2 {
-  /*background-color: #B2C8BB;*/
-  padding: 5px 0px 5px 10px;
-  font-size: 24px;
-  color: #000;
-  border-bottom: 3px ridge #666666;
-}
-
-h3 {
-  /*background-color: #99ccff;*/
-  padding: 5px 0px 5px 20px;
-  font-size: 18px;
-  color: #000;
-  border-bottom: 2px inset #CCCCCC;
-}
-
-h4 {
-  font-size: 16px;
-  border-bottom: 2px inset #EEEEEE;
-}
-
-h5 {
-  font-size: 14px;
-}
-
-h6 {
-  font-size: 14px;
-}
-
-body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
-  margin-top: 0;
-  padding-top: 0;
-}
-
-a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
-  margin-top: 0;
-  padding-top: 0;
-}
-
-h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
-  margin-top: 10px;
-}
-
-/* LINKS
-=============================================================================*/
-
-a {
-  color: #4183C4;
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* LISTS
-=============================================================================*/
-
-ul, ol {
-  padding-left: 30px;
-}
-
-ul li > :first-child, 
-ol li > :first-child, 
-ul li ul:first-of-type, 
-ol li ol:first-of-type, 
-ul li ol:first-of-type, 
-ol li ul:first-of-type {
-  margin-top: 0px;
-}
-
-ul ul, ul ol, ol ol, ol ul {
-  margin-bottom: 0;
-}
-
-dl {
-  padding: 0;
-}
-
-dl dt {
-  font-size: 14px;
-  font-weight: bold;
-  font-style: italic;
-  padding: 0;
-  margin: 15px 0 5px;
-}
-
-dl dt:first-child {
-  padding: 0;
-}
-
-dl dt>:first-child {
-  margin-top: 0px;
-}
-
-dl dt>:last-child {
-  margin-bottom: 0px;
-}
-
-dl dd {
-  margin: 0 0 15px;
-  padding: 0 15px;
-}
-
-dl dd>:first-child {
-  margin-top: 0px;
-}
-
-dl dd>:last-child {
-  margin-bottom: 0px;
-}
-
-/* CODE
-=============================================================================*/
-
-pre, code, tt {
-  font-size: 13px;
-  font-family: Consolas, "Liberation Mono", Courier, monospace;
-  font-weight: bold;
-}
-
-pre {
-  background-color: #1a181f;
-  border: 1px solid #ccc;
-  font-size: 13px;
-  line-height: 19px;
-  overflow: auto;
-  padding: 6px 10px;
-  border-radius: 3px; 
-  font-weight: normal;
-}
-
-pre code, pre tt {
-  color: #00ff00;
-  background-color: transparent;
-  border: none;
-}
-
-pre code.cmd {
-  color: #ffff00;
-  background-color: transparent;
-  border: none;
-}
-
-kbd {
-    -moz-border-bottom-colors: none;
-    -moz-border-left-colors: none;
-    -moz-border-right-colors: none;
-    -moz-border-top-colors: none;
-    background-color: #DDDDDD;
-    background-image: linear-gradient(#F1F1F1, #DDDDDD);
-    background-repeat: repeat-x;
-    border-color: #DDDDDD #CCCCCC #CCCCCC #DDDDDD;
-    border-image: none;
-    border-radius: 2px 2px 2px 2px;
-    border-style: solid;
-    border-width: 1px;
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    line-height: 10px;
-    padding: 1px 4px;
-}
-
-/* QUOTES
-=============================================================================*/
-
-blockquote {
-  border-left: 4px solid #DDD;
-  padding: 0 15px;
-  color: #777;
-}
-
-blockquote>:first-child {
-  margin-top: 0px;
-}
-
-blockquote>:last-child {
-  margin-bottom: 0px;
-}
-
-/* HORIZONTAL RULES
-=============================================================================*/
-
-hr {
-  clear: both;
-  margin: 15px 0;
-  height: 0px;
-  overflow: hidden;
-  border: none;
-  background: transparent;
-  border-bottom: 4px solid #ddd;
-  padding: 0;
-}
-
-/* TABLES
-=============================================================================*/
-table {
-  margin: 0 auto;
-  border-collapse:collapse; /* 关键属性：合并表格内外边框(其实表格边框有2px，外面1px，里面还有1px哦) */ 
-  border:solid #999; /* 设置边框属性；样式(solid=实线)、颜色(#999=灰) */ 
-  border-width:1px 0 0 1px; /* 设置边框状粗细：上 右 下 左 = 对应：1px 0 0 1px */ 
-}
-table th {
-  font-weight: bold;
-  text-align: center !important; /*内容居中，加上 !important 避免被 Markdown 样式覆盖*/
-  background: rgba(158,188,226,0.2); /*背景色*/
-  white-space: nowrap; /*表头内容强制在一行显示*/
-}
-
-table th, table td {
-  border: 1px solid #ccc;
-  padding: 6px 13px;
-}
-
-table td:nth-child(1) {
-    white-space: nowrap; /*首列不换行*/
-}
-
-table tr {
-  border-top: 1px solid #ccc;
-  background-color: #fff;
-}
-
-table tr:hover {
-    background: #efefef; 
-}
+    <link href="assets/css/markdown.css" rel="stylesheet">
 
 
-/* IMAGES
-=============================================================================*/
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">code{white-space: pre;}</style>
+    <style type="text/css">.sidebar ul{padding-left: 10px;}</style>
+  </head>
 
-embed {
-  max-width: 95%;
-  }
-div {
-  text-align: center;
-}
-img {
-  max-width: 95%;
-  clear: both;
-  display: block;
-  margin:auto; 
-  margin-top:5px;
-  margin-bottom:30px;
-  /*
-  border-top:1px solid #ccc;   
-  border-right:1px solid #666;   
-  border-bottom:2px solid #999;   
-  border-left:1px solid #ccc;   
-  padding: 4px;  
-  */
-}
-.alignleft {
-  display: inline;
-  float: left;
-}
+  <body>
 
-.alignright {
-  display: inline;
-  float: right;
-}
-
-.aligncenter {
-  clear: both;
-  display: block;
-  margin:auto;
-} 
-</style><title>gitchat</title></head><body><article class="markdown-body"><h1>Git 聊天入门</h1>
-
+    <div class="container-fluid">
+      <div class="row">
+        <div id="sidebar" class="col-sm-3 col-md-3 sidebar">
+          <ul>
+          <li><a href="#round-1-起步">Round 1 : 起步</a><ul>
+          <li><a href="#git在哪里">git在哪里</a></li>
+          <li><a href="#git-for-windows-咋用">Git for Windows 咋用</a></li>
+          <li><a href="#先单机玩玩还是先弄来个别人的git库">先单机玩玩还是先弄来个别人的git库</a></li>
+          <li><a href="#如何在本机git我的日记">如何在本机git我的日记</a></li>
+          </ul></li>
+          <li><a href="#round-2-优雅">Round 2 : 优雅</a><ul>
+          <li><a href="#每次都要敲addcommitstatus嫌累了">每次都要敲add、commit、status，嫌累了</a></li>
+          <li><a href="#有些文件不希望被git管理">有些文件不希望被git管理</a></li>
+          <li><a href="#我要筛选-git-log">我要筛选 git log</a></li>
+          <li><a href="#觉得-git-log-中的时间看着困难精简下呗">觉得 git log 中的时间看着困难，精简下呗</a></li>
+          <li><a href="#我要定制-git-log不想一页看不了几条">我要定制 git log，不想一页看不了几条</a></li>
+          <li><a href="#oneline太简陋了我想一行里面看到hashauthordatemessage">oneline太简陋了，我想一行里面看到hash、author、date、message</a></li>
+          <li><a href="#git-log-已经很好了但好像还是缺点啥">git log 已经很好了，但好像还是缺点啥</a></li>
+          <li><a href="#git-log-fuller-中的-author-和-commit-啥关系">git log –fuller 中的 author 和 commit 啥关系</a></li>
+          <li><a href="#看log的时候能否把修改了哪些文件也列出来">看log的时候能否把修改了哪些文件也列出来</a></li>
+          <li><a href="#看tag的时候能否把日期时间也列出来">看tag的时候能否把日期时间也列出来</a></li>
+          <li><a href="#我要能像tortoisesvn那样左右两栏对比看diff">我要能像TortoiseSVN那样左右两栏对比看diff</a></li>
+          <li><a href="#修改完了为什么不是直接提交而是git-add">修改完了为什么不是直接提交，而是git add</a></li>
+          <li><a href="#我用ubuntu我要修改git-commit时的默认编辑器">我用ubuntu，我要修改git commit时的默认编辑器</a></li>
+          </ul></li>
+          <li><a href="#round-3-并发">Round 3 : 并发</a><ul>
+          <li><a href="#我想使用个分支branch怎么做">我想使用个分支（branch），怎么做</a></li>
+          <li><a href="#如何在分支间来回切换">如何在分支间来回切换</a></li>
+          <li><a href="#删除分支总是想用git-branch-delete">删除分支总是想用git branch delete</a></li>
+          <li><a href="#分支的合并git-merge有哪几种场景">分支的合并（git merge）有哪几种场景</a></li>
+          <li><a href="#合并时如何处理分支中的垃圾log">合并时如何处理分支中的“垃圾”log</a></li>
+          <li><a href="#把特性分支合入主干和把主干合入特性分支有什么区别">“把特性分支合入主干”和“把主干合入特性分支”有什么区别</a></li>
+          <li><a href="#git-merge-有没有图形化的工具">git merge 有没有图形化的工具</a></li>
+          <li><a href="#git分支之间的关系能否图示">git分支之间的关系能否图示</a></li>
+          <li><a href="#分支名能否用中文">分支名能否用中文</a></li>
+          </ul></li>
+          <li><a href="#round-4-协作">Round 4 : 协作</a><ul>
+          <li><a href="#想看看别人的git库了">想看看别人的git库了</a></li>
+          <li><a href="#橡树与木棉">橡树与木棉</a></li>
+          <li><a href="#git与github">git与github</a></li>
+          <li><a href="#github与他的小伙伴们到哪里找开源项目">github与他的小伙伴们（到哪里找开源项目）</a></li>
+          <li><a href="#为什么github成了程序员的麦加圣地">为什么github成了程序员的麦加圣地</a></li>
+          <li><a href="#公司内如何穿过proxy访问github">公司内如何穿过Proxy访问github</a><ul>
+          <li><a href="#使用-git-config-配置">使用 git config 配置</a></li>
+          <li><a href="#使用-shell-环境变量配置">使用 shell 环境变量配置</a></li>
+          </ul></li>
+          <li><a href="#定义了外网和内网两个remoteproxy怎么同时支持">定义了外网和内网两个remote，proxy怎么同时支持</a></li>
+          <li><a href="#ssh访问remote的通常步骤是啥">SSH访问remote的通常步骤是啥</a></li>
+          <li><a href="#如何与别人合作">如何与别人合作</a></li>
+          <li><a href="#如何在github上与别人合作">如何在github上与别人合作</a></li>
+          <li><a href="#怎样才能第一时间得知git上有提交和更新">怎样才能第一时间得知git上有提交和更新</a></li>
+          <li><a href="#为什么说不要用git-pull而是用git-fetch-git-merge代替">为什么说不要用git pull，而是用git fetch + git merge代替</a></li>
+          <li><a href="#如何不clonefetch到本地看remote-repo的log">如何不clone/fetch到本地看remote repo的log?</a></li>
+          <li><a href="#程序猿如何频繁地commit但又低调地push">程序猿如何频繁地commit，但又低调地push</a></li>
+          <li><a href="#通过http-push时每次都要求输入namepassword能否避开">通过http push时每次都要求输入name/password，能否避开</a></li>
+          <li><a href="#如何删除远程分支">如何删除远程分支</a></li>
+          <li><a href="#如何删除远程tag">如何删除远程tag</a></li>
+          <li><a href="#别人把远程分支删除了我本地的对应分支怎么还在">别人把远程分支删除了，我本地的对应分支怎么还在</a></li>
+          <li><a href="#维持树的整洁">维持树的整洁</a></li>
+          <li><a href="#git多用户间协作还有什么引人入胜之处">Git多用户间协作还有什么引人入胜之处</a></li>
+          </ul></li>
+          <li><a href="#round-5-整理">Round 5 : 整理</a><ul>
+          <li><a href="#git从何而来">git从何而来</a></li>
+          <li><a href="#git去往何处">git去往何处</a></li>
+          <li><a href="#git有哪些好的入门的资料">git有哪些好的入门的资料</a></li>
+          <li><a href="#git命令我掌握的七七八八了怎么整理一下">git命令我掌握的七七八八了，怎么整理一下</a></li>
+          <li><a href="#重新梳理git的软件">重新梳理git的软件</a></li>
+          <li><a href="#整理git的外网托管网站">整理git的外网托管网站</a></li>
+          </ul></li>
+          <li><a href="#round-6-奇技淫巧">Round 6 : 奇技淫巧</a><ul>
+          <li><a href="#从当前库中快速导出一个节点committag另作他用">从当前库中快速导出一个节点(commit、tag)另作他用</a></li>
+          <li><a href="#导出某个子目录及其log成为一个新的repo">导出某个子目录及其log成为一个新的repo</a></li>
+          <li><a href="#分支2需改bug但我正在分支1上编码并不想commit怎么办">分支2需改bug，但我正在分支1上编码并不想commit怎么办</a></li>
+          <li><a href="#modify-错了我要丢弃本地目录中的修改">modify 错了，我要丢弃本地目录中的修改</a></li>
+          <li><a href="#add-错了我要丢弃暂存区的修改">add 错了，我要丢弃暂存区的修改</a></li>
+          <li><a href="#commit-错了我要丢弃某个commit节点">commit 错了，我要丢弃某个commit节点</a></li>
+          <li><a href="#push-错了我要丢弃remote上的某个节点">push 错了，我要丢弃remote上的某个节点</a></li>
+          <li><a href="#暂存一个文件的部分改动">暂存一个文件的部分改动</a></li>
+          <li><a href="#能否从不同的分支里选择某次提交并且把它合并到当前的分支">能否从不同的分支里选择某次提交并且把它合并到当前的分支</a></li>
+          </ul></li>
+          <li><a href="#round-7-原理拾趣">Round 7 : 原理拾趣</a><ul>
+          <li><a href="#git和svn在元数据存储上有什么区别">git和SVN在元数据存储上有什么区别</a></li>
+          <li><a href="#git-的对象object">git 的对象（object）</a></li>
+          <li><a href="#git-的快照存储有点不可思议如何做到好又多的">git 的快照存储有点不可思议，如何做到好又多的</a></li>
+          <li><a href="#git-addcommit-原理图">git add/commit 原理图</a></li>
+          <li><a href="#git-checkout-原理图">git checkout 原理图</a></li>
+          <li><a href="#git-fetchpull-原理图">git fetch/pull 原理图</a></li>
+          <li><a href="#git-reset-原理图">git reset 原理图</a></li>
+          </ul></li>
+          <li><a href="#round-8-git与phabricator">Round 8 : git与phabricator</a><ul>
+          <li><a href="#arc-为何物">arc 为何物</a></li>
+          <li><a href="#arc的安装和配置">arc的安装和配置</a></li>
+          <li><a href="#arc-diff-初步">arc diff 初步</a></li>
+          <li><a href="#arc-diff-为什么把我已有的commit-log修改了">arc diff 为什么把我已有的commit log修改了</a></li>
+          <li><a href="#如何避免arc-diff玷污现有节点">如何避免arc diff玷污现有节点</a></li>
+          <li><a href="#如何创建只包含部分文件的评审单">如何创建只包含部分文件的评审单</a></li>
+          </ul></li>
+          </ul>
+        </div>
+        <div class="col-sm-9 col-sm-offset-3 col-md-9 col-md-offset-3 main">
+        
+<h1>
+Git 聊天入门
+</h1>
 <p>俊建 Kevin</p>
 <p><strong>自序</strong></p>
 <p>读一本Git的书和读一篇Git的文章给人的知识含量是不同的，但给人的愉悦感也是迥异的。本文不想让您有读书的感觉、不追求知识全面、架构完整，但也不想只罗列一些git的知识点，搞的像一个Tip集。本文会从实际使用的角度，以聊天问答的形式，从浅入深，逐步展露git的若干方面。</p>
 <p>本文分Round进行，每局并不以git命令的逻辑来分类，而是以<strong>使用git完成任务的水平来分解阶段</strong>。一些问题原本来自于我和朋友们的聊天，闲聊之余，记录成集，不要期待有什么高深的理论，让你每读完一个Round，可以小试牛刀，然后烹茶小饮、若有所思……是我最想要的。</p>
 <p>git 有自己的 <a href="https://www.kernel.org/pub/software/scm/git/docs/user-manual.html">user manunal</a>，和官方宝书（<a href="http://git-scm.com/book/en/v2">英文版</a>、<a href="http://git-scm.com/book/zh/v2">中文版</a>、<a href="http://www.kancloud.cn/kancloud/progit">国内备份</a>），如果你读来无碍，请忽视本文，本文与它们相比只是个小人书、连环画，或者作为它们的一个补充。我在写每个Topic的时候也都在想：是不是书里已经有了？我是不是重复了？是不是删掉算了？—— 经常在知识点完整和拾遗之间反复权衡，但想到碎片化阅读越来越普及、学东西主要靠百度的今天，我写点东西发出来应该也是有益的。</p>
 <hr />
-<!-- MarkdownTOC depth=2 -->
-
-<ul>
-<li><a href="#round-1">Round 1 : 起步</a><ul>
-<li><a href="#git">git在哪里</a></li>
-<li><a href="#git-for-windows">Git for Windows 咋用</a></li>
-<li><a href="#git_1">先单机玩玩还是先弄来个别人的git库</a></li>
-<li><a href="#git_2">如何在本机git我的日记</a></li>
-</ul>
-</li>
-<li><a href="#round-2">Round 2 : 优雅</a><ul>
-<li><a href="#addcommitstatus">每次都要敲add、commit、status，嫌累了</a></li>
-<li><a href="#git_3">有些文件不希望被git管理</a></li>
-<li><a href="#git-log">我要筛选 git log</a></li>
-<li><a href="#git-log_1">觉得 git log 中的时间看着困难，精简下呗</a></li>
-<li><a href="#git-log_2">我要定制 git log，不想一页看不了几条</a></li>
-<li><a href="#onelinehashauthordatemessage">oneline太简陋了，我想一行里面看到hash、author、date、message</a></li>
-<li><a href="#git-log_3">git log 已经很好了，但好像还是缺点啥</a></li>
-<li><a href="#git-log-fuller-author-commit">git log &ndash;fuller 中的 author 和 commit 啥关系</a></li>
-<li><a href="#log">看log的时候能否把修改了哪些文件也列出来</a></li>
-<li><a href="#tag">看tag的时候能否把日期时间也列出来</a></li>
-<li><a href="#tortoisesvndiff">我要能像TortoiseSVN那样左右两栏对比看diff</a></li>
-<li><a href="#git-add">修改完了为什么不是直接提交，而是git add</a></li>
-<li><a href="#ubuntugit-commit">我用ubuntu，我要修改git commit时的默认编辑器</a></li>
-</ul>
-</li>
-<li><a href="#round-3">Round 3 : 并发</a><ul>
-<li><a href="#branch">我想使用个分支（branch），怎么做</a></li>
-<li><a href="#_1">如何在分支间来回切换</a></li>
-<li><a href="#git-branch-delete">删除分支总是想用git branch delete</a></li>
-<li><a href="#git-merge">分支的合并（git merge）有哪几种场景</a></li>
-<li><a href="#log_1">合并时如何处理分支中的“垃圾”log</a></li>
-<li><a href="#_2">“把特性分支合入主干”和“把主干合入特性分支”有什么区别</a></li>
-<li><a href="#git-merge_1">git merge 有没有图形化的工具</a></li>
-<li><a href="#git_4">git分支之间的关系能否图示</a></li>
-<li><a href="#_3">分支名能否用中文</a></li>
-</ul>
-</li>
-<li><a href="#round-4">Round 4 : 协作</a><ul>
-<li><a href="#git_5">想看看别人的git库了</a></li>
-<li><a href="#_4">橡树与木棉</a></li>
-<li><a href="#gitgithub">git与github</a></li>
-<li><a href="#github">github与他的小伙伴们（到哪里找开源项目）</a></li>
-<li><a href="#github_1">为什么github成了程序员的麦加圣地</a></li>
-<li><a href="#proxygithub">公司内如何穿过Proxy访问github</a></li>
-<li><a href="#remoteproxy">定义了外网和内网两个remote，proxy怎么同时支持</a></li>
-<li><a href="#sshremote">SSH访问remote的通常步骤是啥</a></li>
-<li><a href="#_5">如何与别人合作</a></li>
-<li><a href="#github_2">如何在github上与别人合作</a></li>
-<li><a href="#git_6">怎样才能第一时间得知git上有提交和更新</a></li>
-<li><a href="#git-pullgit-fetch-git-merge">为什么说不要用git pull，而是用git fetch + git merge代替</a></li>
-<li><a href="#clonefetchremote-repolog">如何不clone/fetch到本地看remote repo的log?</a></li>
-<li><a href="#commitpush">程序猿如何频繁地commit，但又低调地push</a></li>
-<li><a href="#http-pushnamepassword">通过http push时每次都要求输入name/password，能否避开</a></li>
-<li><a href="#_6">如何删除远程分支</a></li>
-<li><a href="#tag_1">如何删除远程tag</a></li>
-<li><a href="#_7">别人把远程分支删除了，我本地的对应分支怎么还在</a></li>
-<li><a href="#_8">维持树的整洁</a></li>
-<li><a href="#git_7">Git多用户间协作还有什么引人入胜之处</a></li>
-</ul>
-</li>
-<li><a href="#round-5">Round 5 : 整理</a><ul>
-<li><a href="#git_8">git从何而来</a></li>
-<li><a href="#git_9">git去往何处</a></li>
-<li><a href="#git_10">git有哪些好的入门的资料</a></li>
-<li><a href="#git_11">git命令我掌握的七七八八了，怎么整理一下</a></li>
-<li><a href="#git_12">重新梳理git的软件</a></li>
-<li><a href="#git_13">整理git的外网托管网站</a></li>
-</ul>
-</li>
-<li><a href="#round-6">Round 6 : 奇技淫巧</a><ul>
-<li><a href="#committag">从当前库中快速导出一个节点(commit、tag)另作他用</a></li>
-<li><a href="#logrepo">导出某个子目录及其log成为一个新的repo</a></li>
-<li><a href="#2bug1commit">分支2需改bug，但我正在分支1上编码并不想commit怎么办</a></li>
-<li><a href="#modify">modify 错了，我要丢弃本地目录中的修改</a></li>
-<li><a href="#add">add 错了，我要丢弃暂存区的修改</a></li>
-<li><a href="#commit-commit">commit 错了，我要丢弃某个commit节点</a></li>
-<li><a href="#push-remote">push 错了，我要丢弃remote上的某个节点</a></li>
-<li><a href="#_9">暂存一个文件的部分改动</a></li>
-<li><a href="#_10">能否从不同的分支里选择某次提交并且把它合并到当前的分支</a></li>
-</ul>
-</li>
-<li><a href="#round-7">Round 7 : 原理拾趣</a><ul>
-<li><a href="#gitsvn">git和SVN在元数据存储上有什么区别</a></li>
-<li><a href="#git-object">git 的对象（object）</a></li>
-<li><a href="#git_14">git 的快照存储有点不可思议，如何做到好又多的</a></li>
-<li><a href="#git-addcommit">git add/commit 原理图</a></li>
-<li><a href="#git-checkout">git checkout 原理图</a></li>
-<li><a href="#git-fetchpull">git fetch/pull 原理图</a></li>
-<li><a href="#git-reset">git reset 原理图</a></li>
-</ul>
-</li>
-<li><a href="#round-8-gitphabricator">Round 8 : git与phabricator</a><ul>
-<li><a href="#arc">arc 为何物</a></li>
-<li><a href="#arc_1">arc的安装和配置</a></li>
-<li><a href="#arc-diff">arc diff 初步</a></li>
-<li><a href="#arc-diff-commit-log">arc diff 为什么把我已有的commit log修改了</a></li>
-<li><a href="#arc-diff_1">如何避免arc diff玷污现有节点</a></li>
-<li><a href="#_11">如何创建只包含部分文件的评审单</a></li>
-</ul>
-</li>
-</ul>
-<!-- /MarkdownTOC -->
-
-<hr />
-<h1 id="round-1"><a name="user-content-round-1" href="#round-1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 1 : 起步</h1>
-<p><img alt="" src="img/run-buffalo.jpg" /></p>
-<h2 id="git"><a name="user-content-git" href="#git" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git在哪里</h2>
+<h1 id="round-1-起步">Round 1 : 起步</h1>
+<p><img src="img/run-buffalo.jpg" /></p>
+<h2 id="git在哪里">git在哪里</h2>
 <ul>
 <li>Unix系（Ubuntu/Fedora/macOS/……）默认就有，打开terminal，输入<code>git --version</code>，就在那里了</li>
 <li>Windows上要安装：<a href="https://github.com/git-for-windows/git">Git for Windows</a></li>
 </ul>
-<h2 id="git-for-windows"><a name="user-content-git-for-windows" href="#git-for-windows" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Git for Windows 咋用</h2>
+<h2 id="git-for-windows-咋用">Git for Windows 咋用</h2>
 <p>一路“下一步”安装完即可。</p>
-<p><img alt="" src="img/git4windows-install.png" /></p>
-<ol>
+<p><img src="img/git4windows-install.png" /></p>
+<ol type="1">
 <li>Git Bash: Linux 风格的命令行，如： /user/bin</li>
-<li>Git CMD： Windows风格的命令行，即：C:\system</li>
+<li>Git CMD： Windows风格的命令行，即：C:</li>
 <li>Git GUI: 图形化界面</li>
 <li>其实还有一个： ${安装目录}/bin/sh.exe —— 我喜欢直接用这个</li>
 </ol>
-<p><img alt="" src="img/git4windows-sh.png" /></p>
+<p><img src="img/git4windows-sh.png" /></p>
 <p>对比一下1和4：</p>
-<p><img alt="" src="img/git4windows-gitbash.png" /><br />
-<img alt="" src="img/git4windows-bin.png" /></p>
+<p><img src="img/git4windows-gitbash.png" /> <img src="img/git4windows-bin.png" /></p>
 <ul>
 <li>1和4的图标不同，4其实是Windows自身的cmd窗口</li>
 <li>4由于是Windows自身cmd窗口，所以对中文支持较好</li>
 </ul>
 <p>所以建议您直接用4：<strong>直接双击或在cmd中打开 ${安装目录}/bin/sh.exe 来运行MinGW环境和git</strong></p>
-<h2 id="git_1"><a name="user-content-git_1" href="#git_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>先单机玩玩还是先弄来个别人的git库</h2>
+<h2 id="先单机玩玩还是先弄来个别人的git库">先单机玩玩还是先弄来个别人的git库</h2>
 <p>先单机玩玩吧，理由如下：</p>
 <p>git 和 svn 最大的区别：</p>
 <ul>
 <li>svn是集中式管控：所有库（repo）的内容都在server上，离了server连 svn log 都看不了，更别说提交代码了</li>
-<li>git是分布式管控：每个git项目里面的.git文件夹中都包括了所有的库（repo）内容，可以看log、提交代码、创建分支、打tag……<ul>
+<li>git是分布式管控：每个git项目里面的.git文件夹中都包括了所有的库（repo）内容，可以看log、提交代码、创建分支、打tag……
+<ul>
 <li>两台电脑的git库之间是<strong>同步（sync）</strong>的概念，大家都是平等的</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>所以说我们还是先练习一下除了sync之外的基础命令吧，会了这些之后，至少你能在本机快乐的写日记了。</p>
 <blockquote>
 <p>我看到有些小伙伴还在用类似EDiary等日记本软件或PIM软件来写每天的日记，积累了这么多年的日记，一旦win10上运行不了EDiary可咋整？还是赶紧试试用纯文本+Markdown来写日记，用git本地做版本管理吧！</p>
 </blockquote>
 <p>下文我使用个人日记的小项目来演示本机的git操作</p>
-<h2 id="git_2"><a name="user-content-git_2" href="#git_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何在本机git我的日记</h2>
+<h2 id="如何在本机git我的日记">如何在本机git我的日记</h2>
 <p>OK，让我们从头开始，跟着做一遍吧，Good Luck ……</p>
 <ul>
-<li>做一下git要求的最基本的两个配置：name 和 email<br />
-<pre><code class="cmd">$ git config --global user.name wkevin
-$ git config --global user.emal wkevin27@gmail.com
-</code></pre></li>
-<li>创建一个文件夹并写一篇日记<br />
-<pre><code class="cmd">MBP:demo wangkevin$ mkdir mydiary
+<li>做一下git要求的最基本的两个配置：name 和 email</li>
+</ul>
+<pre class="cmd"><code>$ git config --global user.name wkevin
+$ git config --global user.emal wkevin27@gmail.com</code></pre>
+<ul>
+<li>创建一个文件夹并写一篇日记</li>
+</ul>
+<pre class="cmd"><code>MBP:demo wangkevin$ mkdir mydiary
 MBP:demo wangkevin$ cd mydiary
 $ cat &gt;diary.md
 # Diary
@@ -500,14 +207,16 @@ $ cat diary.md
 # Diary
 
 ## 2016.1.31
-回家过年
-</code></pre></li>
-<li><code>git init</code>:在文件夹中创建git库<br />
-<pre><code class="cmd">$ git init
-Initialized empty Git repository in /Users/wangkevin/workspace/kproject/demo/mydiary/.git/
-</code></pre></li>
-<li>和SVN有.svn类似，git也有.git<br />
-<pre><code class="cmd">$ ls -a
+回家过年</code></pre>
+<ul>
+<li><code>git init</code>:在文件夹中创建git库</li>
+</ul>
+<pre class="cmd"><code>$ git init
+Initialized empty Git repository in /Users/wangkevin/workspace/kproject/demo/mydiary/.git/</code></pre>
+<ul>
+<li>和SVN有.svn类似，git也有.git</li>
+</ul>
+<pre class="cmd"><code>$ ls -a
 .       ..      .git        diary.md
 $ ls .git
 HEAD        config      hooks       objects
@@ -519,10 +228,11 @@ $ cat .git/config
     bare = false
     logallrefupdates = true
     ignorecase = true
-    precomposeunicode = true
-</code></pre></li>
-<li><code>git status</code>：显示一个未被管控的文件(Untracked files) diary.md<br />
-<pre><code class="cmd">$ git status
+    precomposeunicode = true</code></pre>
+<ul>
+<li><code>git status</code>：显示一个未被管控的文件(Untracked files) diary.md</li>
+</ul>
+<pre class="cmd"><code>$ git status
 On branch master
 
 Initial commit
@@ -532,13 +242,15 @@ Untracked files:
 
     diary.md
 
-nothing added to commit but untracked files present (use &quot;git add&quot; to track)
-</code></pre></li>
-<li><code>git add filename</code>：将文件纳入管理，filename 支持通配符，最常用的就是点(.)表示所有文件<br />
-<pre><code class="cmd">$ git add diary.md 
-</code></pre></li>
-<li><code>git status</code> 显示此文件待提交（to be committed），此时文件已经开始被git管理了，文件进入一种暂存状态（stage），如果想反悔可以用<code>git rm --cached</code>使其进入unstage状态<br />
-<pre><code class="cmd">$ git status
+nothing added to commit but untracked files present (use &quot;git add&quot; to track)</code></pre>
+<ul>
+<li><code>git add filename</code>：将文件纳入管理，filename 支持通配符，最常用的就是点(.)表示所有文件</li>
+</ul>
+<pre class="cmd"><code>$ git add diary.md </code></pre>
+<ul>
+<li><code>git status</code> 显示此文件待提交（to be committed），此时文件已经开始被git管理了，文件进入一种暂存状态（stage），如果想反悔可以用<code>git rm --cached</code>使其进入unstage状态</li>
+</ul>
+<pre class="cmd"><code>$ git status
 On branch master
 
 Initial commit
@@ -546,51 +258,58 @@ Initial commit
 Changes to be committed:
   (use &quot;git rm --cached &lt;file&gt;...&quot; to unstage)
 
-    new file:   diary.md
-</code></pre></li>
-<li><code>git status -s</code> -short 短模式<br />
-<pre><code class="cmd">$ git status -s
-A  diary.md
-</code></pre></li>
-<li><code>git status -b</code> -branch 显示分支，<code>git status</code>不带参数默认就是-b的，所以常和短模式合作，合并为一个sb，哈哈<br />
-<pre><code class="cmd">$ git status -sb
+    new file:   diary.md</code></pre>
+<ul>
+<li><code>git status -s</code> -short 短模式</li>
+</ul>
+<pre class="cmd"><code>$ git status -s
+A  diary.md</code></pre>
+<ul>
+<li><code>git status -b</code> -branch 显示分支，<code>git status</code>不带参数默认就是-b的，所以常和短模式合作，合并为一个sb，哈哈</li>
+</ul>
+<pre class="cmd"><code>$ git status -sb
 ## Initial commit on master
-A  diary.md
-</code></pre></li>
-<li><code>git commit</code>: 将文件从暂存态提交入库 —— 暂存就像回收站（删除前给你一个check的机会，多次操作放入回收站的文件可以一次清空），多次操作放入暂存，最后考虑成熟了，check OK了，再commit提交<br />
-<pre><code class="cmd">$ git commit
+A  diary.md</code></pre>
+<ul>
+<li><code>git commit</code>: 将文件从暂存态提交入库 —— 暂存就像回收站（删除前给你一个check的机会，多次操作放入回收站的文件可以一次清空），多次操作放入暂存，最后考虑成熟了，check OK了，再commit提交</li>
+</ul>
+<pre class="cmd"><code>$ git commit
 aster (root-commit) 14dd781] create mydiary
  1 file changed, 4 insertions(+)
- create mode 100644 diary.md
-</code></pre></li>
-<li>执行 <code>git commit</code> 后会自动打开一个编辑器（编辑器是可配置的，以后再说怎么配置），比如 vi，进行提交log的撰写，保存退出即提交成功，不保存退出即放弃提交<br />
-<pre><code class="vi">  1 
+ create mode 100644 diary.md</code></pre>
+<ul>
+<li>执行 <code>git commit</code> 后会自动打开一个编辑器（编辑器是可配置的，以后再说怎么配置），比如 vi，进行提交log的撰写，保存退出即提交成功，不保存退出即放弃提交</li>
+</ul>
+<pre class="vi"><code>  1 
   2 # Please enter the commit message for your changes. Lines starting
-  3 # with '#' will be ignored, and an empty message aborts the commit.
+  3 # with &#39;#&#39; will be ignored, and an empty message aborts the commit.
   4 # On branch master
   5 #
   6 # Initial commit
   7 #
   8 # Changes to be committed:
   9 #   new file:   diary.md
- 10 #
-</code></pre></li>
-<li>再查<code>git status</code>，都已经提交干净了<br />
-<pre><code class="cmd">$ git status
+ 10 #</code></pre>
+<ul>
+<li>再查<code>git status</code>，都已经提交干净了</li>
+</ul>
+<pre class="cmd"><code>$ git status
 On branch master
 nothing to commit, working directory clean
-$ git status -s
-</code></pre></li>
-<li>现在可以看log了<br />
-<pre><code class="cmd">$ git log
+$ git status -s</code></pre>
+<ul>
+<li>现在可以看log了</li>
+</ul>
+<pre class="cmd"><code>$ git log
 commit 14dd7815fcf56c961e11c52e96e2fc3fbd7d0543
 Author: wkevin &lt;wkevin27@gmail.com&gt;
 Date:   Sun Jan 31 11:39:55 2016 +0800
 
-    create mydiary
-</code></pre></li>
-<li>git 和 svn 不同，没有一个数字递增的节点号，而是一串40Bytes的哈希字符，指定一个提交只需要给出这个字符串即可，当然不能让你每次都把40个字符全输入一遍，只需要输入够区分提交的即可（一般是前7位），如果咱的库规模还很小，前4位也行哦（下文中的“6784”）<br />
-<pre><code class="cmd">$ git lg
+    create mydiary</code></pre>
+<ul>
+<li>git 和 svn 不同，没有一个数字递增的节点号，而是一串40Bytes的哈希字符，指定一个提交只需要给出这个字符串即可，当然不能让你每次都把40个字符全输入一遍，只需要输入够区分提交的即可（一般是前7位），如果咱的库规模还很小，前4位也行哦（下文中的“6784”）</li>
+</ul>
+<pre class="cmd"><code>$ git lg
  b81373d | 2016-01-31 15:49:08 +0800 | 2016-01-31 15:49:08 +0800 |  wkevin  add .gitignore file
  67840e1 | 2016-01-31 12:20:26 +0800 | 2016-01-31 12:20:26 +0800 |  wkevin  2.2日记
  bf36ab9 | 2016-01-31 12:19:33 +0800 | 2016-01-31 12:19:33 +0800 |  wkevin  2.1的日记
@@ -601,10 +320,11 @@ Author: wkevin &lt;wkevin27@gmail.com&gt;
 Date:   Sun Jan 31 12:20:26 2016 +0800
 
     2.2日记
-
-</code></pre></li>
-<li>每天可以随时写日记、随时<code>git add</code>、适时<code>git commit</code>，经过一段时间，你的diary库就越来越让你爱不释手了<br />
-<pre><code class="cmd">$ git log
+</code></pre>
+<ul>
+<li>每天可以随时写日记、随时<code>git add</code>、适时<code>git commit</code>，经过一段时间，你的diary库就越来越让你爱不释手了</li>
+</ul>
+<pre class="cmd"><code>$ git log
 commit 67840e1813af1084abd5d07d2e2a2e185c679f09
 Author: wkevin &lt;wkevin27@gmail.com&gt;
 Date:   Sun Jan 31 12:20:26 2016 +0800
@@ -621,22 +341,21 @@ commit 14dd7815fcf56c961e11c52e96e2fc3fbd7d0543
 Author: wkevin &lt;wkevin27@gmail.com&gt;
 Date:   Sun Jan 31 11:39:55 2016 +0800
 
-    create mydiary
-</code></pre></li>
-<li>觉得<code>git log</code>默认显示的内容不爽？想看更详细的、或更简略的？——别急，统统没问题，各种参数全方位满足你的各种需求，但这里先不说，后文慢慢来，先不要用这些复杂的参数来打击自己吧，不过来个一步简洁到位的的命令：<code>git shortlog</code> —— 什么？太简洁了？哈哈，别急，从简洁到纸到复杂到翔全都有，慢慢来。<br />
-<pre><code class="cmd">$ git shortlog
+    create mydiary</code></pre>
+<ul>
+<li>觉得<code>git log</code>默认显示的内容不爽？想看更详细的、或更简略的？——别急，统统没问题，各种参数全方位满足你的各种需求，但这里先不说，后文慢慢来，先不要用这些复杂的参数来打击自己吧，不过来个一步简洁到位的的命令：<code>git shortlog</code> —— 什么？太简洁了？哈哈，别急，从简洁到纸到复杂到翔全都有，慢慢来。</li>
+</ul>
+<pre class="cmd"><code>$ git shortlog
 wkevin (3):
       create mydiary
       2.1的日记
-      2.2日记
-</code></pre></li>
-</ul>
+      2.2日记</code></pre>
 <hr />
 <p>如果只是让git管理个<strong>日记本</strong>，自己写、自己看、绝不给别人看、绝不上网……这些命令就差不多够了！</p>
-<p>哇！好累啊，可以休息一下了，就这些命令，玩几天，把日记写上一个礼拜，然后我们再继续。如果你不打算继续了，也没关系，这些命令就写日记&ndash;够用了！</p>
+<p>哇！好累啊，可以休息一下了，就这些命令，玩几天，把日记写上一个礼拜，然后我们再继续。如果你不打算继续了，也没关系，这些命令就写日记–够用了！</p>
 <p>第一局，Over！</p>
-<h1 id="round-2"><a name="user-content-round-2" href="#round-2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 2 : 优雅</h1>
-<p><img alt="" src="img/gray-owl-mouse-sw.jpg" /></p>
+<h1 id="round-2-优雅">Round 2 : 优雅</h1>
+<p><img src="img/gray-owl-mouse-sw.jpg" /></p>
 <p>欢迎回来，能回来接着读说明你是个积极追求上进的好同学，我们继续聊！</p>
 <p>用git写了一些日记，你肯定有了新需求，最令你恼火的可能有：</p>
 <ul>
@@ -644,16 +363,18 @@ wkevin (3):
 <li>看log真晃眼，不清爽</li>
 <li>提交之前还要来个add，啥子意思</li>
 </ul>
-<h2 id="addcommitstatus"><a name="user-content-addcommitstatus" href="#addcommitstatus" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>每次都要敲add、commit、status，嫌累了</h2>
+<h2 id="每次都要敲addcommitstatus嫌累了">每次都要敲add、commit、status，嫌累了</h2>
 <p>有这样的问题说明你已经是git的初级用户了，并且听了我的建议：“使用命令行，远离GUI” —— 我一点都不奇怪，绝大部分程序猿一旦用上git都会上瘾的，会频繁的<code>git commit</code>，然后在<code>git log</code>中寻觅自己的成就感，否则吃不好饭、睡不好觉……呵呵</p>
 <p>言归正传。</p>
 <p>别名（alias）是linux系统的基本概念，在git中也如鱼得水：</p>
 <ul>
-<li>这样设置别名<br />
-<pre><code class="cmd">$ git config --global alias.st  &quot;status&quot;
-</code></pre></li>
-<li>然后就可以这样操作了<br />
-<pre><code class="cmd">$ git st
+<li>这样设置别名</li>
+</ul>
+<pre class="cmd"><code>$ git config --global alias.st  &quot;status&quot;</code></pre>
+<ul>
+<li>然后就可以这样操作了</li>
+</ul>
+<pre class="cmd"><code>$ git st
 On branch master
 Changes not staged for commit:
   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
@@ -661,24 +382,25 @@ Changes not staged for commit:
 
     modified:   diary.md
 
-no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
-</code></pre></li>
-<li>换个别名玩玩<br />
-<pre><code class="cmd">$ git config --global alias.st  &quot;status -sb&quot;
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</code></pre>
+<ul>
+<li>换个别名玩玩</li>
+</ul>
+<pre class="cmd"><code>$ git config --global alias.st  &quot;status -sb&quot;
 $ git st
 ## master
- M diary.md
-</code></pre></li>
-<li>把让你烦的命令都用2个字来别名一下吧。比如：<br />
-<pre><code class="cmd">$ git config --global alias.ci  &quot;commit&quot;
-</code></pre></li>
+ M diary.md</code></pre>
+<ul>
+<li>把让你烦的命令都用2个字来别名一下吧。比如：</li>
 </ul>
-<h2 id="git_3"><a name="user-content-git_3" href="#git_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>有些文件不希望被git管理</h2>
+<pre class="cmd"><code>$ git config --global alias.ci  &quot;commit&quot;</code></pre>
+<h2 id="有些文件不希望被git管理">有些文件不希望被git管理</h2>
 <p>问：markdown写的 diary.md ，会在本地生成 diary.html 检查和欣赏一下，但其实是不需要 commit 的，如何在 <code>git commit</code> 的时候忽略它们。</p>
 <p>答：<code>git commit</code>的时候已经不能忽略了，要忽略需要在<code>git add</code>的时候，通过编辑<strong>.gitignore文件</strong>让add命令忽略它们。</p>
 <ul>
-<li>diary.html 就是我们不想提交的过程文件<br />
-<pre><code class="cmd">$ git st
+<li>diary.html 就是我们不想提交的过程文件</li>
+</ul>
+<pre class="cmd"><code>$ git st
 On branch master
 Changes not staged for commit:
   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
@@ -691,17 +413,19 @@ Untracked files:
 
     diary.html
 
-no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
-</code></pre></li>
-<li>手工生成一个<strong>.gitignore</strong>的文件，写入含有通配符的文件名（即：后缀名为html的文件）<br />
-<pre><code class="cmd">$ cat &gt;.gitignore
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</code></pre>
+<ul>
+<li>手工生成一个<strong>.gitignore</strong>的文件，写入含有通配符的文件名（即：后缀名为html的文件）</li>
+</ul>
+<pre class="cmd"><code>$ cat &gt;.gitignore
 *.html
 ^C
 $ cat .gitignore 
-*.html
-</code></pre></li>
-<li>diary.html 已经被自动忽略。<br />
-<pre><code class="cmd">$ git st
+*.html</code></pre>
+<ul>
+<li>diary.html 已经被自动忽略。</li>
+</ul>
+<pre class="cmd"><code>$ git st
 On branch master
 Changes not staged for commit:
   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
@@ -714,55 +438,57 @@ Untracked files:
 
     .gitignore
 
-no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)
-</code></pre></li>
-</ul>
-<h2 id="git-log"><a name="user-content-git-log" href="#git-log" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我要筛选 git log</h2>
+no changes added to commit (use &quot;git add&quot; and/or &quot;git commit -a&quot;)</code></pre>
+<h2 id="我要筛选-git-log">我要筛选 git log</h2>
 <ul>
 <li>可以只看某个子目录或某个文件的log</li>
-<li>可以从某个提交开始看<br />
-<pre><code class="cmd">$ git log 6784
-commit 67840e1813af1084abd5d07d2e2a2e185c679f09
-Author: wkevin &lt;wkevin27@gmail.com&gt;
-Date:   Sun Jan 31 12:20:26 2016 +0800
-
-    2.2日记
-</code></pre></li>
-<li>可以只看某个人的log<br />
-<pre><code class="cmd">$ git log --author=wkevin
-commit 67840e1813af1084abd5d07d2e2a2e185c679f09
-Author: wkevin &lt;wkevin27@gmail.com&gt;
-Date:   Sun Jan 31 12:20:26 2016 +0800
-
-    2.2日记
-……
-</code></pre></li>
-<li>&ndash;author 支持匹配<br />
-<pre><code class="cmd">$ git log --author=wke
-commit 67840e1813af1084abd5d07d2e2a2e185c679f09
-Author: wkevin &lt;wkevin27@gmail.com&gt;
-Date:   Sun Jan 31 12:20:26 2016 +0800
-
-    2.2日记
-……
-</code></pre></li>
-<li>&ndash;author 的一个错误匹配<br />
-<pre><code class="cmd">$ git log --author=wken
-$ 
-</code></pre></li>
-<li>&ndash;author 上使用通配符<br />
-<pre><code class="cmd">$ git log --author=wke.*n
-commit 67840e1813af1084abd5d07d2e2a2e185c679f09
-Author: wkevin &lt;wkevin27@gmail.com&gt;
-Date:   Sun Jan 31 12:20:26 2016 +0800
-
-    2.2日记
-</code></pre></li>
+<li>可以从某个提交开始看</li>
 </ul>
-<h2 id="git-log_1"><a name="user-content-git-log_1" href="#git-log_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>觉得 git log 中的时间看着困难，精简下呗</h2>
+<pre class="cmd"><code>$ git log 6784
+commit 67840e1813af1084abd5d07d2e2a2e185c679f09
+Author: wkevin &lt;wkevin27@gmail.com&gt;
+Date:   Sun Jan 31 12:20:26 2016 +0800
+
+    2.2日记</code></pre>
 <ul>
-<li>使用 &ndash;date=short<br />
-<pre><code class="cmd">$ git log --pretty=medium --date=short
+<li>可以只看某个人的log</li>
+</ul>
+<pre class="cmd"><code>$ git log --author=wkevin
+commit 67840e1813af1084abd5d07d2e2a2e185c679f09
+Author: wkevin &lt;wkevin27@gmail.com&gt;
+Date:   Sun Jan 31 12:20:26 2016 +0800
+
+    2.2日记
+……</code></pre>
+<ul>
+<li>–author 支持匹配</li>
+</ul>
+<pre class="cmd"><code>$ git log --author=wke
+commit 67840e1813af1084abd5d07d2e2a2e185c679f09
+Author: wkevin &lt;wkevin27@gmail.com&gt;
+Date:   Sun Jan 31 12:20:26 2016 +0800
+
+    2.2日记
+……</code></pre>
+<ul>
+<li>–author 的一个错误匹配</li>
+</ul>
+<pre class="cmd"><code>$ git log --author=wken
+$ </code></pre>
+<ul>
+<li>–author 上使用通配符</li>
+</ul>
+<pre class="cmd"><code>$ git log --author=wke.*n
+commit 67840e1813af1084abd5d07d2e2a2e185c679f09
+Author: wkevin &lt;wkevin27@gmail.com&gt;
+Date:   Sun Jan 31 12:20:26 2016 +0800
+
+    2.2日记</code></pre>
+<h2 id="觉得-git-log-中的时间看着困难精简下呗">觉得 git log 中的时间看着困难，精简下呗</h2>
+<ul>
+<li>使用 –date=short</li>
+</ul>
+<pre class="cmd"><code>$ git log --pretty=medium --date=short
 commit 67840e1813af1084abd5d07d2e2a2e185c679f09
 Author: wkevin &lt;wkevin27@gmail.com&gt;
 Date:   2016-01-31
@@ -779,12 +505,10 @@ commit 14dd7815fcf56c961e11c52e96e2fc3fbd7d0543
 Author: wkevin &lt;wkevin27@gmail.com&gt;
 Date:   2016-01-31
 
-    create mydiary
-</code></pre></li>
-</ul>
-<h2 id="git-log_2"><a name="user-content-git-log_2" href="#git-log_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我要定制 git log，不想一页看不了几条</h2>
+    create mydiary</code></pre>
+<h2 id="我要定制-git-log不想一页看不了几条">我要定制 git log，不想一页看不了几条</h2>
 <p>默认的<code>git log</code>一条commit log至少需要6行来显示，一页顶多看个5、6条，很不方便。如果单条达到10行的话，一页也就看个2、3条。像linux这样的项目，经常遇到长篇大论的log，内容倒是详实了，但很难做一览表式的查询。</p>
-<p>下面我们祭出 git log 的必杀技： &ndash;pretty 或 &ndash;format</p>
+<p>下面我们祭出 git log 的必杀技： –pretty 或 –format</p>
 <p><code>git log --pretty=xxx</code> 等价于 <code>git log --format=xxx</code>, xxx 可以是这些：</p>
 <ul>
 <li>oneline：只显示一行</li>
@@ -794,25 +518,21 @@ Date:   2016-01-31
 <li>fuller：会看到有两个角色：author（作者） 和 commit（提交人）</li>
 <li>email</li>
 <li>raw</li>
-<li>format:&rsquo;......&rsquo;</li>
+<li>format:‘……’</li>
 </ul>
 <p>其中<code>oneline</code>能够帮你精简log</p>
-<pre><code class="cmd">$ git log --pretty=oneline
+<pre class="cmd"><code>$ git log --pretty=oneline
 67840e1813af1084abd5d07d2e2a2e185c679f09 2.2日记
 bf36ab9b0d489a2eda911be9e01bddc395fc29e0 2.1的日记
-14dd7815fcf56c961e11c52e96e2fc3fbd7d0543 create mydiary
-</code></pre>
-
+14dd7815fcf56c961e11c52e96e2fc3fbd7d0543 create mydiary</code></pre>
 <p>其实 <code>--oneline</code> 也是一个单独的参数</p>
-<pre><code class="cmd">$ git log --oneline
+<pre class="cmd"><code>$ git log --oneline
 67840e1 2.2日记
 bf36ab9 2.1的日记
-14dd781 create mydiary
-</code></pre>
-
-<h2 id="onelinehashauthordatemessage"><a name="user-content-onelinehashauthordatemessage" href="#onelinehashauthordatemessage" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>oneline太简陋了，我想一行里面看到hash、author、date、message</h2>
-<p>那需要用上 &ndash;pretty=formate:&rdquo;......&rdquo;参数了</p>
-<p>format 参数很多，没必要逐一掌握，除了你是强迫症患者 &ndash; 凑巧本文不使用强迫症的视角，哈哈</p>
+14dd781 create mydiary</code></pre>
+<h2 id="oneline太简陋了我想一行里面看到hashauthordatemessage">oneline太简陋了，我想一行里面看到hash、author、date、message</h2>
+<p>那需要用上 –pretty=formate:“……”参数了</p>
+<p>format 参数很多，没必要逐一掌握，除了你是强迫症患者 – 凑巧本文不使用强迫症的视角，哈哈</p>
 <p>我常用的有：</p>
 <ul>
 <li>%h：commit hash</li>
@@ -824,183 +544,168 @@ bf36ab9 2.1的日记
 </ul>
 <p>示例：</p>
 <ul>
-<li>只看日期、作者、log（专业术语是：subject）<br />
-<pre><code class="cmd">$ git log --pretty=format:'%ad %an %s'
+<li>只看日期、作者、log（专业术语是：subject）</li>
+</ul>
+<pre class="cmd"><code>$ git log --pretty=format:&#39;%ad %an %s&#39;
 Sun Jan 31 15:49:08 2016 +0800 wkevin add .gitignore file
 Sun Jan 31 12:20:26 2016 +0800 wkevin 2.2日记
 Sun Jan 31 12:19:33 2016 +0800 wkevin 2.1的日记
-Sun Jan 31 11:39:55 2016 +0800 wkevin create mydiary
-</code></pre></li>
-<li>日期太碍眼，精简一下<br />
-<pre><code class="cmd">$ git log --pretty=format:'%ad %an %s' --date=short
+Sun Jan 31 11:39:55 2016 +0800 wkevin create mydiary</code></pre>
+<ul>
+<li>日期太碍眼，精简一下</li>
+</ul>
+<pre class="cmd"><code>$ git log --pretty=format:&#39;%ad %an %s&#39; --date=short
 2016-01-31 wkevin add .gitignore file
 2016-01-31 wkevin 2.2日记
 2016-01-31 wkevin 2.1的日记
-2016-01-31 wkevin create mydiary
-</code></pre></li>
-<li>不好了，但太精简了，咋只有date，没有time<br />
-<pre><code class="cmd">$ git log --pretty=format:'%ad %an %s' --date=local
+2016-01-31 wkevin create mydiary</code></pre>
+<ul>
+<li>不好了，但太精简了，咋只有date，没有time</li>
+</ul>
+<pre class="cmd"><code>$ git log --pretty=format:&#39;%ad %an %s&#39; --date=local
 Sun Jan 31 15:49:08 2016 wkevin add .gitignore file
 Sun Jan 31 12:20:26 2016 wkevin 2.2日记
 Sun Jan 31 12:19:33 2016 wkevin 2.1的日记
-Sun Jan 31 11:39:55 2016 wkevin create mydiary
-</code></pre></li>
-<li>commit hash 最好也能加上<br />
-<pre><code class="cmd">$ git log --pretty=format:'%h %ad %an %s' --date=local
+Sun Jan 31 11:39:55 2016 wkevin create mydiary</code></pre>
+<ul>
+<li>commit hash 最好也能加上</li>
+</ul>
+<pre class="cmd"><code>$ git log --pretty=format:&#39;%h %ad %an %s&#39; --date=local
 b81373d Sun Jan 31 15:49:08 2016 wkevin add .gitignore file
 67840e1 Sun Jan 31 12:20:26 2016 wkevin 2.2日记
 bf36ab9 Sun Jan 31 12:19:33 2016 wkevin 2.1的日记
-14dd781 Sun Jan 31 11:39:55 2016 wkevin create mydiary
-</code></pre></li>
-</ul>
-<p>最后，你还需这样：<br />
-<pre><code class="cmd">$ git config --global --replace-all alias.lg   &quot;log --pretty=format:'%h %ad %an %s' --date=local&quot;
-</code></pre></p>
-<h2 id="git-log_3"><a name="user-content-git-log_3" href="#git-log_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git log 已经很好了，但好像还是缺点啥</h2>
+14dd781 Sun Jan 31 11:39:55 2016 wkevin create mydiary</code></pre>
+<p>最后，你还需这样：</p>
+<pre class="cmd"><code>$ git config --global --replace-all alias.lg   &quot;log --pretty=format:&#39;%h %ad %an %s&#39; --date=local&quot;</code></pre>
+<h2 id="git-log-已经很好了但好像还是缺点啥">git log 已经很好了，但好像还是缺点啥</h2>
 <p>那就是颜色了，加上颜色让字段分的更加清晰</p>
-<pre><code class="cmd">git config --global --replace-all alias.lg  &quot;log --pretty=format:'%C(auto) %h | %ai | %Cred %an %Cgreen %s'&quot;
-</code></pre>
-
-<p><img alt="" src="img/git-lg-with-color.png" /></p>
-<p>为什么改用<code>%ai</code>，不用<code>%ad</code>了？<br />
-<code>%ad</code>会受到<code>--date=xxx</code>的影响，<code>%ai</code>不会。所以限制了<code>%ad</code>的使用，如果常从github上拿代码，会看到世界各地的提交人和提交时间，我还是希望分一下时区的，所以用了<code>%ai</code>。</p>
+<pre class="cmd"><code>git config --global --replace-all alias.lg  &quot;log --pretty=format:&#39;%C(auto) %h | %ai | %Cred %an %Cgreen %s&#39;&quot;</code></pre>
+<p><img src="img/git-lg-with-color.png" /></p>
+<p>为什么改用<code>%ai</code>，不用<code>%ad</code>了？ <code>%ad</code>会受到<code>--date=xxx</code>的影响，<code>%ai</code>不会。所以限制了<code>%ad</code>的使用，如果常从github上拿代码，会看到世界各地的提交人和提交时间，我还是希望分一下时区的，所以用了<code>%ai</code>。</p>
 <p>比如我们来查看linux的源码：</p>
-<p><img alt="" src="img/git-lg-by-linux.png" /></p>
-<h2 id="git-log-fuller-author-commit"><a name="user-content-git-log-fuller-author-commit" href="#git-log-fuller-author-commit" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git log &ndash;fuller 中的 author 和 commit 啥关系</h2>
+<p><img src="img/git-lg-by-linux.png" /></p>
+<h2 id="git-log-fuller-中的-author-和-commit-啥关系">git log –fuller 中的 author 和 commit 啥关系</h2>
 <p>必须要说了，git的设计者的设计思路是：希望提交人（执行<code>git commit</code>的人）能够把author写明白，而不是据为己有。所以git的作者（author）和提交人（commit）可以不是同一个人。</p>
-<pre><code class="cmd">$ git commit --author=wkevin --date='2016-01-30 22:04:04 +0800'
-</code></pre>
-
+<pre class="cmd"><code>$ git commit --author=wkevin --date=&#39;2016-01-30 22:04:04 +0800&#39;</code></pre>
 <p>上面的命令可以在commit的同时指定提交内容的author和AUTHOR_DATE，这个恐怕要靠提交者（committer）的记忆力和公德心了，把这段代码真实author的名字和写就时间录进去，而不是让git默认的把自己的name和提交时间（COMMITTER_DATE）录入库中。</p>
 <p>在没有github之前，一个开源项目通常还是只设置几个有权限的提交人，大家想贡献代码就发patch给有权限的人，然后有权人commit。但自从有了github，发明了fork（fork并不属于git，而是github的独创哦）和PR（Pull-Request），让这个过程更加的轻便，也让项目的发展更加《失控》，有能力的人可以在自己的领地fork并发展一个项目，PR或不PR给原作者全凭个人喜好，原作者如果“懒政”，其他人完全可以独立发展。—— 每个人都在自己的库里commit，使得committer和author通常都是一个人，大家都是通过PR给其他人，而不是发送patch了。—— 所以 <code>--author</code> 这个参数已经很久不用一次了。</p>
-<h2 id="log"><a name="user-content-log" href="#log" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>看log的时候能否把修改了哪些文件也列出来</h2>
-<pre><code class="cmd">$ git log --stat
-</code></pre>
-
-<h2 id="tag"><a name="user-content-tag" href="#tag" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>看tag的时候能否把日期时间也列出来</h2>
+<h2 id="看log的时候能否把修改了哪些文件也列出来">看log的时候能否把修改了哪些文件也列出来</h2>
+<pre class="cmd"><code>$ git log --stat</code></pre>
+<h2 id="看tag的时候能否把日期时间也列出来">看tag的时候能否把日期时间也列出来</h2>
 <p><code>git tag</code> 貌似是完成不了这个任务，只能拜托<code>git log</code>了。</p>
-<p>关键是 <code>--simplify-by-decoration</code> 参数， refs/heads 和 refs/tags 都算一种 decoration，再联合 &ndash;tags 就可以了：</p>
-<pre><code class="cmd">$ git log --tags --simplify-by-decoration --pretty=&quot;format:%ci %d&quot;
-</code></pre>
-
+<p>关键是 <code>--simplify-by-decoration</code> 参数， refs/heads 和 refs/tags 都算一种 decoration，再联合 –tags 就可以了：</p>
+<pre class="cmd"><code>$ git log --tags --simplify-by-decoration --pretty=&quot;format:%ci %d&quot;</code></pre>
 <p>下面这句可以按常规log来显示，每个hash后面跟的就是tag</p>
-<pre><code class="cmd">$ git log --decorate=full --simplify-by-decoration
-</code></pre>
-
+<pre class="cmd"><code>$ git log --decorate=full --simplify-by-decoration</code></pre>
 <p>或者用 for-each-ref 命令也是极好的：</p>
-<pre><code class="cmd">$ git for-each-ref --format=&quot;%(creatordate)  %(refname:short) &quot; refs/tags/*
-</code></pre>
-
-<h2 id="tortoisesvndiff"><a name="user-content-tortoisesvndiff" href="#tortoisesvndiff" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我要能像TortoiseSVN那样左右两栏对比看diff</h2>
+<pre class="cmd"><code>$ git for-each-ref --format=&quot;%(creatordate)  %(refname:short) &quot; refs/tags/*</code></pre>
+<h2 id="我要能像tortoisesvn那样左右两栏对比看diff">我要能像TortoiseSVN那样左右两栏对比看diff</h2>
 <p>这个必须有！</p>
 <blockquote>
 <p>git和TortoiseSVN相比是不恰当的，git要和subversion比较，它们两个是协议；TortoiseGit才是和TortoiseSVN比较，这两个是前端。Subversion的前端并不多，除了TortoiseSVN并没有更多的选择，git的前端却不少：TortoiseGit、GitForWindows、Github for Desktop……</p>
+</blockquote>
+<blockquote>
 <p>前端对协议进行了封装（比如默认安装的TortoiseSVN都已经找不到<code>svn</code>等命令，所以也不能运行<code>svn log</code>、<code>svn commit</code>）和更多的图形化工作（图标重绘、文本比较工具……）的事情留在后面慢慢说，回到比较工具上来：除非你是要制作补丁包，或者改动很小，否则你几乎不会想直接查看<code>git diff</code>，配置好第三方比较工具的调用方法是必须要做的 —— 这个懒偷不得。</p>
+</blockquote>
+<blockquote>
 <p>git 调用第三方工具是灵活的，当然TortoiseSVN调用第三方diff/Merge工具也是可定制的，并且用户不指定第三方工具的话，TortoiseSVN项目自己做了一个比较工具TortoiseMerge来作为默认，TortoiseGit也是有默认的。git则需要手工设置。</p>
 </blockquote>
 <p><strong>git中查看差异有两个命令</strong>:</p>
-<ol>
-<li><code>git diff</code>: 在Terminal中按照Linux的传统方式生成patch<br />
-<img alt="" src="img/git-diff.png" /></li>
-<li><code>git difftool</code>: 使用第三方工具显示差异<br />
-<img alt="" src="img/git-difftool-merge.png" />       </li>
+<ol type="1">
+<li><code>git diff</code>: 在Terminal中按照Linux的传统方式生成patch <img src="img/git-diff.png" /></li>
+<li><code>git difftool</code>: 使用第三方工具显示差异 <img src="img/git-difftool-merge.png" /></li>
 </ol>
 <p><code>git difftool</code> 命令能够调用的第三方比较工具有很多，列几个本人用过的：</p>
 <ul>
-<li>收费的<ul>
-<li><a href="http://www.scootersoftware.com">Beyond Compare</a> &ndash; Win、Linux、macOS</li>
-<li><a href="http://www.araxis.com">Araxis Merge</a> &ndash; Win、macOS</li>
-<li><a href="http://www.ultraedit.com/products/ultracompare.html">UltraCompare</a> &ndash; Win,本来是UE的一个插件，近几年独立出来了</li>
-</ul>
-</li>
-<li>免费但不开源的<ul>
-<li><a href="http://www.sourcegear.com/diffmerge/downloads.php">DiffMerge</a> &ndash; Win、Linux、macOS</li>
-</ul>
-</li>
-<li>开源的：<ul>
-<li><a href="http://meldmerge.org">Meld</a> &ndash; Win、Linxu、macOS</li>
-</ul>
-</li>
+<li>收费的
+<ul>
+<li><a href="http://www.scootersoftware.com">Beyond Compare</a> – Win、Linux、macOS</li>
+<li><a href="http://www.araxis.com">Araxis Merge</a> – Win、macOS</li>
+<li><a href="http://www.ultraedit.com/products/ultracompare.html">UltraCompare</a> – Win,本来是UE的一个插件，近几年独立出来了</li>
+</ul></li>
+<li>免费但不开源的
+<ul>
+<li><a href="http://www.sourcegear.com/diffmerge/downloads.php">DiffMerge</a> – Win、Linux、macOS</li>
+</ul></li>
+<li>开源的：
+<ul>
+<li><a href="http://meldmerge.org">Meld</a> – Win、Linxu、macOS</li>
+</ul></li>
 </ul>
 <p>用哪个呢？这是萝卜白菜的事情，不要纠结，你用惯了哪个就是哪个（我相信你的电脑上肯定已经有了一个文本比较工具，用它就是了，本着开放、开源、和跨平台的原则，我个人推荐Meld）。git调用它们的方法配置是大同小异。我不能每种软件在每个系统中都试一遍，所以只能条目列在这里，但我本人没搞过的就空着了，看官自己百度一下吧，照葫芦画瓢能力强的话也用不着百度。</p>
 <ul>
-<li><strong>Araxis Merge</strong><ul>
-<li>macOS: <code>vi ~/.gitconfig</code>，加入：<br />
+<li><strong>Araxis Merge</strong>
+<ul>
+<li>macOS: <code>vi ~/.gitconfig</code>，加入：</li>
+</ul>
 <pre><code>difftool.prompt=false
 diff.tool=araxis
 merge.tool=araxis
 mergetool.araxis.path=/Applications/Araxis Merge.app/Contents/Utilities/compare
-difftool.araxis.path=/Applications/Araxis Merge.app/Contents/Utilities/compare
-</code></pre></li>
+difftool.araxis.path=/Applications/Araxis Merge.app/Contents/Utilities/compare</code></pre>
+<ul>
 <li>Linux</li>
 <li>Windows</li>
-</ul>
-</li>
-<li><strong>BeyondCompare</strong><ul>
-<li>macOS</li>
-<li>Linux</li>
-<li>Windows<br />
-<pre><code class="cmd">$ git config --global diff.tool bc3
-$ git config --global difftool.bc3.path &quot;c:/program files/beyond compare 3/bcomp.exe&quot;
-</code></pre></li>
-</ul>
-</li>
-<li><strong>DiffMerge</strong><ul>
-<li>macOS</li>
-<li>Linux</li>
-<li>Windows<br />
-<pre><code class="cmd">$ git config --global diff.tool diffmerge
-$ git config --global difftool.diffmerge.cmd 'diffmerge &quot;$LOCAL&quot; &quot;$REMOTE&quot;'
-</code></pre></li>
-</ul>
-</li>
-<li><strong>Meld</strong><ul>
+</ul></li>
+<li><strong>BeyondCompare</strong>
+<ul>
 <li>macOS</li>
 <li>Linux</li>
 <li>Windows</li>
 </ul>
-</li>
+<pre class="cmd"><code>$ git config --global diff.tool bc3
+$ git config --global difftool.bc3.path &quot;c:/program files/beyond compare 3/bcomp.exe&quot;</code></pre></li>
+<li><strong>DiffMerge</strong>
+<ul>
+<li>macOS</li>
+<li>Linux</li>
+<li>Windows</li>
+</ul>
+<pre class="cmd"><code>$ git config --global diff.tool diffmerge
+$ git config --global difftool.diffmerge.cmd &#39;diffmerge &quot;$LOCAL&quot; &quot;$REMOTE&quot;&#39;</code></pre></li>
+<li><strong>Meld</strong>
+<ul>
+<li>macOS</li>
+<li>Linux</li>
+<li>Windows</li>
+</ul></li>
 </ul>
 <p>除此之外，还可以配置一项：</p>
-<pre><code class="cmd">$ git config --global difftool.prompt false 
-</code></pre>
-
+<pre class="cmd"><code>$ git config --global difftool.prompt false </code></pre>
 <p>OK，弄好了吧，我们来总结一下其知识点，如果不想看，可以跳过去看下条了。</p>
 <ul>
-<li>配置方法两种：<ol>
+<li>配置方法两种：
+<ol type="1">
 <li>通过 <code>git config ...</code> 命令</li>
 <li>通过 <code>vi ~/.gitconfig</code> 直接修改git的配置文件，方法1最终也是落实到2上</li>
-</ol>
-</li>
-<li>配置命令有两个：<ol>
+</ol></li>
+<li>配置命令有两个：
+<ol type="1">
 <li>cmd：git在执行某个difftool的时候，执行的命令，用户没有定义的话，会使用tool的名字做默认启动；如果用户定义的话，就必须加上 $LOCAL $REMOTE</li>
 <li>path: 用于定位不在PATH变量里的命令，但不需要加 $LOCAL $REMOTE</li>
-</ol>
-</li>
+</ol></li>
 </ul>
 <p>肯定还是有些完美主义者，一台电脑上安装了多个比较软件，想要不断切换 —— 也是没问题的。</p>
 <ul>
-<li>可以配置多个cmd<br />
-<pre><code class="cmd">$ git config --global difftool.bc.cmd 'beyondcompare &quot;$LOCAL&quot; &quot;$REMOTE&quot;'
-$ git config --global difftool.am.cmd 'araxismerge &quot;$LOCAL&quot; &quot;$REMOTE&quot;'
-$ git config --global difftool.dm.cmd 'diffmerge &quot;$LOCAL&quot; &quot;$REMOTE&quot;'
-</code></pre></li>
-<li>根据需求随时切换<br />
-<pre><code class="cmd">$ git config --global diff.tool bc
-</code></pre><br />
-或<br />
-<pre><code class="cmd">$ git config --global diff.tool am
-</code></pre><br />
-或<br />
-<pre><code class="cmd">$ git config --global diff.tool dm
-</code></pre></li>
+<li>可以配置多个cmd</li>
 </ul>
-<h2 id="git-add"><a name="user-content-git-add" href="#git-add" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>修改完了为什么不是直接提交，而是git add</h2>
+<pre class="cmd"><code>$ git config --global difftool.bc.cmd &#39;beyondcompare &quot;$LOCAL&quot; &quot;$REMOTE&quot;&#39;
+$ git config --global difftool.am.cmd &#39;araxismerge &quot;$LOCAL&quot; &quot;$REMOTE&quot;&#39;
+$ git config --global difftool.dm.cmd &#39;diffmerge &quot;$LOCAL&quot; &quot;$REMOTE&quot;&#39;</code></pre>
+<ul>
+<li>根据需求随时切换</li>
+</ul>
+<pre class="cmd"><code>$ git config --global diff.tool bc</code></pre>
+<p>或</p>
+<pre class="cmd"><code>$ git config --global diff.tool am</code></pre>
+<p>或</p>
+<pre class="cmd"><code>$ git config --global diff.tool dm</code></pre>
+<h2 id="修改完了为什么不是直接提交而是git-add">修改完了为什么不是直接提交，而是git add</h2>
 <p>git在 <code>git commit</code> 之前首先要 <code>git add</code>，从svn转移过来的同学会对这点有一些疑惑和质疑。</p>
 <p><code>git add</code> 将文件放入到暂存区（stage），并生成对象 —— 参见本文的 <a href="#git-object">git 的对象（object）</a></p>
 <p>理解git需要理解文件的5种状态和3个区（area）：</p>
 <p>5种状态：</p>
-<ol>
+<ol type="1">
 <li>未跟踪态（untracked）</li>
 <li>未修改状态（unmodified）</li>
 <li>修改状态（modified），即：待暂存（staging）</li>
@@ -1008,17 +713,17 @@ $ git config --global difftool.dm.cmd 'diffmerge &quot;$LOCAL&quot; &quot;$REMOT
 <li>已提交（committed）</li>
 </ol>
 <p>3个区：</p>
-<ol>
+<ol type="1">
 <li>本地工作目录（working directory）</li>
 <li>暂存区（staging area，又叫做index）</li>
 <li>git库（repository）</li>
 </ol>
 <p>1、2、3状态在本地工作目录，4状态属于暂存区，5状态属于git库。</p>
-<p><embed src="img/git-state-and-area.svg" type="image/svg+xml" /></p>
+<embed src="img/git-state-and-area.svg" type="image/svg+xml" />
 <p>如果我修改了一下README.md，<code>git add</code>了一下，然后又修改了一下，用<code>git st</code>的打印是这样的：</p>
-<pre><code class="cmd">$ git st
+<pre class="cmd"><code>$ git st
 On branch master
-Your branch is up-to-date with 'origin/master'.
+Your branch is up-to-date with &#39;origin/master&#39;.
 Changes to be committed:
   (use &quot;git reset HEAD &lt;file&gt;...&quot; to unstage)
 
@@ -1028,50 +733,44 @@ Changes not staged for commit:
   (use &quot;git add &lt;file&gt;...&quot; to update what will be committed)
   (use &quot;git checkout -- &lt;file&gt;...&quot; to discard changes in working directory)
 
-    modified:   README.md
-</code></pre>
-
+    modified:   README.md</code></pre>
 <p>很多地方把暂存和stage混在一起，不查字典的话还以为stage的中文翻译就是暂存。其实 stage 就这个单词的本身的意思是：</p>
-<ol>
+<ol type="1">
 <li>名词：舞台、讲台，比如：戏剧表演的舞台、国际政治的舞台；阶段，类似phase，比如：stage one/two意思是第一/二阶段，three-stage rocket意思是三级火箭</li>
 <li>动词：上演、举行、组织，类似play、organize，比如：stage a football match，举办足球赛</li>
 </ol>
 <p>stage本身并没有暂存的意思，git中可以理解为把文件放到一个舞台上上演一下，进而文件进入到一个新的阶段。——用这个词可以说是一箭三雕。</p>
 <p>你可以输入<code>git help stage</code> 看看</p>
-<pre><code class="cmd">GIT-STAGE(1)                                              Git Manual                                              GIT-STAGE(1)
+<pre class="cmd"><code>GIT-STAGE(1)                                              Git Manual                                              GIT-STAGE(1)
 NAME
        git-stage - Add file contents to the staging area
 SYNOPSIS
        git stage args...
 DESCRIPTION
-       This is a synonym for git-add(1). Please refer to the documentation of that command.
-</code></pre>
-
+       This is a synonym for git-add(1). Please refer to the documentation of that command.</code></pre>
 <p><code>git stage</code> 是同义于 <code>git add</code> 的：将文件加入到 <strong>staging area</strong>（舞台区、阶段区、进而翻译为暂存区，下文我还是尽量不去翻译这个词汇，而直接用英文吧，或搞个缩写：SA —— 如果让我翻译，我会译为：检视区）。</p>
 <p>把前面已经提到过暂存区像回收站，把文件放在回收站是给操作人一个检视的机会和反悔的机会，操作妥当后再彻底删除，彻底删除后再想反悔就要费劲了。git的staging area也是给用户一个<strong>检视的机会</strong>和<strong>反悔的机会</strong>，用户可以：</p>
 <ul>
 <li>使用<code>git add</code>或<code>git stage</code>命令随时向SA增加文件，和回收站不同的是后进入SA的文件会覆盖前面进入的</li>
 <li>使用<code>git checkout</code>命令随时从SA反悔，文件会从SA移除，是否覆盖</li>
 </ul>
-<h2 id="ubuntugit-commit"><a name="user-content-ubuntugit-commit" href="#ubuntugit-commit" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我用ubuntu，我要修改git commit时的默认编辑器</h2>
+<h2 id="我用ubuntu我要修改git-commit时的默认编辑器">我用ubuntu，我要修改git commit时的默认编辑器</h2>
 <p><code>git commit</code>会自动打开系统默认的编辑器来让你写log，如下修改：</p>
-<pre><code class="cmd">ubuntu$ update-alternatives --config editor
-</code></pre>
-
+<pre class="cmd"><code>ubuntu$ update-alternatives --config editor</code></pre>
 <p>这个问题不属于git的范畴，而是linux的。</p>
 <hr />
 <p>到这里，你应该能够优雅地使用git管理自己的日记本了：<strong>log清清爽爽、命令简简单单、变更一目了然</strong> —— 如果只是管理自己的日记项目，已然可以游刃有余了。</p>
 <p>如果你是工程师或程序员，还会有多版本、多分支并行开发的需求，下面我们开始讨论分支、合并等操作。如果不是程序员，基本上可以刀枪入库、马放南山，结束阅读了。</p>
 <p>第二局，Over!</p>
-<h1 id="round-3"><a name="user-content-round-3" href="#round-3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 3 : 并发</h1>
-<p><img alt="" src="img/boy-buffaloes-india-sw.jpg" /></p>
+<h1 id="round-3-并发">Round 3 : 并发</h1>
+<p><img src="img/boy-buffaloes-india-sw.jpg" /></p>
 <p>并发：并行开发，将会涉及分支（创建、查询、删除……）、标签等。</p>
-<h2 id="branch"><a name="user-content-branch" href="#branch" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>我想使用个分支（branch），怎么做</h2>
+<h2 id="我想使用个分支branch怎么做">我想使用个分支（branch），怎么做</h2>
 <p>好了，这里要提到一个非常重要的概念了，很多git书籍都会强调的一点：<strong>git的branch只是个指针</strong> —— 也常被称作“<strong>git的必杀技</strong>”。</p>
 <p>下面这几步非常有必要：</p>
 <ul>
 <li>看一下《Pro Git》中的<a href="http://www.kancloud.cn/kancloud/progit/70182">分支这一章</a></li>
-<li>网文非常多，自行搜索一下 <code>git branch</code> </li>
+<li>网文非常多，自行搜索一下 <code>git branch</code></li>
 <li><code>$ git help branch</code></li>
 </ul>
 <p>我来概要的描述一些要点</p>
@@ -1082,24 +781,25 @@ DESCRIPTION
 <li>HEAD指针比较特殊，可以将 HEAD 想象为当前分支的别名</li>
 <li></li>
 </ul>
-<h2 id="_1"><a name="user-content-_1" href="#_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何在分支间来回切换</h2>
-<h2 id="git-branch-delete"><a name="user-content-git-branch-delete" href="#git-branch-delete" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>删除分支总是想用git branch delete</h2>
+<h2 id="如何在分支间来回切换">如何在分支间来回切换</h2>
+<h2 id="删除分支总是想用git-branch-delete">删除分支总是想用git branch delete</h2>
 <p>曾经我也愤怒过这个事情：</p>
 <ul>
 <li>增加一个remote是：<code>git remote add ...</code>，增加一个branch却是：<code>git branch ...</code> —— 为啥不要add？</li>
 <li>删除一个remote是：<code>git remote remove ...</code>，删除一个branch却是：<code>git branch -d ...</code> —— 为啥要用<code>-d</code>？</li>
-<li>那些年闹过的笑话：<ul>
+<li>那些年闹过的笑话：
+<ul>
 <li><code>git branch delete xyz</code>: 结果增加了两个分支：delete和xyz</li>
 <li><code>git branch remove delete xyz</code>: 以为用错了，再试remove，结果又增加了第3个分支：remove</li>
 <li>非常疑惑，再试：<code>git branch del remove delete xyz</code>: 结果可想而知</li>
 <li>最后还得： <code>git help branch</code></li>
 <li><code>git branch -d del remove delete xyz</code></li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>在用参数还是用子命令的问题上，其实也不要纠结，子命令还能加参，所以子命令相当于对参数进行了一级分类，或者纯粹是开发者的个人偏好。</p>
 <ul>
-<li>git中使用子命令的不多：<code>git &lt;command&gt; &lt;subcommand&gt; &lt;option&gt;</code><ul>
+<li>git中使用子命令的不多：<code>git &lt;command&gt; &lt;subcommand&gt; &lt;option&gt;</code>
+<ul>
 <li><code>git bisect       &lt;subcommand&gt;</code></li>
 <li><code>git bundle       &lt;subcommand&gt;</code></li>
 <li><code>git credential   &lt;subcommand&gt;</code></li>
@@ -1110,87 +810,88 @@ DESCRIPTION
 <li><code>git subtree      &lt;subcommand&gt;</code></li>
 <li><code>git svn          &lt;subcommand&gt;</code></li>
 <li><code>git worktree     &lt;subcommand&gt;</code></li>
-</ul>
-</li>
+</ul></li>
 <li>剩下的基本都是： <code>git &lt;command&gt; &lt;option&gt;</code></li>
 </ul>
-<h2 id="git-merge"><a name="user-content-git-merge" href="#git-merge" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>分支的合并（git merge）有哪几种场景</h2>
+<h2 id="分支的合并git-merge有哪几种场景">分支的合并（git merge）有哪几种场景</h2>
 <p><code>git merge</code> = <code>diff</code> + <code>patch</code></p>
 <p>假定：本地工作目录是b1(HEAD)的，希望从b2合并过来，b1和b2从同一个节点C3继承</p>
-<p>初始状态：<br />
+<p>初始状态：</p>
 <pre><code>              b1(HEAD)
               |
 C1 --- C2 --- C3
               |
-              b2
-</code></pre></p>
-<ol>
-<li>b2自C3后没有提交，无论本地文件有无修改、有无暂存、b1有无新提交：<code>git merge b2</code>后，b1都<strong>不发生任何变化</strong><br />
+              b2</code></pre>
+<ol type="1">
+<li>b2自C3后没有提交，无论本地文件有无修改、有无暂存、b1有无新提交：<code>git merge b2</code>后，b1都<strong>不发生任何变化</strong></li>
+</ol>
 <pre><code>                            b1(HEAD)
                             |
 C1 --- C2 --- C3 --- C6 --- C7
               |
-              b2
-</code></pre></li>
-<li>
-<p>b2自C3后有提交</p>
-<ol>
+              b2</code></pre>
+<ol start="2" type="1">
+<li>b2自C3后有提交
+<ol type="1">
 <li>b1在C3后有修改但没有暂存，或有暂存没有提交，都是禁止merge操作的</li>
-<li>
-<p>b1在C3后没有提交</p>
+<li>b1在C3后没有提交
 <ul>
-<li>merge前状态<br />
+<li>merge前状态</li>
+</ul>
 <pre><code>              b1(HEAD)
               |
 C1 --- C2 --- C3
                \
                C4 --- C5
                       |
-                      b2
-</code></pre></li>
-<li><code>git merge b2</code>后，b1快速前移（fast-forward）到b2<br />
+                      b2</code></pre>
+<ul>
+<li><code>git merge b2</code>后，b1快速前移（fast-forward）到b2</li>
+</ul>
 <pre><code>                            b1(HEAD)
                             |
 C1 --- C2 --- C3 --- C4 --- C5
                             |
-                            b2
-</code></pre></li>
-<li><code>git merge --no-ff b2</code>后，b1即使可以快速前移（fast-forward），也会生成一个commit，就像b1有提交似得，其实C6里面没有任何文件的修改，只是为给自己和团队人员提个醒，此处做过一次合并 —— merge一个anotated tag的时候用此默认参数<br />
+                            b2</code></pre>
+<ul>
+<li><code>git merge --no-ff b2</code>后，b1即使可以快速前移（fast-forward），也会生成一个commit，就像b1有提交似得，其实C6里面没有任何文件的修改，只是为给自己和团队人员提个醒，此处做过一次合并 —— merge一个anotated tag的时候用此默认参数</li>
+</ul>
 <pre><code>                        b1(HEAD)
                         |
 C1 --- C2 --- C3 ------ C6
                \       /
                C4 --- C5
                       |
-                      b2
-</code></pre></li>
-</ul>
-</li>
-<li>
-<p>b1在C3后有提交</p>
+                      b2</code></pre></li>
+<li>b1在C3后有提交
 <ul>
-<li>merge前状态<br />
+<li>merge前状态</li>
+</ul>
 <pre><code>                    b1(HEAD)
                     |
 C1 --- C2 --- C3 -- C6
                \       
                C4 --- C5
                       |
-                      b2
-</code></pre></li>
-<li><code>git merge b2</code>后，<ul>
-<li>如果没有冲突<ul>
-<li>默认参数是： &ndash;commit/&ndash;edit/，即：会产生一次commit，自动生成log但会弹出编辑器给用户编辑，并且<code>git log b1</code>的时候会列出C1/2/3/4/5/6/7所有的提交信息<br />
+                      b2</code></pre>
+<ul>
+<li><code>git merge b2</code>后，
+<ul>
+<li>如果没有冲突
+<ul>
+<li>默认参数是： –commit/–edit/，即：会产生一次commit，自动生成log但会弹出编辑器给用户编辑，并且<code>git log b1</code>的时候会列出C1/2/3/4/5/6/7所有的提交信息</li>
+</ul>
 <pre><code>                          b1(HEAD)
                           |
 C1 --- C2 --- C3 -- C6 -- C7
                \         /
                C4 --- C5
                       |
-                      b2
-</code></pre></li>
+                      b2</code></pre>
+<ul>
 <li><code>git merge --no-edit b2</code>可以不弹出编辑器给用户编辑log</li>
-<li><code>git merge --no-commit b2</code>可以避免自动生成commit，而只是把b2的差异合并到本地文件，并add到暂存区，后续由开发者自己提交。提交后的新节点C7仍是有两个父节点的（C5、C6）<br />
+<li><code>git merge --no-commit b2</code>可以避免自动生成commit，而只是把b2的差异合并到本地文件，并add到暂存区，后续由开发者自己提交。提交后的新节点C7仍是有两个父节点的（C5、C6）</li>
+</ul>
 <pre><code>                       本地文件&amp;暂存区 -- git commit
                        /     /           \
                       /     /             \ b1(HEAD)
@@ -1199,9 +900,10 @@ C1 --- C2 --- C3 -- C6 -- / ---------------C7
                \         /                 /
                C4 --- C5  ----------------/
                       |
-                      b2
-</code></pre></li>
-<li><code>git merge -squash b2</code>：sqush单词的意思是挤压、压扁。此命令可以把b2中的差异提交合并成diff，patch到本地文件并add，用户commit后生成的新节点和b2没有任何关系（<code>git log</code>是看不到b2的所有提交的），可以理解为纯粹从b2拿差异过来，但又不和b2发生关系。—— 常用于在主干上合并一个没有完成的特性分支，或者两个相互依赖的分支不定时的互相合并。<br />
+                      b2</code></pre>
+<ul>
+<li><code>git merge -squash b2</code>：sqush单词的意思是挤压、压扁。此命令可以把b2中的差异提交合并成diff，patch到本地文件并add，用户commit后生成的新节点和b2没有任何关系（<code>git log</code>是看不到b2的所有提交的），可以理解为纯粹从b2拿差异过来，但又不和b2发生关系。—— 常用于在主干上合并一个没有完成的特性分支，或者两个相互依赖的分支不定时的互相合并。</li>
+</ul>
 <pre><code>                       本地文件&amp;暂存区 -- git commit
                        /     /           \
                       /     /             \ b1(HEAD)
@@ -1210,11 +912,9 @@ C1 --- C2 --- C3 -- C6 -- / ---------------C7
                \         /               
                C4 --- C5 
                       |
-                      b2
-</code></pre></li>
+                      b2</code></pre></li>
+<li>如果有冲突，则会在本地文件中记录差异(diff)</li>
 </ul>
-</li>
-<li>如果有冲突，则会在本地文件中记录差异(diff)<br />
 <pre><code>                       本地文件(diff文件)
                           /  /
                     b1(HEAD)/
@@ -1223,29 +923,23 @@ C1 --- C2 --- C3 -- C6    /
                \         /
                C4 --- C5
                       |
-                      b2
-</code></pre><ul>
-<li>需要手工（使用vi、notepad++、sublimetext等删除诸如&rdquo;===&rdquo;和&rdquo;***&rdquo;）或<code>git mergetool confilctfile</code>两种方式之一修改冲突文件，手工修改完毕后还需<code>git add</code>，<code>git mergetool</code>退出时git默认会把冲突文件add到暂存区，最后<code>git commit</code>，此时会发现默认的log已经被自动加上了<br />
-<pre><code>                 本地文件(diff文件) -- &quot;手工+git add&quot;或&quot;git mergetool&quot; -- &quot;git commit&quot;
-                       /     /                                            \
-                      /     /                                              \ b1(HEAD)
-                     /     /                                                \|
-C1 --- C2 --- C3 -- C6 -- / ------------------------------------------------C7
-               \         /                                                  /
-               C4 --- C5 --------------------------------------------------/
-                      |
-                      b2
-</code></pre></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+                      b2</code></pre>
+<pre><code>  + 需要手工（使用vi、notepad++、sublimetext等删除诸如&quot;===&quot;和&quot;***&quot;）或`git mergetool confilctfile`两种方式之一修改冲突文件，手工修改完毕后还需`git add`，`git mergetool`退出时git默认会把冲突文件add到暂存区，最后`git commit`，此时会发现默认的log已经被自动加上了
+  ```
+                   本地文件(diff文件) -- &quot;手工+git add&quot;或&quot;git mergetool&quot; -- &quot;git commit&quot;
+                         /     /                                            \
+                        /     /                                              \ b1(HEAD)
+                       /     /                                                \|
+  C1 --- C2 --- C3 -- C6 -- / ------------------------------------------------C7
+                 \         /                                                  /
+                 C4 --- C5 --------------------------------------------------/
+                        |
+                        b2
+  ```</code></pre></li>
+</ul></li>
+</ol></li>
 </ol>
-</li>
-</ol>
-<h2 id="log_1"><a name="user-content-log_1" href="#log_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>合并时如何处理分支中的“垃圾”log</h2>
+<h2 id="合并时如何处理分支中的垃圾log">合并时如何处理分支中的“垃圾”log</h2>
 <p>我想你所表达的所谓“垃圾”只是针对分支要合并到主干了，这些log显得琐碎而多余，针对主干来说是“垃圾”，在分支开发过程中这些肯定不是垃圾，而是有效的防护网，也是向领导汇报工作时的“烂笔头”。</p>
 <p>我建议你在分支开发过程中可以适当的多提交一些、提交细一些，不但可以省去单独写“工作日志”，也利于回忆和追溯，如果领导在关注这个git库，也能让领导感觉每天都在努力，挣一些情感分。</p>
 <p>但毕竟好又多的log信息合入主干的话还是要认真思考一下是不是要保留所有log</p>
@@ -1253,54 +947,53 @@ C1 --- C2 --- C3 -- C6 -- / ------------------------------------------------C7
 <li><strong>Yes</strong>:那就直接<code>git merge featurebranch master</code></li>
 <li><strong>No</strong>:那还是悠着点<code>git merge --squash featurebranch master</code> —— 具体原理参考 <a href="#git-merge">分支的合并（git merge）有哪几种场景</a> 已描述</li>
 </ul>
-<h2 id="_2"><a name="user-content-_2" href="#_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>“把特性分支合入主干”和“把主干合入特性分支”有什么区别</h2>
+<h2 id="把特性分支合入主干和把主干合入特性分支有什么区别">“把特性分支合入主干”和“把主干合入特性分支”有什么区别</h2>
 <p>这个问题问的好，很多一开始接触git的同学基本意识不到这个问题。这已经不是git本身的问题了，而是使用git的团队之间的工作流规范了。</p>
 <ul>
-<li><strong>把特性分支合入主干</strong>：通常是特性分支开发完毕了，测试通过了，是时候在主干上构建版本了，才把分支合入主干<ul>
+<li><strong>把特性分支合入主干</strong>：通常是特性分支开发完毕了，测试通过了，是时候在主干上构建版本了，才把分支合入主干
+<ul>
 <li>此时通常会遇到前面讲的“处理分支中的垃圾log”问题，处理办法前文已述</li>
 <li>合入主干后分支通常会删除，留着特性分支不删除的习惯是不合适的，用句成语来形容就是：敝帚自珍</li>
 <li>删除后还想再继续，<code>git branch featurebranch</code>再开一个就是了，名字都可以相同</li>
 <li>通常我们的特性分支是根据用户故事/工单而来的，一个长期不删除的分支说明了任务分解的不合理或需求的不明确，一旦出现这样的问题还是尽快和用户讨论需求并合理的分解。</li>
-</ul>
-</li>
-<li><strong>把主干合入特性分支</strong>：通常是主干在不停的合入较稳定的代码，分支也想不定期/或定期的同步过来，以免和主干背离太远<ul>
+</ul></li>
+<li><strong>把主干合入特性分支</strong>：通常是主干在不停的合入较稳定的代码，分支也想不定期/或定期的同步过来，以免和主干背离太远
+<ul>
 <li>定期同步主干到特性分支是个好习惯，可以尽快的发现团队成员做了什么，是不是对我的当前分支有影响和冲突……有了冲突要今早发现、尽快处理才是敏捷，对冲突采取鸵鸟策略是不明智的。</li>
-<li>涉及的命令有：<ul>
+<li>涉及的命令有：
+<ul>
 <li><code>git rebase master</code></li>
 <li><code>git pull --rebase</code> 如果有冲突会停住，然后<code>git mergetool</code>解决冲突，<code>git rebase --continue</code>继续</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="git-merge_1"><a name="user-content-git-merge_1" href="#git-merge_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git merge 有没有图形化的工具</h2>
+<h2 id="git-merge-有没有图形化的工具">git merge 有没有图形化的工具</h2>
 <p>和 <code>git difftool</code> 类似，也有 <code>git mergetool</code>，但mergetool不是用来merge的，而是用来处理merge后的冲突文件的。</p>
 <ul>
-<li>通用配置<br />
-<pre><code class="cmd">$ git config --global mergetool.diffmerge.trustExitCode true
-</code></pre></li>
-<li><strong>BeyondCompare</strong><ul>
+<li>通用配置</li>
+</ul>
+<pre class="cmd"><code>$ git config --global mergetool.diffmerge.trustExitCode true</code></pre>
+<ul>
+<li><strong>BeyondCompare</strong>
+<ul>
 <li>macOS</li>
 <li>Linux</li>
-<li>Windows<br />
-<pre><code class="cmd">$ git config --global merge.tool bc3
+<li>Windows</li>
+</ul>
+<pre class="cmd"><code>$ git config --global merge.tool bc3
 $ git config --global mergetool.bc3.path &quot;c:/program files/beyond compare 3/bcomp.exe&quot;
-$ git mergetool
-</code></pre></li>
-</ul>
-</li>
-<li><strong>DiffMerge</strong><ul>
+$ git mergetool</code></pre></li>
+<li><strong>DiffMerge</strong>
+<ul>
 <li>macOS</li>
 <li>Linux</li>
-<li>Windows<br />
-<pre><code class="cmd">$ git config --global merge.tool diffmerge
-$ git config --global mergetool.diffmerge.cmd 'diffmerge --merge --result=&quot;$MERGED&quot; &quot;$LOCAL&quot; &quot;$(if test -f &quot;$BASE&quot;; then echo &quot;$BASE&quot;; else echo &quot;$LOCAL&quot;; fi)&quot; &quot;$REMOTE&quot;'
-</code></pre></li>
+<li>Windows</li>
 </ul>
-</li>
+<pre class="cmd"><code>$ git config --global merge.tool diffmerge
+$ git config --global mergetool.diffmerge.cmd &#39;diffmerge --merge --result=&quot;$MERGED&quot; &quot;$LOCAL&quot; &quot;$(if test -f &quot;$BASE&quot;; then echo &quot;$BASE&quot;; else echo &quot;$LOCAL&quot;; fi)&quot; &quot;$REMOTE&quot;&#39;</code></pre></li>
 </ul>
-<h2 id="git_4"><a name="user-content-git_4" href="#git_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git分支之间的关系能否图示</h2>
-<pre><code class="cmd">$ git log --pretty=oneline --graph
+<h2 id="git分支之间的关系能否图示">git分支之间的关系能否图示</h2>
+<pre class="cmd"><code>$ git log --pretty=oneline --graph
 
 * 94688f21cc5d8bc85f1783b4c8b98b3288d712cb improve readme
 *   693f2c48421d9218e057340bf29de75e0d5ba8d2 Merge pull request #377 from PhrozenByte/patch-1
@@ -1316,12 +1009,10 @@ $ git config --global mergetool.diffmerge.cmd 'diffmerge --merge --result=&quot;
 | * b166cab9a252f4093af1f33cb178a86f6047d08a Make `lines` protected to allow for extendability
 |/
 * 0f974bf34fdc420c3a7dc0a6c5c5fc620fa9dd89 improve readme
-* 3d7cdeec5f90a16934a2cfd35a089c78aa0e4816 remove duplicate item in: who uses it
-</code></pre>
-
-<h2 id="_3"><a name="user-content-_3" href="#_3" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>分支名能否用中文</h2>
+* 3d7cdeec5f90a16934a2cfd35a089c78aa0e4816 remove duplicate item in: who uses it</code></pre>
+<h2 id="分支名能否用中文">分支名能否用中文</h2>
 <p>关于分支的命名，可以用一条git命令来检查： git check-ref-format —— 它的返回值为0表示git接受此命名，否则不接受。比如：</p>
-<pre><code class="cmd">kevin@T410:~$ git check-ref-format &quot;refs/heads/zte&quot; 
+<pre class="cmd"><code>kevin@T410:~$ git check-ref-format &quot;refs/heads/zte&quot; 
 kevin@T410:~$ echo $?
 0
 kevin@T410:~$ git check-ref-format &quot;refs/heads/z.t.e&quot; 
@@ -1338,23 +1029,17 @@ kevin@T410:~$ echo $?
 1
 kevin@T410:~$ git check-ref-format &quot;refs/heads/z:t?e&quot; 
 kevin@T410:~$ echo $?
-1
-</code></pre>
-
-<p>先解释一下 ref/hedas ：分支和tag都是指针，ref就是指针的意思，所有branch和tag在.git/config中都是以 ref/&hellip; 命名的，如果不加 ref ， check-ref-format 命令将不能正确识别。</p>
+1</code></pre>
+<p>先解释一下 ref/hedas ：分支和tag都是指针，ref就是指针的意思，所有branch和tag在.git/config中都是以 ref/… 命名的，如果不加 ref ， check-ref-format 命令将不能正确识别。</p>
 <p>可以发现两个点 .. 、~、^、:、? 这些都是不允许的，斜杠允许但不允许在末尾。</p>
 <p>最后，来看看你最关心的中文名：</p>
-<pre><code class="cmd">kevin@T410:~$ git check-ref-format &quot;refs/heads/中兴&quot; 
+<pre class="cmd"><code>kevin@T410:~$ git check-ref-format &quot;refs/heads/中兴&quot; 
 kevin@T410:~$ echo $?
-0
-</code></pre>
-
+0</code></pre>
 <p>是允许的。</p>
 <p>那么branch/tag的命名到底规则如何呢？</p>
 <p>看git帮助即可：</p>
-<pre><code class="cmd">$ git help check-ref-format
-</code></pre>
-
+<pre class="cmd"><code>$ git help check-ref-format</code></pre>
 <p>里面是这样解释的：</p>
 <pre><code>Git imposes the following rules on how references are named:
 
@@ -1367,34 +1052,33 @@ kevin@T410:~$ echo $?
 7. They cannot end with a dot ..
 8. They cannot contain a sequence @{.
 9. They cannot be the single character @.
-10. They cannot contain a \.
-</code></pre>
-
+10. They cannot contain a \.</code></pre>
 <hr />
 <p>学会了分支操作（创建、合并、冲突……）是与人合作的基础，你是否已经准备好了走出个人的宇宙，拥抱开源的大世界了！</p>
 <p>第3局，Over！</p>
-<h1 id="round-4"><a name="user-content-round-4" href="#round-4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 4 : 协作</h1>
-<p><img alt="" src="img/children-dam-bali-sw.jpg" /></p>
-<h2 id="git_5"><a name="user-content-git_5" href="#git_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>想看看别人的git库了</h2>
+<h1 id="round-4-协作">Round 4 : 协作</h1>
+<p><img src="img/children-dam-bali-sw.jpg" /></p>
+<h2 id="想看看别人的git库了">想看看别人的git库了</h2>
 <p>是不是已经不满足于只管理个本机的日记了？太好了，git天生就是为了程序猿合作用的，几条关键的命令要出场了：</p>
 <ul>
-<li><code>git clone url [localname]</code>  </li>
+<li><code>git clone url [localname]</code><br />
+</li>
 <li><code>git fetch</code></li>
 <li><code>git pull</code></li>
 <li><code>git push</code></li>
 </ul>
 <p>一幅图说明问题：</p>
-<p><img alt="" src="img/git-pull-push.png" /></p>
+<p><img src="img/git-pull-push.png" /></p>
 <p>最左边的remote和左边3个（repository、index、workspace)是同等地位的，意思是remote是远方某人的电脑，里面其实也包含了（repository、index、workspace)中的3个或2个，大家地位是平等的。</p>
-<h2 id="_4"><a name="user-content-_4" href="#_4" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>橡树与木棉</h2>
+<h2 id="橡树与木棉">橡树与木棉</h2>
 <p>svn中每个人的本机是client，数据库在server上，离开server，你看不到log，无法做commit。但git没有server的概念，或者说server就在每个人的本机上，无非是保存了repo的哪些东东。</p>
 <p>每两人之间互相分享、交换代码是通过： pull、push、fetch、clone 这几个命令来完成的，你是我的remote，我也是你的remote，大家彼此之间就像橡树与木棉，谁也不是攀援谁的凌霄花，谁也不是谁的痴情鸟儿，两个remote只是两颗近旁的橡树和木棉，根紧握在地下，叶相触在云里，仿佛永远分离，却又终身相依。</p>
 <p>我可以独立的生长，我commit代码不必次次都跟你商量，你也是，我们之间的每次push和pull都建立的互相尊重、地位平等的前提下，你不必绑架我，我也不限制你。</p>
-<h2 id="gitgithub"><a name="user-content-gitgithub" href="#gitgithub" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git与github</h2>
+<h2 id="git与github">git与github</h2>
 <p>这个问题就像经典的C++与VC的区别，问了很多年了还是有刚出校门的同学在问，我后来一度觉得这不能怪同学们，谁叫他俩非要起这么相近的名字，让人傻傻分不清。</p>
 <p>git和github更加淋漓尽致的体现这个现象，也是git入门的必问问题之一。谁让github这帮小伙起了个这样的名字，人家sourceforge、googlecode、codeplex都不以自己所用的版本管理软件的名字来标榜自己，唯独github，为了显摆自己用了git，起了个git转发器（hub）这个名字 —— 呵呵，开玩笑了，仔细琢磨，你会发现hub（转发器）这个词选的真是绝了，太贴切了。</p>
 <p>git和github我用一句话就让你理解：就像BT和迅雷。——类似“迅雷使用BT协议，增加了权限、种子列表、热门榜单等”，github使用git协议，增加了权限、项目列表、热门榜单等。其他就不多解释了。</p>
-<h2 id="github"><a name="user-content-github" href="#github" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>github与他的小伙伴们（到哪里找开源项目）</h2>
+<h2 id="github与他的小伙伴们到哪里找开源项目">github与他的小伙伴们（到哪里找开源项目）</h2>
 <p>开源项目托管网站（及其开始支持git的时间）有：</p>
 <ul>
 <li><a href="http://github.com">github</a>(2008.2)</li>
@@ -1408,340 +1092,327 @@ kevin@T410:~$ echo $?
 <p>这些网站之间有很多有趣的历史，也是互为竞争对手。2004年我第一次接触开源的时候，项目经理给我的任务是到sourceforge下载一个叫做rainbow的源码，当时还没有git，开源项目托管第一平台sourceforge已经独霸江湖10余年，它是在用cvs，作为一个还在学校的学生，真的是摸索了很久。</p>
 <p>很多年过去了，看江湖风云，开源项目版本管理系统从cvs到svn，又从svn到git。开源项目托管网站从sourceforge逐步衰败，到群众寄予厚望的google code风光无限，但最终都还是和其他网站一起，败在了一个2008年创立、2011年才火起来的后起之秀手上，google code也于2015年底宣布关闭。此后起之秀就是当下无人匹敌的：github。</p>
 <p>有个有趣的小插曲：CodePlex是微软家的，也开张好多年了，sourceforge时代就不愠不火，反正在大家眼里微软和开源本就是水火不容、盖茨/鲍尔默和托瓦茨也是井水不犯河水。但在2012年微软突然做出了一个有趣的决定：</p>
-<p><img alt="" src="img/codeplex.torvalds.png" /></p>
+<p><img src="img/codeplex.torvalds.png" /></p>
 <p>近几年，微软更是几乎放弃了自家的CodePlex，转投github，开源自己的.NET都在github上了。</p>
 <p>2017年4月1日，愚人节这天微软宣布将关闭了codeplex，4月1日开始关闭新项目的创建，10月进入只读模式，12月15彻底over，结束codeplex 11年的生涯。回想当然用C# 和 ASP.NET 的时候，经常上codeplex上溜达，都将随风而逝，成为回忆。</p>
-<h2 id="github_1"><a name="user-content-github_1" href="#github_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>为什么github成了程序员的麦加圣地</h2>
-<p>不解释，它就是那么酷！ &ndash; 谁用谁知道</p>
+<h2 id="为什么github成了程序员的麦加圣地">为什么github成了程序员的麦加圣地</h2>
+<p>不解释，它就是那么酷！ – 谁用谁知道</p>
 <ul>
 <li><a href="http://www.xuanfengge.com/github-cheats.html">GitHub秘籍，为你解读Git与Github酷而少知的功能</a></li>
 </ul>
-<h2 id="proxygithub"><a name="user-content-proxygithub" href="#proxygithub" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>公司内如何穿过Proxy访问github</h2>
+<h2 id="公司内如何穿过proxy访问github">公司内如何穿过Proxy访问github</h2>
 <p>git会使用“git confing配置”和“shell变量配置”两类：</p>
-<p><embed src="img/git-proxy.svg" /></p>
-<h3 id="git-config"><a name="user-content-git-config" href="#git-config" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用 git config 配置</h3>
-<pre><code class="cmd">$ git config --global http.proxy http://&lt;proxyserver&gt;:&lt;port&gt;
-$ git config --global https.proxy http://&lt;proxyserver&gt;:&lt;port&gt;
-</code></pre>
-
+<embed src="img/git-proxy.svg" />
+<h3 id="使用-git-config-配置">使用 git config 配置</h3>
+<pre class="cmd"><code>$ git config --global http.proxy http://&lt;proxyserver&gt;:&lt;port&gt;
+$ git config --global https.proxy http://&lt;proxyserver&gt;:&lt;port&gt;</code></pre>
 <p>实战：</p>
 <ul>
-<li>没有配置proxy时，提示连不上github<br />
-<pre><code class="cmd">$ git clone https://github.com/wkevin/GitChat.git GC
-Cloning into 'GC'...
-fatal: unable to access 'https://github.com/wkevin/GitChat.git/': Failed to connect to github.com port 443: Timed out
-</code></pre></li>
-<li>配置proxy<br />
-<pre><code class="cmd">$ git config --global http.proxy http://proxysz.zte.com.cn:80
-$ git config --global https.proxy http://proxysz.zte.com.cn:80
-</code></pre></li>
-<li>喝了杯茶，回来再试OK<br />
-<pre><code class="cmd">$ git clone https://github.com/wkevin/GitChat.git GC
-Cloning into 'GC'...
+<li>没有配置proxy时，提示连不上github</li>
+</ul>
+<pre class="cmd"><code>$ git clone https://github.com/wkevin/GitChat.git GC
+Cloning into &#39;GC&#39;...
+fatal: unable to access &#39;https://github.com/wkevin/GitChat.git/&#39;: Failed to connect to github.com port 443: Timed out</code></pre>
+<ul>
+<li>配置proxy</li>
+</ul>
+<pre class="cmd"><code>$ git config --global http.proxy http://proxysz.zte.com.cn:80
+$ git config --global https.proxy http://proxysz.zte.com.cn:80</code></pre>
+<ul>
+<li>喝了杯茶，回来再试OK</li>
+</ul>
+<pre class="cmd"><code>$ git clone https://github.com/wkevin/GitChat.git GC
+Cloning into &#39;GC&#39;...
 remote: Counting objects: 64, done.
 remote: Compressing objects: 100% (5/5), done.
 remote: Total 64 (delta 0), reused 0 (delta 0), pack-reused 59
 Unpacking objects: 100% (64/64), done.
-Checking connectivity... done.
-</code></pre></li>
-</ul>
-<h3 id="shell"><a name="user-content-shell" href="#shell" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>使用 shell 环境变量配置</h3>
+Checking connectivity... done.</code></pre>
+<h3 id="使用-shell-环境变量配置">使用 shell 环境变量配置</h3>
 <ul>
-<li>首先查看是否已经有了环境变量<br />
-<pre><code class="cmd">$ export |grep proxy
-$
-</code></pre></li>
-<li>定义环境变量<br />
-<pre><code class="cmd">$ export http_proxy=&quot;http://proxysz.zte.com.cn:80/&quot;
+<li>首先查看是否已经有了环境变量</li>
+</ul>
+<pre class="cmd"><code>$ export |grep proxy
+$</code></pre>
+<ul>
+<li>定义环境变量</li>
+</ul>
+<pre class="cmd"><code>$ export http_proxy=&quot;http://proxysz.zte.com.cn:80/&quot;
 $ export https_proxy=&quot;https://proxysz.zte.com.cn:80/&quot;
-$ 
-</code></pre></li>
-<li>再次查询: OK<br />
-<pre><code class="cmd">$ export |grep proxy
+$ </code></pre>
+<ul>
+<li>再次查询: OK</li>
+</ul>
+<pre class="cmd"><code>$ export |grep proxy
 declare -x http_proxy=&quot;http://proxysz.zte.com.cn:80/&quot;
 declare -x https_proxy=&quot;https://proxysz.zte.com.cn:80/&quot;
-$ 
-</code></pre></li>
+$ </code></pre>
+<ul>
 <li>git应该以及可以链接外网了</li>
-<li>临时想连接内网（临时不用proxy），咋办<br />
-<pre><code class="cmd">$ export -n http_proxy  //export -n 只是标记此变量不再是环境变量，但仍然是shell变量
+<li>临时想连接内网（临时不用proxy），咋办</li>
+</ul>
+<pre class="cmd"><code>$ export -n http_proxy  //export -n 只是标记此变量不再是环境变量，但仍然是shell变量
 $ set |grep http_proxy
 http_proxy=http://proxysz.zte.com.cn:80/   //set命令仍然能够查看到
-$ export http_proxy     //再次export即可
-</code></pre></li>
-</ul>
-<h2 id="remoteproxy"><a name="user-content-remoteproxy" href="#remoteproxy" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>定义了外网和内网两个remote，proxy怎么同时支持</h2>
+$ export http_proxy     //再次export即可</code></pre>
+<h2 id="定义了外网和内网两个remoteproxy怎么同时支持">定义了外网和内网两个remote，proxy怎么同时支持</h2>
 <p>若你处在某个proxy之内，你的某个项目又有两个remote，分别在外网和公司内网，则会遇到这样的困扰：</p>
 <ul>
 <li>为git配置了http.proxy后，外网OK，内网的就连不上</li>
 <li>去掉http.proxy后，内网的remote OK，外网的又连不上</li>
 </ul>
 <p>解决这个问题有几种方法：</p>
-<ol>
-<li>给不同的remote配专用的proxy： <code>git config --local --add remote.&lt;name&gt;.proxy ""</code><ul>
+<ol type="1">
+<li>给不同的remote配专用的proxy： <code>git config --local --add remote.&lt;name&gt;.proxy ""</code>
+<ul>
 <li>第一次 <code>git clone</code> 要麻烦一点</li>
-</ul>
-</li>
-<li>一类remote用http.proxy，另一类remote用ssh<ul>
+</ul></li>
+<li>一类remote用http.proxy，另一类remote用ssh
+<ul>
 <li>如果想外网的remote用ssh，要给<strong>ssh配置proxy</strong>（<a href="http://blog.csdn.net/qq634416025/article/details/42835409">参考1</a>、<a href="http://iyuan.iteye.com/blog/1672982">参考2</a>）</li>
-</ul>
-</li>
+</ul></li>
 <li>shell中用<code>export http_proxy ...</code>来访问外网remote，另开一个shell则无此环境变量，可用于内网remote。</li>
 </ol>
-<h2 id="sshremote"><a name="user-content-sshremote" href="#sshremote" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>SSH访问remote的通常步骤是啥</h2>
+<h2 id="ssh访问remote的通常步骤是啥">SSH访问remote的通常步骤是啥</h2>
 <p>OK，书接上文。</p>
 <ul>
-<li>生成公钥和密钥<br />
-<pre><code class="cmd">$ ssh-keygen -t rsa -C &quot;wkevin27@gmail.com&quot;
-</code></pre><ul>
-<li>得到两个文件：id_rsa和id_rsa.pub</li>
-<li><strong>请确定两个文件的路径</strong>：git for windows 有时候生成的文件会位于：<code>C:\ShellHome</code>，而<code>git push</code>等命令使用的是用户根目录，这两个目录未必一致，可能会被用户无意间修改。</li>
+<li>生成公钥和密钥</li>
 </ul>
-</li>
-<li>拷贝公钥到github/gitlab<ul>
+<pre class="cmd"><code>$ ssh-keygen -t rsa -C &quot;wkevin27@gmail.com&quot;</code></pre>
+<pre><code>- 得到两个文件：id_rsa和id_rsa.pub
+- **请确定两个文件的路径**：git for windows 有时候生成的文件会位于：`C:\ShellHome`，而`git push`等命令使用的是用户根目录，这两个目录未必一致，可能会被用户无意间修改。</code></pre>
+<ul>
+<li>拷贝公钥到github/gitlab
+<ul>
 <li>可打开文件手工拷贝</li>
 <li>可 <code>clip &lt; ~/.ssh/id_rsa.pub</code> 拷贝到粘贴板</li>
-</ul>
-</li>
-<li>添加密钥到ssh-agent（可选）<ul>
-<li><code>$ eval "$(ssh-agent -s)"</code> </li>
+</ul></li>
+<li>添加密钥到ssh-agent（可选）
+<ul>
+<li><code>$ eval "$(ssh-agent -s)"</code></li>
 <li><code>$ ssh-add ~/.ssh/id_rsa</code></li>
-</ul>
-</li>
-<li>测试<ul>
+</ul></li>
+<li>测试
+<ul>
 <li><code>$ ssh -T git@github.com</code></li>
-</ul>
-</li>
-<li>然后就可以使用ssh方式访问gitlab/github了<ul>
+</ul></li>
+<li>然后就可以使用ssh方式访问gitlab/github了
+<ul>
 <li><code>git remote add xyz git@github.com:wkevin/GitChat.git</code></li>
 <li><code>git push xyz master</code></li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <p>各个开源项目托管网站对ssh的要求可能还会有些许差别，但都会在显著位置进行说明，如果如上操作后仍不能访问，请仔细查阅。</p>
-<h2 id="_5"><a name="user-content-_5" href="#_5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何与别人合作</h2>
+<h2 id="如何与别人合作">如何与别人合作</h2>
 <p>当面沟通必不可少，svn和git并不能解决所有问题，每个团队都可以有自己的分支策略、日志模版、合并规则、标签原则……</p>
-<h2 id="github_2"><a name="user-content-github_2" href="#github_2" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何在github上与别人合作</h2>
+<h2 id="如何在github上与别人合作">如何在github上与别人合作</h2>
 <p>github的工作流： <a href="https://guides.github.com/introduction/flow/">Understanding the GitHub Flow</a></p>
-<h2 id="git_6"><a name="user-content-git_6" href="#git_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>怎样才能第一时间得知git上有提交和更新</h2>
+<h2 id="怎样才能第一时间得知git上有提交和更新">怎样才能第一时间得知git上有提交和更新</h2>
 <p>和团队成员保持紧密合作在敏捷中非常重要，SVN的时候有一个非常优秀的软件 CommitMonitor，能够监控SVNServer的更新，图标是一双大眼睛，悄悄的躲在任务栏，发现更新大眼睛变成红色转啊转的。</p>
 <p>git和svn有所不同，svn 有 server，监控器只需要监控server即可，git 没有server，只有hub，或者说每个人电脑里的git都是server，大家通过hub进行同步。监控server和监控hub的思路是有些差别的，各位看官可细细品味。</p>
 <p>监控 git hub 的软件有：</p>
 <ul>
-<li>windows 平台<ul>
-<li>SourceLog：<a href="https://github.com/tomhunter-gh/SourceLog">https://github.com/tomhunter-gh/SourceLog</a></li>
-<li>SCM Notifier： <a href="https://github.com/pocorall/scm-notifier">https://github.com/pocorall/scm-notifier</a></li>
-</ul>
-</li>
-<li>linux 平台<ul>
-<li>GitMon：<a href="https://github.com/spajus/gitmon">https://github.com/spajus/gitmon</a></li>
-<li>git-dude： <a href="https://github.com/sickill/git-dude">https://github.com/sickill/git-dude</a></li>
-<li>git-notifier： <a href="http://www.icir.org/robin/git-notifier">http://www.icir.org/robin/git-notifier</a></li>
-</ul>
-</li>
-<li>macOS 平台<ul>
-<li>Gitifier：<a href="https://github.com/nschum/Gitifier">https://github.com/nschum/Gitifier</a></li>
-</ul>
-</li>
+<li>windows 平台
+<ul>
+<li>SourceLog：https://github.com/tomhunter-gh/SourceLog</li>
+<li>SCM Notifier： https://github.com/pocorall/scm-notifier</li>
+</ul></li>
+<li>linux 平台
+<ul>
+<li>GitMon：https://github.com/spajus/gitmon</li>
+<li>git-dude： https://github.com/sickill/git-dude</li>
+<li>git-notifier： http://www.icir.org/robin/git-notifier</li>
+</ul></li>
+<li>macOS 平台
+<ul>
+<li>Gitifier：https://github.com/nschum/Gitifier</li>
+</ul></li>
 </ul>
 <p>但经过我的试用，功能还都不完善，希望它们早日成熟、好用。</p>
 <p>目前可以使用 github/gitlab 的 RSS Feed 功能：</p>
-<p>针对个人的RSS Feed：<br />
-<img alt="" src="img/gitlab-rss-feed-user.png" /></p>
-<p>针对团队的RSS Feed：<br />
-<img alt="" src="img/gitlab-rss-feed-group.png" /></p>
-<p>使用 RSS Reader（图中使用的是Snafer）订阅的效果：<br />
-<img alt="" src="img/gitlab-rss-reader.png" /></p>
-<h2 id="git-pullgit-fetch-git-merge"><a name="user-content-git-pullgit-fetch-git-merge" href="#git-pullgit-fetch-git-merge" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>为什么说不要用git pull，而是用git fetch + git merge代替</h2>
+<p>针对个人的RSS Feed： <img src="img/gitlab-rss-feed-user.png" /></p>
+<p>针对团队的RSS Feed： <img src="img/gitlab-rss-feed-group.png" /></p>
+<p>使用 RSS Reader（图中使用的是Snafer）订阅的效果： <img src="img/gitlab-rss-reader.png" /></p>
+<h2 id="为什么说不要用git-pull而是用git-fetch-git-merge代替">为什么说不要用git pull，而是用git fetch + git merge代替</h2>
 <p>git pull的问题是它把过程的细节都隐藏了起来，以至于你不用去了解git中各种类型分支的区别和使用方法。当然，多数时候这是没问题的，但一旦代码有问题，你很难找到出错的地方。看起来git pull的用法会使你吃惊，简单看一下git的使用文档应该就能说服你。</p>
-<p>将下载（fetch）和合并（merge）放到一个命令里的另外一个弊端是，你的本地工作目录在未经确认的情况下就会被远程分支更新。当然，除非你关闭所有的安全选项，否则git pull在你本地工作目录还不至于造成不可挽回的损失，但很多时候我们宁愿做的慢一些，也不愿意返工重来。 </p>
-<h2 id="clonefetchremote-repolog"><a name="user-content-clonefetchremote-repolog" href="#clonefetchremote-repolog" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何不clone/fetch到本地看remote repo的log?</h2>
-<h2 id="commitpush"><a name="user-content-commitpush" href="#commitpush" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>程序猿如何频繁地commit，但又低调地push</h2>
+<p>将下载（fetch）和合并（merge）放到一个命令里的另外一个弊端是，你的本地工作目录在未经确认的情况下就会被远程分支更新。当然，除非你关闭所有的安全选项，否则git pull在你本地工作目录还不至于造成不可挽回的损失，但很多时候我们宁愿做的慢一些，也不愿意返工重来。</p>
+<h2 id="如何不clonefetch到本地看remote-repo的log">如何不clone/fetch到本地看remote repo的log?</h2>
+<h2 id="程序猿如何频繁地commit但又低调地push">程序猿如何频繁地commit，但又低调地push</h2>
 <p>SVN和git面对同样的一个问题：大部分程序猿是含蓄、内敛的，他既希望频繁的commit，让svn/git帮他记住每一步，但并不想把这些过程信息全都公诸于众，而只是把阶段性成果推送给大家或服务器。</p>
 <p>具体情况还要分为两种：假定两名程序员A、B</p>
-<ol>
-<li>A、B负责的代码耦合性不高，或A、B不相互依赖<ul>
+<ol type="1">
+<li>A、B负责的代码耦合性不高，或A、B不相互依赖
+<ul>
 <li><a href="http://codecampo.com/topics/379?comment_id=1354#comment-1354">构造干净的 Git 历史线索</a></li>
-</ul>
-</li>
-<li>A、B负责的代码耦合性高，或A、B相互依赖<ul>
+</ul></li>
+<li>A、B负责的代码耦合性高，或A、B相互依赖
+<ul>
 <li>需求：协同开发：调试期间多人之间代码依赖，相互调用，使用头文件……</li>
 <li>设计：用SVN也可以协同开发，但会在服务器上留下大量无效的调试记录</li>
-<li>操作：git方式：<strong>将本机库开放给同伴，合作开发完成后使用 git rebase -i 清理</strong><ul>
-<li>准备<ul>
-<li>A君<ul>
-<li>.git目录下新建git-daemon-export-ok文件，表明该工程允许非授权访问<ul>
+<li>操作：git方式：<strong>将本机库开放给同伴，合作开发完成后使用 git rebase -i 清理</strong>
+<ul>
+<li>准备
+<ul>
+<li>A君
+<ul>
+<li>.git目录下新建git-daemon-export-ok文件，表明该工程允许非授权访问
+<ul>
 <li>cd /path/to/project.git</li>
 <li>touch git-daemon-export-ok</li>
-</ul>
-</li>
-<li>git daemon &ndash;reuseaddr &ndash;base-path=/opt/git/ /opt/git/</li>
+</ul></li>
+<li>git daemon –reuseaddr –base-path=/opt/git/ /opt/git/</li>
 <li>告诉B君你的IP</li>
-</ul>
-</li>
-<li>B君<ul>
+</ul></li>
+<li>B君
+<ul>
 <li>git checkout git://your_ip_address/project</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>调试过程<ul>
+</ul></li>
+</ul></li>
+<li>调试过程
+<ul>
 <li>A君快乐的随意本机修改并git commit</li>
 <li>B君随时随地的git pull</li>
-</ul>
-</li>
-<li>调试完成后<ul>
-<li>A君<ul>
+</ul></li>
+<li>调试完成后
+<ul>
+<li>A君
+<ul>
 <li>git rebase -i将本地的提交进行清理</li>
 <li>将一次记录git push到服务器上</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
 </ol>
-<h2 id="http-pushnamepassword"><a name="user-content-http-pushnamepassword" href="#http-pushnamepassword" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>通过http push时每次都要求输入name/password，能否避开</h2>
+<h2 id="通过http-push时每次都要求输入namepassword能否避开">通过http push时每次都要求输入name/password，能否避开</h2>
 <p>通过ssh push时都是不必输入用户名和密码的，http/https的都要，相当麻烦，可以这样解决：</p>
 <ul>
-<li>配置git<br />
-<pre><code class="cmd">$ git config credential.helper store
-</code></pre></li>
-<li>创建<code>.git-credentials</code>文件，替换其中的 name 和 password<br />
-<pre><code class="cmd">$ cd ~
+<li>配置git</li>
+</ul>
+<pre class="cmd"><code>$ git config credential.helper store</code></pre>
+<ul>
+<li>创建<code>.git-credentials</code>文件，替换其中的 name 和 password</li>
+</ul>
+<pre class="cmd"><code>$ cd ~
 $ echo &quot;https://&lt;name&gt;:&lt;password&gt;@github.com&quot; &gt; .git-credentials
 $ cat .git-credentials
-https://&lt;name&gt;:&lt;password&gt;@github.com
-</code></pre></li>
-</ul>
+https://&lt;name&gt;:&lt;password&gt;@github.com</code></pre>
 <p>欧儿了！</p>
 <p>需要注意的一点是：如果你打开了<strong>两步验证</strong>，则通常意义的password已经不能使用，网站会提供tocken给你替代password，请在 .git-credentials 文件中用 tocken 替代之。</p>
-<h2 id="_6"><a name="user-content-_6" href="#_6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何删除远程分支</h2>
+<h2 id="如何删除远程分支">如何删除远程分支</h2>
 <ul>
 <li>删除本地分支是： <code>git branch remove &lt;branchName&gt;</code></li>
-<li>删除远程分支：<ul>
+<li>删除远程分支：
+<ul>
 <li><code>git push origin :&lt;branchName&gt;</code></li>
 <li><code>git push origin --delete &lt;branchName&gt;</code></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="tag_1"><a name="user-content-tag_1" href="#tag_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何删除远程tag</h2>
+<h2 id="如何删除远程tag">如何删除远程tag</h2>
 <ul>
-<li>删除本地tag<ul>
+<li>删除本地tag
+<ul>
 <li><code>git tag -d &lt;tagname&gt;</code></li>
-</ul>
-</li>
-<li>删除远程tag<ul>
+</ul></li>
+<li>删除远程tag
+<ul>
 <li><code>git tag -d &lt;tagname&gt;</code></li>
 <li><code>git push origin :refs/tags/&lt;tagname&gt;</code></li>
 <li><code>git push origin --delete tag &lt;tagname&gt;</code></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="_7"><a name="user-content-_7" href="#_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>别人把远程分支删除了，我本地的对应分支怎么还在</h2>
+<h2 id="别人把远程分支删除了我本地的对应分支怎么还在">别人把远程分支删除了，我本地的对应分支怎么还在</h2>
 <p>张三删除了某个branch并push到github，李四<code>git fetch/pull</code>之后该branch在李四本地库里是仍然存在的，如何删除之？</p>
-<ol>
+<ol type="1">
 <li><code>git fetch -p</code></li>
 <li><code>git remote prune origin</code></li>
 </ol>
-<h2 id="_8"><a name="user-content-_8" href="#_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>维持树的整洁</h2>
-<p><a href="http://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a> </p>
+<h2 id="维持树的整洁">维持树的整洁</h2>
+<p><a href="http://nvie.com/posts/a-successful-git-branching-model/">A successful Git branching model</a></p>
 <p>方法就是：在git push之前，先git fetch，再git rebase</p>
 <p>git rebase（衍合）</p>
 <p>git rebase 一般自己一个人开发时使用，用来保持提交记录的整洁。一旦上传到github后，不应该使用git rebase,不然被骂死。</p>
-<p>一旦分支中的提交对象发布到公共仓库，就千万不要对该分支进行衍合操作。<br />
- 如果你遵循这条金科玉律，就不会出差错。否则，人民群众会仇恨你，你的朋友和家人也会嘲笑你，唾弃你。</p>
-<h2 id="git_7"><a name="user-content-git_7" href="#git_7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Git多用户间协作还有什么引人入胜之处</h2>
+<p>一旦分支中的提交对象发布到公共仓库，就千万不要对该分支进行衍合操作。 如果你遵循这条金科玉律，就不会出差错。否则，人民群众会仇恨你，你的朋友和家人也会嘲笑你，唾弃你。</p>
+<h2 id="git多用户间协作还有什么引人入胜之处">Git多用户间协作还有什么引人入胜之处</h2>
 <ul>
-<li>集中式工作流<br />
-<img alt="" src="img/workflow.onecore.png" /></li>
-<li>集成管理员工作流<br />
-<img alt="" src="img/workflow.manager.png" /></li>
-<li>司令与副官流程（Linux）<br />
-<img alt="" src="img/workflow.many.layers.png" /></li>
+<li>集中式工作流 <img src="img/workflow.onecore.png" /></li>
+<li>集成管理员工作流 <img src="img/workflow.manager.png" /></li>
+<li>司令与副官流程（Linux） <img src="img/workflow.many.layers.png" /></li>
 </ul>
-<h1 id="round-5"><a name="user-content-round-5" href="#round-5" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 5 : 整理</h1>
-<p><img alt="" src="img/elephants-sand-river-sw.jpg" /></p>
-<h2 id="git_8"><a name="user-content-git_8" href="#git_8" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git从何而来</h2>
-<p><img alt="" src="img/Torvalds.jpg" /></p>
+<h1 id="round-5-整理">Round 5 : 整理</h1>
+<p><img src="img/elephants-sand-river-sw.jpg" /></p>
+<h2 id="git从何而来">git从何而来</h2>
+<p><img src="img/Torvalds.jpg" /></p>
 <p>这里有一篇git的创始人Torvalds（同时也是Linux的创始人）的接受中国媒体的一篇访谈录：</p>
 <ul>
-<li><a href="http://www.wtoutiao.com/a/2287349.html">Linux创始人Linus Torvalds访谈，Git的十年之旅</a> &ndash; 如果网页链接失效，重新百度即可，Torvalds接受类似的访谈录很多，但大多是英文的。</li>
+<li><a href="http://www.wtoutiao.com/a/2287349.html">Linux创始人Linus Torvalds访谈，Git的十年之旅</a> – 如果网页链接失效，重新百度即可，Torvalds接受类似的访谈录很多，但大多是英文的。</li>
 </ul>
-<h2 id="git_9"><a name="user-content-git_9" href="#git_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git去往何处</h2>
+<h2 id="git去往何处">git去往何处</h2>
 <p>2005年7月26日开始，Torvalds把git托付给了一位日本人：<a href="https://en.wikipedia.org/wiki/Junio_Hamano">Junio Hamano</a>。Torvalds也说过自己一生最大的成功之一就包括把git托付给Hamano。</p>
-<p>Hamano现在google，他的github帐号为：<a href="https://github.com/gitster">gitster</a>，头像中抱着个大熊猫，说不定比较喜欢China哦。<br />
-<img alt="" src="img/Hamano.jpg" /></p>
+<p>Hamano现在google，他的github帐号为：<a href="https://github.com/gitster">gitster</a>，头像中抱着个大熊猫，说不定比较喜欢China哦。 <img src="img/Hamano.jpg" /></p>
 <p>git源码的<a href="https://github.com/git/git/graphs/contributors">提交统计</a>中可以发现Hamano是提交最踊跃的：</p>
-<p><img alt="" src="img/git-contributors.png" /></p>
+<p><img src="img/git-contributors.png" /></p>
 <p>github上有这样几个卓越的组织（Orgnization):</p>
 <ul>
-<li><a href="https://github.com/git">git</a>:目前有<a href="https://github.com/orgs/git/people">8位成员</a>，牵头人 <a href="https://github.com/schacon">Scott Chacon</a>，他们充当管理者和传教士的角色，比较重要的贡献是：<ul>
-<li>维护git源码<ul>
+<li><a href="https://github.com/git">git</a>:目前有<a href="https://github.com/orgs/git/people">8位成员</a>，牵头人 <a href="https://github.com/schacon">Scott Chacon</a>，他们充当管理者和传教士的角色，比较重要的贡献是：
+<ul>
+<li>维护git源码
+<ul>
 <li>Hamano(gitster)并没有加入到这个Orgnization中，而只是fork到自己账号下，然后PR到 git/git，看来gitster只是想当程序员，不想当管理者和传教士——大概源于日本人和中国人类似，都比较低调。</li>
-</ul>
-</li>
+</ul></li>
 <li>管理和维护 <a href="http://git-scm.com">git-scm.com</a> 网站</li>
-</ul>
-</li>
-<li><a href="https://github.com/progit">progit</a>:目前有<a href="https://github.com/orgs/progit/people">15位成员</a>，牵头人 <a href="https://github.com/schacon">Scott Chacon</a> 和 <a href="https://github.com/ben">Ben Straub</a>，两人目前都供职于github公司，其他人多是从事翻译工作。比较重要的贡献有<ul>
+</ul></li>
+<li><a href="https://github.com/progit">progit</a>:目前有<a href="https://github.com/orgs/progit/people">15位成员</a>，牵头人 <a href="https://github.com/schacon">Scott Chacon</a> 和 <a href="https://github.com/ben">Ben Straub</a>，两人目前都供职于github公司，其他人多是从事翻译工作。比较重要的贡献有
+<ul>
 <li>写了《Pro git》这本书，此书被翻译成多种语言，被奉为经典。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="git_10"><a name="user-content-git_10" href="#git_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git有哪些好的入门的资料</h2>
-<p>读到这里是需要系统的了解、学习一下git的时候了，<br />
-当然，我明白你说的是中文资料。</p>
+<h2 id="git有哪些好的入门的资料">git有哪些好的入门的资料</h2>
+<p>读到这里是需要系统的了解、学习一下git的时候了， 当然，我明白你说的是中文资料。</p>
 <p><strong>官方Specification</strong></p>
 <ul>
 <li><a href="https://www.kernel.org/pub/software/scm/git/docs/">Git Man Page</a>: 即： git help 命令的输出</li>
 <li><a href="https://www.kernel.org/pub/software/scm/git/docs/user-manual.html">Git User Manual</a></li>
-<li>Git Tutorial： <a href="https://www.kernel.org/pub/software/scm/git/docs/gittutorial.html">Part1</a> &ndash; 即 <code>man gittutorial</code>; <a href="https://www.kernel.org/pub/software/scm/git/docs/gittutorial-2.html">Part2</a> &ndash; 即 <code>man gittutorial-2</code></li>
+<li>Git Tutorial： <a href="https://www.kernel.org/pub/software/scm/git/docs/gittutorial.html">Part1</a> – 即 <code>man gittutorial</code>; <a href="https://www.kernel.org/pub/software/scm/git/docs/gittutorial-2.html">Part2</a> – 即 <code>man gittutorial-2</code></li>
 <li><a href="https://www.kernel.org/pub/software/scm/git/docs/howto/">How to</a></li>
 </ul>
 <p><strong>Book</strong></p>
 <ul>
-<li>Pro Git:根正苗红的书<ul>
+<li>Pro Git:根正苗红的书
+<ul>
 <li>第2版：<a href="http://git-scm.com/book/zh/v2">中文官方在线版</a>、<a href="http://www.kancloud.cn/kancloud/progit">中文国内在线版</a>、<a href="http://git-scm.com/book/en/v2">英文官方在线版</a></li>
 <li>第1版：<a href="http://git-scm.com/book/zh/v1">中文官方在线版</a>、<a href="http://git.oschina.net/progit/">中文国内在线版</a></li>
-</ul>
-</li>
+</ul></li>
 <li><a href="http://gitbook.liuhui998.com/index.html">Git Community Book 中文版</a></li>
 <li><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">git简明教程</a></li>
 </ul>
 <p><strong>Website</strong></p>
 <ul>
-<li>[git 维基百科]: <a href="https://en.wikipedia.org/wiki/Git_">https://en.wikipedia.org/wiki/Git_</a>(software)</li>
-<li><a href="http://git.wiki.kernel.org">git SCM wiki</a> &ndash; 2011年已停止更新</li>
+<li></li>
+<li><a href="http://git.wiki.kernel.org">git SCM wiki</a> – 2011年已停止更新</li>
 </ul>
-<h2 id="git_11"><a name="user-content-git_11" href="#git_11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git命令我掌握的七七八八了，怎么整理一下</h2>
+<h2 id="git命令我掌握的七七八八了怎么整理一下">git命令我掌握的七七八八了，怎么整理一下</h2>
 <p>google 或 bing 上搜索图片：<strong>git cheat sheet</strong> —— 不要在baidu上搜索，结果你会很失望。</p>
 <p>可以看到很多热心网友们整理的常用命令集，快选一幅打印出来或作为桌面吧！</p>
 <p>比如（版权归作者所有，本文仅是转发）：</p>
-<p><img alt="" src="img/Git-Cheatsheet-1.png" /><br />
-<img alt="" src="img/Git-Cheatsheet-3.jpg" /><br />
-<img alt="" src="img/Git-Cheatsheet-4.png" /><br />
-<img alt="" src="img/Git-Cheatsheet-5.png" /></p>
-<p>也有一些复杂到令人发指的：<br />
-<img alt="" src="img/Git-Cheatsheet-2.png" /></p>
-<h2 id="git_12"><a name="user-content-git_12" href="#git_12" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>重新梳理git的软件</h2>
+<p><img src="img/Git-Cheatsheet-1.png" /> <img src="img/Git-Cheatsheet-3.jpg" /> <img src="img/Git-Cheatsheet-4.png" /> <img src="img/Git-Cheatsheet-5.png" /></p>
+<p>也有一些复杂到令人发指的： <img src="img/Git-Cheatsheet-2.png" /></p>
+<h2 id="重新梳理git的软件">重新梳理git的软件</h2>
 <p>是时候看一下git的 <a href="https://en.wikipedia.org/wiki/Git_(software)">维基百科</a> 了：</p>
 <blockquote>
 <p>Git is a widely-used source code management system for software development. It is a distributed revision control system with an emphasis on speed,[6] data integrity,[7] and support for distributed, non-linear workflows.[8] Git was initially designed and developed in 2005 by Linux kernel developers (including Linus Torvalds) for Linux kernel development.[9]</p>
+</blockquote>
+<blockquote>
 <p>As with most other distributed version control systems, and unlike most client–server systems, every Git working directory is a full-fledged repository with complete history and full version-tracking capabilities, independent of network access or a central server.[10] Like the Linux kernel, Git is free software distributed under the terms of the GNU General Public License version 2.</p>
 </blockquote>
 <ul>
 <li>UI前端也有，比如github出品的 <a href="https://desktop.github.com">github desktop</a></li>
-<li><a href="https://github.com/git-for-windows/git">Git for Windows</a><br />
-        * 第一代的名字叫sysGit](<a href="https://github.com/msysgit/git"><a href="https://github.com/msysgit/git"><a href="https://github.com/msysgit/git">https://github.com/msysgit/git</a></a></a>)，基于 msys（属于 MinGW）—— 2015年底已废弃<br />
-        * 第二代重新建立了github项目<a href="https://github.com/git-for-windows/git">Git for Windows</a>，基于 msys2（不再属于MinGW），英语有自信的可以读读它的<a href="https://github.com/git-for-windows/git/wiki">背景</a><ul>
+<li><a href="https://github.com/git-for-windows/git">Git for Windows</a> * 第一代的名字叫sysGit](https://github.com/msysgit/git)，基于 msys（属于 MinGW）—— 2015年底已废弃 * 第二代重新建立了github项目<a href="https://github.com/git-for-windows/git">Git for Windows</a>，基于 msys2（不再属于MinGW），英语有自信的可以读读它的<a href="https://github.com/git-for-windows/git/wiki">背景</a>
+<ul>
 <li><a href="http://code.google.com/p/tortoisegit/">TortoiseGit</a>：类似TortoiseSVN，可以做图标重绘。</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="git_13"><a name="user-content-git_13" href="#git_13" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>整理git的外网托管网站</h2>
+<h2 id="整理git的外网托管网站">整理git的外网托管网站</h2>
 <p>git库的托管网站（git host）有很多，github并不是唯一的选择，github最困扰开发者的一点就是：它丫竟然不交钱不给创建私有库。</p>
 <p>下面介绍几个其他的：</p>
 <ul>
@@ -1749,11 +1420,11 @@ https://&lt;name&gt;:&lt;password&gt;@github.com
 <li><a href="http://git.oschina.net">开源中国oschina的git</a>：开源中国在2013年创建的，号称全面、永久开放私有库，立志做中国的github，不知道是哪一天，突然它自己改名字了，叫：码云，我勒个去。</li>
 <li><a href="http://code.csdn.net">CSDN Code</a>：</li>
 </ul>
-<p>这里有一个表格，对比各个git host： <a href="https://git.wiki.kernel.org/index.php/GitHosting">https://git.wiki.kernel.org/index.php/GitHosting</a> ，关注 <strong>Free private repositories</strong>，提供免费服务的也不老少，但大部分只是提供git的基本托管，并没有github的fork、PR、gist、gitbook……等服务。</p>
+<p>这里有一个表格，对比各个git host： https://git.wiki.kernel.org/index.php/GitHosting ，关注 <strong>Free private repositories</strong>，提供免费服务的也不老少，但大部分只是提供git的基本托管，并没有github的fork、PR、gist、gitbook……等服务。</p>
 <p>如果你要开发一个开源的模块来扬名，请使用github；如果要开发一个秘密的、需要保密的大项目，请使用Bitbucket；如果只是玩一玩，请使用码云（毕竟速度要快一点）。</p>
-<h1 id="round-6"><a name="user-content-round-6" href="#round-6" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 6 : 奇技淫巧</h1>
-<p><img alt="" src="img/resting-lions-tanzania-sw.jpg" /></p>
-<h2 id="committag"><a name="user-content-committag" href="#committag" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>从当前库中快速导出一个节点(commit、tag)另作他用</h2>
+<h1 id="round-6-奇技淫巧">Round 6 : 奇技淫巧</h1>
+<p><img src="img/resting-lions-tanzania-sw.jpg" /></p>
+<h2 id="从当前库中快速导出一个节点committag另作他用">从当前库中快速导出一个节点(commit、tag)另作他用</h2>
 <p>比如：</p>
 <ul>
 <li>导出某次提交或某个分支给他人看看，但checkout过去，看完再checkout回来是有成本的（当前工作要打断，要commit或stash）</li>
@@ -1761,63 +1432,67 @@ https://&lt;name&gt;:&lt;password&gt;@github.com
 </ul>
 <p>建议方案：</p>
 <p><strong>方案1</strong>： <code>git archive</code> 导出一份不受git管理的纯内容出去</p>
-<pre><code class="cmd">$ cd projectA.git
+<pre class="cmd"><code>$ cd projectA.git
 $ mkdir ../projectA-v1.2
-$ git archive v1.2 | tar -x -C ../projectA-v1.2
-</code></pre>
-
+$ git archive v1.2 | tar -x -C ../projectA-v1.2</code></pre>
 <p><strong>方案2</strong>：<code>git worktree</code> 在另外一处创建一个分支 —— 这是git2.5新增的一个功能，相当有趣</p>
 <ul>
-<li>原始状态：本地仅master分支<br />
-<pre><code class="cmd">$ git br
+<li>原始状态：本地仅master分支</li>
+</ul>
+<pre class="cmd"><code>$ git br
 * master                cf4edda [origin/master] 修订proxy的使用方法
   remotes/origin/HEAD   -&gt; origin/master
   remotes/origin/master cf4edda 修订proxy的使用方法
-  remotes/zte/master    cf4edda 修订proxy的使用方法
-</code></pre></li>
-<li>首先看看现有哪些worktree<br />
-<pre><code class="cmd">$ git worktree list
-E:/demo/GitChat.git  cf4edda aster]
-</code></pre></li>
-<li>在另外一个文件夹，用当前分支，创建一份新的工作拷贝<br />
-<pre><code class="cmd">$ git worktree add -b 4compare ../forCompare
+  remotes/zte/master    cf4edda 修订proxy的使用方法</code></pre>
+<ul>
+<li>首先看看现有哪些worktree</li>
+</ul>
+<pre class="cmd"><code>$ git worktree list
+E:/demo/GitChat.git  cf4edda aster]</code></pre>
+<ul>
+<li>在另外一个文件夹，用当前分支，创建一份新的工作拷贝</li>
+</ul>
+<pre class="cmd"><code>$ git worktree add -b 4compare ../forCompare
 Preparing ../forCompare (identifier forCompare)
 HEAD is now at cf4edda 修订proxy的使用方法
 
 $ ls ../
-forCompare/  GitChat.git/
-</code></pre></li>
-<li><code>git branch</code>可以查看到新创建的分支<br />
-<pre><code class="cmd">$ git branch -vv
+forCompare/  GitChat.git/</code></pre>
+<ul>
+<li><code>git branch</code>可以查看到新创建的分支</li>
+</ul>
+<pre class="cmd"><code>$ git branch -vv
   4compare cf4edda 修订proxy的使用方法
 * master   cf4edda [origin/master] 修订proxy的使用方法
 
 $ git worktree list
 E:/demo/GitChat.git  cf4edda aster]
-E:/demo/forCompare   cf4edda [4compare]
-</code></pre></li>
-<li>进入新创建的文件夹中，可以查看到<br />
-<pre><code class="cmd">$ cd ../forCompare/
+E:/demo/forCompare   cf4edda [4compare]</code></pre>
+<ul>
+<li>进入新创建的文件夹中，可以查看到</li>
+</ul>
+<pre class="cmd"><code>$ cd ../forCompare/
 $ git branch -vv
 * 4compare cf4edda 修订proxy的使用方法
-  master   cf4edda [origin/master] 修订proxy的使用方法
-</code></pre></li>
-</ul>
+  master   cf4edda [origin/master] 修订proxy的使用方法</code></pre>
 <p>OK，可以在 forCompare 目录下工作了</p>
 <p>我们继续探讨一下<code>git worktree</code>的其他用法</p>
 <ul>
-<li><code>git worktree</code>不但可以根据某个branch创建，也可以从某个tag创建<br />
-<pre><code class="cmd">$ git worktree add -b new2 ../new2 v0.1
+<li><code>git worktree</code>不但可以根据某个branch创建，也可以从某个tag创建</li>
+</ul>
+<pre class="cmd"><code>$ git worktree add -b new2 ../new2 v0.1
 Preparing ../new2 (identifier new2)
-HEAD is now at 5d21d8b new file:   img/git-state-and-area.svg
-</code></pre></li>
-<li>还可以根据某个commit创建<br />
-<pre><code class="cmd">$ git worktree add -b new ../new 5d21d8b
+HEAD is now at 5d21d8b new file:   img/git-state-and-area.svg</code></pre>
+<ul>
+<li>还可以根据某个commit创建</li>
+</ul>
+<pre class="cmd"><code>$ git worktree add -b new ../new 5d21d8b
 Preparing ../new (identifier new)
-HEAD is now at 5d21d8b new file:   img/git-state-and-area.svg
-</code></pre></li>
-<li>删除worktree：<code>git prune</code>能够删除目标文件已经被删除的worktree<br />
-<pre><code class="cmd">$ git worktree list
+HEAD is now at 5d21d8b new file:   img/git-state-and-area.svg</code></pre>
+<ul>
+<li>删除worktree：<code>git prune</code>能够删除目标文件已经被删除的worktree</li>
+</ul>
+<pre class="cmd"><code>$ git worktree list
 E:/demo/GitChat.git  cf4edda aster]
 E:/demo/forCompare   cf4edda [4compare]
 E:/demo/new          5d21d8b [new]
@@ -1846,10 +1521,8 @@ $ rm -rf ../new ../new1 ../forCompare/
 $ git worktree prune
 
 $ git worktree list
-E:/demo/GitChat.git  cf4edda aster]
-</code></pre></li>
-</ul>
-<h2 id="logrepo"><a name="user-content-logrepo" href="#logrepo" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>导出某个子目录及其log成为一个新的repo</h2>
+E:/demo/GitChat.git  cf4edda aster]</code></pre>
+<h2 id="导出某个子目录及其log成为一个新的repo">导出某个子目录及其log成为一个新的repo</h2>
 <pre><code>cd oldrepo
 git subtree split -P subdir -b newbranch
 gitk newbranch
@@ -1863,11 +1536,9 @@ cd ../oldrepo
 git push ../newrepo.git newbranch:master #newrepo.git is a pure repo without my files
 
 cd ..
-git clone newrepo.git
-</code></pre>
-
-<h2 id="2bug1commit"><a name="user-content-2bug1commit" href="#2bug1commit" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>分支2需改bug，但我正在分支1上编码并不想commit怎么办</h2>
-<p>使用git的时候，我们往往使用branch解决任务切换问题，例如，我们往往会建一个自己的分支去修改和调试代码, 如果别人或者自己发现原有的分支上有个不得不修改的bug，我们往往会把完成一半的代码 commit提交到本地仓库，然后切换分支去修改bug，改好之后再切换回来。这样的话往往log上会有大量不必要的记录。其实如果我们不想提交完成一半或者不完善的代码，但是却不得不去修改一个紧急Bug，那么使用&rsquo;git stash&rsquo;就可以将你当前未提交到本地（和服务器）的代码推入到Git的栈中，这时候你的工作区间和上一次提交的内容是完全一样的，所以你可以放心的修 Bug，等到修完Bug，提交到服务器上后，再使用&rsquo;git stash apply&rsquo;将以前一半的工作应用回来。也许有的人会说，那我可不可以多次将未提交的代码压入到栈中？答案是可以的。当你多次使用&rsquo;git stash&rsquo;命令后，你的栈里将充满了未提交的代码，这时候你会对将哪个版本应用回来有些困惑，&rsquo;git stash list&rsquo;命令可以将当前的Git栈信息打印出来，你只需要将找到对应的版本号，例如使用&rsquo;git stash apply stash@{1}&rsquo;就可以将你指定版本号为stash@{1}的工作取出来，当你将所有的栈都应用回来的时候，可以使用&rsquo;git stash clear&rsquo;来将栈清空。</p>
+git clone newrepo.git</code></pre>
+<h2 id="分支2需改bug但我正在分支1上编码并不想commit怎么办">分支2需改bug，但我正在分支1上编码并不想commit怎么办</h2>
+<p>使用git的时候，我们往往使用branch解决任务切换问题，例如，我们往往会建一个自己的分支去修改和调试代码, 如果别人或者自己发现原有的分支上有个不得不修改的bug，我们往往会把完成一半的代码 commit提交到本地仓库，然后切换分支去修改bug，改好之后再切换回来。这样的话往往log上会有大量不必要的记录。其实如果我们不想提交完成一半或者不完善的代码，但是却不得不去修改一个紧急Bug，那么使用’git stash’就可以将你当前未提交到本地（和服务器）的代码推入到Git的栈中，这时候你的工作区间和上一次提交的内容是完全一样的，所以你可以放心的修 Bug，等到修完Bug，提交到服务器上后，再使用’git stash apply’将以前一半的工作应用回来。也许有的人会说，那我可不可以多次将未提交的代码压入到栈中？答案是可以的。当你多次使用’git stash’命令后，你的栈里将充满了未提交的代码，这时候你会对将哪个版本应用回来有些困惑，’git stash list’命令可以将当前的Git栈信息打印出来，你只需要将找到对应的版本号，例如使用’git stash apply stash@{1}’就可以将你指定版本号为stash@{1}的工作取出来，当你将所有的栈都应用回来的时候，可以使用’git stash clear’来将栈清空。</p>
 <ul>
 <li>git stash: 备份当前的工作区的内容，从最近的一次提交中读取相关内容，让工作区保证和上次提交的内容一致。同时，将当前的工作区内容保存到Git栈中。</li>
 <li>git stash pop: 从Git栈中读取最近一次保存的内容，恢复工作区的相关内容。由于可能存在多个Stash的内容，所以用栈来管理，pop会从最近的一个stash中读取内容并恢复。</li>
@@ -1875,24 +1546,24 @@ git clone newrepo.git
 <li>git stash clear: 清空Git栈。此时使用gitg等图形化工具会发现，原来stash的哪些节点都消失了。</li>
 <li>git stash apply：将以前一半的工作应用回来</li>
 </ul>
-<h2 id="modify"><a name="user-content-modify" href="#modify" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>modify 错了，我要丢弃本地目录中的修改</h2>
+<h2 id="modify-错了我要丢弃本地目录中的修改">modify 错了，我要丢弃本地目录中的修改</h2>
 <ul>
-<li><code>git clean -df</code>：丢弃untracked的文件，不丢弃modified的文件<ul>
+<li><code>git clean -df</code>：丢弃untracked的文件，不丢弃modified的文件
+<ul>
 <li>git clean -f: 删除 untracked files</li>
 <li>git clean -fd: 连 untracked 的目录也一起删掉</li>
 <li>git clean -xfd: 连 gitignore 的untrack 文件/目录也一起删掉 （慎用，一般这个是用来删掉编译出来的 .o之类的文件用的）</li>
-<li>在用上述 git clean 前，墙裂建议加上 -n 参数来先看看会删掉哪些文件，防止重要文件被误删<ul>
+<li>在用上述 git clean 前，墙裂建议加上 -n 参数来先看看会删掉哪些文件，防止重要文件被误删
+<ul>
 <li>git clean -nxfd</li>
 <li>git clean -nf</li>
 <li>git clean -nfd</li>
-</ul>
-</li>
-</ul>
-</li>
+</ul></li>
+</ul></li>
 <li><code>git checkout HEAD .</code>:同上条</li>
 <li><code>git reset --hard HEAD</code>:同上条</li>
 </ul>
-<h2 id="add"><a name="user-content-add" href="#add" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>add 错了，我要丢弃暂存区的修改</h2>
+<h2 id="add-错了我要丢弃暂存区的修改">add 错了，我要丢弃暂存区的修改</h2>
 <p><strong>仅丢弃暂存区的修改，不丢弃本地目录的修改</strong></p>
 <ul>
 <li><code>git reset [--soft] HEAD</code>: 用HEAD分支覆盖一下暂存区,不影响本地文件</li>
@@ -1900,47 +1571,41 @@ git clone newrepo.git
 <p><strong>丢弃暂存区&amp;本地目录的修改</strong></p>
 <ul>
 <li><code>git checkout HEAD .</code> 或指定文件 <code>git checkout HEAD file</code>:用当前分支的库中文件覆盖暂存区和本地的</li>
-<li><code>git reset --hard HEAD</code> 用HEAD覆盖一下暂存区和本地目录<ul>
-<li>git reset &ndash;hard HEAD</li>
-<li>git reset &ndash;hard HEAD~1</li>
-<li>git reset &ndash;hard HEAD~5</li>
+<li><code>git reset --hard HEAD</code> 用HEAD覆盖一下暂存区和本地目录
+<ul>
+<li>git reset –hard HEAD</li>
+<li>git reset –hard HEAD~1</li>
+<li>git reset –hard HEAD~5</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="commit-commit"><a name="user-content-commit-commit" href="#commit-commit" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>commit 错了，我要丢弃某个commit节点</h2>
+<h2 id="commit-错了我要丢弃某个commit节点">commit 错了，我要丢弃某个commit节点</h2>
 <ul>
 <li><code>git reset commitHash~1</code>: 即可让HEAD指向commitHash前一个commit，即：丢弃commitHash</li>
 </ul>
 <p>上面这3个丢弃都用到了 <code>git reset</code> 命令，这是个危险的命令，没有搞懂之前一定要慎重，否则丢了就可能找不回来了。</p>
 <p>理解 <code>git reset</code> 请参考下文<strong>git 原理</strong>章节中的 <strong>git reset 原理图</strong></p>
-<h2 id="push-remote"><a name="user-content-push-remote" href="#push-remote" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>push 错了，我要丢弃remote上的某个节点</h2>
+<h2 id="push-错了我要丢弃remote上的某个节点">push 错了，我要丢弃remote上的某个节点</h2>
 <p>管理员： 胆子越来越大了啊，都push到server里了，还要删除，羞不羞啊 :)<br />
 程序员： 给个机会吧，这几个commit确实不想push到server上。<br />
-管理员： 有没有想过server上的这个分支已经被N多同学fetch过了，已经基于它做开发了，你reset了几个节点，别人会出错的！<br />
-程序员： 不会的，这个分支只有我一个人用<br />
-管理员： 哪个分支啊？<br />
-程序员： master<br />
-管理员： 啥？ master分支 O_O ，你有没有看gitlab的帮助文档，master分支被gitlab保护了，保护分支除了只允许Master角色有写权限外，还不允许任何人对其<code>git push --force</code>操作，也不允许任何人删除保护分支的。<br />
-程序员： 有这一说？我说 <code>git push --force origin master:master</code> 咋提示我失败呢</p>
+管理员： 有没有想过server上的这个分支已经被N多同学fetch过了，已经基于它做开发了，你reset了几个节点，别人会出错的！ 程序员： 不会的，这个分支只有我一个人用 管理员： 哪个分支啊？ 程序员： master 管理员： 啥？ master分支 O_O ，你有没有看gitlab的帮助文档，master分支被gitlab保护了，保护分支除了只允许Master角色有写权限外，还不允许任何人对其<code>git push --force</code>操作，也不允许任何人删除保护分支的。 程序员： 有这一说？我说 <code>git push --force origin master:master</code> 咋提示我失败呢</p>
 <p>十几分钟后……</p>
-<p>程序员： 我研究了gitlab的权限说明： <a href="https://about.gitlab.com/2014/11/26/keeping-your-code-protected/">https://about.gitlab.com/2014/11/26/keeping-your-code-protected/</a> ，保护分支是可以取消保护的<br />
-管理员： shit，这都被你找到了，好吧，我承认是可以，就在 project - seetings 里面，只给你这一次机会啊，快去吧。</p>
+<p>程序员： 我研究了gitlab的权限说明： https://about.gitlab.com/2014/11/26/keeping-your-code-protected/ ，保护分支是可以取消保护的 管理员： shit，这都被你找到了，好吧，我承认是可以，就在 project - seetings 里面，只给你这一次机会啊，快去吧。</p>
 <p>终于可以霸王硬上弓了。上弓方法有三：</p>
-<ol>
+<ol type="1">
 <li><code>git reset xxx</code> 先回退本地，然后 <code>git push --force origin master:master</code></li>
 <li><code>git reset --soft hashcode remoteRepo</code></li>
 <li>把本地的回退了，然后把远程branch删掉，然后push新的</li>
 </ol>
-<h2 id="_9"><a name="user-content-_9" href="#_9" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>暂存一个文件的部分改动</h2>
+<h2 id="暂存一个文件的部分改动">暂存一个文件的部分改动</h2>
 <p>比如说，你对一个文件进行了多次修改并且想把他们分别提交。这种情况下，你可以在添加命令(add)中加上-p选项</p>
 <p><code>git add -p [file_name]</code></p>
 <p>会逐段（hunk）提示你是否add。</p>
-<h2 id="_10"><a name="user-content-_10" href="#_10" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>能否从不同的分支里选择某次提交并且把它合并到当前的分支</h2>
+<h2 id="能否从不同的分支里选择某次提交并且把它合并到当前的分支">能否从不同的分支里选择某次提交并且把它合并到当前的分支</h2>
 <p><code>git cherry-pick [commit_hash]</code></p>
 <p>这个命令会带来冲突，请谨慎使用</p>
-<h1 id="round-7"><a name="user-content-round-7" href="#round-7" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 7 : 原理拾趣</h1>
-<p><img alt="" src="img/black-trevally-sardines-sw.jpg" /></p>
-<h2 id="gitsvn"><a name="user-content-gitsvn" href="#gitsvn" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git和SVN在元数据存储上有什么区别</h2>
+<h1 id="round-7-原理拾趣">Round 7 : 原理拾趣</h1>
+<p><img src="img/black-trevally-sardines-sw.jpg" /></p>
+<h2 id="git和svn在元数据存储上有什么区别">git和SVN在元数据存储上有什么区别</h2>
 <p>svn是基于增量存储的，两次提交对于repo来说只保存变化量，git不使用svn的增量方式保存数据，而是使用快照。因为git的分布式特性，并没有一颗树一样成长的repo，repo更像是一张网式的成长，节点与节点之间可能会绕很远才能找到亲戚关系，所以增量无从谈起。</p>
 <p>来看下面这个过程：</p>
 <ul>
@@ -1953,29 +1618,29 @@ git clone newrepo.git
 <li>git log：ci的顺序是：B的ci、A的ci、B的merge后ci —— <strong>B的ci会插入到A的ci前面</strong></li>
 </ul>
 <p>如果用增量存储，将很难把整个过程记录下来，根本原因是：<strong>开发者提交前是不需要同步别人代码的</strong>。</p>
-<h2 id="git-object"><a name="user-content-git-object" href="#git-object" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git 的对象（object）</h2>
+<h2 id="git-的对象object">git 的对象（object）</h2>
 <p><a href="http://gitbook.liuhui998.com/1_2.html">GIT对象模型</a></p>
 <ul>
 <li>git的指针（branch是指针）指向某个对象（object）</li>
-<li>git的object包含4个部分：<ul>
+<li>git的object包含4个部分：
+<ul>
 <li>对象名：40bit的HASH</li>
-<li>类型：有4种：<ol>
+<li>类型：有4种：
+<ol type="1">
 <li>blob</li>
 <li>tree</li>
 <li>commit</li>
 <li>tag</li>
-</ol>
-</li>
+</ol></li>
 <li>大小：</li>
 <li>内容：</li>
-</ul>
-</li>
+</ul></li>
 <li>可以使用 <code>git show &lt;对象名&gt;</code> 来查看一个object的内容</li>
 </ul>
 <p>4类object的图示：</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>blob</th>
 <th>tree</th>
 <th>commit</th>
@@ -1983,11 +1648,11 @@ git clone newrepo.git
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><img alt="" src="img/object-blob.png" /></td>
-<td><img alt="" src="img/object-tree.png" /></td>
-<td><img alt="" src="img/object-commit.png" /></td>
-<td><img alt="" src="img/object-tag.png" /></td>
+<tr class="odd">
+<td><img src="img/object-blob.png" /></td>
+<td><img src="img/object-tree.png" /></td>
+<td><img src="img/object-commit.png" /></td>
+<td><img src="img/object-tag.png" /></td>
 </tr>
 </tbody>
 </table>
@@ -2000,16 +1665,18 @@ git clone newrepo.git
 </ul>
 <p>来实际操作一把：</p>
 <ul>
-<li><code>git log</code> 找一条commit<br />
-<pre><code class="cmd">$ git lg
+<li><code>git log</code> 找一条commit</li>
+</ul>
+<pre class="cmd"><code>$ git lg
  e3426a5 | 2016-02-16 11:20:22 +0800 | 2016-02-16 11:20:22 +0800 |  Kevin Wang  调整章节，内容基本没变
  a15f695 | 2016-02-16 10:28:16 +0800 | 2016-02-16 10:28:16 +0800 |  Kevin Wang  增加 git cheat sheet 小节
  c242093 | 2016-02-04 11:30:21 +0800 | 2016-02-04 11:30:21 +0800 |  wkevin  笔误
- 48eda25 | 2016-02-04 11:21:57 +0800 | 2016-02-04 11:21:57 +0800 |  wkevin  笔误: 缺少一个反括号
-</code></pre></li>
+ 48eda25 | 2016-02-04 11:21:57 +0800 | 2016-02-04 11:21:57 +0800 |  wkevin  笔误: 缺少一个反括号</code></pre>
+<ul>
 <li><code>git show &lt;object-name&gt;</code> 可以查看各类object的细节</li>
-<li><code>git show &lt;commit-object-name&gt;</code> 可以查看 commit 类型的细节，其中包括了diff（即：和parrent父级commit对象相比的差异：tree及其blob的差异）<br />
-<pre><code class="cmd">$ git show  e3426a5
+<li><code>git show &lt;commit-object-name&gt;</code> 可以查看 commit 类型的细节，其中包括了diff（即：和parrent父级commit对象相比的差异：tree及其blob的差异）</li>
+</ul>
+<pre class="cmd"><code>$ git show  e3426a5
 commit e3426a51534d97f5c73369a98fd38d6fb2f83f0a
 Author: Kevin Wang &lt;wkevin27@gmail.com&gt;
 Date:   Tue Feb 16 11:20:22 2016 +0800
@@ -2022,10 +1689,11 @@ index 17944e2..a0be055 100644
 +++ b/README.md
 @@ -31,21 +31,24 @@ git 有自己的 [user manunal](https://www.kernel.org/pub/software/scm/git/docs
      - erge是怎么玩儿的](#merge)
- - [Round 4](#round4)
-</code></pre></li>
-<li><code>git show --pretty=raw &lt;commit-object-name&gt;</code> 还能更多的查看 commit 对象所指向的tree对象<br />
-<pre><code class="cmd">$ git show --pretty=raw e3426a5
+ - [Round 4](#round4)</code></pre>
+<ul>
+<li><code>git show --pretty=raw &lt;commit-object-name&gt;</code> 还能更多的查看 commit 对象所指向的tree对象</li>
+</ul>
+<pre class="cmd"><code>$ git show --pretty=raw e3426a5
 commit e3426a51534d97f5c73369a98fd38d6fb2f83f0a
 tree 65e1673d28da6cf7554cc0bed020673f68276112
 parent a15f6954d609da2bebc243a52a8dd1094e6e2fd6
@@ -2037,10 +1705,11 @@ committer Kevin Wang &lt;wkevin27@gmail.com&gt; 1455592822 +0800
 diff --git a/README.md b/README.md
 index 17944e2..a0be055 100644
 --- a/README.md
-+++ b/README.md
-</code></pre></li>
-<li><code>git show &lt;tree-object-name&gt;</code> 或 <code>git ls-tree &lt;tree-object-name&gt;</code> 或 <code>git ls-tree &lt;commit-object-name&gt;</code> 都能够看到 tree 对象更多的细节<br />
-<pre><code class="cmd">$ git show 65e1673
++++ b/README.md</code></pre>
+<ul>
+<li><code>git show &lt;tree-object-name&gt;</code> 或 <code>git ls-tree &lt;tree-object-name&gt;</code> 或 <code>git ls-tree &lt;commit-object-name&gt;</code> 都能够看到 tree 对象更多的细节</li>
+</ul>
+<pre class="cmd"><code>$ git show 65e1673
 tree 65e1673
 
 .gitignore
@@ -2055,33 +1724,32 @@ $ git ls-tree 65e1673
 $ git ls-tree e3426a5
 100644 blob 40f51b88ea8b90ff1c9db36ffc45cfd71f71c078    .gitignore
 100644 blob a0be0555eeeb50e4702e137a7837ad9970be7755    README.md
-040000 tree 5aec0814a9b43d040a1a3388aaf2c4ae60e296f4    img
-</code></pre></li>
-<li><code>git show &lt;blob-object-name&gt;</code> 查看一个blob对象的细节，如果是文本文件就等同于<code>$cat file</code>了<br />
-<pre><code class="cmd">$ git show 40f51b
-*.html
-.vim.*
-</code></pre></li>
-</ul>
-<h2 id="git_14"><a name="user-content-git_14" href="#git_14" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git 的快照存储有点不可思议，如何做到好又多的</h2>
+040000 tree 5aec0814a9b43d040a1a3388aaf2c4ae60e296f4    img</code></pre>
 <ul>
-<li>继续前面的话题，我们往前查几个commit对象，试图发现的更多一些<br />
-<pre><code class="cmd">$ git show --pretty=raw 48eda25
+<li><code>git show &lt;blob-object-name&gt;</code> 查看一个blob对象的细节，如果是文本文件就等同于<code>$cat file</code>了</li>
+</ul>
+<pre class="cmd"><code>$ git show 40f51b
+*.html
+.vim.*</code></pre>
+<h2 id="git-的快照存储有点不可思议如何做到好又多的">git 的快照存储有点不可思议，如何做到好又多的</h2>
+<ul>
+<li>继续前面的话题，我们往前查几个commit对象，试图发现的更多一些</li>
+</ul>
+<pre class="cmd"><code>$ git show --pretty=raw 48eda25
 commit 48eda255c3f727e57f1462592a8cd8fd8d16839a
 tree f1683d3e377fcbb99cca10c481d0070375e1bf23
 parent 12205fd2616a0af5ebe8243f6e5c16a64e9e9127
 author wkevin &lt;wkevin@users.noreply.github.com&gt; 1454556117 +0800
 committer wkevin &lt;wkevin@users.noreply.github.com&gt; 1454556117 +0800
 
-    笔误: 缺少一个反括号
-</code></pre></li>
-<li>看看这个tree对象包含的内容<br />
-<pre><code class="cmd">$ git ls-tree f1683d3e
+    笔误: 缺少一个反括号</code></pre>
+<ul>
+<li>看看这个tree对象包含的内容</li>
+</ul>
+<pre class="cmd"><code>$ git ls-tree f1683d3e
 100644 blob 40f51b88ea8b90ff1c9db36ffc45cfd71f71c078    .gitignore
 100644 blob 5211c0dae2ab042cf0cf2edff08809af510e358a    README.md
-040000 tree 4867a64660a9d90a8a5a966c9fac1187861762f3    img
-</code></pre></li>
-</ul>
+040000 tree 4867a64660a9d90a8a5a966c9fac1187861762f3    img</code></pre>
 <p>可以发现两次commit所指向的tree对象中：</p>
 <ul>
 <li>.gitignore的HASH相同</li>
@@ -2090,17 +1758,17 @@ committer wkevin &lt;wkevin@users.noreply.github.com&gt; 1454556117 +0800
 <p>因此说明：<strong>每次提交仅会把有改动的file重新计算HASH并封装为对象进行存储</strong></p>
 <ul>
 <li>整个文件存储那不是很浪费空间？—— Yes！</li>
-<li>那为什么还比svn的增量存储更快呢？ —— 这个问题要这么看：<ul>
+<li>那为什么还比svn的增量存储更快呢？ —— 这个问题要这么看：
+<ul>
 <li><code>svn commit</code>的时候是提交到网络服务器的，存在网络时延的问题，<code>git commit</code>只有本地操作</li>
 <li><code>svn commit</code>的时候要实时计算diff，<code>git add/commit</code>不存在diff计算，<code>git add</code>时会做对象的生成，但git对象的生成是执行压缩算法 —— 执行diff计算和执行压缩算法在当前水平的CPU能力下已不分伯仲</li>
 <li>git虽然耗损更多的磁盘空间，但现在最不值钱的就是磁盘空间了</li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="git-addcommit"><a name="user-content-git-addcommit" href="#git-addcommit" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git add/commit 原理图</h2>
-<p><embed src="img/git-add.svg" type="image/svg+xml" /></p>
-<h2 id="git-checkout"><a name="user-content-git-checkout" href="#git-checkout" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git checkout 原理图</h2>
-<p><embed src="img/git-checkout.svg" type="image/svg+xml" /></p>
+<h2 id="git-addcommit-原理图">git add/commit 原理图</h2>
+<embed src="img/git-add.svg" type="image/svg+xml" />
+<h2 id="git-checkout-原理图">git checkout 原理图</h2>
+<embed src="img/git-checkout.svg" type="image/svg+xml" />
 <ul>
 <li><code>git checkout file</code>：用暂存区的file覆盖工作区的file</li>
 <li><code>git checkout branch</code>：HEAD指向branch，然后去覆盖暂存区和工作区</li>
@@ -2110,99 +1778,95 @@ committer wkevin &lt;wkevin@users.noreply.github.com&gt; 1454556117 +0800
 </ul>
 <p>详细：</p>
 <ul>
-<li><code>git checkout &lt;./file&gt;</code><ul>
+<li><code>git checkout &lt;./file&gt;</code>
+<ul>
 <li>HEAD 不会切换</li>
-<li>用暂存区的file覆盖工作区中对应的文件，暂存区的不变<ul>
+<li>用暂存区的file覆盖工作区中对应的文件，暂存区的不变
+<ul>
 <li><strong>如果没有未提交的修改，暂存区和HEAD是相同的</strong></li>
 <li>如果暂存区刚才有未提交的修改，后续仍可commit</li>
-</ul>
-</li>
+</ul></li>
 <li>覆盖：意味着所有修改会丢失；但新增的文件不丢失。</li>
-</ul>
-</li>
-<li><code>git checkout &lt;branch&gt;</code><ul>
+</ul></li>
+<li><code>git checkout &lt;branch&gt;</code>
+<ul>
 <li>HEAD 会被切换</li>
 <li>用 <branch> 中的文件覆盖工作区中对应的文件</li>
 <li>切换的当前branch时：本地修改不会丢失，也不必提交</li>
 <li>切换的其他branch时：本地修改要先提交，-f 强切修改会丢失</li>
-</ul>
-</li>
-<li><code>git checkout --detach [&lt;branch&gt;]</code><ul>
-<li>HEAD 不变<ul>
+</ul></li>
+<li><code>git checkout --detach [&lt;branch&gt;]</code>
+<ul>
+<li>HEAD 不变
+<ul>
 <li><code>git checkout --detach</code>：会从当前 HEAD 创建游离指针</li>
 <li><code>git checkout --detach anotherBranch</code>：会从 anotherBranch 指针创建游离指针</li>
-</ul>
-</li>
+</ul></li>
 <li>从<branch>处创建一个<strong>游离</strong>的branch，并覆盖到本地工作区</li>
 <li>从当前branch创建游离分支时：本地修改不会丢失，也不必提交</li>
 <li>从其他branch创建游离分支时：本地修改要先提交，-f 强切修改会丢失</li>
-</ul>
-</li>
-<li><code>git checkout [--detach] &lt;commit&gt;</code><ul>
+</ul></li>
+<li><code>git checkout [--detach] &lt;commit&gt;</code>
+<ul>
 <li>游离一个branch</li>
-</ul>
-</li>
+</ul></li>
 <li><code>git checkout [[-b|-B|--orphan] &lt;new_branch&gt;] [&lt;start_point&gt;]</code></li>
 </ul>
-<h2 id="git-fetchpull"><a name="user-content-git-fetchpull" href="#git-fetchpull" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git fetch/pull 原理图</h2>
-<p><embed src="img/git-remote.svg" type="image/svg+xml" /></p>
-<h2 id="git-reset"><a name="user-content-git-reset" href="#git-reset" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>git reset 原理图</h2>
-<p><embed src="img/git-reset.svg" type="image/svg+xml" /></p>
-<p><code>git reset [-q] [&lt;tree-ish&gt;] [--] &lt;paths&gt;…</code><br />
-<code>git reset (--patch | -p) [&lt;tree-ish&gt;] [--] [&lt;paths&gt;…]</code><br />
-<code>git reset [--soft | --mixed [-N] | --hard | --merge | --keep] [-q] [&lt;commit&gt;]</code></p>
+<h2 id="git-fetchpull-原理图">git fetch/pull 原理图</h2>
+<embed src="img/git-remote.svg" type="image/svg+xml" />
+<h2 id="git-reset-原理图">git reset 原理图</h2>
+<embed src="img/git-reset.svg" type="image/svg+xml" />
+<p><code>git reset [-q] [&lt;tree-ish&gt;] [--] &lt;paths&gt;…</code> <code>git reset (--patch | -p) [&lt;tree-ish&gt;] [--] [&lt;paths&gt;…]</code> <code>git reset [--soft | --mixed [-N] | --hard | --merge | --keep] [-q] [&lt;commit&gt;]</code></p>
 <ul>
-<li>图中3个动作：<ol>
+<li>图中3个动作：
+<ol type="1">
 <li>替换引用的指向。引用指向新的提交ID。</li>
 <li>替换暂存区。替换后，暂存区的内容和引用指向的目录树一致。</li>
 <li>替换工作区。替换后，工作区的内容变得和暂存区一致，也和HEAD所指向的目录树内容相同。</li>
-</ol>
-</li>
-<li>3个参数：<ul>
-<li>&ndash;hard: 执行上图中的全部动作1、2、3</li>
-<li>&ndash;soft: 执行上图中的全部动作1</li>
-<li>&ndash;mixed:执行上图中的全部动作1、2，—— 默认操作</li>
-</ul>
-</li>
-<li>举例：<ul>
+</ol></li>
+<li>3个参数：
+<ul>
+<li>–hard: 执行上图中的全部动作1、2、3</li>
+<li>–soft: 执行上图中的全部动作1</li>
+<li>–mixed:执行上图中的全部动作1、2，—— 默认操作</li>
+</ul></li>
+<li>举例：
+<ul>
 <li><code>git reset</code>==<code>git reset HEAD</code>：用HEAD重置暂存区，工作区不受影响，相当于回滚/撤销 <code>git add</code></li>
 <li><code>git reset -- filename</code> == <code>git reset HEAD filename</code>：仅将文件的改动撤出暂存区，暂存区中其他文件不改变。</li>
-<li><code>git reset --soft HEAD^</code>：工作区和暂存区不改变，但是HEAD和当前分支引用向前回退一次<ul>
+<li><code>git reset --soft HEAD^</code>：工作区和暂存区不改变，但是HEAD和当前分支引用向前回退一次
+<ul>
 <li>用途：提交了之后，你又发现代码没有提交完整，或者你想重新编辑一下再提交</li>
-</ul>
-</li>
+</ul></li>
 <li><code>git reset --hard</code> == <code>git reset --hard HEAD</code>: 用HEAD覆盖暂存区和工作区，即：丢弃所有本地修改</li>
+</ul></li>
+<li>重置可以朝前，也可以朝后</li>
 </ul>
-</li>
-<li>重置可以朝前，也可以朝后<br />
-<pre><code class="cmd">$ git br
+<pre class="cmd"><code>$ git br
 * master ecfc106 2
   new    ab3fa01 3
 $ git reset --soft new
 $ git br
 * master ab3fa01 3
-  new    ab3fa01 3
-</code></pre></li>
-</ul>
-<h1 id="round-8-gitphabricator"><a name="user-content-round-8-gitphabricator" href="#round-8-gitphabricator" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>Round 8 : git与phabricator</h1>
-<h2 id="arc"><a name="user-content-arc" href="#arc" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>arc 为何物</h2>
+  new    ab3fa01 3</code></pre>
+<h1 id="round-8-git与phabricator">Round 8 : git与phabricator</h1>
+<h2 id="arc-为何物">arc 为何物</h2>
 <ul>
-<li>arc 全称是 arcanist，百度给出的中文翻译是：巧匠。  </li>
+<li>arc 全称是 arcanist，百度给出的中文翻译是：巧匠。<br />
+</li>
 <li>arc 是Facebook的Phabricator系统中用户端的命令行工具，配合pha提交变更评审的。</li>
-<li>arc 的安装还有点折腾，要先在本机安装PHP，和一个php的工具集：libphutil<ul>
-<li>windows的安装后，目录下包括下面3个主要部件：<br />
+<li>arc 的安装还有点折腾，要先在本机安装PHP，和一个php的工具集：libphutil
+<ul>
+<li>windows的安装后，目录下包括下面3个主要部件：</li>
+</ul>
 <pre><code>Phabricator/--arc/--arcanist
             |     |-libphutil
-            |-xampplite-win32-1.7.3
-</code></pre><ul>
-<li>arcantist是arc的主程序：<a href="https://github.com/phacility/arcanist.git">https://github.com/phacility/arcanist.git</a></li>
-<li>libphutil是php的工具集：<a href="https://github.com/phacility/libphutil.git">https://github.com/phacility/libphutil.git</a></li>
-<li>xampplite是apache+php+mysql+perl的一个打包，160+M，要知道phabricator整个才180+M。</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>arc 包含很多子命令，<ul>
+            |-xampplite-win32-1.7.3</code></pre>
+<pre><code>  + arcantist是arc的主程序：https://github.com/phacility/arcanist.git
+  + libphutil是php的工具集：https://github.com/phacility/libphutil.git
+  + xampplite是apache+php+mysql+perl的一个打包，160+M，要知道phabricator整个才180+M。</code></pre></li>
+<li>arc 包含很多子命令，
+<ul>
 <li><code>arc help</code>：列出来子命令看看</li>
 <li><code>arc diff</code>：调用<code>svn diff</code>或<code>git diff</code>生成差异并发送给phabricator生成评审单</li>
 <li><code>arc list</code>：列出当前peding的revision —— revision要说明一下：pha生产的每个评审单都对应一个revision，可以理解为svn/git的一次提交，但又不在用户的svn/git上体现，可以理解为pha上也驻留这一个svn/git，来存储评审单信息，每单对应一个revision。</li>
@@ -2214,140 +1878,142 @@ $ git br
 <li><code>arc unit</code>：执行单元测试，这个就需要用户自己来指定单元测试工具了</li>
 <li><code>arc close-revision</code>：使用arc关闭某个revision，而不必上pha上鼠标点点点啦</li>
 <li>…… 还有n多，不一一列举了，头晕</li>
-</ul>
-</li>
-<li>arc 的 configuration<ul>
+</ul></li>
+<li>arc 的 configuration
+<ul>
 <li>和git类似，git有<code>git config --[global/system/local] xxx ...</code>，arc也有<code>arc set-config --[user/local] xxx ...</code></li>
 <li>和git类似，git查看config有<code>git config -l</code>，arc也有<code>arc get-config</code></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-<h2 id="arc_1"><a name="user-content-arc_1" href="#arc_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>arc的安装和配置</h2>
-<p><strong>Windows下的安装</strong><br />
-略</p>
+<h2 id="arc的安装和配置">arc的安装和配置</h2>
+<p><strong>Windows下的安装</strong> 略</p>
 <p><strong>Ubuntu下的安装</strong></p>
 <ul>
-<li>安装<ul>
+<li>安装
+<ul>
 <li><code>sudo apt-get install php5 php5-curl</code></li>
 <li><code>cd somewhere</code> //arc的安装目录</li>
 <li><code>git clone https://github.com/phacility/libphutil.git</code></li>
 <li><code>git clone https://github.com/phacility/arcanist.git</code></li>
 <li><code>sudo ln -s arcanist/bin/arc /usr/local/bin/arc</code></li>
-<li><code>vi ~/.bashrc</code><ul>
+<li><code>vi ~/.bashrc</code>
+<ul>
 <li><code>source $somewhere/arcanist/resources/shell/bash-completion</code></li>
-</ul>
-</li>
-</ul>
-</li>
-<li>配置<ul>
+</ul></li>
+</ul></li>
+<li>配置
+<ul>
 <li><code>arc set-config $pha-server</code> //eg: <code>arc set-config http://pha.etz.com.cn</code></li>
-<li><code>arc install-certificate</code><ul>
+<li><code>arc install-certificate</code>
+<ul>
 <li>到 $pha-server 上查找帮助，找到tocken，填到这里</li>
 <li>注意proxy的屏蔽</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="arc-diff"><a name="user-content-arc-diff" href="#arc-diff" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>arc diff 初步</h2>
+<h2 id="arc-diff-初步">arc diff 初步</h2>
 <ul>
 <li>SVN中，<code>arc diff</code>会把未提交的本地工作拷贝中的变更生成评审单，执行<code>arc diff</code>之前不需要也不能执行<code>svn commit</code>，最终评审完，用<code>arc commit</code>来代替<code>svn commit</code></li>
-<li>git中则完全不一样，<code>arc diff &lt;startCommit&gt;</code>之前需要首先<code>git add</code>&amp;<code>git commit</code>，<strong>如果本地工作拷贝中有变更，arc diff会自动替你add和commit</strong>，因为<code>arc diff</code>是把git中两个commit之间（即：一个range）的变更提交到pha上生成评审单，所以问题来了：两个commit节点是如何指定的？<ul>
+<li>git中则完全不一样，<code>arc diff &lt;startCommit&gt;</code>之前需要首先<code>git add</code>&amp;<code>git commit</code>，<strong>如果本地工作拷贝中有变更，arc diff会自动替你add和commit</strong>，因为<code>arc diff</code>是把git中两个commit之间（即：一个range）的变更提交到pha上生成评审单，所以问题来了：两个commit节点是如何指定的？
+<ul>
 <li><strong>两个commit节点是：startCommit 和 HEAD</strong></li>
-<li>startCommit如果缺失，则默认使用 <code>git merge-base origin/master HEAD</code><ul>
+<li>startCommit如果缺失，则默认使用 <code>git merge-base origin/master HEAD</code>
+<ul>
 <li>这又是个啥东东？<code>git help merge-base</code>，意思是找到 origin/master 和 HEAD 之间的最近祖先节点。</li>
-<li><code>git help merge-base</code>中有几个例子，其中一个是：<br />
+<li><code>git help merge-base</code>中有几个例子，其中一个是：</li>
+</ul>
 <pre><code>     o---o---o---B
     /
----o---1---o---o---o---A
-</code></pre><ul>
-<li><code>git merge-base A B</code>将返回节点1，好好体会一下，呵呵。</li>
-</ul>
-</li>
+---o---1---o---o---o---A</code></pre>
+<pre><code>  * `git merge-base A B `将返回节点1，好好体会一下，呵呵。</code></pre>
+<ul>
 <li>所以为了不出乱子，最好自己指定 startCommit</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><code>arc diff</code>需要填写一些信息，所以执行过程中会跳入到一个编辑器中，windows版的arc会打开一个简陋的窗口，ubuntu版的arc就直接打开默认的编辑器（如vi）了。需要填写的信息有：<ul>
+</ul></li>
+</ul></li>
+<li><code>arc diff</code>需要填写一些信息，所以执行过程中会跳入到一个编辑器中，windows版的arc会打开一个简陋的窗口，ubuntu版的arc就直接打开默认的编辑器（如vi）了。需要填写的信息有：
+<ul>
 <li>Test Plan - 必填，详细说明你的测试计划；</li>
-<li>Reviewers - 必填，审查人的账户，多个使用&rdquo;,&rdquo;隔开；<ul>
+<li>Reviewers - 必填，审查人的账户，多个使用“,”隔开；
+<ul>
 <li>在ubuntu下，用vi编辑此信息时，不会自动不全人名，则需要到phabricator网站上的搜索窗口，找到需要的人，把TA的账号写在此处</li>
-</ul>
-</li>
-<li>Subscribers - 非必填订阅人，多个使用&rdquo;,&rdquo;隔开。</li>
-</ul>
-</li>
+</ul></li>
+<li>Subscribers - 非必填订阅人，多个使用“,”隔开。</li>
+</ul></li>
 </ul>
 <p>实战一下：</p>
 <ul>
-<li>创建一个temp的git repo<br />
+<li>创建一个temp的git repo</li>
+</ul>
 <pre><code>10036143@A20939270 MINGW32 /f/temp (master)
 $ git log
 *  75c616b | 2016-06-08 15:55:19 +0800 |  wkevin  hah
-*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create
-</code></pre></li>
-<li><code>arc diff</code><ul>
+*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create</code></pre>
+<ul>
+<li><code>arc diff</code>
+<ul>
 <li>会提示错误，没有指定 origin/master，因为默认startComiit是<code>git merge-base origin/master HEAD</code>嘛</li>
-</ul>
-</li>
-<li><code>arc diff 7584</code><ul>
+</ul></li>
+<li><code>arc diff 7584</code>
+<ul>
 <li>可以创建评审单的，因为是拿 HEAD（即75c6）与7584比较</li>
 <li><code>git show HEAD</code> 可以查看 HEAD 指向哪个节点</li>
-</ul>
-</li>
-<li><code>arc diff 7584 --preview</code><ul>
+</ul></li>
+<li><code>arc diff 7584 --preview</code>
+<ul>
 <li>可以在pha上创建评审单，但跳过指定评委等步骤，单子已经在pha上有了，可以先看看，后续在pha上慢慢指定评委等</li>
 <li>这是专门给处女座准备的啊</li>
-</ul>
-</li>
-<li>有一点需要说明：<ul>
-<li><code>arc diff</code>会根据工作拷贝的相关信息（比如 path, branch name, local commit hashes, and local tree hashes）来自动创建和关联一个pha上的revision，这让一些掌控欲比较强的人可能有些恼火，可以手工指定<ul>
+</ul></li>
+<li>有一点需要说明：
+<ul>
+<li><code>arc diff</code>会根据工作拷贝的相关信息（比如 path, branch name, local commit hashes, and local tree hashes）来自动创建和关联一个pha上的revision，这让一些掌控欲比较强的人可能有些恼火，可以手工指定
+<ul>
 <li><code>arc diff --create &lt;startCommit&gt;</code>:在pha上创建一个新的revision</li>
 <li><code>arc diff --update Dxxxx &lt;startCommit&gt;</code>：在pha上一个已有的revision（编号Dxxxx）上做增量</li>
+</ul></li>
+</ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="arc-diff-commit-log"><a name="user-content-arc-diff-commit-log" href="#arc-diff-commit-log" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>arc diff 为什么把我已有的commit log修改了</h2>
+<h2 id="arc-diff-为什么把我已有的commit-log修改了">arc diff 为什么把我已有的commit log修改了</h2>
 <p>在上面的步骤中有一个奇怪的地方：执行完<code>arc diff xxxx</code>后，<strong>原有的HEAD节点被arc重新创建的一个节点所替代</strong></p>
 <ul>
-<li>执行<code>arc diff 7584</code>后，75c6被替代为了26c0<br />
+<li>执行<code>arc diff 7584</code>后，75c6被替代为了26c0</li>
+</ul>
 <pre><code>$ git l
 *  26c0efc | 2016-06-08 15:55:19 +0800 |  wkevin  hah
-*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create
-</code></pre></li>
-<li>再次执行<code>arc diff 7584</code>后，26c0被替代为了e6db<br />
+*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create</code></pre>
+<ul>
+<li>再次执行<code>arc diff 7584</code>后，26c0被替代为了e6db</li>
+</ul>
 <pre><code>$ git l
 *  e6db93c | 2016-06-08 15:55:19 +0800 |  wkevin  hah
-*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create
-</code></pre></li>
-<li>再次执行<code>arc diff 7584</code>后，e6db被替代为了7c29<br />
+*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create</code></pre>
+<ul>
+<li>再次执行<code>arc diff 7584</code>后，e6db被替代为了7c29</li>
+</ul>
 <pre><code>$ git l
 *  7c29204 | 2016-06-08 15:55:19 +0800 |  wkevin  hah
-*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create
-</code></pre></li>
-<li>但其实75c6、26c0、e6db都还是存在的，<code>git show</code>可以看到<br />
+*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create</code></pre>
+<ul>
+<li>但其实75c6、26c0、e6db都还是存在的，<code>git show</code>可以看到</li>
+</ul>
 <pre><code>$ git show 75c6
 commit 75c616b3a6de15e7004c231486a91e338ae023a6
 Author: wkevin &lt;wkevin27@gmail.com&gt;
 Date:   Wed Jun 8 15:55:19 2016 +0800
 
-    hah
-</code></pre></li>
-</ul>
+    hah</code></pre>
 <p>事情变得很蹊跷，arc为什么要新建一个commit呢？</p>
 <p>下面再来验证一下：如果本地有modified（待add）或stagging（待commit）文件的话，<code>arc diff</code>是不是也会新建一个commit呢？</p>
 <ul>
-<li>当前状态<br />
+<li>当前状态</li>
+</ul>
 <pre><code>$ git l
 *  1cce5be | 2016-06-08 16:05:27 +0800 |  wkevin  neww
 *  7c29204 | 2016-06-08 15:55:19 +0800 |  wkevin  hah
-*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create
-</code></pre></li>
+*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create</code></pre>
+<ul>
 <li>做一些有本地修改，但不 <code>git commit -a</code></li>
-<li><code>arc diff HEAD^</code>，会首先把未提交的变更进行提交，并且更新（amend）当前commit的message，然后向已有的revision进行update<br />
+<li><code>arc diff HEAD^</code>，会首先把未提交的变更进行提交，并且更新（amend）当前commit的message，然后向已有的revision进行update</li>
+</ul>
 <pre><code>$ arc diff HEAD^
 You have uncommitted changes in this working copy.
 
@@ -2367,67 +2033,61 @@ Updated an existing Differential revision:
         Revision URI: http://pha.zte.com.cn/D30449
 
 Included changes:
-  M       README.md
-</code></pre></li>
-<li>1cce5be 又被 20ae4c5 替代了，而不是在 1cce5be 的基础上新建一个commit<br />
+  M       README.md</code></pre>
+<ul>
+<li>1cce5be 又被 20ae4c5 替代了，而不是在 1cce5be 的基础上新建一个commit</li>
+</ul>
 <pre><code>$ git l
 *  20ae4c5 | 2016-06-08 16:05:27 +0800 |  wkevin  neww
 *  7c29204 | 2016-06-08 15:55:19 +0800 |  wkevin  hah
-*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create
-</code></pre></li>
-</ul>
+*  7584e84 | 2016-06-08 15:55:01 +0800 |  wkevin  create</code></pre>
 <p>为了解开这个谜团，我们来跟踪一下<code>arc diff</code>的操作</p>
 <p><code>arc diff --trace &lt;startCommit&gt;</code></p>
 <p>摘录一部分打印：</p>
-<p><pre><code>&gt;&gt;&gt; [1] &lt;http&gt; http://pha.zte.com.cn/api/user.whoami
-&gt;&gt;&gt; [2] &lt;exec&gt; $ git diff --no-ext-diff --no-textconv --raw 'HEAD' --
+<pre><code>&gt;&gt;&gt; [1] &lt;http&gt; http://pha.zte.com.cn/api/user.whoami
+&gt;&gt;&gt; [2] &lt;exec&gt; $ git diff --no-ext-diff --no-textconv --raw &#39;HEAD&#39; --
 &gt;&gt;&gt; [3] &lt;exec&gt; $ git ls-files --others --exclude-standard
 &gt;&gt;&gt; [4] &lt;exec&gt; $ git diff-files --name-only
-&gt;&gt;&gt; [6] &lt;exec&gt; $ git rev-parse 'HEAD'
-&gt;&gt;&gt; [7] &lt;exec&gt; $ git merge-base 'f8c1' 'd6efce6e8804ecb027762e0151ed071bc7d63b6d'
-&gt;&gt;&gt; [8] &lt;exec&gt; $ git log --first-parent --format=medium 'f8c101daaf75121dd4f1f1380b4dc5c1ed85cea0'..'d6efce6e8804ecb027762e0151ed071bc7d63b6d'
-</code></pre><br />
-首先到phabricator服务器上验证tocken，并根据 startCommit 做出一些判断</p>
+&gt;&gt;&gt; [6] &lt;exec&gt; $ git rev-parse &#39;HEAD&#39;
+&gt;&gt;&gt; [7] &lt;exec&gt; $ git merge-base &#39;f8c1&#39; &#39;d6efce6e8804ecb027762e0151ed071bc7d63b6d&#39;
+&gt;&gt;&gt; [8] &lt;exec&gt; $ git log --first-parent --format=medium &#39;f8c101daaf75121dd4f1f1380b4dc5c1ed85cea0&#39;..&#39;d6efce6e8804ecb027762e0151ed071bc7d63b6d&#39;</code></pre>
+<p>首先到phabricator服务器上验证tocken，并根据 startCommit 做出一些判断</p>
 <pre><code>&gt;&gt;&gt; [16] &lt;event&gt; diff.willBuildMessage &lt;listeners = 0&gt;
 &gt;&gt;&gt; [17] &lt;conduit&gt; differential.getcommitmessage() &lt;bytes = 295&gt;
 &gt;&gt;&gt; [18] &lt;http&gt; http://pha.zte.com.cn/api/differential.getcommitmessage
 &gt;&gt;&gt; [19] &lt;exec&gt; $ git symbolic-ref --quiet HEAD
-&gt;&gt;&gt; [20] &lt;exec&gt; $ which 'editor'
-&gt;&gt;&gt; [21] &lt;exec&gt; $ editor  '/tmp/edit.cjol8q3bi1sg0kwk/new-commit'
-</code></pre>
-
+&gt;&gt;&gt; [20] &lt;exec&gt; $ which &#39;editor&#39;
+&gt;&gt;&gt; [21] &lt;exec&gt; $ editor  &#39;/tmp/edit.cjol8q3bi1sg0kwk/new-commit&#39;</code></pre>
 <p>然后到phabricator服务器上创建一个单，并根据pha的请求，打开editor，编辑评审单的信息</p>
-<pre><code>&gt;&gt;&gt; [22] &lt;exec&gt; $ git commit --amend --allow-empty -F '/tmp/8qihi3x4l2ww4o8w/10039-Vbjrxm'
-</code></pre>
-
+<pre><code>&gt;&gt;&gt; [22] &lt;exec&gt; $ git commit --amend --allow-empty -F &#39;/tmp/8qihi3x4l2ww4o8w/10039-Vbjrxm&#39;</code></pre>
 <p>关键是这里了，无条件的更新了当前 HEAD 节点的 message。</p>
-<p>其实 <code>git commit --amend</code> 的官方help中是这样解释的： Replace the tip of the current branch by creating a new commit. </p>
+<p>其实 <code>git commit --amend</code> 的官方help中是这样解释的： Replace the tip of the current branch by creating a new commit.</p>
 <p>这样<code>arc diff &lt;startCommit&gt;</code>步骤就明朗了：</p>
-<ol>
+<ol type="1">
 <li>提示用户填写评审单信息（Test Plans、Reviewers、Subscribers……），然后使用这些信息 <code>git commit --amend</code> 到当前分支的 HEAD 节点</li>
 <li>新的节点（即：新的HEAD） 成为 endCommit</li>
 <li>再拿 HEAD（即endCommit）与 startCommit 执行 <code>git diff</code>，输出的内容提交到 pha</li>
 </ol>
 <p>arc 为什么要这么做？为什么要“玷污”我的现有节点？如果这个节点是其他分支的基础节点怎么办？…… —— 这个事情可以这么看：<code>arc diff</code>只是新建了一个commit，用来存储评审单的相关信息，并且把当前分支的HEAD指向了新建的commit，想好了这一点，事情其实很好办，下一节我们来规避它。</p>
-<h2 id="arc-diff_1"><a name="user-content-arc-diff_1" href="#arc-diff_1" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何避免arc diff玷污现有节点</h2>
+<h2 id="如何避免arc-diff玷污现有节点">如何避免arc diff玷污现有节点</h2>
 <p>创建专用于评审的分支</p>
 <ul>
 <li><code>git branch review</code></li>
 <li><code>git checkout review</code></li>
 <li><code>arc diff &lt;xxx&gt;</code> 或 <code>arc diff --preview &lt;xxx&gt;</code> //创建评审单或预审单（到pha网站上进行下一步的操作，可用于ubuntu下不能自动补全人名的环境）</li>
 <li><code>git checkout master</code></li>
-<li><code>git branch -D review</code>  //评审单一旦创建，review分支就没有存在的必要性了</li>
+<li><code>git branch -D review</code> //评审单一旦创建，review分支就没有存在的必要性了</li>
 </ul>
-<h2 id="_11"><a name="user-content-_11" href="#_11" class="headeranchor-link" aria-hidden="true"><span class="headeranchor"></span></a>如何创建只包含部分文件的评审单</h2>
+<h2 id="如何创建只包含部分文件的评审单">如何创建只包含部分文件的评审单</h2>
 <p>可能只希望评审方案文件（假设： design.md），但commit中包含相关的图片、svg、等文件，不需要提交到pha，如下处理：</p>
 <ul>
 <li><code>git branch review &lt;oneOldCommit&gt;</code> //从 design.md 创建或修改前的节点创建一个分支</li>
 <li><code>git checkout review</code></li>
-<li><code>git checkout master design.md</code>    //将master分支上的 design.md check 到 review 分支</li>
+<li><code>git checkout master design.md</code> //将master分支上的 design.md check 到 review 分支</li>
 <li><code>git commit -am "review for design.md"</code></li>
-<li><code>arc diff HEAD^</code> 或 <code>arc diff --preview HEAD^</code> </li>
+<li><code>arc diff HEAD^</code> 或 <code>arc diff --preview HEAD^</code></li>
 <li><code>git checkout master</code></li>
-<li><code>git branch -D review</code>  </li>
+<li><code>git branch -D review</code></li>
 </ul>
 <hr />
 <p><strong>跋</strong></p>
@@ -2437,4 +2097,34 @@ Included changes:
 <li>感谢岳父和家里的好酒，白天喝酒打牌，晚上笔耕时并不上头、反胃。但文中也会屡见突兀的行文，大概就是喝过量时候写就的了。</li>
 <li>感谢markdown和git，让我沉浸写作、畅快diff、任性提交，如果使用word，我猜是绝对写不出来的。</li>
 <li>感谢问我git问题的同事朋友，灵感都源于你们。</li>
-</ul></article></body></html>
+</ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="assets/js/jquery.min.js"><\/script>')</script>
+    <script src="assets/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        //document.getElementById('sidebar').getElementsByTagName('ul')[0].className += "nav nav-sidebar";
+        
+        /* ajust the height when click the toc
+           the code is from https://github.com/twbs/bootstrap/issues/1768
+        */
+        var shiftWindow = function() { scrollBy(0, -50) };
+        window.addEventListener("hashchange", shiftWindow);
+        function load() { if (window.location.hash) shiftWindow(); }
+        
+        /*add Bootstrap styles to tables*/
+        var tables = document.getElementsByTagName("table");
+        for(var i = 0; i < tables.length; ++i){
+            tables[i].className += "table table-bordered table-hover";
+        }
+    </script>
+  </body>
+</html>
