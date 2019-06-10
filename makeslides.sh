@@ -1,6 +1,6 @@
 #!/bin/bash 
 
-param=" -f markdown+simple_tables -t revealjs --standalone --variable=theme:night --highlight-style=zenburn --variable=css:default.css --variable=mouseWheel:true"
+param=" -f markdown+simple_tables -t revealjs --standalone --variable=theme:night --highlight-style=zenburn  --variable=css:assets/css/slides.css --variable=mouseWheel:true --quiet"
 
 if [ $# -eq 0 ]
 then
