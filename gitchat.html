@@ -1178,13 +1178,13 @@ $ export http_proxy     //再次export即可</code></pre>
 </ol>
 <h2 id="ssh访问remote的通常步骤是啥">SSH访问remote的通常步骤是啥</h2>
 <p>OK，书接上文。</p>
-<ul>
-<li>生成公钥和密钥</li>
-</ul>
 <pre class="cmd"><code>$ ssh-keygen -t rsa -C &quot;wkevin27@gmail.com&quot;</code></pre>
-<pre><code>- 得到两个文件：id_rsa和id_rsa.pub
-- **请确定两个文件的路径**：git for windows 有时候生成的文件会位于：`C:\ShellHome`，而`git push`等命令使用的是用户根目录，这两个目录未必一致，可能会被用户无意间修改。</code></pre>
 <ul>
+<li>生成公钥和密钥
+<ul>
+<li>得到两个文件：id_rsa和id_rsa.pub</li>
+<li><strong>请确定两个文件的路径</strong>：git for windows 有时候生成的文件会位于：<code>C:\ShellHome</code>，而<code>git push</code>等命令使用的是用户根目录，这两个目录未必一致，可能会被用户无意间修改。</li>
+</ul></li>
 <li>拷贝公钥到github/gitlab
 <ul>
 <li>可打开文件手工拷贝</li>
@@ -1263,7 +1263,7 @@ $ export http_proxy     //再次export即可</code></pre>
 <li>cd /path/to/project.git</li>
 <li>touch git-daemon-export-ok</li>
 </ul></li>
-<li>git daemon –reuseaddr –base-path=/opt/git/ /opt/git/</li>
+<li><code>git daemon --reuseaddr --base-path=/opt/git/ /opt/git/</code></li>
 <li>告诉B君你的IP</li>
 </ul></li>
 <li>B君

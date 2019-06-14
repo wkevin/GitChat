@@ -1226,10 +1226,10 @@ $ export http_proxy     //再次export即可
 
 OK，书接上文。
 
-* 生成公钥和密钥
 ```cmd
 $ ssh-keygen -t rsa -C "wkevin27@gmail.com"
 ```
+* 生成公钥和密钥
     - 得到两个文件：id_rsa和id_rsa.pub
     - **请确定两个文件的路径**：git for windows 有时候生成的文件会位于：`C:\ShellHome`，而`git push`等命令使用的是用户根目录，这两个目录未必一致，可能会被用户无意间修改。
 * 拷贝公钥到github/gitlab
@@ -1313,7 +1313,7 @@ SVN和git面对同样的一个问题：大部分程序猿是含蓄、内敛的�
                 * .git目录下新建git-daemon-export-ok文件，表明该工程允许非授权访问
                     - cd /path/to/project.git
                     - touch git-daemon-export-ok
-                * git daemon --reuseaddr --base-path=/opt/git/ /opt/git/
+                * `git daemon --reuseaddr --base-path=/opt/git/ /opt/git/`
                 * 告诉B君你的IP
             + B君
                 * git checkout git://your_ip_address/project

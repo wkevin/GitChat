@@ -119,7 +119,7 @@ a:hover {
 =============================================================================*/
 
 ul, ol {
-  padding-left: 30px;
+  padding-left: 20px;
 }
 
 ul li > :first-child, 
@@ -176,7 +176,7 @@ dl dd>:last-child {
 =============================================================================*/
 
 pre, code, tt {
-  font-size: 13px;
+  font-size: 10px;
   font-family: Consolas, "Liberation Mono", Courier, monospace;
   font-weight: bold;
 }
