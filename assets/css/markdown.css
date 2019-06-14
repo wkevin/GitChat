@@ -121,7 +121,6 @@ a:hover {
 ul, ol {
   padding-left: 20px;
 }
-
 ul li > :first-child, 
 ol li > :first-child, 
 ul li ul:first-of-type, 
@@ -176,11 +175,10 @@ dl dd>:last-child {
 =============================================================================*/
 
 pre, code, tt {
-  font-size: 10px;
+  font-size: 13px;
   font-family: Consolas, "Liberation Mono", Courier, monospace;
-  font-weight: bold;
+  white-space: pre-wrap;
 }
-
 pre {
   background-color: #1a181f;
   border: 1px solid #ccc;
