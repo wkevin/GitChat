@@ -2247,7 +2247,7 @@ $ git br
     - `arc amend`：更新git commit的message，即：可以把pha上某个revision的message应用到本地git的某个commit上
     - `arc commit`：svn专用，pha上评审完毕后，将本地的变更做`svn commit`
     - `arc land`：git专用，pha上评审完毕后，将本地分支做`git push`，所以需要有 origin
-    - `arc lint`：静态代码分析，不要以为arc只是生成评审单的，它还内嵌了一堆的lint工具，python的、java的、js的……五花八门，在`Phabricator\arc\arcanist\src\lint\linter\__tests__`这个目录下列出了这些lint工具
+    - `arc lint`：静态代码分析，不要以为arc只是生成评审单的，它还内嵌了一堆的lint工具，python的、java的、js的……五花八门，在 `Phabricator\arc\arcanist\src\lint\linter\__tests__` 这个目录下列出了这些lint工具
     - `arc unit`：执行单元测试，这个就需要用户自己来指定单元测试工具了
     - `arc close-revision`：使用arc关闭某个revision，而不必上pha上鼠标点点点啦
     - …… 还有n多，不一一列举了，头晕
