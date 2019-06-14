@@ -57,6 +57,7 @@ body {
 
 .main {
   padding: 20px;
+  text-align: left;
 }
 @media (min-width: 768px) {
   .main {
