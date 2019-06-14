@@ -29,7 +29,6 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <style type="text/css">.sidebar ul{}</style>
   </head>
 
   <body>
@@ -1744,7 +1743,8 @@ c23b07125f8a Merge tag &#39;vfio-v5.2-rc5&#39; of git://github.com/awilliam/linu
 aff7ed485168 selinux: log raw contexts as untrusted strings
  1 file changed, 8 insertions(+), 2 deletions(-)</code></pre>
 <p>大量没有file修改的merge挺碍眼的，使用 <code>--no-merges</code> 清理</p>
-<pre><code>fec6375320c6 selinux: fix a missing-check bug in selinux_sb_eat_lsm_opts()
+<pre><code>kevin@:linux.git$ git log --oneline --shortstat --no-merges
+fec6375320c6 selinux: fix a missing-check bug in selinux_sb_eat_lsm_opts()
  1 file changed, 14 insertions(+), 6 deletions(-)
 e2e0e09758a6 selinux: fix a missing-check bug in selinux_add_mnt_opt( )
  1 file changed, 14 insertions(+), 5 deletions(-)
@@ -2097,7 +2097,7 @@ $ git br
 <li><code>arc amend</code>：更新git commit的message，即：可以把pha上某个revision的message应用到本地git的某个commit上</li>
 <li><code>arc commit</code>：svn专用，pha上评审完毕后，将本地的变更做<code>svn commit</code></li>
 <li><code>arc land</code>：git专用，pha上评审完毕后，将本地分支做<code>git push</code>，所以需要有 origin</li>
-<li><code>arc lint</code>：静态代码分析，不要以为arc只是生成评审单的，它还内嵌了一堆的lint工具，python的、java的、js的……五花八门，在<code>Phabricator\arc\arcanist\src\lint\linter\__tests__</code>这个目录下列出了这些lint工具</li>
+<li><code>arc lint</code>：静态代码分析，不要以为arc只是生成评审单的，它还内嵌了一堆的lint工具，python的、java的、js的……五花八门，在 <code>Phabricator\arc\arcanist\src\lint\linter\__tests__</code> 这个目录下列出了这些lint工具</li>
 <li><code>arc unit</code>：执行单元测试，这个就需要用户自己来指定单元测试工具了</li>
 <li><code>arc close-revision</code>：使用arc关闭某个revision，而不必上pha上鼠标点点点啦</li>
 <li>…… 还有n多，不一一列举了，头晕</li>

@@ -1903,6 +1903,7 @@ aff7ed485168 selinux: log raw contexts as untrusted strings
 
 大量没有file修改的merge挺碍眼的，使用 `--no-merges` 清理
 ```
+kevin@:linux.git$ git log --oneline --shortstat --no-merges
 fec6375320c6 selinux: fix a missing-check bug in selinux_sb_eat_lsm_opts()
  1 file changed, 14 insertions(+), 6 deletions(-)
 e2e0e09758a6 selinux: fix a missing-check bug in selinux_add_mnt_opt( )

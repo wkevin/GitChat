@@ -56,12 +56,10 @@ body {
  */
 
 .main {
-  padding: 0px;
   text-align: left;
 }
 @media (min-width: 768px) {
   .main {
-    text-align: left;
     padding-left: 20px;
     padding-right: 20px;
   }
@@ -69,6 +67,8 @@ body {
 @media (max-width: 768px) {
   .main {
     font-size: 70%;
+    padding-left: 10px;
+    padding-right: 10px;
   }
 }
 .main .page-header {
