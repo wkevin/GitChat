@@ -1500,6 +1500,24 @@ git库的托管网站（git host）有很多，github并不是唯一的选择，
 
 如果你要开发一个开源的模块来扬名，请使用github；如果要开发一个秘密的、需要保密的大项目，请使用Bitbucket；如果只是玩一玩，请使用码云（毕竟速度要快一点）。
 
+## linux中能否使用多个版本的git
+
+那是必须可以的。
+
+- 场景1：你受限与linux版本太古老，无论用 yum 还是 apt 安装的都是很古老的 git 
+- 场景2：你希望测试自己多个 git 的兼容性
+
+在 linux 上使用源码编译基本可以解决，步骤：
+
+- 在 https://git-scm.com/ 上下载最新（或自己喜欢）的源码
+- `tar xvf git-2.9.5.tar.xz`
+- `cd git-2.9.5`
+- `./configure --prefix=/home/kevin/.local/git295` : 这里根据需求指定分开的目录即可
+- `make -j8 && make install`
+- **风险提示：**：
+    - 如果 make install 后手工挪动、重命名了 git295 目录，则执行git时会出现错误
+
+
 # Round 6 : 奇技淫巧
 
 ![](img/resting-lions-tanzania-sw.jpg)
@@ -1713,6 +1731,264 @@ git clone newrepo.git
 `git cherry-pick [commit_hash]`
 
 这个命令会带来冲突，请谨慎使用
+
+## `HEAD^`和`HEAD~`是啥
+
+`^`和`~`是2个很有意思的字符，配合使用可表示祖宗十八代。任你给一个节点（HEAD 或 哈希值），都能顺藤摸瓜，找到其祖先是谁。
+
+- `^`：表示第几个父/母亲 ——　git存在多个分支合并的情况，所以不只有1对父母亲
+- `~`：表示向上找第几代，相当于连续几个 `^`
+
+比如有这样一个库：
+
+```
+          b1(HEAD)
+          |
+C4 ------ C6
+         /
+   --- C5
+
+        HEAD^0         = HEAD~0       = C6^0       = C6~0 = C6 //自己
+HEAD^ = HEAD^1 = HEAD~ = HEAD~1 = C6^ = C6^1 = C6~ = C6~1 = C4 //父亲
+        HEAD^2                        = C6^2              = C5 //母亲
+
+```
+
+以此类推，可以找到：
+- 爷爷：`HEAD^^`=`HEAD^~`=`HEAD~2`
+- 奶奶：`HEAD^^2`
+- 姥爷：`HEAD^2^`=`HEAD^2~`
+- 姥姥：`HEAD^2^2`
+- …… 
+
+此方法可用于git的多种操作：log、diff、show、checkout……
+
+实际操作一下：
+
+```
+kevin@:linux.git$ git log --oneline -n20 --graph
+*   c11fb13a117e (HEAD -> master, tuna/master, kernel/master, github/master) Merge branch 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/hid/hid
+|\  
+| * 3ed224e273ac HID: logitech-dj: Fix 064d:c52f receiver support
+| * f9482dabfd16 Revert "HID: core: Call request_module before doing device_add"
+| * e0b7f9bc0246 Revert "HID: core: Do not call request_module() in async context"
+| * 15fc1b5c8612 Revert "HID: Increase maximum report size allowed by hid_field_extract()"
+| * eb6964fa6509 HID: i2c-hid: add iBall Aer3 to descriptor override
+* |   b076173a309e Merge tag 'selinux-pr-20190612' of git://git.kernel.org/pub/scm/linux/kernel/git/pcmoore/selinux
+|\ \  
+| * | fec6375320c6 selinux: fix a missing-check bug in selinux_sb_eat_lsm_opts()
+| * |  e2e0e09758a6 | 2019-06-12 21:28:21 +0800 |  Gen Zhang  selinux: fix a missing-check bug in selinux_add_mnt_opt( )
+| * |  aff7ed485168 | 2019-06-11 10:07:19 +0200 |  Ondrej Mosnacek  selinux: log raw contexts as untrusted strings
+* | |    35110e38e6c5 | 2019-06-12 05:57:05 -1000 |  Linus Torvalds  Merge tag 'media/v5.2-2' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+
+```
+自己：
+```
+kevin@:linux.git$ git log --oneline -n1 HEAD^0
+c11fb13a117e (HEAD -> master, tuna/master, kernel/master, github/master) Merge branch 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/hid/hid
+```
+```
+kevin@:linux.git$ git log --oneline -n1 HEAD~0
+c11fb13a117e (HEAD -> master, tuna/master, kernel/master, github/master) Merge branch 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/hid/hid
+```
+父亲：
+```
+kevin@:linux.git$ git log --oneline -n1 HEAD^
+b076173a309e Merge tag 'selinux-pr-20190612' of git://git.kernel.org/pub/scm/linux/kernel/git/pcmoore/selinux
+```
+```
+kevin@:linux.git$ git log --oneline -n1 HEAD^1
+b076173a309e Merge tag 'selinux-pr-20190612' of git://git.kernel.org/pub/scm/linux/kernel/git/pcmoore/selinux
+```
+```
+kevin@:linux.git$ git log --oneline -n1 HEAD~
+b076173a309e Merge tag 'selinux-pr-20190612' of git://git.kernel.org/pub/scm/linux/kernel/git/pcmoore/selinux
+```
+```
+kevin@:linux.git$ git log --oneline -n1 HEAD~1
+b076173a309e Merge tag 'selinux-pr-20190612' of git://git.kernel.org/pub/scm/linux/kernel/git/pcmoore/selinux
+```
+爷爷：
+```
+kevin@:linux.git$ git log --oneline -n1 HEAD^^
+35110e38e6c5 Merge tag 'media/v5.2-2' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+```
+```
+kevin@:linux.git$ git log --oneline -n1 HEAD^~
+35110e38e6c5 Merge tag 'media/v5.2-2' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+```
+```
+kevin@:linux.git$ git log --oneline -n1 HEAD~2
+35110e38e6c5 Merge tag 'media/v5.2-2' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+```
+奶奶
+```
+kevin@:linux.git$ git log --oneline -n1 HEAD^^2
+fec6375320c6 selinux: fix a missing-check bug in selinux_sb_eat_lsm_opts()
+```
+母亲：
+```
+kevin@:linux.git$ git log --oneline -n1 HEAD^2
+3ed224e273ac HID: logitech-dj: Fix 064d:c52f receiver support
+```
+姥爷：
+```
+kevin@:linux.git$ git log --oneline -n1 HEAD^2~
+f9482dabfd16 Revert "HID: core: Call request_module before doing device_add"
+```
+
+**总体来说：找父亲一族要方便些，找母亲一族要麻烦些。**
+
+
+## 如何看最近一段时间哪些文件（或文件夹）被修改 & 修改次数
+
+为了快速了解代码，有时候需要快速的查看代码的统计信息，做一些宏观的把握，上面这个需求可能会有些用处。
+
+**先来复习一下 git 自身的  统计功能**：
+
+- `--stat`：每个文件的修改的行数，并用+-符号展示
+```
+kevin@:linux.git$ git diff HEAD^ --stat
+ drivers/hid/hid-a4tech.c                 | 11 ++++++++---
+ drivers/hid/hid-core.c                   | 16 +++-------------
+ drivers/hid/i2c-hid/i2c-hid-dmi-quirks.c |  8 ++++++++
+ 10 files changed, 136 insertions(+), 54 deletions(-)
+```
+- `--numstat`：每个文件的修改的行数，并用数字展示
+```
+kevin@:linux.git$ git diff HEAD^ --numstat
+8       3       drivers/hid/hid-a4tech.c
+3       13      drivers/hid/hid-core.c
+8       0       drivers/hid/i2c-hid/i2c-hid-dmi-quirks.c
+```
+- `--shortstat`：所有文件修改的行数汇总
+```
+kevin@:linux.git$ git diff HEAD^ --shortstat
+ 10 files changed, 136 insertions(+), 54 deletions(-)
+```
+- `--dirstat=[changes|lines|files]`：按文件夹统计和汇总下述数据
+    - changes：变化的行数（新增文件不算）
+    - lines：+和-的行数统一算（新增文件会被计算）
+    - files：文件变化的数量夹
+
+```
+kevin@:linux.git$ git diff HEAD^ --dirstat=changes
+ 100.0% drivers/hid/
+kevin@:linux.git$ git diff HEAD^ --dirstat=lines
+   4.2% drivers/hid/i2c-hid/
+  95.7% drivers/hid/
+kevin@:linux.git$ git diff HEAD^ --dirstat=files
+  10.0% drivers/hid/i2c-hid/
+  90.0% drivers/hid/
+```
+
+另外，`--stat` 也能用于 `git log`，等价于每条commit都diff一下，即： `git log --stat` == `for (ci in commints) { git diff ci --stat }`
+
+```
+kevin@:linux.git$ git log --oneline --shortstat
+c11fb13a117e (HEAD -> master, tuna/master, kernel/master, github/master) Merge branch 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/hid/hid
+b076173a309e Merge tag 'selinux-pr-20190612' of git://git.kernel.org/pub/scm/linux/kernel/git/pcmoore/selinux
+fec6375320c6 selinux: fix a missing-check bug in selinux_sb_eat_lsm_opts()
+ 1 file changed, 14 insertions(+), 6 deletions(-)
+35110e38e6c5 Merge tag 'media/v5.2-2' of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+e2e0e09758a6 selinux: fix a missing-check bug in selinux_add_mnt_opt( )
+ 1 file changed, 14 insertions(+), 5 deletions(-)
+aa7235483a83 Merge branch 'for-linus' of git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace
+4d8f5f91b8a6 Merge branch 'stable/for-linus-5.2' of git://git.kernel.org/pub/scm/linux/kernel/git/konrad/swiotlb
+c23b07125f8a Merge tag 'vfio-v5.2-rc5' of git://github.com/awilliam/linux-vfio
+6fa425a26515 Merge tag 'for-5.2-rc4-tag' of git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux
+aff7ed485168 selinux: log raw contexts as untrusted strings
+ 1 file changed, 8 insertions(+), 2 deletions(-)
+```
+
+大量没有file修改的merge挺碍眼的，使用 `--no-merges` 清理
+```
+fec6375320c6 selinux: fix a missing-check bug in selinux_sb_eat_lsm_opts()
+ 1 file changed, 14 insertions(+), 6 deletions(-)
+e2e0e09758a6 selinux: fix a missing-check bug in selinux_add_mnt_opt( )
+ 1 file changed, 14 insertions(+), 5 deletions(-)
+aff7ed485168 selinux: log raw contexts as untrusted strings
+ 1 file changed, 8 insertions(+), 2 deletions(-)
+```
+
+**OK，基础功能展示完毕，基于这些，我们来发挥一下：**
+
+- **找到目标日期之后的提交**
+    - `--no-pager`：git默认使用linux的less模式显示，即满屏后提示用户按一下按键才继续显示，加上此选项则可以一口气打印完毕
+    - `%h`：此处我只需要hash值，所以其他都省略了
+    - `--no-merges`: 虽然merge也是工作量，但和我们的统计任务无关
+  
+```
+kevin@:linux.git$ git --no-pager log --format=format:'%h' --no-merges --since 2019-06-10
+fec6375320c6
+e2e0e09758a6
+aff7ed485168
+f6581f5b5514
+```
+
+- **找到每次提交的修改文件**
+    - awk：逐行处理上面查出的hash值，用 system() 命令转给 git 去执行
+    - `--stat-name-width=300`：git diff的输出默认会压缩到80列，使用`...`这种，这样会丢失我想要的信息，所以我加大到300，应该不会有丢弃了
+    - `--name-only`：我只是想统计文件的个数，并没有计划汇总每次、每个文件内部变更的行数，所以只要名字即可
+    - `"$1" "$1"~"`：最终会形成 `git diff xxx xxx~` ，为什么没用 `^`，效果一样么？留作思考题 ：）
+    - 下面代码中可以看到 hooks.c 文件在4次提交中被修改过2次
+
+```
+kevin@:linux.git$ git --no-pager log --format=format:'%h' --no-merges --since 2019-06-10 | \
+awk '{system(" git --no-pager diff  --stat-name-width=300 --name-only "$1" "$1"~") }'
+security/selinux/hooks.c
+security/selinux/hooks.c
+security/selinux/avc.c
+kernel/cred.c
+kernel/ptrace.c
+```
+
+- **统计并数字显示**
+    - `fss[$0]+=1`: 用文件名做key，value每次+1
+
+```
+kevin@:linux.git$ git --no-pager log --format=format:'%h' --no-merges --since 2019-06-10 | \
+awk '{system(" git --no-pager diff  --stat-name-width=300 --name-only "$1" "$1"~") }'| \
+awk '{fs[$0]+=1} END{for(f in fs) printf("%d\t%s\r\n",fs[f],f) }' | sort -k 2
+1	kernel/cred.c
+1	kernel/ptrace.c
+1	security/selinux/avc.c
+2	security/selinux/hooks.c
+```
+
+- **还可以统计到某一层文件夹，而不是具体到每个文件**
+    - `-e 's/[^/]*$//'`：去掉文件名，只留路径
+    - `-e 's#/#|#1'`：精确匹配第1个`/`更换成`|`，这里的1可以自己修改，统计不同level的文件夹深度
+    - `-e 's/|.*//'`：把`|`以后的字符删除 —— 这样只留下我们想要的某个level深度的路径
+
+```
+kevin@:linux.git$ git --no-pager log --format=format:'%h' --no-merges --since 2019-06-1 | \
+awk '{system(" git --no-pager diff  --stat-name-width=300 --name-only "$1" "$1"~") }'| \
+sed -e 's/[^/]*$//' -e 's#/#|#1' -e 's/|.*//' | \
+awk '{fs[$0]+=1} END{for(f in fs) printf("%10d\t%s\r\n",fs[f],f) }'|sort -k 2
+       676	arch
+         9	block
+        10	crypto
+         2	Documentation
+      2027	drivers
+       128	fs
+       286	include
+         2	ipc
+        43	kernel
+        21	lib
+        16	mm
+       103	net
+         9	samples
+        17	scripts
+        93	security
+       304	sound
+       114	tools
+         5	virt
+```
+
+上面是6.1至今（6.14），半个月来 Linux 的修改，仍然是 drivers 中的文件最多，达到 2027 件次（类比“人次”这个单位，哈哈），kernel前几天已经发布5.1了，其实kernel半个月才更新了43个件次，还是超级稳定的。
+
+BTW：上面思考题的答案：用`^` 和 `~` 是一样的。
 
 # Round 7 : 原理拾趣
 

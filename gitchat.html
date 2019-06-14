@@ -8,7 +8,7 @@
     <meta name="generator" content="pandoc">
     <meta name="description" content="">
 
-    <title></title>
+    <title>gitchat</title>
 
     <!-- Bootstrap core CSS -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
@@ -103,6 +103,7 @@
           <li><a href="#git命令我掌握的七七八八了怎么整理一下">git命令我掌握的七七八八了，怎么整理一下</a></li>
           <li><a href="#重新梳理git的软件">重新梳理git的软件</a></li>
           <li><a href="#整理git的外网托管网站">整理git的外网托管网站</a></li>
+          <li><a href="#linux中能否使用多个版本的git">linux中能否使用多个版本的git</a></li>
           </ul></li>
           <li><a href="#round-6-奇技淫巧">Round 6 : 奇技淫巧</a><ul>
           <li><a href="#从当前库中快速导出一个节点committag另作他用">从当前库中快速导出一个节点(commit、tag)另作他用</a></li>
@@ -114,6 +115,8 @@
           <li><a href="#push-错了我要丢弃remote上的某个节点">push 错了，我要丢弃remote上的某个节点</a></li>
           <li><a href="#暂存一个文件的部分改动">暂存一个文件的部分改动</a></li>
           <li><a href="#能否从不同的分支里选择某次提交并且把它合并到当前的分支">能否从不同的分支里选择某次提交并且把它合并到当前的分支</a></li>
+          <li><a href="#head和head是啥"><code>HEAD^</code>和<code>HEAD~</code>是啥</a></li>
+          <li><a href="#如何看最近一段时间哪些文件或文件夹被修改-修改次数">如何看最近一段时间哪些文件（或文件夹）被修改 &amp; 修改次数</a></li>
           </ul></li>
           <li><a href="#round-7-原理拾趣">Round 7 : 原理拾趣</a><ul>
           <li><a href="#git和svn在元数据存储上有什么区别">git和SVN在元数据存储上有什么区别</a></li>
@@ -1422,6 +1425,24 @@ https://&lt;name&gt;:&lt;password&gt;@github.com</code></pre>
 </ul>
 <p>这里有一个表格，对比各个git host： https://git.wiki.kernel.org/index.php/GitHosting ，关注 <strong>Free private repositories</strong>，提供免费服务的也不老少，但大部分只是提供git的基本托管，并没有github的fork、PR、gist、gitbook……等服务。</p>
 <p>如果你要开发一个开源的模块来扬名，请使用github；如果要开发一个秘密的、需要保密的大项目，请使用Bitbucket；如果只是玩一玩，请使用码云（毕竟速度要快一点）。</p>
+<h2 id="linux中能否使用多个版本的git">linux中能否使用多个版本的git</h2>
+<p>那是必须可以的。</p>
+<ul>
+<li>场景1：你受限与linux版本太古老，无论用 yum 还是 apt 安装的都是很古老的 git</li>
+<li>场景2：你希望测试自己多个 git 的兼容性</li>
+</ul>
+<p>在 linux 上使用源码编译基本可以解决，步骤：</p>
+<ul>
+<li>在 https://git-scm.com/ 上下载最新（或自己喜欢）的源码</li>
+<li><code>tar xvf git-2.9.5.tar.xz</code></li>
+<li><code>cd git-2.9.5</code></li>
+<li><code>./configure --prefix=/home/kevin/.local/git295</code> : 这里根据需求指定分开的目录即可</li>
+<li><code>make -j8 &amp;&amp; make install</code></li>
+<li><strong>风险提示：</strong>：
+<ul>
+<li>如果 make install 后手工挪动、重命名了 git295 目录，则执行git时会出现错误</li>
+</ul></li>
+</ul>
 <h1 id="round-6-奇技淫巧">Round 6 : 奇技淫巧</h1>
 <p><img src="img/resting-lions-tanzania-sw.jpg" /></p>
 <h2 id="从当前库中快速导出一个节点committag另作他用">从当前库中快速导出一个节点(commit、tag)另作他用</h2>
@@ -1603,6 +1624,209 @@ git clone newrepo.git</code></pre>
 <h2 id="能否从不同的分支里选择某次提交并且把它合并到当前的分支">能否从不同的分支里选择某次提交并且把它合并到当前的分支</h2>
 <p><code>git cherry-pick [commit_hash]</code></p>
 <p>这个命令会带来冲突，请谨慎使用</p>
+<h2 id="head和head是啥"><code>HEAD^</code>和<code>HEAD~</code>是啥</h2>
+<p><code>^</code>和<code>~</code>是2个很有意思的字符，配合使用可表示祖宗十八代。任你给一个节点（HEAD 或 哈希值），都能顺藤摸瓜，找到其祖先是谁。</p>
+<ul>
+<li><code>^</code>：表示第几个父/母亲 ——　git存在多个分支合并的情况，所以不只有1对父母亲</li>
+<li><code>~</code>：表示向上找第几代，相当于连续几个 <code>^</code></li>
+</ul>
+<p>比如有这样一个库：</p>
+<pre><code>          b1(HEAD)
+          |
+C4 ------ C6
+         /
+   --- C5
+
+        HEAD^0         = HEAD~0       = C6^0       = C6~0 = C6 //自己
+HEAD^ = HEAD^1 = HEAD~ = HEAD~1 = C6^ = C6^1 = C6~ = C6~1 = C4 //父亲
+        HEAD^2                        = C6^2              = C5 //母亲
+</code></pre>
+<p>以此类推，可以找到： - 爷爷：<code>HEAD^^</code>=<code>HEAD^~</code>=<code>HEAD~2</code> - 奶奶：<code>HEAD^^2</code> - 姥爷：<code>HEAD^2^</code>=<code>HEAD^2~</code> - 姥姥：<code>HEAD^2^2</code> - ……</p>
+<p>此方法可用于git的多种操作：log、diff、show、checkout……</p>
+<p>实际操作一下：</p>
+<pre><code>kevin@:linux.git$ git log --oneline -n20 --graph
+*   c11fb13a117e (HEAD -&gt; master, tuna/master, kernel/master, github/master) Merge branch &#39;for-linus&#39; of git://git.kernel.org/pub/scm/linux/kernel/git/hid/hid
+|\  
+| * 3ed224e273ac HID: logitech-dj: Fix 064d:c52f receiver support
+| * f9482dabfd16 Revert &quot;HID: core: Call request_module before doing device_add&quot;
+| * e0b7f9bc0246 Revert &quot;HID: core: Do not call request_module() in async context&quot;
+| * 15fc1b5c8612 Revert &quot;HID: Increase maximum report size allowed by hid_field_extract()&quot;
+| * eb6964fa6509 HID: i2c-hid: add iBall Aer3 to descriptor override
+* |   b076173a309e Merge tag &#39;selinux-pr-20190612&#39; of git://git.kernel.org/pub/scm/linux/kernel/git/pcmoore/selinux
+|\ \  
+| * | fec6375320c6 selinux: fix a missing-check bug in selinux_sb_eat_lsm_opts()
+| * |  e2e0e09758a6 | 2019-06-12 21:28:21 +0800 |  Gen Zhang  selinux: fix a missing-check bug in selinux_add_mnt_opt( )
+| * |  aff7ed485168 | 2019-06-11 10:07:19 +0200 |  Ondrej Mosnacek  selinux: log raw contexts as untrusted strings
+* | |    35110e38e6c5 | 2019-06-12 05:57:05 -1000 |  Linus Torvalds  Merge tag &#39;media/v5.2-2&#39; of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+</code></pre>
+<p>自己：</p>
+<pre><code>kevin@:linux.git$ git log --oneline -n1 HEAD^0
+c11fb13a117e (HEAD -&gt; master, tuna/master, kernel/master, github/master) Merge branch &#39;for-linus&#39; of git://git.kernel.org/pub/scm/linux/kernel/git/hid/hid</code></pre>
+<pre><code>kevin@:linux.git$ git log --oneline -n1 HEAD~0
+c11fb13a117e (HEAD -&gt; master, tuna/master, kernel/master, github/master) Merge branch &#39;for-linus&#39; of git://git.kernel.org/pub/scm/linux/kernel/git/hid/hid</code></pre>
+<p>父亲：</p>
+<pre><code>kevin@:linux.git$ git log --oneline -n1 HEAD^
+b076173a309e Merge tag &#39;selinux-pr-20190612&#39; of git://git.kernel.org/pub/scm/linux/kernel/git/pcmoore/selinux</code></pre>
+<pre><code>kevin@:linux.git$ git log --oneline -n1 HEAD^1
+b076173a309e Merge tag &#39;selinux-pr-20190612&#39; of git://git.kernel.org/pub/scm/linux/kernel/git/pcmoore/selinux</code></pre>
+<pre><code>kevin@:linux.git$ git log --oneline -n1 HEAD~
+b076173a309e Merge tag &#39;selinux-pr-20190612&#39; of git://git.kernel.org/pub/scm/linux/kernel/git/pcmoore/selinux</code></pre>
+<pre><code>kevin@:linux.git$ git log --oneline -n1 HEAD~1
+b076173a309e Merge tag &#39;selinux-pr-20190612&#39; of git://git.kernel.org/pub/scm/linux/kernel/git/pcmoore/selinux</code></pre>
+<p>爷爷：</p>
+<pre><code>kevin@:linux.git$ git log --oneline -n1 HEAD^^
+35110e38e6c5 Merge tag &#39;media/v5.2-2&#39; of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media</code></pre>
+<pre><code>kevin@:linux.git$ git log --oneline -n1 HEAD^~
+35110e38e6c5 Merge tag &#39;media/v5.2-2&#39; of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media</code></pre>
+<pre><code>kevin@:linux.git$ git log --oneline -n1 HEAD~2
+35110e38e6c5 Merge tag &#39;media/v5.2-2&#39; of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media</code></pre>
+<p>奶奶</p>
+<pre><code>kevin@:linux.git$ git log --oneline -n1 HEAD^^2
+fec6375320c6 selinux: fix a missing-check bug in selinux_sb_eat_lsm_opts()</code></pre>
+<p>母亲：</p>
+<pre><code>kevin@:linux.git$ git log --oneline -n1 HEAD^2
+3ed224e273ac HID: logitech-dj: Fix 064d:c52f receiver support</code></pre>
+<p>姥爷：</p>
+<pre><code>kevin@:linux.git$ git log --oneline -n1 HEAD^2~
+f9482dabfd16 Revert &quot;HID: core: Call request_module before doing device_add&quot;</code></pre>
+<p><strong>总体来说：找父亲一族要方便些，找母亲一族要麻烦些。</strong></p>
+<h2 id="如何看最近一段时间哪些文件或文件夹被修改-修改次数">如何看最近一段时间哪些文件（或文件夹）被修改 &amp; 修改次数</h2>
+<p>为了快速了解代码，有时候需要快速的查看代码的统计信息，做一些宏观的把握，上面这个需求可能会有些用处。</p>
+<p><strong>先来复习一下 git 自身的 统计功能</strong>：</p>
+<ul>
+<li><code>--stat</code>：每个文件的修改的行数，并用+-符号展示</li>
+</ul>
+<pre><code>kevin@:linux.git$ git diff HEAD^ --stat
+ drivers/hid/hid-a4tech.c                 | 11 ++++++++---
+ drivers/hid/hid-core.c                   | 16 +++-------------
+ drivers/hid/i2c-hid/i2c-hid-dmi-quirks.c |  8 ++++++++
+ 10 files changed, 136 insertions(+), 54 deletions(-)</code></pre>
+<ul>
+<li><code>--numstat</code>：每个文件的修改的行数，并用数字展示</li>
+</ul>
+<pre><code>kevin@:linux.git$ git diff HEAD^ --numstat
+8       3       drivers/hid/hid-a4tech.c
+3       13      drivers/hid/hid-core.c
+8       0       drivers/hid/i2c-hid/i2c-hid-dmi-quirks.c</code></pre>
+<ul>
+<li><code>--shortstat</code>：所有文件修改的行数汇总</li>
+</ul>
+<pre><code>kevin@:linux.git$ git diff HEAD^ --shortstat
+ 10 files changed, 136 insertions(+), 54 deletions(-)</code></pre>
+<ul>
+<li><code>--dirstat=[changes|lines|files]</code>：按文件夹统计和汇总下述数据
+<ul>
+<li>changes：变化的行数（新增文件不算）</li>
+<li>lines：+和-的行数统一算（新增文件会被计算）</li>
+<li>files：文件变化的数量夹</li>
+</ul></li>
+</ul>
+<pre><code>kevin@:linux.git$ git diff HEAD^ --dirstat=changes
+ 100.0% drivers/hid/
+kevin@:linux.git$ git diff HEAD^ --dirstat=lines
+   4.2% drivers/hid/i2c-hid/
+  95.7% drivers/hid/
+kevin@:linux.git$ git diff HEAD^ --dirstat=files
+  10.0% drivers/hid/i2c-hid/
+  90.0% drivers/hid/</code></pre>
+<p>另外，<code>--stat</code> 也能用于 <code>git log</code>，等价于每条commit都diff一下，即： <code>git log --stat</code> == <code>for (ci in commints) { git diff ci --stat }</code></p>
+<pre><code>kevin@:linux.git$ git log --oneline --shortstat
+c11fb13a117e (HEAD -&gt; master, tuna/master, kernel/master, github/master) Merge branch &#39;for-linus&#39; of git://git.kernel.org/pub/scm/linux/kernel/git/hid/hid
+b076173a309e Merge tag &#39;selinux-pr-20190612&#39; of git://git.kernel.org/pub/scm/linux/kernel/git/pcmoore/selinux
+fec6375320c6 selinux: fix a missing-check bug in selinux_sb_eat_lsm_opts()
+ 1 file changed, 14 insertions(+), 6 deletions(-)
+35110e38e6c5 Merge tag &#39;media/v5.2-2&#39; of git://git.kernel.org/pub/scm/linux/kernel/git/mchehab/linux-media
+e2e0e09758a6 selinux: fix a missing-check bug in selinux_add_mnt_opt( )
+ 1 file changed, 14 insertions(+), 5 deletions(-)
+aa7235483a83 Merge branch &#39;for-linus&#39; of git://git.kernel.org/pub/scm/linux/kernel/git/ebiederm/user-namespace
+4d8f5f91b8a6 Merge branch &#39;stable/for-linus-5.2&#39; of git://git.kernel.org/pub/scm/linux/kernel/git/konrad/swiotlb
+c23b07125f8a Merge tag &#39;vfio-v5.2-rc5&#39; of git://github.com/awilliam/linux-vfio
+6fa425a26515 Merge tag &#39;for-5.2-rc4-tag&#39; of git://git.kernel.org/pub/scm/linux/kernel/git/kdave/linux
+aff7ed485168 selinux: log raw contexts as untrusted strings
+ 1 file changed, 8 insertions(+), 2 deletions(-)</code></pre>
+<p>大量没有file修改的merge挺碍眼的，使用 <code>--no-merges</code> 清理</p>
+<pre><code>fec6375320c6 selinux: fix a missing-check bug in selinux_sb_eat_lsm_opts()
+ 1 file changed, 14 insertions(+), 6 deletions(-)
+e2e0e09758a6 selinux: fix a missing-check bug in selinux_add_mnt_opt( )
+ 1 file changed, 14 insertions(+), 5 deletions(-)
+aff7ed485168 selinux: log raw contexts as untrusted strings
+ 1 file changed, 8 insertions(+), 2 deletions(-)</code></pre>
+<p><strong>OK，基础功能展示完毕，基于这些，我们来发挥一下：</strong></p>
+<ul>
+<li><strong>找到目标日期之后的提交</strong>
+<ul>
+<li><code>--no-pager</code>：git默认使用linux的less模式显示，即满屏后提示用户按一下按键才继续显示，加上此选项则可以一口气打印完毕</li>
+<li><code>%h</code>：此处我只需要hash值，所以其他都省略了</li>
+<li><code>--no-merges</code>: 虽然merge也是工作量，但和我们的统计任务无关</li>
+</ul></li>
+</ul>
+<pre><code>kevin@:linux.git$ git --no-pager log --format=format:&#39;%h&#39; --no-merges --since 2019-06-10
+fec6375320c6
+e2e0e09758a6
+aff7ed485168
+f6581f5b5514</code></pre>
+<ul>
+<li><strong>找到每次提交的修改文件</strong>
+<ul>
+<li>awk：逐行处理上面查出的hash值，用 system() 命令转给 git 去执行</li>
+<li><code>--stat-name-width=300</code>：git diff的输出默认会压缩到80列，使用<code>...</code>这种，这样会丢失我想要的信息，所以我加大到300，应该不会有丢弃了</li>
+<li><code>--name-only</code>：我只是想统计文件的个数，并没有计划汇总每次、每个文件内部变更的行数，所以只要名字即可</li>
+<li><code>"$1" "$1"~"</code>：最终会形成 <code>git diff xxx xxx~</code> ，为什么没用 <code>^</code>，效果一样么？留作思考题 ：）</li>
+<li>下面代码中可以看到 hooks.c 文件在4次提交中被修改过2次</li>
+</ul></li>
+</ul>
+<pre><code>kevin@:linux.git$ git --no-pager log --format=format:&#39;%h&#39; --no-merges --since 2019-06-10 | \
+awk &#39;{system(&quot; git --no-pager diff  --stat-name-width=300 --name-only &quot;$1&quot; &quot;$1&quot;~&quot;) }&#39;
+security/selinux/hooks.c
+security/selinux/hooks.c
+security/selinux/avc.c
+kernel/cred.c
+kernel/ptrace.c</code></pre>
+<ul>
+<li><strong>统计并数字显示</strong>
+<ul>
+<li><code>fss[$0]+=1</code>: 用文件名做key，value每次+1</li>
+</ul></li>
+</ul>
+<pre><code>kevin@:linux.git$ git --no-pager log --format=format:&#39;%h&#39; --no-merges --since 2019-06-10 | \
+awk &#39;{system(&quot; git --no-pager diff  --stat-name-width=300 --name-only &quot;$1&quot; &quot;$1&quot;~&quot;) }&#39;| \
+awk &#39;{fs[$0]+=1} END{for(f in fs) printf(&quot;%d\t%s\r\n&quot;,fs[f],f) }&#39; | sort -k 2
+1   kernel/cred.c
+1   kernel/ptrace.c
+1   security/selinux/avc.c
+2   security/selinux/hooks.c</code></pre>
+<ul>
+<li><strong>还可以统计到某一层文件夹，而不是具体到每个文件</strong>
+<ul>
+<li><code>-e 's/[^/]*$//'</code>：去掉文件名，只留路径</li>
+<li><code>-e 's#/#|#1'</code>：精确匹配第1个<code>/</code>更换成<code>|</code>，这里的1可以自己修改，统计不同level的文件夹深度</li>
+<li><code>-e 's/|.*//'</code>：把<code>|</code>以后的字符删除 —— 这样只留下我们想要的某个level深度的路径</li>
+</ul></li>
+</ul>
+<pre><code>kevin@:linux.git$ git --no-pager log --format=format:&#39;%h&#39; --no-merges --since 2019-06-1 | \
+awk &#39;{system(&quot; git --no-pager diff  --stat-name-width=300 --name-only &quot;$1&quot; &quot;$1&quot;~&quot;) }&#39;| \
+sed -e &#39;s/[^/]*$//&#39; -e &#39;s#/#|#1&#39; -e &#39;s/|.*//&#39; | \
+awk &#39;{fs[$0]+=1} END{for(f in fs) printf(&quot;%10d\t%s\r\n&quot;,fs[f],f) }&#39;|sort -k 2
+       676  arch
+         9  block
+        10  crypto
+         2  Documentation
+      2027  drivers
+       128  fs
+       286  include
+         2  ipc
+        43  kernel
+        21  lib
+        16  mm
+       103  net
+         9  samples
+        17  scripts
+        93  security
+       304  sound
+       114  tools
+         5  virt</code></pre>
+<p>上面是6.1至今（6.14），半个月来 Linux 的修改，仍然是 drivers 中的文件最多，达到 2027 件次（类比“人次”这个单位，哈哈），kernel前几天已经发布5.1了，其实kernel半个月才更新了43个件次，还是超级稳定的。</p>
+<p>BTW：上面思考题的答案：用<code>^</code> 和 <code>~</code> 是一样的。</p>
 <h1 id="round-7-原理拾趣">Round 7 : 原理拾趣</h1>
 <p><img src="img/black-trevally-sardines-sw.jpg" /></p>
 <h2 id="git和svn在元数据存储上有什么区别">git和SVN在元数据存储上有什么区别</h2>
