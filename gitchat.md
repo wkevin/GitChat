@@ -447,7 +447,7 @@ bf36ab9 2.1的日记
 14dd781 create mydiary
 ```
 
-## oneline太简陋了，我想一行里面看到hash、author、date、message
+## oneline太简陋了，一行里面看到hash、author、date、message
 
 那需要用上 --pretty=formate:"......"参数了
 
@@ -770,7 +770,6 @@ ubuntu$ update-alternatives --config editor
 * git中的3个区：本地工作目录、索引区、库 —— 分支信息保存在库中，工作目录和索引区都对应库中的某个分支。《Pro Git》中的[分支这一章](http://www.kancloud.cn/kancloud/progit/70182)中的图大多都是画的库中的样子，请注意还有工作目录和索引区。
 * git的库中保存单元是[git 的对象（object）](#git-object)，我们通常脑海中出现的像一颗树一样成长的分支树是由一个个commit对象连成的。
 * HEAD指针比较特殊，可以将 HEAD 想象为当前分支的别名
-* 
 
 ## 如何在分支间来回切换
 
