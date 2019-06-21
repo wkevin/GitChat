@@ -1668,8 +1668,8 @@ git clone newrepo.git
         * git clean -nxfd
         * git clean -nf
         * git clean -nfd
-* `git checkout HEAD .`:同上条
-* `git reset --hard HEAD`:同上条
+* `git checkout HEAD .`: 见下条
+* `git reset --hard HEAD`: 见下条
 
 ## add 错了，我要丢弃暂存区的修改
 
