@@ -4,52 +4,81 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="author" content="wkevin">
-  <title></title>
+  <title>slides</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
   <link rel="stylesheet" href="reveal.js/css/reveal.css">
-  <style type="text/css">code{white-space: pre;}</style>
-  <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; background-color: #303030; color: #cccccc; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; }
-td.sourceCode { padding-left: 5px; }
-pre, code { color: #cccccc; background-color: #303030; }
-code > span.kw { color: #f0dfaf; } /* Keyword */
-code > span.dt { color: #dfdfbf; } /* DataType */
-code > span.dv { color: #dcdccc; } /* DecVal */
-code > span.bn { color: #dca3a3; } /* BaseN */
-code > span.fl { color: #c0bed1; } /* Float */
-code > span.ch { color: #dca3a3; } /* Char */
-code > span.st { color: #cc9393; } /* String */
-code > span.co { color: #7f9f7f; } /* Comment */
-code > span.ot { color: #efef8f; } /* Other */
-code > span.al { color: #ffcfaf; } /* Alert */
-code > span.fu { color: #efef8f; } /* Function */
-code > span.er { color: #c3bf9f; } /* Error */
-code > span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
-code > span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
-code > span.sc { color: #dca3a3; } /* SpecialChar */
-code > span.vs { color: #cc9393; } /* VerbatimString */
-code > span.ss { color: #cc9393; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { } /* Variable */
-code > span.cf { color: #f0dfaf; } /* ControlFlow */
-code > span.op { color: #f0efd0; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
-code > span.at { } /* Attribute */
-code > span.do { color: #7f9f7f; } /* Documentation */
-code > span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
-code > span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
-code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+  <style>
+      code{white-space: pre-wrap;}
+      span.smallcaps{font-variant: small-caps;}
+      span.underline{text-decoration: underline;}
+      div.column{display: inline-block; vertical-align: top; width: 50%;}
   </style>
-  <link rel="stylesheet" href="reveal.js/css/theme/white.css" id="theme">
-  <link rel="stylesheet" href="default.css"/>
+  <style>
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  { color: #cccccc; background-color: #303030; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } /* Alert */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.ch { color: #dca3a3; } /* Char */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.er { color: #c3bf9f; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #c0bed1; } /* Float */
+code span.fu { color: #efef8f; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.op { color: #f0efd0; } /* Operator */
+code span.ot { color: #efef8f; } /* Other */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.st { color: #cc9393; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="reveal.js/css/theme/night.css" id="theme">
+  <link rel="stylesheet" href="assets/css/slides.css"/>
   <!-- Printing and PDF exports -->
   <script>
     var link = document.createElement( 'link' );
@@ -66,101 +95,97 @@ code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
   <div class="reveal">
     <div class="slides">
 
-<section>
-  <h1 class="title"><img src="img/logo.png" /></h1>
-  <h2 class="author">wkevin</h2>
-  <h3 class="date">ZTE</h3>
+<section id="title-slide">
+  <h1 class="title"><img data-src="img/logo.png" /></h1>
+  <p class="author">wkevin</p>
+  <p class="date">ZTE</p>
 </section>
 
-<section><section id="slides-操作提示-请按空格键" class="titleslide slide level1"><h1>Slides 操作提示<br><br>请按空格键</h1></section><section id="section" class="slide level2">
-<h1></h1>
+<section><section id="slides-操作提示-请按空格键" class="title-slide slide level1"><h1>Slides 操作提示<br><br>请按空格键</h1></section><section id="section" class="slide level2">
+<h2></h2>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">按键</th>
-<th style="text-align: left;">效果</th>
+<th>按键</th>
+<th>效果</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">PageDown/PageUp</td>
-<td style="text-align: left;">一维向后/前遍历每张Slides</td>
+<td>PageDown/PageUp</td>
+<td>一维向后/前遍历每张Slides</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">空格/Shift+空格<br>鼠标滚轮</td>
-<td style="text-align: left;">向后/前播放历史中的每张Slides</td>
+<td>空格/Shift+空格<br>鼠标滚轮</td>
+<td>向后/前播放历史中的每张Slides</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">上/下/左/右箭头</td>
-<td style="text-align: left;">二维展示每张Slides</td>
+<td>上/下/左/右箭头</td>
+<td>二维展示每张Slides</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Esc/o</td>
-<td style="text-align: left;">二维显示Slides地图<br>箭头：移动<br>Enter：选中</td>
+<td>Esc/o</td>
+<td>二维显示Slides地图<br>箭头：移动<br>Enter：选中</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <aside class="notes">
-此段内容只有在speaker模式下的NOTES窗口可以看到。 's'进入speaker模式。
+此段内容只有在speaker模式下的NOTES窗口可以看到。 ’s’进入speaker模式。
 </aside>
 <br><br>
 <h1>
 请按 Esc 键
 </h1>
 </section></section>
-<section><section id="特别声明" class="titleslide slide level1"><h1>特别声明</h1></section><section id="section-1" class="slide level2">
-<h1></h1>
+<section><section id="特别声明" class="title-slide slide level1"><h1>特别声明</h1></section><section id="section-1" class="slide level2">
+<h2></h2>
 <p>本文不是<strong>Git for Dummies</strong><br />
 因为傻瓜书不需要人来讲解</p>
 <p>本文目标是<br />
 <strong>让你执行每个git命令时知其然，并且知其所以然</strong></p>
 </section></section>
-<section><section id="源起" class="titleslide slide level1"><h1>源起</h1></section><section id="vcs-version-control-system" class="slide level2">
-<h1>VCS (Version Control System)</h1>
+<section><section id="源起" class="title-slide slide level1"><h1>源起</h1></section><section id="vcs-version-control-system" class="slide level2">
+<h2>VCS (Version Control System)</h2>
 <ul>
-<li><strong>SCCS</strong>(Source Code Control System) -- 1970+, M.J.Rochkind</li>
-<li><strong>RCS</strong>(Revision Control System) -- 1980+, Walter F. Tichy</li>
-<li><strong>CVS</strong>(Concurrent Version System) -- 1986, Dick Grune</li>
-<li><strong>SVN</strong>(Subversion) -- 2001</li>
+<li><strong>SCCS</strong>(Source Code Control System) – 1970+, M.J.Rochkind</li>
+<li><strong>RCS</strong>(Revision Control System) – 1980+, Walter F. Tichy</li>
+<li><strong>CVS</strong>(Concurrent Version System) – 1986, Dick Grune</li>
+<li><strong>SVN</strong>(Subversion) – 2001</li>
 <li><strong>BitKeeper</strong></li>
 <li><strong>Mercurial</strong></li>
-<li><strong>Git</strong> -- 2005.4, Linus Torvalds</li>
+<li><strong>Git</strong> – 2005.4, Linus Torvalds</li>
 </ul>
 </section><section id="git从何而来" class="slide level2">
-<h1>Git从何而来</h1>
-<figure>
-<img src="img/Torvalds.jpg" />
-</figure>
+<h2>Git从何而来</h2>
+<p><img data-src="img/Torvalds.jpg" /></p>
 <ul>
 <li><a href="http://www.wtoutiao.com/a/2287349.html">Linux创始人Linus Torvalds访谈，Git的十年之旅</a></li>
 <li><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137402760310626208b4f695940a49e5348b689d095fc000">Git 诞生记</a></li>
 <li><a href="http://www.path8.net/tn/archives/6039">BitKeeper与Git的恩怨情仇</a></li>
 </ul>
 </section><section id="git去往何处" class="slide level2">
-<h1>Git去往何处</h1>
+<h2>Git去往何处</h2>
 <p>2005年7月26日开始，Torvalds把Git托付给了一位日本人：<a href="https://en.wikipedia.org/wiki/Junio_Hamano">Junio Hamano</a>。Torvalds也说过自己一生最大的成功之一就包括把git托付给Hamano。</p>
 <p>Hamano现在google，他的github帐号为：<a href="https://github.com/gitster">gitster</a>。</p>
-<figure>
-<img src="img/Hamano.jpg" />
-</figure>
+<p><img data-src="img/Hamano.jpg" /></p>
 </section><section id="官方specification" class="slide level2">
-<h1>官方Specification</h1>
+<h2>官方Specification</h2>
 <ul>
 <li><a href="https://www.kernel.org/pub/software/scm/git/docs/">Git Man Page</a>: 即： git help</li>
 <li><a href="https://www.kernel.org/pub/software/scm/git/docs/user-manual.html">Git User Manual</a></li>
 <li>Git Tutorial
 <ul>
-<li><a href="https://www.kernel.org/pub/software/scm/git/docs/gittutorial.html">Part1</a> -- 即 man gittutorial</li>
-<li><a href="https://www.kernel.org/pub/software/scm/git/docs/gittutorial-2.html">Part2</a> -- 即 man gittutorial-2</li>
+<li><a href="https://www.kernel.org/pub/software/scm/git/docs/gittutorial.html">Part1</a> – 即 man gittutorial</li>
+<li><a href="https://www.kernel.org/pub/software/scm/git/docs/gittutorial-2.html">Part2</a> – 即 man gittutorial-2</li>
 </ul></li>
 <li><a href="https://www.kernel.org/pub/software/scm/git/docs/howto/">How to</a></li>
 </ul>
 </section><section id="book" class="slide level2">
-<h1>Book</h1>
+<h2>Book</h2>
 <ul>
 <li>Pro Git
 <ul>
@@ -172,14 +197,14 @@ code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
 <li><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">git简明教程</a></li>
 </ul>
 </section><section id="website" class="slide level2">
-<h1>Website</h1>
+<h2>Website</h2>
 <ul>
 <li><a href="http://git-scm.com">git-scm.com</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Git_(software)">git 维基百科</a></li>
-<li><a href="http://git.wiki.kernel.org">git SCM wiki</a> -- 2011年已停止更新</li>
+<li><a href="http://git.wiki.kernel.org">git SCM wiki</a> – 2011年已停止更新</li>
 </ul>
 </section><section id="github上git的卓越组织" class="slide level2">
-<h1>github上Git的卓越组织</h1>
+<h2>github上Git的卓越组织</h2>
 <ul>
 <li><a href="https://github.com/git">git</a>:
 <ul>
@@ -203,206 +228,206 @@ code > span.in { color: #7f9f7f; font-weight: bold; } /* Information */
 </ul></li>
 </ul>
 </section><section id="git-比-svn-好在哪" class="slide level2">
-<h1>Git 比 SVN 好在哪</h1>
+<h2>Git 比 SVN 好在哪</h2>
 <p>先把这个问题放一放，<a href="#//git-vs-svn">最后来回答</a>。</p>
 <p>换个问题：我要掌握哪些git知识才能领略到它的好？</p>
 </section></section>
-<section><section id="git-常用命令" class="titleslide slide level1"><h1>Git 常用命令</h1></section><section id="git-help-给出的关键命令" class="slide level2">
-<h1>git help 给出的关键命令</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> help
-   <span class="kw">add</span>        Add file contents to the index
-   <span class="kw">bisect</span>     Find by binary search the change that introduced a bug
-   <span class="kw">branch</span>     List, create, or delete branches
-   <span class="kw">checkout</span>   Checkout a branch or paths to the working tree
-   <span class="kw">clone</span>      Clone a repository into a new directory
-   <span class="kw">commit</span>     Record changes to the repository
-   <span class="kw">diff</span>       Show changes between commits, commit and working tree, etc
-   <span class="kw">fetch</span>      Download objects and refs from another repository
-   <span class="kw">grep</span>       Print lines matching a pattern
-   <span class="kw">init</span>       Create an empty Git repository or reinitialize an existing one
-   <span class="kw">log</span>        Show commit logs
-   <span class="kw">merge</span>      Join two or more development histories together
-   <span class="kw">mv</span>         Move or rename a file, a directory, or a symlink
-   <span class="kw">pull</span>       Fetch from and integrate with another repository or local branch
-   <span class="kw">push</span>       Update remote refs along with associated objects
-   <span class="kw">rebase</span>     Forward-port local commits to the updated upstream head
-   <span class="kw">reset</span>      Reset current HEAD to the specified state
-   <span class="kw">rm</span>         Remove files from the working tree and from the index
-   <span class="kw">show</span>       Show various types of objects
-   <span class="kw">status</span>     Show the working tree status
-   <span class="kw">tag</span>        Create, list, delete or verify a tag object signed with GPG</code></pre></div>
+<section><section id="git-常用命令" class="title-slide slide level1"><h1>Git 常用命令</h1></section><section id="git-help-给出的关键命令" class="slide level2">
+<h2>git help 给出的关键命令</h2>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1">$ <span class="fu">git</span> help</a>
+<a class="sourceLine" id="cb1-2" title="2">   <span class="ex">add</span>        Add file contents to the index</a>
+<a class="sourceLine" id="cb1-3" title="3">   <span class="ex">bisect</span>     Find by binary search the change that introduced a bug</a>
+<a class="sourceLine" id="cb1-4" title="4">   <span class="ex">branch</span>     List, create, or delete branches</a>
+<a class="sourceLine" id="cb1-5" title="5">   <span class="ex">checkout</span>   Checkout a branch or paths to the working tree</a>
+<a class="sourceLine" id="cb1-6" title="6">   <span class="ex">clone</span>      Clone a repository into a new directory</a>
+<a class="sourceLine" id="cb1-7" title="7">   <span class="ex">commit</span>     Record changes to the repository</a>
+<a class="sourceLine" id="cb1-8" title="8">   <span class="fu">diff</span>       Show changes between commits, commit and working tree, etc</a>
+<a class="sourceLine" id="cb1-9" title="9">   <span class="ex">fetch</span>      Download objects and refs from another repository</a>
+<a class="sourceLine" id="cb1-10" title="10">   <span class="fu">grep</span>       Print lines matching a pattern</a>
+<a class="sourceLine" id="cb1-11" title="11">   <span class="ex">init</span>       Create an empty Git repository or reinitialize an existing one</a>
+<a class="sourceLine" id="cb1-12" title="12">   <span class="ex">log</span>        Show commit logs</a>
+<a class="sourceLine" id="cb1-13" title="13">   <span class="ex">merge</span>      Join two or more development histories together</a>
+<a class="sourceLine" id="cb1-14" title="14">   <span class="fu">mv</span>         Move or rename a file, a directory, or a symlink</a>
+<a class="sourceLine" id="cb1-15" title="15">   <span class="ex">pull</span>       Fetch from and integrate with another repository or local branch</a>
+<a class="sourceLine" id="cb1-16" title="16">   <span class="ex">push</span>       Update remote refs along with associated objects</a>
+<a class="sourceLine" id="cb1-17" title="17">   <span class="ex">rebase</span>     Forward-port local commits to the updated upstream head</a>
+<a class="sourceLine" id="cb1-18" title="18">   <span class="ex">reset</span>      Reset current HEAD to the specified state</a>
+<a class="sourceLine" id="cb1-19" title="19">   <span class="fu">rm</span>         Remove files from the working tree and from the index</a>
+<a class="sourceLine" id="cb1-20" title="20">   <span class="ex">show</span>       Show various types of objects</a>
+<a class="sourceLine" id="cb1-21" title="21">   <span class="ex">status</span>     Show the working tree status</a>
+<a class="sourceLine" id="cb1-22" title="22">   <span class="ex">tag</span>        Create, list, delete or verify a tag object signed with GPG</a></code></pre></div>
 </section><section id="practice" class="slide level2">
-<h1>Practice</h1>
+<h2>Practice</h2>
 <blockquote>
 <p>快速记忆，请写出至少5个git的命令</p>
 </blockquote>
 </section><section id="git的逻辑分区及几个关键命令" class="slide level2">
-<h1>Git的逻辑分区及几个关键命令</h1>
+<h2>Git的逻辑分区及几个关键命令</h2>
 <p><img src="img/git-logic-field.png" width="70%" /></p>
 </section><section id="practice-1" class="slide level2">
-<h1>Practice</h1>
+<h2>Practice</h2>
 <blockquote>
 <p>请绘出上页的图</p>
 </blockquote>
 </section><section id="wkevin版的绘图" class="slide level2">
-<h1>wkevin版的绘图</h1>
+<h2>wkevin版的绘图</h2>
 <p><img src="img/git-common-cmd.png" width="100%" /></p>
 </section></section>
-<section><section id="git-my-diary-一个完整的日记示例" class="titleslide slide level1"><h1>Git my diary<br>一个完整的日记示例</h1></section><section id="最基本的两个配置name-和-email" class="slide level2">
-<h1>最基本的两个配置：name 和 email</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> config --global user.name wkevin
-$ <span class="kw">git</span> config --global user.emal wkevin27@gmail.com</code></pre></div>
+<section><section id="git-my-diary-一个完整的日记示例" class="title-slide slide level1"><h1>Git my diary<br>一个完整的日记示例</h1></section><section id="最基本的两个配置name-和-email" class="slide level2">
+<h2>最基本的两个配置：name 和 email</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1">$ <span class="fu">git</span> config --global user.name wkevin</a>
+<a class="sourceLine" id="cb2-2" title="2">$ <span class="fu">git</span> config --global user.emal wkevin27@gmail.com</a></code></pre></div>
 </section><section id="创建一个文件夹并写一篇日记" class="slide level2">
-<h1>创建一个文件夹并写一篇日记</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">MBP</span>:demo wangkevin$ mkdir mydiary
-<span class="kw">MBP</span>:demo wangkevin$ cd mydiary
-$ <span class="kw">cat</span> <span class="kw">&gt;</span>diary.md
-<span class="co"># Diary</span>
-
-<span class="co">## 2016.1.31</span>
-回家过年^<span class="kw">C</span>
-$ <span class="kw">ls</span>
-<span class="kw">diary.md</span>
-$ <span class="kw">cat</span> diary.md 
-<span class="co"># Diary</span>
-
-<span class="co">## 2016.1.31</span>
-回家过年</code></pre></div>
+<h2>创建一个文件夹并写一篇日记</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1"><span class="ex">MBP</span>:demo wangkevin$ mkdir mydiary</a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="ex">MBP</span>:demo wangkevin$ cd mydiary</a>
+<a class="sourceLine" id="cb3-3" title="3">$ <span class="fu">cat</span> <span class="op">&gt;</span>diary.md</a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="co"># Diary</span></a>
+<a class="sourceLine" id="cb3-5" title="5"></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="co">## 2016.1.31</span></a>
+<a class="sourceLine" id="cb3-7" title="7">回家过年^<span class="ex">C</span></a>
+<a class="sourceLine" id="cb3-8" title="8">$ <span class="fu">ls</span></a>
+<a class="sourceLine" id="cb3-9" title="9"><span class="ex">diary.md</span></a>
+<a class="sourceLine" id="cb3-10" title="10">$ <span class="fu">cat</span> diary.md </a>
+<a class="sourceLine" id="cb3-11" title="11"><span class="co"># Diary</span></a>
+<a class="sourceLine" id="cb3-12" title="12"></a>
+<a class="sourceLine" id="cb3-13" title="13"><span class="co">## 2016.1.31</span></a>
+<a class="sourceLine" id="cb3-14" title="14">回家过年</a></code></pre></div>
 </section><section id="git-init-在文件夹中创建git库" class="slide level2">
-<h1>git init 在文件夹中创建git库</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> init
-<span class="kw">Initialized</span> empty Git repository in /Users/wangkevin/workspace/demo/mydiary/.git/</code></pre></div>
+<h2>git init 在文件夹中创建git库</h2>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" title="1">$ <span class="fu">git</span> init</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="ex">Initialized</span> empty Git repository in /Users/wangkevin/workspace/demo/mydiary/.git/</a></code></pre></div>
 </section><section id="和svn有.svn类似git也有.git" class="slide level2">
-<h1>和SVN有.svn类似，git也有.git</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">ls</span> -a
-<span class="kw">.</span>       <span class="kw">..</span>      .git        diary.md
-$ <span class="kw">ls</span> .git
-<span class="kw">HEAD</span>        config      hooks       objects
-<span class="kw">branches</span>    description info        refs
-$ <span class="kw">cat</span> .git/config
-[<span class="kw">core</span>]
-    <span class="kw">repositoryformatversion</span> = 0
-    <span class="kw">filemode</span> = true
-    <span class="kw">bare</span> = false
-    <span class="kw">logallrefupdates</span> = true
-    <span class="kw">ignorecase</span> = true
-    <span class="kw">precomposeunicode</span> = true</code></pre></div>
+<h2>和SVN有.svn类似，git也有.git</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" title="1">$ <span class="fu">ls</span> -a</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="bu">.</span>       <span class="ex">..</span>      .git        diary.md</a>
+<a class="sourceLine" id="cb5-3" title="3">$ <span class="fu">ls</span> .git</a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="ex">HEAD</span>        config      hooks       objects</a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="ex">branches</span>    description info        refs</a>
+<a class="sourceLine" id="cb5-6" title="6">$ <span class="fu">cat</span> .git/config</a>
+<a class="sourceLine" id="cb5-7" title="7">[<span class="ex">core</span>]</a>
+<a class="sourceLine" id="cb5-8" title="8">    <span class="ex">repositoryformatversion</span> = 0</a>
+<a class="sourceLine" id="cb5-9" title="9">    <span class="ex">filemode</span> = true</a>
+<a class="sourceLine" id="cb5-10" title="10">    <span class="ex">bare</span> = false</a>
+<a class="sourceLine" id="cb5-11" title="11">    <span class="ex">logallrefupdates</span> = true</a>
+<a class="sourceLine" id="cb5-12" title="12">    <span class="ex">ignorecase</span> = true</a>
+<a class="sourceLine" id="cb5-13" title="13">    <span class="ex">precomposeunicode</span> = true</a></code></pre></div>
 </section><section id="git-status-查看当前状态" class="slide level2">
-<h1>git status 查看当前状态</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status
-<span class="kw">On</span> branch master
-
-<span class="kw">Initial</span> commit
-
-<span class="kw">Untracked</span> files:
-  <span class="kw">(use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to include in what will be committed<span class="kw">)</span>
-
-    <span class="kw">diary.md</span>
-
-<span class="kw">nothing</span> added to commit but untracked files present (use <span class="st">&quot;git add&quot;</span> to track)</code></pre></div>
+<h2>git status 查看当前状态</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" title="1">$ <span class="fu">git</span> status</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="ex">On</span> branch master</a>
+<a class="sourceLine" id="cb6-3" title="3"></a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="ex">Initial</span> commit</a>
+<a class="sourceLine" id="cb6-5" title="5"></a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="ex">Untracked</span> files:</a>
+<a class="sourceLine" id="cb6-7" title="7">  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git add &lt;file&gt;...&quot;</span> to include in what will be committed<span class="kw">)</span></a>
+<a class="sourceLine" id="cb6-8" title="8"></a>
+<a class="sourceLine" id="cb6-9" title="9">    <span class="ex">diary.md</span></a>
+<a class="sourceLine" id="cb6-10" title="10"></a>
+<a class="sourceLine" id="cb6-11" title="11"><span class="ex">nothing</span> added to commit but untracked files present (use <span class="st">&quot;git add&quot;</span> to track)</a></code></pre></div>
 <p>显示一个未被管控的文件(Untracked files) diary.md</p>
 </section><section id="git-add-filename-将文件纳入管理" class="slide level2">
-<h1>git add filename 将文件纳入管理</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> add diary.md </code></pre></div>
+<h2>git add filename 将文件纳入管理</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb7-1" title="1">$ <span class="fu">git</span> add diary.md </a></code></pre></div>
 <p>filename 支持通配符，最常用的就是点(.)表示所有文件</p>
 </section><section id="git-status" class="slide level2">
-<h1>git status</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status
-<span class="kw">On</span> branch master
-
-<span class="kw">Initial</span> commit
-
-<span class="kw">Changes</span> to be committed:
-  <span class="kw">(use</span> <span class="st">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage<span class="kw">)</span>
-
-    <span class="kw">new</span> file:   diary.md</code></pre></div>
+<h2>git status</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb8-1" title="1">$ <span class="fu">git</span> status</a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="ex">On</span> branch master</a>
+<a class="sourceLine" id="cb8-3" title="3"></a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="ex">Initial</span> commit</a>
+<a class="sourceLine" id="cb8-5" title="5"></a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="ex">Changes</span> to be committed:</a>
+<a class="sourceLine" id="cb8-7" title="7">  <span class="kw">(</span><span class="ex">use</span> <span class="st">&quot;git rm --cached &lt;file&gt;...&quot;</span> to unstage<span class="kw">)</span></a>
+<a class="sourceLine" id="cb8-8" title="8"></a>
+<a class="sourceLine" id="cb8-9" title="9">    <span class="ex">new</span> file:   diary.md</a></code></pre></div>
 <p>显示此文件待提交（to be committed），此时文件已经开始被git管理了，文件进入一种暂存状态（stage），如果想反悔可以用<code>git rm --cached</code>使其进入unstage状态</p>
 </section><section id="git-status--sb" class="slide level2">
-<h1>git status -sb</h1>
-<p>-s/--short 短模式</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status -s
-<span class="kw">A</span>  diary.md</code></pre></div>
-<p>-b/--branch 显示分支</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status -sb
-<span class="co">## Initial commit on master</span>
-<span class="kw">A</span>  diary.md</code></pre></div>
+<h2>git status -sb</h2>
+<p>-s/–short 短模式</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb9-1" title="1">$ <span class="fu">git</span> status -s</a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="ex">A</span>  diary.md</a></code></pre></div>
+<p>-b/–branch 显示分支</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb10-1" title="1">$ <span class="fu">git</span> status -sb</a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="co">## Initial commit on master</span></a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="ex">A</span>  diary.md</a></code></pre></div>
 <p><code>git status</code>不带参数默认就是-b的，所以常和短模式合作，合并为一个sb，哈哈</p>
 </section><section id="git-commit-将文件从暂存态提交入库" class="slide level2">
-<h1>git commit 将文件从暂存态提交入库</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> commit
-<span class="kw">aster</span> (root-commit) <span class="kw">14dd781</span>] create mydiary
- <span class="kw">1</span> file changed, 4 insertions(+)
- <span class="kw">create</span> mode 100644 diary.md</code></pre></div>
+<h2>git commit 将文件从暂存态提交入库</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb11-1" title="1">$ <span class="fu">git</span> commit</a>
+<a class="sourceLine" id="cb11-2" title="2"><span class="ex">aster</span> (root-commit) <span class="ex">14dd781</span>] create mydiary</a>
+<a class="sourceLine" id="cb11-3" title="3"> <span class="ex">1</span> file changed, 4 insertions(+)</a>
+<a class="sourceLine" id="cb11-4" title="4"> <span class="ex">create</span> mode 100644 diary.md</a></code></pre></div>
 <p>暂存就像回收站（删除前给你一个check的机会，多次操作放入回收站的文件可以一次清空），多次操作放入暂存，最后考虑成熟了，check OK了，再commit提交</p>
 </section><section id="编辑-log-message" class="slide level2">
-<h1>编辑 log message</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">  <span class="kw">1</span> 
-  <span class="kw">2</span> <span class="co"># Please enter the commit message for your changes. Lines starting</span>
-  <span class="kw">3</span> <span class="co"># with &#39;#&#39; will be ignored, and an empty message aborts the commit.</span>
-  <span class="kw">4</span> <span class="co"># On branch master</span>
-  <span class="kw">5</span> <span class="co">#</span>
-  <span class="kw">6</span> <span class="co"># Initial commit</span>
-  <span class="kw">7</span> <span class="co">#</span>
-  <span class="kw">8</span> <span class="co"># Changes to be committed:</span>
-  <span class="kw">9</span> <span class="co">#   new file:   diary.md</span>
- <span class="kw">10</span> <span class="co">#</span></code></pre></div>
+<h2>编辑 log message</h2>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb12-1" title="1">  <span class="ex">1</span> </a>
+<a class="sourceLine" id="cb12-2" title="2">  <span class="ex">2</span> <span class="co"># Please enter the commit message for your changes. Lines starting</span></a>
+<a class="sourceLine" id="cb12-3" title="3">  <span class="ex">3</span> <span class="co"># with &#39;#&#39; will be ignored, and an empty message aborts the commit.</span></a>
+<a class="sourceLine" id="cb12-4" title="4">  <span class="ex">4</span> <span class="co"># On branch master</span></a>
+<a class="sourceLine" id="cb12-5" title="5">  <span class="ex">5</span> <span class="co">#</span></a>
+<a class="sourceLine" id="cb12-6" title="6">  <span class="ex">6</span> <span class="co"># Initial commit</span></a>
+<a class="sourceLine" id="cb12-7" title="7">  <span class="ex">7</span> <span class="co">#</span></a>
+<a class="sourceLine" id="cb12-8" title="8">  <span class="ex">8</span> <span class="co"># Changes to be committed:</span></a>
+<a class="sourceLine" id="cb12-9" title="9">  <span class="ex">9</span> <span class="co">#   new file:   diary.md</span></a>
+<a class="sourceLine" id="cb12-10" title="10"> <span class="ex">10</span> <span class="co">#</span></a></code></pre></div>
 <p>执行 <code>git commit</code> 后会自动打开一个编辑器（编辑器是可配置的，以后再说怎么配置），比如 vi，进行提交log的撰写，保存退出即提交成功，不保存退出即放弃提交</p>
 </section><section id="再查-git-status都已经提交干净了" class="slide level2">
-<h1>再查 git status，都已经提交干净了</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> status
-<span class="kw">On</span> branch master
-<span class="kw">nothing</span> to commit, working directory clean
-$ <span class="kw">git</span> status -s</code></pre></div>
+<h2>再查 git status，都已经提交干净了</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb13-1" title="1">$ <span class="fu">git</span> status</a>
+<a class="sourceLine" id="cb13-2" title="2"><span class="ex">On</span> branch master</a>
+<a class="sourceLine" id="cb13-3" title="3"><span class="ex">nothing</span> to commit, working directory clean</a>
+<a class="sourceLine" id="cb13-4" title="4">$ <span class="fu">git</span> status -s</a></code></pre></div>
 </section><section id="现在可以看log了" class="slide level2">
-<h1>现在可以看log了</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log
-<span class="kw">commit</span> 14dd7815fcf56c961e11c52e96e2fc3fbd7d0543
-<span class="kw">Author</span>: wkevin <span class="kw">&lt;</span>wkevin27@gmail.com<span class="kw">&gt;</span>
-<span class="kw">Date</span>:   Sun Jan 31 11:39:55 2016 +0800
-
-    <span class="kw">create</span> mydiary</code></pre></div>
+<h2>现在可以看log了</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb14-1" title="1">$ <span class="fu">git</span> log</a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="ex">commit</span> 14dd7815fcf56c961e11c52e96e2fc3fbd7d0543</a>
+<a class="sourceLine" id="cb14-3" title="3"><span class="ex">Author</span>: wkevin <span class="op">&lt;</span>wkevin27@gmail.com<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb14-4" title="4"><span class="ex">Date</span>:   Sun Jan 31 11:39:55 2016 +0800</a>
+<a class="sourceLine" id="cb14-5" title="5"></a>
+<a class="sourceLine" id="cb14-6" title="6">    <span class="ex">create</span> mydiary</a></code></pre></div>
 </section><section id="section-2" class="slide level2">
-<h1></h1>
+<h2></h2>
 <p>每天可以随时写日记、随时<code>git add</code>、适时<code>git commit</code>，经过一段时间，你的diary库就越来越让你爱不释手了</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log
-<span class="kw">commit</span> 67840e1813af1084abd5d07d2e2a2e185c679f09
-<span class="kw">Author</span>: wkevin <span class="kw">&lt;</span>wkevin27@gmail.com<span class="kw">&gt;</span>
-<span class="kw">Date</span>:   Sun Jan 31 12:20:26 2016 +0800
-
-    <span class="kw">2.2</span>日记
-
-<span class="kw">commit</span> bf36ab9b0d489a2eda911be9e01bddc395fc29e0
-<span class="kw">Author</span>: wkevin <span class="kw">&lt;</span>wkevin27@gmail.com<span class="kw">&gt;</span>
-<span class="kw">Date</span>:   Sun Jan 31 12:19:33 2016 +0800
-
-    <span class="kw">2.1</span>的日记
-
-<span class="kw">commit</span> 14dd7815fcf56c961e11c52e96e2fc3fbd7d0543
-<span class="kw">Author</span>: wkevin <span class="kw">&lt;</span>wkevin27@gmail.com<span class="kw">&gt;</span>
-<span class="kw">Date</span>:   Sun Jan 31 11:39:55 2016 +0800
-
-    <span class="kw">create</span> mydiary</code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb15-1" title="1">$ <span class="fu">git</span> log</a>
+<a class="sourceLine" id="cb15-2" title="2"><span class="ex">commit</span> 67840e1813af1084abd5d07d2e2a2e185c679f09</a>
+<a class="sourceLine" id="cb15-3" title="3"><span class="ex">Author</span>: wkevin <span class="op">&lt;</span>wkevin27@gmail.com<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb15-4" title="4"><span class="ex">Date</span>:   Sun Jan 31 12:20:26 2016 +0800</a>
+<a class="sourceLine" id="cb15-5" title="5"></a>
+<a class="sourceLine" id="cb15-6" title="6">    <span class="ex">2.2</span>日记</a>
+<a class="sourceLine" id="cb15-7" title="7"></a>
+<a class="sourceLine" id="cb15-8" title="8"><span class="ex">commit</span> bf36ab9b0d489a2eda911be9e01bddc395fc29e0</a>
+<a class="sourceLine" id="cb15-9" title="9"><span class="ex">Author</span>: wkevin <span class="op">&lt;</span>wkevin27@gmail.com<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb15-10" title="10"><span class="ex">Date</span>:   Sun Jan 31 12:19:33 2016 +0800</a>
+<a class="sourceLine" id="cb15-11" title="11"></a>
+<a class="sourceLine" id="cb15-12" title="12">    <span class="ex">2.1</span>的日记</a>
+<a class="sourceLine" id="cb15-13" title="13"></a>
+<a class="sourceLine" id="cb15-14" title="14"><span class="ex">commit</span> 14dd7815fcf56c961e11c52e96e2fc3fbd7d0543</a>
+<a class="sourceLine" id="cb15-15" title="15"><span class="ex">Author</span>: wkevin <span class="op">&lt;</span>wkevin27@gmail.com<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb15-16" title="16"><span class="ex">Date</span>:   Sun Jan 31 11:39:55 2016 +0800</a>
+<a class="sourceLine" id="cb15-17" title="17"></a>
+<a class="sourceLine" id="cb15-18" title="18">    <span class="ex">create</span> mydiary</a></code></pre></div>
 <p>git 和 svn 不同，没有一个数字递增的节点号，而是一串40Bytes的哈希字符，指定一个提交只需要给出这个字符串即可，当然不能让你每次都把40个字符全输入一遍，只需要输入够区分提交的即可（一般是前7位），如果咱的库规模还很小，前4位也行哦（上文中的“6784”）</p>
 </section><section id="practice-2" class="slide level2">
-<h1>Practice</h1>
+<h2>Practice</h2>
 <blockquote>
 <p>请简要的按顺序写出上面例子中用到的git命令</p>
 </blockquote>
 </section></section>
-<section><section id="git-revesion" class="titleslide slide level1"><h1>Git Revesion</h1></section><section id="git-revision-的描述" class="slide level2">
-<h1>git revision 的描述</h1>
+<section><section id="git-revesion" class="title-slide slide level1"><h1>Git Revesion</h1></section><section id="git-revision-的描述" class="slide level2">
+<h2>git revision 的描述</h2>
 <ul>
-<li><code>&lt;sha1&gt;</code>: e.g. dae86e</li>
-<li><code>&lt;describeOutput&gt;</code>: e.g. v1.2.3</li>
-<li><code>&lt;refname&gt;</code>: e.g. HEAD，master, heads/master, refs/heads/master</li>
+<li><code>&lt;sha1&gt;</code>: e.g. dae86e</li>
+<li><code>&lt;describeOutput&gt;</code>: e.g. v1.2.3</li>
+<li><code>&lt;refname&gt;</code>: e.g. HEAD，master, heads/master, refs/heads/master</li>
 <li><code>@</code> : HEAD的简写</li>
 <li><code>&lt;refname&gt;@{&lt;date&gt;}</code>： data日期之前的第一个revision</li>
 <li><code>&lt;refname&gt;@{&lt;n&gt;}</code>: 第n-th个revision
 <ul>
 <li>git log 出的1-st revision在这里算 2-nd</li>
 </ul></li>
-<li><code>&lt;rev&gt;^</code>: e.g. HEAD^, v1.2.3^， 表示 rev的前一个revision</li>
-<li><code>&lt;rev&gt;~&lt;n&gt;</code>: e.g. HEAD~3, master~3，去掉n个，取下一个
+<li><code>&lt;rev&gt;^</code>: e.g. HEAD^, v1.2.3^， 表示 rev的前一个revision</li>
+<li><code>&lt;rev&gt;~&lt;n&gt;</code>: e.g. HEAD~3, master~3，去掉n个，取下一个
 <ul>
 <li>git log 出的1-st revision开始去掉</li>
 </ul></li>
@@ -411,7 +436,7 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <br><br>详细：<code>git help revisions</code> 或 <code>man gitrevisions</code>
 </div>
 </section><section id="git-revision-range-的描述" class="slide level2">
-<h1>git revision range 的描述</h1>
+<h2>git revision range 的描述</h2>
 <ul>
 <li><code>&lt;rev&gt;</code>: 从rev到结束的所有revision都包括进来</li>
 <li><code>^&lt;rev&gt;</code>: 从rev到结束的所有revision都抛弃掉</li>
@@ -426,7 +451,7 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <br><br>详细：<code>git help revisions</code> 或 <code>man gitrevisions</code>
 </div>
 </section><section id="practice-3" class="slide level2">
-<h1>Practice</h1>
+<h2>Practice</h2>
 <blockquote>
 <p>使用 git log 查看</p>
 </blockquote>
@@ -434,137 +459,137 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 只看 zte 分支的 revision
 </div>
 <div class="fragment">
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log zte</code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb16-1" title="1">$ <span class="fu">git</span> log zte</a></code></pre></div>
 </div>
 <div class="fragment">
 从上周三的 revision 开始看
 </div>
 <div class="fragment">
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log @<span class="dt">{2016-7-13}</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb17-1" title="1">$ <span class="fu">git</span> log @<span class="dt">{2016-7-13}</span></a></code></pre></div>
 </div>
 <div class="fragment">
 不看近10次的 revision
 </div>
 <div class="fragment">
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log master~10</code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb18-1" title="1">$ <span class="fu">git</span> log master~10</a></code></pre></div>
 </div>
 <div class="fragment">
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log master@<span class="dt">{12}</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb19-1" title="1">$ <span class="fu">git</span> log master@<span class="dt">{12}</span></a></code></pre></div>
 </div>
 </section><section id="practice-4" class="slide level2">
-<h1>Practice</h1>
+<h2>Practice</h2>
 <div class="fragment">
 只看近一个月的 revision
 </div>
 <div class="fragment">
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log ^@<span class="dt">{1month}</span> HEAD</code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb20-1" title="1">$ <span class="fu">git</span> log ^@<span class="dt">{1month}</span> HEAD</a></code></pre></div>
 </div>
 <div class="fragment">
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log HEAD ^@<span class="dt">{1month}</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb21-1" title="1">$ <span class="fu">git</span> log HEAD ^@<span class="dt">{1month}</span></a></code></pre></div>
 </div>
 <div class="fragment">
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log @<span class="dt">{1month}</span>..</code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb22-1" title="1">$ <span class="fu">git</span> log @<span class="dt">{1month}</span>..</a></code></pre></div>
 </div>
 <div class="fragment">
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> log ..@<span class="dt">{1month}</span>  //WRONG</code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb23-1" title="1">$ <span class="fu">git</span> log ..@<span class="dt">{1month}</span>  //WRONG</a></code></pre></div>
 </div>
 </section></section>
-<section><section id="git-config" class="titleslide slide level1"><h1>git config</h1></section><section id="location" class="slide level2">
-<h1>location</h1>
+<section><section id="git-config" class="title-slide slide level1"><h1>git config</h1></section><section id="location" class="slide level2">
+<h2>location</h2>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">command</th>
-<th style="text-align: left;">说明</th>
+<th>command</th>
+<th>说明</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">git config [--local]</td>
-<td style="text-align: left;">配置项保存到当前git项目(./.git)<br>仅本项目有效默认</td>
+<td>git config [–local]</td>
+<td>配置项保存到当前git项目(./.git)<br>仅本项目有效默认</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">git config --system</td>
-<td style="text-align: left;">配置项保存到系统(/etc/gitconfig)<br>所有git项目有效</td>
+<td>git config –system</td>
+<td>配置项保存到系统(/etc/gitconfig)<br>所有git项目有效</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">git config --global</td>
-<td style="text-align: left;">配置项保存到用户根目录(~/.git/config)<br>当前用户的所有项目有效</td>
+<td>git config –global</td>
+<td>配置项保存到用户根目录(~/.git/config)<br>当前用户的所有项目有效</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">git config --file</td>
-<td style="text-align: left;">配置项保存到指定文件</td>
+<td>git config –file</td>
+<td>配置项保存到指定文件</td>
 </tr>
 </tbody>
 </table>
 </section><section id="alias" class="slide level2">
-<h1>alias</h1>
+<h2>alias</h2>
 <p align="left" style="margin-left:5%">
 语法
 </p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> config --global alias.命令缩写  原命令+参数</code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb24-1" title="1">$ <span class="fu">git</span> config --global alias.命令缩写  原命令+参数</a></code></pre></div>
 <p align="left" style="margin-left:5%">
 举例
 </p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> config --global alias.st  <span class="st">&quot;status -sb&quot;</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb25-1" title="1">$ <span class="fu">git</span> config --global alias.st  <span class="st">&quot;status -sb&quot;</span></a></code></pre></div>
 <p align="left" style="margin-left:5%">
 使用缩写
 </p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> st
-<span class="co">## master</span>
- <span class="kw">M</span> diary.md</code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb26-1" title="1">$ <span class="fu">git</span> st</a>
+<a class="sourceLine" id="cb26-2" title="2"><span class="co">## master</span></a>
+<a class="sourceLine" id="cb26-3" title="3"> <span class="ex">M</span> diary.md</a></code></pre></div>
 <p>别名（alias）是linux系统的基本概念，在git中也如鱼得水。</p>
 </section><section id="我的常用别名" class="slide level2">
-<h1>我的常用别名</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> config -l
-<span class="kw">user.name</span>=wkevin
-<span class="kw">user.email</span>=wkevin27@gmail.com
-<span class="kw">alias.st</span>=status
-<span class="kw">alias.co</span>=checkout
-<span class="kw">alias.br</span>=branch -avv
-<span class="kw">alias.rt</span>=remote -vv
-<span class="kw">alias.l</span>=log --format=format:<span class="st">&#39;%C(auto) %h | %ad | %Cred %an %Cgreen %s&#39;</span> --date=short -n 25 --graph
-<span class="kw">alias.lg</span>=log --format=format:<span class="st">&#39;%C(auto) %h | %ai | %ci | %Cred %an %Cgreen %s&#39;</span>
-<span class="kw">alias.cl</span>=clone
-<span class="kw">alias.si</span>=submodule init
-<span class="kw">alias.sa</span>=submodule add
-<span class="kw">alias.su</span>=submodule update
-<span class="kw">alias.ci</span>=commit
-<span class="kw">alias.sab</span>=submodule add -b master
-<span class="kw">alias.sur</span>=submodule update --remote
-<span class="kw">alias.tg</span>=log --format=format:<span class="st">&#39;%C(auto) %h | %ai | %ci | %d  | %Cred %an %Cgreen %s&#39;</span>  --simplify-by-decoration</code></pre></div>
+<h2>我的常用别名</h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb27-1" title="1">$ <span class="fu">git</span> config -l</a>
+<a class="sourceLine" id="cb27-2" title="2"><span class="ex">user.name</span>=wkevin</a>
+<a class="sourceLine" id="cb27-3" title="3"><span class="ex">user.email</span>=wkevin27@gmail.com</a>
+<a class="sourceLine" id="cb27-4" title="4"><span class="ex">alias.st</span>=status</a>
+<a class="sourceLine" id="cb27-5" title="5"><span class="ex">alias.co</span>=checkout</a>
+<a class="sourceLine" id="cb27-6" title="6"><span class="ex">alias.br</span>=branch -avv</a>
+<a class="sourceLine" id="cb27-7" title="7"><span class="ex">alias.rt</span>=remote -vv</a>
+<a class="sourceLine" id="cb27-8" title="8"><span class="ex">alias.l</span>=log --format=format:<span class="st">&#39;%C(auto) %h | %ad | %Cred %an %Cgreen %s&#39;</span> --date=short -n 25 --graph</a>
+<a class="sourceLine" id="cb27-9" title="9"><span class="ex">alias.lg</span>=log --format=format:<span class="st">&#39;%C(auto) %h | %ai | %ci | %Cred %an %Cgreen %s&#39;</span></a>
+<a class="sourceLine" id="cb27-10" title="10"><span class="ex">alias.cl</span>=clone</a>
+<a class="sourceLine" id="cb27-11" title="11"><span class="ex">alias.si</span>=submodule init</a>
+<a class="sourceLine" id="cb27-12" title="12"><span class="ex">alias.sa</span>=submodule add</a>
+<a class="sourceLine" id="cb27-13" title="13"><span class="ex">alias.su</span>=submodule update</a>
+<a class="sourceLine" id="cb27-14" title="14"><span class="ex">alias.ci</span>=commit</a>
+<a class="sourceLine" id="cb27-15" title="15"><span class="ex">alias.sab</span>=submodule add -b master</a>
+<a class="sourceLine" id="cb27-16" title="16"><span class="ex">alias.sur</span>=submodule update --remote</a>
+<a class="sourceLine" id="cb27-17" title="17"><span class="ex">alias.tg</span>=log --format=format:<span class="st">&#39;%C(auto) %h | %ai | %ci | %d  | %Cred %an %Cgreen %s&#39;</span>  --simplify-by-decoration</a></code></pre></div>
 </section></section>
-<section><section id="git-add" class="titleslide slide level1"><h1>git add</h1></section><section id="focal-point" class="slide level2">
-<h1>Focal Point</h1>
+<section><section id="git-add" class="title-slide slide level1"><h1>git add</h1></section><section id="focal-point" class="slide level2">
+<h2>Focal Point</h2>
 <ul>
 <li>git add onefile</li>
 <li>git add .</li>
 <li>git add onefolder/.</li>
 </ul>
 </section><section id="stage" class="slide level2">
-<h1>stage</h1>
+<h2>stage</h2>
 <ol type="1">
 <li>名词：舞台、讲台，比如：戏剧表演的舞台、国际政治的舞台；阶段，类似phase，比如：stage one/two意思是第一/二阶段，three-stage rocket意思是三级火箭</li>
 <li>动词：上演、举行、组织，类似play、organize，比如：stage a football match，举办足球赛</li>
 </ol>
 <p><br><br> stage本身并没有暂存的意思，git中可以理解为把文件放到一个舞台上上演一下，进而文件进入到一个新的阶段。——用这个词可以说是一箭三雕</p>
 </section><section id="git-help-stage" class="slide level2">
-<h1>git help stage</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="ot">$git</span> <span class="kw">help</span> stage
-
-<span class="kw">GIT-STAGE</span>(1)                                              <span class="kw">Git</span> Manual                                              GIT-STAGE(1)
-<span class="kw">NAME</span>
-       <span class="kw">git-stage</span> - Add file contents to the staging area
-<span class="kw">SYNOPSIS</span>
-       <span class="kw">git</span> stage args...
-<span class="kw">DESCRIPTION</span>
-       <span class="kw">This</span> is a synonym for git-add(1)<span class="kw">.</span> <span class="kw">Please</span> refer to the documentation of that command.</code></pre></div>
+<h2>git help stage</h2>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb28-1" title="1"><span class="va">$git</span> <span class="bu">help</span> stage</a>
+<a class="sourceLine" id="cb28-2" title="2"></a>
+<a class="sourceLine" id="cb28-3" title="3"><span class="ex">GIT-STAGE</span>(1)                                              <span class="ex">Git</span> Manual                                              GIT-STAGE(1)</a>
+<a class="sourceLine" id="cb28-4" title="4"><span class="ex">NAME</span></a>
+<a class="sourceLine" id="cb28-5" title="5">       <span class="ex">git-stage</span> - Add file contents to the staging area</a>
+<a class="sourceLine" id="cb28-6" title="6"><span class="ex">SYNOPSIS</span></a>
+<a class="sourceLine" id="cb28-7" title="7">       <span class="fu">git</span> stage args...</a>
+<a class="sourceLine" id="cb28-8" title="8"><span class="ex">DESCRIPTION</span></a>
+<a class="sourceLine" id="cb28-9" title="9">       <span class="ex">This</span> is a synonym for git-add(1)<span class="bu">.</span> <span class="ex">Please</span> refer to the documentation of that command.</a></code></pre></div>
 <ul>
 <li>help中可以发现： <code>git stage</code> 是同义于 <code>git add</code></li>
 <li><strong>staging area</strong>： 舞台区、阶段区、进而翻译为暂存区 —— 如果让我翻译，我会译为：<strong>检视区</strong>。</li>
 </ul>
 </section><section id="暂存区-回收站" class="slide level2">
-<h1>暂存区 ～ 回收站</h1>
+<h2>暂存区 ～ 回收站</h2>
 <ul>
 <li>把文件放在回收站是给操作人一个检视的机会和反悔的机会，操作妥当后再彻底删除，彻底删除后再想反悔就要费劲了。</li>
 <li>git的staging area也是给用户一个<strong>检视的机会</strong>和<strong>反悔的机会</strong>，用户可以：
@@ -574,7 +599,7 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 </ul></li>
 </ul>
 </section><section id="gitignore" class="slide level2">
-<h1>.gitignore</h1>
+<h2>.gitignore</h2>
 <ul>
 <li>当前目录下的忽略文件、目录的列表，如：编译过程文件……</li>
 <li>可以存在与git项目的根目录和子目录下，每个文件只影响该目录下的文件和子目录</li>
@@ -583,136 +608,136 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <li><code>#</code>开头表示注释行</li>
 <li><code>!</code>开头的表示取反</li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">linux.git</span>$ cat .gitignore 
-<span class="kw">12</span>  .*
-<span class="kw">13</span>  *.o
-<span class="kw">14</span>  *.o.*
-<span class="kw">15</span>  *.a
-<span class="kw">16</span>  *.s
-<span class="kw">17</span>  *.ko
-<span class="kw">18</span>  *.so
-<span class="kw">......</span>
-<span class="kw">102</span>  <span class="co"># Kconfig presets</span>
-<span class="kw">103</span>  all.config
-<span class="kw">104</span>  
-<span class="kw">105</span>  <span class="co"># Kdevelop4</span>
-<span class="kw">106</span>  *.kdev4</code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb29-1" title="1"><span class="ex">linux.git</span>$ cat .gitignore </a>
+<a class="sourceLine" id="cb29-2" title="2"><span class="ex">12</span>  .*</a>
+<a class="sourceLine" id="cb29-3" title="3"><span class="ex">13</span>  *.o</a>
+<a class="sourceLine" id="cb29-4" title="4"><span class="ex">14</span>  *.o.*</a>
+<a class="sourceLine" id="cb29-5" title="5"><span class="ex">15</span>  *.a</a>
+<a class="sourceLine" id="cb29-6" title="6"><span class="ex">16</span>  *.s</a>
+<a class="sourceLine" id="cb29-7" title="7"><span class="ex">17</span>  *.ko</a>
+<a class="sourceLine" id="cb29-8" title="8"><span class="ex">18</span>  *.so</a>
+<a class="sourceLine" id="cb29-9" title="9"><span class="ex">......</span></a>
+<a class="sourceLine" id="cb29-10" title="10"><span class="ex">102</span>  <span class="co"># Kconfig presets</span></a>
+<a class="sourceLine" id="cb29-11" title="11"><span class="ex">103</span>  all.config</a>
+<a class="sourceLine" id="cb29-12" title="12"><span class="ex">104</span>  </a>
+<a class="sourceLine" id="cb29-13" title="13"><span class="ex">105</span>  <span class="co"># Kdevelop4</span></a>
+<a class="sourceLine" id="cb29-14" title="14"><span class="ex">106</span>  *.kdev4</a></code></pre></div>
 </section><section id="原理图" class="slide level2">
-<h1>原理图</h1>
+<h2>原理图</h2>
 <embed src="img/git-add.svg" type="image/svg+xml" style="background-color:white" />
 </section></section>
-<section><section id="git-commit" class="titleslide slide level1"><h1>git commit</h1></section><section id="focal-point-1" class="slide level2">
-<h1>Focal Point</h1>
+<section><section id="git-commit" class="title-slide slide level1"><h1>git commit</h1></section><section id="focal-point-1" class="slide level2">
+<h2>Focal Point</h2>
 <ul>
-<li>git commit -a/--all : 提交所有已暂存、未暂存、未追踪的文件</li>
-<li>git commit -m &quot;xxx&quot;</li>
-<li>git commit : 没有 -m &quot;xxx&quot;, git 会调用一个外部编辑器
+<li>git commit -a/–all : 提交所有已暂存、未暂存、未追踪的文件</li>
+<li>git commit -m “xxx”</li>
+<li>git commit : 没有 -m “xxx”, git 会调用一个外部编辑器
 <ul>
 <li>编辑器保存退出 &amp;&amp; message不为空： 则算一次成功的提交</li>
 <li>不保存退出 || message为空： 提交作废</li>
 </ul></li>
 </ul>
 </section><section id="ubuntu-的编辑器" class="slide level2">
-<h1>Ubuntu 的编辑器</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">update-alternatives</span> --config editor
-<span class="kw">There</span> are 8 choices for the alternative editor (providing /usr/bin/editor)<span class="kw">.</span>
-
-  <span class="kw">Selection</span>    Path                 Priority   Status
-<span class="kw">------------------------------------------------------------</span>
-<span class="kw">*</span> 0            /usr/bin/vim.gnome    60        auto mode
-  <span class="kw">1</span>            /bin/ed              -100       manual mode
-  <span class="kw">2</span>            /bin/nano             40        manual mode
-  <span class="kw">3</span>            /usr/bin/vim.athena   50        manual mode
-  <span class="kw">4</span>            /usr/bin/vim.basic    30        manual mode
-  <span class="kw">5</span>            /usr/bin/vim.gnome    60        manual mode
-  <span class="kw">6</span>            /usr/bin/vim.gtk      50        manual mode
-  <span class="kw">7</span>            /usr/bin/vim.nox      40        manual mode
-  <span class="kw">8</span>            /usr/bin/vim.tiny     10        manual mode
-
-<span class="kw">Press</span> enter to keep the current choice[*], or type selection number: </code></pre></div>
+<h2>Ubuntu 的编辑器</h2>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb30-1" title="1">$ <span class="ex">update-alternatives</span> --config editor</a>
+<a class="sourceLine" id="cb30-2" title="2"><span class="ex">There</span> are 8 choices for the alternative editor (providing /usr/bin/editor)<span class="ex">.</span></a>
+<a class="sourceLine" id="cb30-3" title="3"></a>
+<a class="sourceLine" id="cb30-4" title="4">  <span class="ex">Selection</span>    Path                 Priority   Status</a>
+<a class="sourceLine" id="cb30-5" title="5"><span class="ex">------------------------------------------------------------</span></a>
+<a class="sourceLine" id="cb30-6" title="6"><span class="ex">*</span> 0            /usr/bin/vim.gnome    60        auto mode</a>
+<a class="sourceLine" id="cb30-7" title="7">  <span class="ex">1</span>            /bin/ed              -100       manual mode</a>
+<a class="sourceLine" id="cb30-8" title="8">  <span class="ex">2</span>            /bin/nano             40        manual mode</a>
+<a class="sourceLine" id="cb30-9" title="9">  <span class="ex">3</span>            /usr/bin/vim.athena   50        manual mode</a>
+<a class="sourceLine" id="cb30-10" title="10">  <span class="ex">4</span>            /usr/bin/vim.basic    30        manual mode</a>
+<a class="sourceLine" id="cb30-11" title="11">  <span class="ex">5</span>            /usr/bin/vim.gnome    60        manual mode</a>
+<a class="sourceLine" id="cb30-12" title="12">  <span class="ex">6</span>            /usr/bin/vim.gtk      50        manual mode</a>
+<a class="sourceLine" id="cb30-13" title="13">  <span class="ex">7</span>            /usr/bin/vim.nox      40        manual mode</a>
+<a class="sourceLine" id="cb30-14" title="14">  <span class="ex">8</span>            /usr/bin/vim.tiny     10        manual mode</a>
+<a class="sourceLine" id="cb30-15" title="15"></a>
+<a class="sourceLine" id="cb30-16" title="16"><span class="ex">Press</span> enter to keep the current choice[*], or type selection number: </a></code></pre></div>
 </section></section>
-<section><section id="git-rm" class="titleslide slide level1"><h1>git rm</h1></section><section id="删除文件" class="slide level2">
-<h1>删除文件</h1>
+<section><section id="git-rm" class="title-slide slide level1"><h1>git rm</h1></section><section id="删除文件" class="slide level2">
+<h2>删除文件</h2>
 <ul>
 <li>直接使用 rm 删除，会让 git 认为文件丢失（missing状态）</li>
 <li>git rm 才能让 git 争取识别用户意图</li>
 <li>git rm 操作后文件本地工作目录中的文件即被删除， git commit 时删除对象库中的。</li>
 </ul>
 </section></section>
-<section><section id="git-log" class="titleslide slide level1"><h1>git log</h1></section><section id="git-shortlog" class="slide level2">
-<h1>git shortlog</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">GitChat.git</span>$ git shortlog
-<span class="kw">Kevin</span> Wang (3)<span class="kw">:</span>
-      <span class="kw">create</span>
-      增加：<span class="st">&quot;git在哪里&quot;</span>和<span class="st">&quot;git for windows 咋用&quot;</span> 章节
-      <span class="kw">add</span> git for windows 章节
-
-<span class="kw">wkevin</span> (36)<span class="kw">:</span>
-      <span class="kw">github</span> desktop for windows snapshot
-      在动车上写的：修改为<span class="kw">Round</span> x，增加了每个Round的插图。     虽然是春运，
-      基本写完 <span class="kw">Round</span> 2 ，git log 部分
-      写完 “## 我要能像<span class="kw">TortoiseSVN</span>那样左右两栏对比看diff”章节
-      笔误: 缺少一个反括号
-      笔误
-      <span class="kw">new</span> file:   img/git-state-and-area.svg
-      春节结束了，吃肉、喝酒、斗地主之余，带着酒劲继续写了一些，提交一下，很多地方还是
-      <span class="kw">1.</span>修改TOC的定义：空格使用<span class="st">&#39;-&#39;</span>替代     2.增加“分支”、“ssh”、“远程分支”‘rese
-      增加“<span class="kw">git</span>分支之间的关系咋看”、“到哪里找开源项目”、“等章节， 
-      <span class="kw">sublime</span>的markdown     preview插件生成的headeranchor与markdowntoc插件生成</code></pre></div>
+<section><section id="git-log" class="title-slide slide level1"><h1>git log</h1></section><section id="git-shortlog" class="slide level2">
+<h2>git shortlog</h2>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb31-1" title="1"><span class="ex">GitChat.git</span>$ git shortlog</a>
+<a class="sourceLine" id="cb31-2" title="2"><span class="ex">Kevin</span> Wang (3)<span class="bu">:</span></a>
+<a class="sourceLine" id="cb31-3" title="3">      <span class="ex">create</span></a>
+<a class="sourceLine" id="cb31-4" title="4">      增加：<span class="st">&quot;git在哪里&quot;</span>和<span class="st">&quot;git for windows 咋用&quot;</span> 章节</a>
+<a class="sourceLine" id="cb31-5" title="5">      <span class="ex">add</span> git for windows 章节</a>
+<a class="sourceLine" id="cb31-6" title="6"></a>
+<a class="sourceLine" id="cb31-7" title="7"><span class="ex">wkevin</span> (36)<span class="bu">:</span></a>
+<a class="sourceLine" id="cb31-8" title="8">      <span class="ex">github</span> desktop for windows snapshot</a>
+<a class="sourceLine" id="cb31-9" title="9">      在动车上写的：修改为<span class="ex">Round</span> x，增加了每个Round的插图。     虽然是春运，</a>
+<a class="sourceLine" id="cb31-10" title="10">      基本写完 <span class="ex">Round</span> 2 ，git log 部分</a>
+<a class="sourceLine" id="cb31-11" title="11">      写完 “## 我要能像<span class="ex">TortoiseSVN</span>那样左右两栏对比看diff”章节</a>
+<a class="sourceLine" id="cb31-12" title="12">      笔误: 缺少一个反括号</a>
+<a class="sourceLine" id="cb31-13" title="13">      笔误</a>
+<a class="sourceLine" id="cb31-14" title="14">      <span class="ex">new</span> file:   img/git-state-and-area.svg</a>
+<a class="sourceLine" id="cb31-15" title="15">      春节结束了，吃肉、喝酒、斗地主之余，带着酒劲继续写了一些，提交一下，很多地方还是</a>
+<a class="sourceLine" id="cb31-16" title="16">      <span class="ex">1.</span>修改TOC的定义：空格使用<span class="st">&#39;-&#39;</span>替代     2.增加“分支”、“ssh”、“远程分支”‘rese</a>
+<a class="sourceLine" id="cb31-17" title="17">      增加“<span class="ex">git</span>分支之间的关系咋看”、“到哪里找开源项目”、“等章节， </a>
+<a class="sourceLine" id="cb31-18" title="18">      <span class="ex">sublime</span>的markdown     preview插件生成的headeranchor与markdowntoc插件生成</a></code></pre></div>
 <ul>
 <li>根据提交人分类</li>
 <li>每次提交占1行</li>
 <li>时间先旧后新</li>
 </ul>
-</section><section id="git-log---dateshort" class="slide level2">
-<h1>git log --date=short</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">GitChat.git</span>$ git log HEAD^!
-<span class="kw">commit</span> 04e9afe4329f90d0c1dd42b0ac20f7b9324e33e6
-<span class="kw">Author</span>: wkevin <span class="kw">&lt;</span>wkevin27@gmail.com<span class="kw">&gt;</span>
-<span class="kw">Date</span>:   Tue Jul 12 19:56:23 2016 +0800
-
-    增加<span class="kw">Slides</span>功能</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">GitChat.git</span>$ git log --date=short HEAD^!
-<span class="kw">commit</span> 04e9afe4329f90d0c1dd42b0ac20f7b9324e33e6
-<span class="kw">Author</span>: wkevin <span class="kw">&lt;</span>wkevin27@gmail.com<span class="kw">&gt;</span>
-<span class="kw">Date</span>:   2016-07-12
-
-    增加<span class="kw">Slides</span>功能</code></pre></div>
-</section><section id="git-log---prettyxxx" class="slide level2">
-<h1>git log --pretty=xxx</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">GitChat.git</span>$ git log --pretty=oneline
-<span class="kw">04e9afe4329f90d0c1dd42b0ac20f7b9324e33e6</span> 增加Slides功能
-<span class="kw">ade6a93f4770d152348b615cbc923daa7bcc1781</span> 新增章节：push 错了，我要丢弃remote上的某个节点
-<span class="kw">145fedb470129987f86ff16f8f3ebf47b5a0a584</span> 增加章节：分支名能否用中文
-<span class="kw">9bdce19d503fb59377ed2058bdb4b98d87374cab</span> 笔误
-<span class="kw">513687920c881f938a8230e8288596a7905727ff</span> WWDC2016中刚刚宣布OS.X更名为macOS，本文即刻修改
-<span class="kw">b748256b246a11137fc82556fe8da96ec1567214</span> 增加章节：如何避免arc diff玷污现有节点； 如何创建只包含部分文件的评审单
-<span class="kw">d6efce6e8804ecb027762e0151ed071bc7d63b6d</span> 增加章节： arc diff的ubuntu安装
-<span class="kw">f8c101daaf75121dd4f1f1380b4dc5c1ed85cea0</span> Merge remote-tracking branch <span class="st">&#39;zte/master&#39;</span>
-<span class="kw">9238c6940753e9560fb6a3c688f1c2d0d9135a72</span> 新增 Round8：git与phabricator
-<span class="kw">1631166cb86d7648e8a3aa98f51ea0fe5391f1e4</span> 增加：整理git的外网托管网站
-<span class="kw">5d200a32cb86d9818926eea8caf8d5da389ac30d</span> 新增：分支的合并（git merge）有哪几种场景，合并时如何处理分支中的“垃圾”log，把特性分支合入主干”和“把主干合入特性分支”有什么区别
-<span class="kw">11f41a52a099dd3114b54eb1878201c29893b3c2</span> 完善 git proxy 的描述
-<span class="kw">9d8d843db0a021fc8054b73e157d4a648e4d94bb</span> 使用 rawgit.com 展示</code></pre></div>
-</section><section id="git-log---prettyshort" class="slide level2">
-<h1>git log --pretty=short</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">GitChat.git</span>$ git log --pretty=short
-<span class="kw">commit</span> 04e9afe4329f90d0c1dd42b0ac20f7b9324e33e6
-<span class="kw">Author</span>: wkevin <span class="kw">&lt;</span>wkevin27@gmail.com<span class="kw">&gt;</span>
-
-    增加<span class="kw">Slides</span>功能
-
-<span class="kw">commit</span> ade6a93f4770d152348b615cbc923daa7bcc1781
-<span class="kw">Author</span>: wkevin <span class="kw">&lt;</span>wkevin27@gmail.com<span class="kw">&gt;</span>
-
-    新增章节：<span class="kw">push</span> 错了，我要丢弃remote上的某个节点
-
-<span class="kw">commit</span> 145fedb470129987f86ff16f8f3ebf47b5a0a584
-<span class="kw">Author</span>: wkevin <span class="kw">&lt;</span>wkevin27@gmail.com<span class="kw">&gt;</span>
-
-    增加章节：分支名能否用中文</code></pre></div>
-</section><section id="git-log---prettyformatexxx" class="slide level2">
-<h1>git log --pretty=formate:&quot;xxx&quot;</h1>
+</section><section id="git-log-dateshort" class="slide level2">
+<h2>git log –date=short</h2>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb32-1" title="1"><span class="ex">GitChat.git</span>$ git log HEAD^!</a>
+<a class="sourceLine" id="cb32-2" title="2"><span class="ex">commit</span> 04e9afe4329f90d0c1dd42b0ac20f7b9324e33e6</a>
+<a class="sourceLine" id="cb32-3" title="3"><span class="ex">Author</span>: wkevin <span class="op">&lt;</span>wkevin27@gmail.com<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb32-4" title="4"><span class="ex">Date</span>:   Tue Jul 12 19:56:23 2016 +0800</a>
+<a class="sourceLine" id="cb32-5" title="5"></a>
+<a class="sourceLine" id="cb32-6" title="6">    增加<span class="ex">Slides</span>功能</a></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb33-1" title="1"><span class="ex">GitChat.git</span>$ git log --date=short HEAD^!</a>
+<a class="sourceLine" id="cb33-2" title="2"><span class="ex">commit</span> 04e9afe4329f90d0c1dd42b0ac20f7b9324e33e6</a>
+<a class="sourceLine" id="cb33-3" title="3"><span class="ex">Author</span>: wkevin <span class="op">&lt;</span>wkevin27@gmail.com<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb33-4" title="4"><span class="ex">Date</span>:   2016-07-12</a>
+<a class="sourceLine" id="cb33-5" title="5"></a>
+<a class="sourceLine" id="cb33-6" title="6">    增加<span class="ex">Slides</span>功能</a></code></pre></div>
+</section><section id="git-log-prettyxxx" class="slide level2">
+<h2>git log –pretty=xxx</h2>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb34-1" title="1"><span class="ex">GitChat.git</span>$ git log --pretty=oneline</a>
+<a class="sourceLine" id="cb34-2" title="2"><span class="ex">04e9afe4329f90d0c1dd42b0ac20f7b9324e33e6</span> 增加Slides功能</a>
+<a class="sourceLine" id="cb34-3" title="3"><span class="ex">ade6a93f4770d152348b615cbc923daa7bcc1781</span> 新增章节：push 错了，我要丢弃remote上的某个节点</a>
+<a class="sourceLine" id="cb34-4" title="4"><span class="ex">145fedb470129987f86ff16f8f3ebf47b5a0a584</span> 增加章节：分支名能否用中文</a>
+<a class="sourceLine" id="cb34-5" title="5"><span class="ex">9bdce19d503fb59377ed2058bdb4b98d87374cab</span> 笔误</a>
+<a class="sourceLine" id="cb34-6" title="6"><span class="ex">513687920c881f938a8230e8288596a7905727ff</span> WWDC2016中刚刚宣布OS.X更名为macOS，本文即刻修改</a>
+<a class="sourceLine" id="cb34-7" title="7"><span class="ex">b748256b246a11137fc82556fe8da96ec1567214</span> 增加章节：如何避免arc diff玷污现有节点； 如何创建只包含部分文件的评审单</a>
+<a class="sourceLine" id="cb34-8" title="8"><span class="ex">d6efce6e8804ecb027762e0151ed071bc7d63b6d</span> 增加章节： arc diff的ubuntu安装</a>
+<a class="sourceLine" id="cb34-9" title="9"><span class="ex">f8c101daaf75121dd4f1f1380b4dc5c1ed85cea0</span> Merge remote-tracking branch <span class="st">&#39;zte/master&#39;</span></a>
+<a class="sourceLine" id="cb34-10" title="10"><span class="ex">9238c6940753e9560fb6a3c688f1c2d0d9135a72</span> 新增 Round8：git与phabricator</a>
+<a class="sourceLine" id="cb34-11" title="11"><span class="ex">1631166cb86d7648e8a3aa98f51ea0fe5391f1e4</span> 增加：整理git的外网托管网站</a>
+<a class="sourceLine" id="cb34-12" title="12"><span class="ex">5d200a32cb86d9818926eea8caf8d5da389ac30d</span> 新增：分支的合并（git merge）有哪几种场景，合并时如何处理分支中的“垃圾”log，把特性分支合入主干”和“把主干合入特性分支”有什么区别</a>
+<a class="sourceLine" id="cb34-13" title="13"><span class="ex">11f41a52a099dd3114b54eb1878201c29893b3c2</span> 完善 git proxy 的描述</a>
+<a class="sourceLine" id="cb34-14" title="14"><span class="ex">9d8d843db0a021fc8054b73e157d4a648e4d94bb</span> 使用 rawgit.com 展示</a></code></pre></div>
+</section><section id="git-log-prettyshort" class="slide level2">
+<h2>git log –pretty=short</h2>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb35-1" title="1"><span class="ex">GitChat.git</span>$ git log --pretty=short</a>
+<a class="sourceLine" id="cb35-2" title="2"><span class="ex">commit</span> 04e9afe4329f90d0c1dd42b0ac20f7b9324e33e6</a>
+<a class="sourceLine" id="cb35-3" title="3"><span class="ex">Author</span>: wkevin <span class="op">&lt;</span>wkevin27@gmail.com<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb35-4" title="4"></a>
+<a class="sourceLine" id="cb35-5" title="5">    增加<span class="ex">Slides</span>功能</a>
+<a class="sourceLine" id="cb35-6" title="6"></a>
+<a class="sourceLine" id="cb35-7" title="7"><span class="ex">commit</span> ade6a93f4770d152348b615cbc923daa7bcc1781</a>
+<a class="sourceLine" id="cb35-8" title="8"><span class="ex">Author</span>: wkevin <span class="op">&lt;</span>wkevin27@gmail.com<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb35-9" title="9"></a>
+<a class="sourceLine" id="cb35-10" title="10">    新增章节：<span class="ex">push</span> 错了，我要丢弃remote上的某个节点</a>
+<a class="sourceLine" id="cb35-11" title="11"></a>
+<a class="sourceLine" id="cb35-12" title="12"><span class="ex">commit</span> 145fedb470129987f86ff16f8f3ebf47b5a0a584</a>
+<a class="sourceLine" id="cb35-13" title="13"><span class="ex">Author</span>: wkevin <span class="op">&lt;</span>wkevin27@gmail.com<span class="op">&gt;</span></a>
+<a class="sourceLine" id="cb35-14" title="14"></a>
+<a class="sourceLine" id="cb35-15" title="15">    增加章节：分支名能否用中文</a></code></pre></div>
+</section><section id="git-log-prettyformatexxx" class="slide level2">
+<h2>git log –pretty=formate:“xxx”</h2>
 <ul>
 <li>xxx:
 <ul>
@@ -724,149 +749,147 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <li>%s: log message</li>
 </ul></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">GitChat.git</span>$ git log --pretty=format:<span class="st">&#39;%ad %an %s&#39;</span>
-<span class="kw">Tue</span> Jul 12 19:56:23 2016 +0800 wkevin 增加Slides功能
-<span class="kw">Fri</span> Jul 8 14:20:27 2016 +0800 wkevin 新增章节：push 错了，我要丢弃remote上的某个节点
-<span class="kw">Fri</span> Jul 8 09:56:16 2016 +0800 wkevin 增加章节：分支名能否用中文
-<span class="kw">Thu</span> Jul 7 13:46:02 2016 +0800 wkevin 笔误</code></pre></div>
-</section><section id="git-config---global-alias.lg-log-..." class="slide level2">
-<h1>git config --global alias.lg &quot;log ...&quot;</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">git</span> config --global alias.lg <span class="st">&quot;log --format=format:&#39;%C(auto) %h | %ai | %ci | %Cred %an %Cgreen %s&#39;&quot;</span></code></pre></div>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">GitChat.git</span>$ git lg
- <span class="kw">04e9afe</span> <span class="kw">|</span> <span class="kw">2016-07-12</span> 19:56:23 +0800 <span class="kw">|</span> <span class="kw">2016-07-12</span> 19:56:23 +0800 <span class="kw">|</span>  <span class="kw">wkevin</span>  增加Slides功能
- <span class="kw">ade6a93</span> <span class="kw">|</span> <span class="kw">2016-07-08</span> 14:20:27 +0800 <span class="kw">|</span> <span class="kw">2016-07-08</span> 14:20:27 +0800 <span class="kw">|</span>  <span class="kw">wkevin</span>  新增章节：push 错了，我要丢弃remote上的某个节点
- <span class="kw">145fedb</span> <span class="kw">|</span> <span class="kw">2016-07-08</span> 09:56:16 +0800 <span class="kw">|</span> <span class="kw">2016-07-08</span> 09:56:16 +0800 <span class="kw">|</span>  <span class="kw">wkevin</span>  增加章节：分支名能否用中文
- <span class="kw">9bdce19</span> <span class="kw">|</span> <span class="kw">2016-07-07</span> 13:46:02 +0800 <span class="kw">|</span> <span class="kw">2016-07-07</span> 13:46:02 +0800 <span class="kw">|</span>  <span class="kw">wkevin</span>  笔误
- <span class="kw">5136879</span> <span class="kw">|</span> <span class="kw">2016-06-14</span> 13:35:16 +0800 <span class="kw">|</span> <span class="kw">2016-06-14</span> 13:35:16 +0800 <span class="kw">|</span>  <span class="kw">wkevin</span>  WWDC2016中刚刚宣布OS.X更名为macOS，本文即刻修改
- <span class="kw">b748256</span> <span class="kw">|</span> <span class="kw">2016-06-13</span> 15:14:08 +0800 <span class="kw">|</span> <span class="kw">2016-06-13</span> 15:14:08 +0800 <span class="kw">|</span>  <span class="kw">wkevin</span>  增加章节：如何避免arc diff玷污现有节点； 如何创建只包含部分文件的评审单
- <span class="kw">d6efce6</span> <span class="kw">|</span> <span class="kw">2016-06-13</span> 11:51:26 +0800 <span class="kw">|</span> <span class="kw">2016-06-13</span> 11:51:26 +0800 <span class="kw">|</span>  <span class="kw">wkevin</span>  增加章节： arc diff的ubuntu安装
- <span class="kw">f8c101d</span> <span class="kw">|</span> <span class="kw">2016-06-08</span> 17:21:39 +0800 <span class="kw">|</span> <span class="kw">2016-06-08</span> 17:21:39 +0800 <span class="kw">|</span>  <span class="kw">wkevin</span>  Merge remote-tracking branch <span class="st">&#39;zte/master&#39;</span>
- <span class="kw">9238c69</span> <span class="kw">|</span> <span class="kw">2016-06-08</span> 17:19:33 +0800 <span class="kw">|</span> <span class="kw">2016-06-08</span> 17:19:33 +0800 <span class="kw">|</span>  <span class="kw">wkevin</span>  新增 Round8：git与phabricator
- <span class="kw">1631166</span> <span class="kw">|</span> <span class="kw">2016-05-25</span> 16:09:06 +0800 <span class="kw">|</span> <span class="kw">2016-05-25</span> 16:09:06 +0800 <span class="kw">|</span>  <span class="kw">wkevin</span>  增加：整理git的外网托管网站</code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb36-1" title="1"><span class="ex">GitChat.git</span>$ git log --pretty=format:<span class="st">&#39;%ad %an %s&#39;</span></a>
+<a class="sourceLine" id="cb36-2" title="2"><span class="ex">Tue</span> Jul 12 19:56:23 2016 +0800 wkevin 增加Slides功能</a>
+<a class="sourceLine" id="cb36-3" title="3"><span class="ex">Fri</span> Jul 8 14:20:27 2016 +0800 wkevin 新增章节：push 错了，我要丢弃remote上的某个节点</a>
+<a class="sourceLine" id="cb36-4" title="4"><span class="ex">Fri</span> Jul 8 09:56:16 2016 +0800 wkevin 增加章节：分支名能否用中文</a>
+<a class="sourceLine" id="cb36-5" title="5"><span class="ex">Thu</span> Jul 7 13:46:02 2016 +0800 wkevin 笔误</a></code></pre></div>
+</section><section id="git-config-global-alias.lg-log" class="slide level2">
+<h2>git config –global alias.lg “log …”</h2>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb37-1" title="1"><span class="fu">git</span> config --global alias.lg <span class="st">&quot;log --format=format:&#39;%C(auto) %h | %ai | %ci | %Cred %an %Cgreen %s&#39;&quot;</span></a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb38-1" title="1"><span class="ex">GitChat.git</span>$ git lg</a>
+<a class="sourceLine" id="cb38-2" title="2"> <span class="ex">04e9afe</span> <span class="kw">|</span> <span class="ex">2016-07-12</span> 19:56:23 +0800 <span class="kw">|</span> <span class="ex">2016-07-12</span> 19:56:23 +0800 <span class="kw">|</span>  <span class="ex">wkevin</span>  增加Slides功能</a>
+<a class="sourceLine" id="cb38-3" title="3"> <span class="ex">ade6a93</span> <span class="kw">|</span> <span class="ex">2016-07-08</span> 14:20:27 +0800 <span class="kw">|</span> <span class="ex">2016-07-08</span> 14:20:27 +0800 <span class="kw">|</span>  <span class="ex">wkevin</span>  新增章节：push 错了，我要丢弃remote上的某个节点</a>
+<a class="sourceLine" id="cb38-4" title="4"> <span class="ex">145fedb</span> <span class="kw">|</span> <span class="ex">2016-07-08</span> 09:56:16 +0800 <span class="kw">|</span> <span class="ex">2016-07-08</span> 09:56:16 +0800 <span class="kw">|</span>  <span class="ex">wkevin</span>  增加章节：分支名能否用中文</a>
+<a class="sourceLine" id="cb38-5" title="5"> <span class="ex">9bdce19</span> <span class="kw">|</span> <span class="ex">2016-07-07</span> 13:46:02 +0800 <span class="kw">|</span> <span class="ex">2016-07-07</span> 13:46:02 +0800 <span class="kw">|</span>  <span class="ex">wkevin</span>  笔误</a>
+<a class="sourceLine" id="cb38-6" title="6"> <span class="ex">5136879</span> <span class="kw">|</span> <span class="ex">2016-06-14</span> 13:35:16 +0800 <span class="kw">|</span> <span class="ex">2016-06-14</span> 13:35:16 +0800 <span class="kw">|</span>  <span class="ex">wkevin</span>  WWDC2016中刚刚宣布OS.X更名为macOS，本文即刻修改</a>
+<a class="sourceLine" id="cb38-7" title="7"> <span class="ex">b748256</span> <span class="kw">|</span> <span class="ex">2016-06-13</span> 15:14:08 +0800 <span class="kw">|</span> <span class="ex">2016-06-13</span> 15:14:08 +0800 <span class="kw">|</span>  <span class="ex">wkevin</span>  增加章节：如何避免arc diff玷污现有节点； 如何创建只包含部分文件的评审单</a>
+<a class="sourceLine" id="cb38-8" title="8"> <span class="ex">d6efce6</span> <span class="kw">|</span> <span class="ex">2016-06-13</span> 11:51:26 +0800 <span class="kw">|</span> <span class="ex">2016-06-13</span> 11:51:26 +0800 <span class="kw">|</span>  <span class="ex">wkevin</span>  增加章节： arc diff的ubuntu安装</a>
+<a class="sourceLine" id="cb38-9" title="9"> <span class="ex">f8c101d</span> <span class="kw">|</span> <span class="ex">2016-06-08</span> 17:21:39 +0800 <span class="kw">|</span> <span class="ex">2016-06-08</span> 17:21:39 +0800 <span class="kw">|</span>  <span class="ex">wkevin</span>  Merge remote-tracking branch <span class="st">&#39;zte/master&#39;</span></a>
+<a class="sourceLine" id="cb38-10" title="10"> <span class="ex">9238c69</span> <span class="kw">|</span> <span class="ex">2016-06-08</span> 17:19:33 +0800 <span class="kw">|</span> <span class="ex">2016-06-08</span> 17:19:33 +0800 <span class="kw">|</span>  <span class="ex">wkevin</span>  新增 Round8：git与phabricator</a>
+<a class="sourceLine" id="cb38-11" title="11"> <span class="ex">1631166</span> <span class="kw">|</span> <span class="ex">2016-05-25</span> 16:09:06 +0800 <span class="kw">|</span> <span class="ex">2016-05-25</span> 16:09:06 +0800 <span class="kw">|</span>  <span class="ex">wkevin</span>  增加：整理git的外网托管网站</a></code></pre></div>
 </section><section id="gitk" class="slide level2">
-<h1>gitk</h1>
-<figure>
-<img src="img/gitk.png" />
-</figure>
+<h2>gitk</h2>
+<p><img data-src="img/gitk.png" /></p>
 </section></section>
-<section><section id="git-diff" class="titleslide slide level1"><h1>git diff</h1></section><section id="比较对象" class="slide level2">
-<h1>比较对象</h1>
-<table style="width:11%;">
-<colgroup>
-<col style="width: 5%" />
-<col style="width: 5%" />
-</colgroup>
+<section><section id="git-diff" class="title-slide slide level1"><h1>git diff</h1></section><section id="比较对象" class="slide level2">
+<h2>比较对象</h2>
+<table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">命令</th>
-<th style="text-align: left;">比较对象</th>
+<th>命令</th>
+<th>比较对象</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><code>git diff</code></td>
-<td style="text-align: left;">工作目录～索引区</td>
+<td><code>git diff</code></td>
+<td>工作目录～索引区</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>git diff --cached</code></td>
-<td style="text-align: left;">索引区～对象库</td>
+<td><code>git diff --cached</code></td>
+<td>索引区～对象库</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>git diff &lt;rev&gt;</code></td>
-<td style="text-align: left;">工作目录<sub>rev| |<code>git diff &lt;rev1&gt; &lt;rev2&gt;</code><br><code>git diff &lt;rev1&gt;..&lt;rev2&gt;</code>|rev1</sub>rev2</td>
+<td><code>git diff &lt;rev&gt;</code></td>
+<td>工作目录~rev</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td><code>git diff &lt;rev1&gt; &lt;rev2&gt;</code><br><code>git diff &lt;rev1&gt;..&lt;rev2&gt;</code></td>
+<td>rev1~rev2</td>
+</tr>
+<tr class="odd">
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 </section><section id="结果显示" class="slide level2">
-<h1>结果显示</h1>
+<h2>结果显示</h2>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">命令</th>
-<th style="text-align: left;">结果显示</th>
+<th>命令</th>
+<th>结果显示</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><code>git diff</code></td>
-<td style="text-align: left;">结果是变更文件，和patch形式的文本</td>
+<td><code>git diff</code></td>
+<td>结果是变更文件，和patch形式的文本</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>git diff --stat</code></td>
-<td style="text-align: left;">结果只显示变更文件，和变更的内容幅度</td>
+<td><code>git diff --stat</code></td>
+<td>结果只显示变更文件，和变更的内容幅度</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><code>git diff --name-only</code></td>
-<td style="text-align: left;">结果只显示变更文件的文件名</td>
+<td><code>git diff --name-only</code></td>
+<td>结果只显示变更文件的文件名</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><code>git diff --name-stat</code></td>
-<td style="text-align: left;">结果显示变更文件的文件名，和增删改的状态</td>
+<td><code>git diff --name-stat</code></td>
+<td>结果显示变更文件的文件名，和增删改的状态</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 </section><section id="linux-diff" class="slide level2">
-<h1>linux diff</h1>
+<h2>linux diff</h2>
 <p>diff f1 f2 == f1与f2之间的差异 == f1 -&gt; f2 的变化过程</p>
 <p><br></p>
 <table>
 <thead>
 <tr class="header">
-<th style="text-align: left;">diff shell 命令</th>
-<th style="text-align: left;">3种输出格式</th>
+<th>diff shell 命令</th>
+<th>3种输出格式</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">$ diff f1 f2</td>
-<td style="text-align: left;">正常格式（normal diff）</td>
+<td>$ diff f1 f2</td>
+<td>正常格式（normal diff）</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">$ diff f1 f2 -c</td>
-<td style="text-align: left;">上下文格式（context diff）</td>
+<td>$ diff f1 f2 -c</td>
+<td>上下文格式（context diff）</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">$ diff f1 f2 -u</td>
-<td style="text-align: left;">合并格式（unified diff）</td>
+<td>$ diff f1 f2 -u</td>
+<td>合并格式（unified diff）</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 <p><strong>diff f1 f2 =X= diff f2 f1</strong></p>
 </section><section id="linux-diff-2" class="slide level2">
-<h1>linux diff 2</h1>
+<h2>linux diff 2</h2>
 <p>两个文件： 1.txt、2.txt，并列显示内容如下：</p>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">diff</span> 1.txt 2.txt -y
-<span class="kw">1</span>               1
-<span class="kw">2</span>               2
-<span class="kw">3</span>             <span class="kw">|</span> <span class="kw">7</span>
-<span class="kw">4</span>               4
-<span class="kw">5</span>             <span class="kw">&lt;</span>
-<span class="kw">6</span>               6
-<span class="kw">7</span>               7
-              <span class="kw">&gt;</span> <span class="kw">8</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb39-1" title="1">$ <span class="fu">diff</span> 1.txt 2.txt -y</a>
+<a class="sourceLine" id="cb39-2" title="2"><span class="ex">1</span>               1</a>
+<a class="sourceLine" id="cb39-3" title="3"><span class="ex">2</span>               2</a>
+<a class="sourceLine" id="cb39-4" title="4"><span class="ex">3</span>             <span class="kw">|</span> <span class="ex">7</span></a>
+<a class="sourceLine" id="cb39-5" title="5"><span class="ex">4</span>               4</a>
+<a class="sourceLine" id="cb39-6" title="6"><span class="ex">5</span>             <span class="op">&lt;</span></a>
+<a class="sourceLine" id="cb39-7" title="7"><span class="ex">6</span>               6</a>
+<a class="sourceLine" id="cb39-8" title="8"><span class="ex">7</span>               7</a>
+<a class="sourceLine" id="cb39-9" title="9">              <span class="op">&gt;</span> <span class="ex">8</span></a></code></pre></div>
 </section><section id="section-3" class="slide level2">
-<h1></h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">diff</span> 1.txt 2.txt       
-<span class="kw">3c3</span>    
-<span class="kw">&lt;</span> <span class="kw">3</span>    
-<span class="kw">---</span>
-<span class="kw">&gt;</span> <span class="kw">7</span>    
-<span class="kw">5d4</span>    
-<span class="kw">&lt;</span> <span class="kw">5</span>    
-<span class="kw">7a7</span>    
-<span class="kw">&gt;</span> <span class="kw">8</span>    </code></pre></div>
+<h2></h2>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb40-1" title="1">$ <span class="fu">diff</span> 1.txt 2.txt       </a>
+<a class="sourceLine" id="cb40-2" title="2"><span class="ex">3c3</span>    </a>
+<a class="sourceLine" id="cb40-3" title="3"><span class="op">&lt;</span> <span class="ex">3</span>    </a>
+<a class="sourceLine" id="cb40-4" title="4"><span class="ex">---</span></a>
+<a class="sourceLine" id="cb40-5" title="5"><span class="op">&gt;</span> <span class="ex">7</span>    </a>
+<a class="sourceLine" id="cb40-6" title="6"><span class="ex">5d4</span>    </a>
+<a class="sourceLine" id="cb40-7" title="7"><span class="op">&lt;</span> <span class="ex">5</span>    </a>
+<a class="sourceLine" id="cb40-8" title="8"><span class="ex">7a7</span>    </a>
+<a class="sourceLine" id="cb40-9" title="9"><span class="op">&gt;</span> <span class="ex">8</span>    </a></code></pre></div>
 <ul>
 <li>3c3: 1.txt的第3行 change 为2.txt的第3行</li>
 <li>&lt; 3 / &gt; 7: change 方式为 1.txt 删除字符3， 2.txt 增加字符7</li>
@@ -874,96 +897,96 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <li>……</li>
 </ul>
 </section><section id="section-4" class="slide level2">
-<h1></h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">diff</span> 1.txt 2.txt -c
-<span class="kw">***</span> 1.txt 2016-07-16 19:20:03.593327527 +0800
-<span class="kw">---</span> 2.txt 2016-07-16 19:20:38.829329212 +0800
-<span class="kw">***************</span>
-<span class="kw">***</span> 1,7 ****
-  <span class="kw">1</span>
-  <span class="kw">2</span>
-! <span class="kw">3</span>
-  <span class="kw">4</span>
-<span class="kw">-</span> 5
-  <span class="kw">6</span>
-  <span class="kw">7</span>
-<span class="kw">---</span> 1,7 ----
-  <span class="kw">1</span>
-  <span class="kw">2</span>
-! <span class="kw">7</span>
-  <span class="kw">4</span>
-  <span class="kw">6</span>
-  <span class="kw">7</span>
-<span class="kw">+</span> 8</code></pre></div>
+<h2></h2>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb41-1" title="1">$ <span class="fu">diff</span> 1.txt 2.txt -c</a>
+<a class="sourceLine" id="cb41-2" title="2"><span class="ex">***</span> 1.txt 2016-07-16 19:20:03.593327527 +0800</a>
+<a class="sourceLine" id="cb41-3" title="3"><span class="ex">---</span> 2.txt 2016-07-16 19:20:38.829329212 +0800</a>
+<a class="sourceLine" id="cb41-4" title="4"><span class="ex">***************</span></a>
+<a class="sourceLine" id="cb41-5" title="5"><span class="ex">***</span> 1,7 ****</a>
+<a class="sourceLine" id="cb41-6" title="6">  <span class="ex">1</span></a>
+<a class="sourceLine" id="cb41-7" title="7">  <span class="ex">2</span></a>
+<a class="sourceLine" id="cb41-8" title="8">! <span class="ex">3</span></a>
+<a class="sourceLine" id="cb41-9" title="9">  <span class="ex">4</span></a>
+<a class="sourceLine" id="cb41-10" title="10"><span class="ex">-</span> 5</a>
+<a class="sourceLine" id="cb41-11" title="11">  <span class="ex">6</span></a>
+<a class="sourceLine" id="cb41-12" title="12">  <span class="ex">7</span></a>
+<a class="sourceLine" id="cb41-13" title="13"><span class="ex">---</span> 1,7 ----</a>
+<a class="sourceLine" id="cb41-14" title="14">  <span class="ex">1</span></a>
+<a class="sourceLine" id="cb41-15" title="15">  <span class="ex">2</span></a>
+<a class="sourceLine" id="cb41-16" title="16">! <span class="ex">7</span></a>
+<a class="sourceLine" id="cb41-17" title="17">  <span class="ex">4</span></a>
+<a class="sourceLine" id="cb41-18" title="18">  <span class="ex">6</span></a>
+<a class="sourceLine" id="cb41-19" title="19">  <span class="ex">7</span></a>
+<a class="sourceLine" id="cb41-20" title="20"><span class="ex">+</span> 8</a></code></pre></div>
 <ul>
-<li>&quot;***&quot;表示变动前的文件</li>
-<li>&quot;---&quot;表示变动后的文件</li>
+<li>"***"表示变动前的文件</li>
+<li>“—”表示变动后的文件</li>
 </ul>
 </section><section id="section-5" class="slide level2">
-<h1></h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">diff</span> 1.txt 2.txt -u
-<span class="kw">---</span> 1.txt 2016-07-16 19:20:03.593327527 +0800
-<span class="kw">+++</span> 2.txt 2016-07-16 19:20:38.829329212 +0800
-<span class="kw">@@</span> -1,7 +1,7 @@
- <span class="kw">1</span>
- <span class="kw">2</span>
-<span class="kw">-3</span>
-<span class="kw">+7</span>
- <span class="kw">4</span>
-<span class="kw">-5</span>
- <span class="kw">6</span>
- <span class="kw">7</span>
-<span class="kw">+8</span></code></pre></div>
+<h2></h2>
+<div class="sourceCode" id="cb42"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb42-1" title="1">$ <span class="fu">diff</span> 1.txt 2.txt -u</a>
+<a class="sourceLine" id="cb42-2" title="2"><span class="ex">---</span> 1.txt 2016-07-16 19:20:03.593327527 +0800</a>
+<a class="sourceLine" id="cb42-3" title="3"><span class="ex">+++</span> 2.txt 2016-07-16 19:20:38.829329212 +0800</a>
+<a class="sourceLine" id="cb42-4" title="4"><span class="ex">@@</span> -1,7 +1,7 @@</a>
+<a class="sourceLine" id="cb42-5" title="5"> <span class="ex">1</span></a>
+<a class="sourceLine" id="cb42-6" title="6"> <span class="ex">2</span></a>
+<a class="sourceLine" id="cb42-7" title="7"><span class="ex">-3</span></a>
+<a class="sourceLine" id="cb42-8" title="8"><span class="ex">+7</span></a>
+<a class="sourceLine" id="cb42-9" title="9"> <span class="ex">4</span></a>
+<a class="sourceLine" id="cb42-10" title="10"><span class="ex">-5</span></a>
+<a class="sourceLine" id="cb42-11" title="11"> <span class="ex">6</span></a>
+<a class="sourceLine" id="cb42-12" title="12"> <span class="ex">7</span></a>
+<a class="sourceLine" id="cb42-13" title="13"><span class="ex">+8</span></a></code></pre></div>
 <ul>
-<li>&quot;---&quot;表示变动前的文件</li>
-<li>&quot;+++&quot;表示变动后的文件</li>
+<li>“—”表示变动前的文件</li>
+<li>“+++”表示变动后的文件</li>
 </ul>
 </section><section id="practice-5" class="slide level2">
-<h1>Practice</h1>
+<h2>Practice</h2>
 <blockquote>
 <p>diff 2.txt 1.txt -u</p>
 </blockquote>
 <div class="fragment">
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">diff</span> 2.txt 1.txt -u
-<span class="kw">---</span> 2.txt 2016-07-16 19:20:38.829329212 +0800
-<span class="kw">+++</span> 1.txt 2016-07-16 19:20:03.593327527 +0800
-<span class="kw">@@</span> -1,7 +1,7 @@
- <span class="kw">1</span>
- <span class="kw">2</span>
-<span class="kw">-7</span>
-<span class="kw">+3</span>
- <span class="kw">4</span>
-<span class="kw">+5</span>
- <span class="kw">6</span>
- <span class="kw">7</span>
-<span class="kw">-8</span></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb43-1" title="1">$ <span class="fu">diff</span> 2.txt 1.txt -u</a>
+<a class="sourceLine" id="cb43-2" title="2"><span class="ex">---</span> 2.txt 2016-07-16 19:20:38.829329212 +0800</a>
+<a class="sourceLine" id="cb43-3" title="3"><span class="ex">+++</span> 1.txt 2016-07-16 19:20:03.593327527 +0800</a>
+<a class="sourceLine" id="cb43-4" title="4"><span class="ex">@@</span> -1,7 +1,7 @@</a>
+<a class="sourceLine" id="cb43-5" title="5"> <span class="ex">1</span></a>
+<a class="sourceLine" id="cb43-6" title="6"> <span class="ex">2</span></a>
+<a class="sourceLine" id="cb43-7" title="7"><span class="ex">-7</span></a>
+<a class="sourceLine" id="cb43-8" title="8"><span class="ex">+3</span></a>
+<a class="sourceLine" id="cb43-9" title="9"> <span class="ex">4</span></a>
+<a class="sourceLine" id="cb43-10" title="10"><span class="ex">+5</span></a>
+<a class="sourceLine" id="cb43-11" title="11"> <span class="ex">6</span></a>
+<a class="sourceLine" id="cb43-12" title="12"> <span class="ex">7</span></a>
+<a class="sourceLine" id="cb43-13" title="13"><span class="ex">-8</span></a></code></pre></div>
 </div>
 </section><section id="practice-6" class="slide level2">
-<h1>Practice</h1>
+<h2>Practice</h2>
 <blockquote>
 <p>git diff 使用的是哪种 diff 形式？</p>
 </blockquote>
 </section><section id="git-diff-与-git-log" class="slide level2">
-<h1>git diff 与 git log</h1>
+<h2>git diff 与 git log</h2>
 <ul>
 <li>git diff 不关心待比较文件的历史，也不关心分支，只关注当前对象本身</li>
 <li>git log 更关注文件的来龙去脉，即对象的parent、son……</li>
 </ul>
 </section><section id="practice-7" class="slide level2">
-<h1>Practice</h1>
+<h2>Practice</h2>
 <blockquote>
 <p>比较当前HEAD版本和上一个HEAD版本</p>
 </blockquote>
 <div class="fragment">
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">git</span> diff HEAD^ HEAD</code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb44-1" title="1">$ <span class="fu">git</span> diff HEAD^ HEAD</a></code></pre></div>
 </div>
 </section><section id="practice-8" class="slide level2">
-<h1>Practice</h1>
+<h2>Practice</h2>
 <blockquote>
 <p>比较3者的异同：<br />
 1. $ git diff topic master<br />
 2. $ git diff topic..master<br />
-3. $ git diff topic...master</p>
+3. $ git diff topic…master</p>
 </blockquote>
 <div class="fragment">
 <ol type="1">
@@ -973,134 +996,134 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 </ol>
 </div>
 </section><section id="git-difftool" class="slide level2">
-<h1>git difftool</h1>
+<h2>git difftool</h2>
 <p><img src="img/git-difftool-merge.png" width="80%" /></p>
 <div class="foottext">
 设置方法请search，或查看《Git聊天入门》
 </div>
 </section></section>
-<section><section id="git-branch" class="titleslide slide level1"><h1>git branch</h1></section><section id="focal-point-2" class="slide level2">
-<h1>Focal Point</h1>
+<section><section id="git-branch" class="title-slide slide level1"><h1>git branch</h1></section><section id="focal-point-2" class="slide level2">
+<h2>Focal Point</h2>
 <table>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">git branch</td>
-<td style="text-align: left;">查看所有分支</td>
+<td>git branch</td>
+<td>查看所有分支</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">git branch -v</td>
-<td style="text-align: left;">查看所有分支，和当前最新的commit</td>
+<td>git branch -v</td>
+<td>查看所有分支，和当前最新的commit</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">git branch -vv</td>
-<td style="text-align: left;">查看所有分支，和当前最新的commit<br>和upstream</td>
+<td>git branch -vv</td>
+<td>查看所有分支，和当前最新的commit<br>和upstream</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">git branch xyz</td>
-<td style="text-align: left;">创建 xyz 分支</td>
+<td>git branch xyz</td>
+<td>创建 xyz 分支</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">git branch -d xyz</td>
-<td style="text-align: left;">删除 xyz 分支，如果分支尚未合入主干<br>或upstream，则失败</td>
+<td>git branch -d xyz</td>
+<td>删除 xyz 分支，如果分支尚未合入主干<br>或upstream，则失败</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">git branch -D xyz</td>
-<td style="text-align: left;">删除 xyz 分支，强制</td>
+<td>git branch -D xyz</td>
+<td>删除 xyz 分支，强制</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"></td>
-<td style="text-align: left;"></td>
+<td></td>
+<td></td>
 </tr>
 </tbody>
 </table>
 </section><section id="branch-is-ref" class="slide level2">
-<h1>branch is ref</h1>
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">GitChat.git</span>$ tree .git/refs
-<span class="kw">.git/refs</span>
-├── <span class="kw">heads</span>
-│   ├── <span class="kw">master</span>
-│   └── <span class="kw">zte</span>
-├── <span class="kw">remotes</span>
-│   ├── <span class="kw">origin</span>
-│   │   ├── <span class="kw">HEAD</span>
-│   │   └── <span class="kw">master</span>
-│   └── <span class="kw">zte</span>
-│       ├── <span class="kw">master</span>
-│       └── <span class="kw">zte</span>
-└── <span class="kw">tags</span>
-
-<span class="kw">5</span> directories, 6 files</code></pre></div>
+<h2>branch is ref</h2>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb45-1" title="1"><span class="ex">GitChat.git</span>$ tree .git/refs</a>
+<a class="sourceLine" id="cb45-2" title="2"><span class="ex">.git/refs</span></a>
+<a class="sourceLine" id="cb45-3" title="3">├── <span class="ex">heads</span></a>
+<a class="sourceLine" id="cb45-4" title="4">│   ├── <span class="ex">master</span></a>
+<a class="sourceLine" id="cb45-5" title="5">│   └── <span class="ex">zte</span></a>
+<a class="sourceLine" id="cb45-6" title="6">├── <span class="ex">remotes</span></a>
+<a class="sourceLine" id="cb45-7" title="7">│   ├── <span class="ex">origin</span></a>
+<a class="sourceLine" id="cb45-8" title="8">│   │   ├── <span class="ex">HEAD</span></a>
+<a class="sourceLine" id="cb45-9" title="9">│   │   └── <span class="ex">master</span></a>
+<a class="sourceLine" id="cb45-10" title="10">│   └── <span class="ex">zte</span></a>
+<a class="sourceLine" id="cb45-11" title="11">│       ├── <span class="ex">master</span></a>
+<a class="sourceLine" id="cb45-12" title="12">│       └── <span class="ex">zte</span></a>
+<a class="sourceLine" id="cb45-13" title="13">└── <span class="ex">tags</span></a>
+<a class="sourceLine" id="cb45-14" title="14"></a>
+<a class="sourceLine" id="cb45-15" title="15"><span class="ex">5</span> directories, 6 files</a></code></pre></div>
 <ul>
 <li>tag 可以理解为仅是指针</li>
 <li>branch 不仅仅是指针，还包括向前追溯的一串节点信息</li>
 </ul>
 </section><section id="practice-9" class="slide level2">
-<h1>Practice</h1>
+<h2>Practice</h2>
 <blockquote>
 <p>查看某 branch 内commit的关系</p>
 </blockquote>
 <div class="fragment">
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">GitChat.git</span>$ git log --oneline --graph
-<span class="kw">*</span> 384453f 开始写《Git基础》的Slides
-<span class="kw">*</span> 04e9afe 增加Slides功能
-<span class="kw">*</span> ade6a93 新增章节：push 错了，我要丢弃remote上的某个节点
-<span class="kw">*</span> 145fedb 增加章节：分支名能否用中文
-<span class="kw">*</span> 9bdce19 笔误
-<span class="kw">*</span> 5136879 WWDC2016中刚刚宣布OS.X更名为macOS，本文即刻修改
-<span class="kw">*</span> b748256 增加章节：如何避免arc diff玷污现有节点； 如何创建只包含部分文件的评审单
-<span class="kw">*</span> d6efce6 增加章节： arc diff的ubuntu安装
-<span class="kw">*</span>   f8c101d Merge remote-tracking branch <span class="st">&#39;zte/master&#39;</span>
-<span class="kw">|\ </span> 
-<span class="kw">|</span> <span class="kw">*</span> 1631166 增加：整理git的外网托管网站
-<span class="kw">|</span> <span class="kw">*</span> 5d200a3 新增：分支的合并（git merge）有哪几种场景，合并时如何处理分支中的“垃圾”log
-<span class="kw">|</span> <span class="kw">*</span> 11f41a5 完善 git proxy 的描述
-<span class="kw">*</span> <span class="kw">|</span> <span class="kw">9238c69</span> 新增 Round8：git与phabricator
-<span class="kw">|/</span>  
-<span class="kw">*</span> 9d8d843 使用 rawgit.com 展示</code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb46-1" title="1"><span class="ex">GitChat.git</span>$ git log --oneline --graph</a>
+<a class="sourceLine" id="cb46-2" title="2"><span class="ex">*</span> 384453f 开始写《Git基础》的Slides</a>
+<a class="sourceLine" id="cb46-3" title="3"><span class="ex">*</span> 04e9afe 增加Slides功能</a>
+<a class="sourceLine" id="cb46-4" title="4"><span class="ex">*</span> ade6a93 新增章节：push 错了，我要丢弃remote上的某个节点</a>
+<a class="sourceLine" id="cb46-5" title="5"><span class="ex">*</span> 145fedb 增加章节：分支名能否用中文</a>
+<a class="sourceLine" id="cb46-6" title="6"><span class="ex">*</span> 9bdce19 笔误</a>
+<a class="sourceLine" id="cb46-7" title="7"><span class="ex">*</span> 5136879 WWDC2016中刚刚宣布OS.X更名为macOS，本文即刻修改</a>
+<a class="sourceLine" id="cb46-8" title="8"><span class="ex">*</span> b748256 增加章节：如何避免arc diff玷污现有节点； 如何创建只包含部分文件的评审单</a>
+<a class="sourceLine" id="cb46-9" title="9"><span class="ex">*</span> d6efce6 增加章节： arc diff的ubuntu安装</a>
+<a class="sourceLine" id="cb46-10" title="10"><span class="ex">*</span>   f8c101d Merge remote-tracking branch <span class="st">&#39;zte/master&#39;</span></a>
+<a class="sourceLine" id="cb46-11" title="11"><span class="kw">|</span><span class="ex">\ </span> </a>
+<a class="sourceLine" id="cb46-12" title="12"><span class="kw">|</span> <span class="ex">*</span> 1631166 增加：整理git的外网托管网站</a>
+<a class="sourceLine" id="cb46-13" title="13"><span class="kw">|</span> <span class="ex">*</span> 5d200a3 新增：分支的合并（git merge）有哪几种场景，合并时如何处理分支中的“垃圾”log</a>
+<a class="sourceLine" id="cb46-14" title="14"><span class="kw">|</span> <span class="ex">*</span> 11f41a5 完善 git proxy 的描述</a>
+<a class="sourceLine" id="cb46-15" title="15"><span class="ex">*</span> <span class="kw">|</span> <span class="ex">9238c69</span> 新增 Round8：git与phabricator</a>
+<a class="sourceLine" id="cb46-16" title="16"><span class="kw">|</span><span class="ex">/</span>  </a>
+<a class="sourceLine" id="cb46-17" title="17"><span class="ex">*</span> 9d8d843 使用 rawgit.com 展示</a></code></pre></div>
 </div>
 </section><section id="practice-10" class="slide level2">
-<h1>Practice</h1>
+<h2>Practice</h2>
 <blockquote>
 <p>查看所有 branch 的commit的关系</p>
 </blockquote>
 <div class="fragment">
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">GitChat.git</span>$ git log --oneline --graph --all
-<span class="kw">*</span>   5e0725b Merge branch <span class="st">&#39;master&#39;</span> into zte
-<span class="kw">|\ </span> 
-<span class="kw">|</span> <span class="kw">*</span> 384453f 开始写《Git基础》的Slides
-<span class="kw">|</span> <span class="kw">*</span> 04e9afe 增加Slides功能
-<span class="kw">*</span> <span class="kw">|</span>   <span class="kw">21376f0</span> Merge branch <span class="st">&#39;master&#39;</span> into zte
-<span class="kw">|\ \ </span> 
-<span class="kw">|</span> <span class="kw">|/</span>  
-<span class="kw">|</span> <span class="kw">*</span> ade6a93 新增章节：push 错了，我要丢弃remote上的某个节点
-<span class="kw">*</span> <span class="kw">|</span>   <span class="kw">f7d4f08</span> Merge branch <span class="st">&#39;master&#39;</span> into zte
-<span class="kw">|\ \ </span> 
-<span class="kw">|</span> <span class="kw">|/</span>  
-<span class="kw">|</span> <span class="kw">*</span> 145fedb 增加章节：分支名能否用中文
-<span class="kw">*</span> <span class="kw">|</span> <span class="kw">e668a52</span> 增加一点zte公司内部的解释
-<span class="kw">|/</span>  
-<span class="kw">*</span> 9bdce19 笔误
-<span class="kw">*</span> 5136879 WWDC2016中刚刚宣布OS.X更名为macOS，本文即刻修改
-<span class="kw">*</span> b748256 增加章节：如何避免arc diff玷污现有节点； 如何创
-<span class="kw">*</span> d6efce6 增加章节： arc diff的ubuntu安装</code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb47-1" title="1"><span class="ex">GitChat.git</span>$ git log --oneline --graph --all</a>
+<a class="sourceLine" id="cb47-2" title="2"><span class="ex">*</span>   5e0725b Merge branch <span class="st">&#39;master&#39;</span> into zte</a>
+<a class="sourceLine" id="cb47-3" title="3"><span class="kw">|</span><span class="ex">\ </span> </a>
+<a class="sourceLine" id="cb47-4" title="4"><span class="kw">|</span> <span class="ex">*</span> 384453f 开始写《Git基础》的Slides</a>
+<a class="sourceLine" id="cb47-5" title="5"><span class="kw">|</span> <span class="ex">*</span> 04e9afe 增加Slides功能</a>
+<a class="sourceLine" id="cb47-6" title="6"><span class="ex">*</span> <span class="kw">|</span>   <span class="ex">21376f0</span> Merge branch <span class="st">&#39;master&#39;</span> into zte</a>
+<a class="sourceLine" id="cb47-7" title="7"><span class="kw">|</span><span class="ex">\ \ </span> </a>
+<a class="sourceLine" id="cb47-8" title="8"><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span>  </a>
+<a class="sourceLine" id="cb47-9" title="9"><span class="kw">|</span> <span class="ex">*</span> ade6a93 新增章节：push 错了，我要丢弃remote上的某个节点</a>
+<a class="sourceLine" id="cb47-10" title="10"><span class="ex">*</span> <span class="kw">|</span>   <span class="ex">f7d4f08</span> Merge branch <span class="st">&#39;master&#39;</span> into zte</a>
+<a class="sourceLine" id="cb47-11" title="11"><span class="kw">|</span><span class="ex">\ \ </span> </a>
+<a class="sourceLine" id="cb47-12" title="12"><span class="kw">|</span> <span class="kw">|</span><span class="ex">/</span>  </a>
+<a class="sourceLine" id="cb47-13" title="13"><span class="kw">|</span> <span class="ex">*</span> 145fedb 增加章节：分支名能否用中文</a>
+<a class="sourceLine" id="cb47-14" title="14"><span class="ex">*</span> <span class="kw">|</span> <span class="ex">e668a52</span> 增加一点zte公司内部的解释</a>
+<a class="sourceLine" id="cb47-15" title="15"><span class="kw">|</span><span class="ex">/</span>  </a>
+<a class="sourceLine" id="cb47-16" title="16"><span class="ex">*</span> 9bdce19 笔误</a>
+<a class="sourceLine" id="cb47-17" title="17"><span class="ex">*</span> 5136879 WWDC2016中刚刚宣布OS.X更名为macOS，本文即刻修改</a>
+<a class="sourceLine" id="cb47-18" title="18"><span class="ex">*</span> b748256 增加章节：如何避免arc diff玷污现有节点； 如何创</a>
+<a class="sourceLine" id="cb47-19" title="19"><span class="ex">*</span> d6efce6 增加章节： arc diff的ubuntu安装</a></code></pre></div>
 </div>
 </section><section id="practice-11" class="slide level2">
-<h1>Practice</h1>
+<h2>Practice</h2>
 <blockquote>
 <p>查看某个 commit 所属的 branch</p>
 </blockquote>
 <div class="fragment">
-<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">GitChat.git</span>$ git branch --contains 9d8d
-<span class="kw">*</span> master
-  <span class="kw">zte</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb48-1" title="1"><span class="ex">GitChat.git</span>$ git branch --contains 9d8d</a>
+<a class="sourceLine" id="cb48-2" title="2"><span class="ex">*</span> master</a>
+<a class="sourceLine" id="cb48-3" title="3">  <span class="ex">zte</span></a></code></pre></div>
 </div>
 </section></section>
-<section><section id="git-checkout" class="titleslide slide level1"><h1>git checkout</h1></section><section id="原理图-1" class="slide level2">
-<h1>原理图</h1>
+<section><section id="git-checkout" class="title-slide slide level1"><h1>git checkout</h1></section><section id="原理图-1" class="slide level2">
+<h2>原理图</h2>
 <embed src="img/git-checkout.svg" type="image/svg+xml" style="background-color:white" />
 </section></section>
-<section><section id="git-merge" class="titleslide slide level1"><h1>git merge</h1></section><section id="focal-point-3" class="slide level2">
-<h1>Focal Point</h1>
+<section><section id="git-merge" class="title-slide slide level1"><h1>git merge</h1></section><section id="focal-point-3" class="slide level2">
+<h2>Focal Point</h2>
 <ul>
 <li>不必从干净的工作目录开始合并</li>
 <li>但劝你最好从干净的工作目录开始合并，除非你想把自己搞晕</li>
@@ -1108,7 +1131,7 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <li>merge 前看清楚当前所处的 branch</li>
 </ul>
 </section><section id="合并冲突" class="slide level2">
-<h1>合并冲突</h1>
+<h2>合并冲突</h2>
 <p>步骤：</p>
 <ol type="1">
 <li>git merge rev //糟糕，冲突了</li>
@@ -1118,12 +1141,12 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <li>git commit //里面会有 merge 的提示</li>
 </ol>
 </section><section id="practice-12" class="slide level2">
-<h1>Practice</h1>
+<h2>Practice</h2>
 <blockquote>
 <p>演示合并冲突、及解决</p>
 </blockquote>
 </section><section id="合并策略" class="slide level2">
-<h1>合并策略</h1>
+<h2>合并策略</h2>
 <ul>
 <li>退化合并
 <ul>
@@ -1143,35 +1166,35 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 </ul></li>
 </ul>
 <div class="foottext">
-<br><br>完整的策略列表： git help merge -- 搜索 <strong>MERGE STRATEGIES</strong>
+<br><br>完整的策略列表： git help merge – 搜索 <strong>MERGE STRATEGIES</strong>
 </div>
 </section><section id="合并策略的选择" class="slide level2">
-<h1>合并策略的选择</h1>
+<h2>合并策略的选择</h2>
 <ul>
 <li>git会根据用户的merge命令参数自动决定使用哪种策略</li>
 <li>用户也可以 -s strategy 指定策略 —— <strong>慎重</strong>
 <ul>
-<li>git merge -s resolve ...</li>
-<li>git merge -s ours ...</li>
-<li>git merge -s subtree ...</li>
-<li>git merge --no-ff</li>
+<li>git merge -s resolve …</li>
+<li>git merge -s ours …</li>
+<li>git merge -s subtree …</li>
+<li>git merge –no-ff</li>
 </ul></li>
 </ul>
 </section></section>
-<section><section id="git-reset" class="titleslide slide level1"><h1>git reset</h1></section><section id="原理图-2" class="slide level2">
-<h1>原理图</h1>
+<section><section id="git-reset" class="title-slide slide level1"><h1>git reset</h1></section><section id="原理图-2" class="slide level2">
+<h2>原理图</h2>
 <embed src="img/git-reset.svg" type="image/svg+xml" style="background-color:white" />
 </section></section>
-<section><section id="git-rebase" class="titleslide slide level1"><h1>git rebase</h1></section></section>
-<section><section id="git-remote" class="titleslide slide level1"><h1>git remote</h1></section><section id="原理图-3" class="slide level2">
-<h1>原理图</h1>
+<section id="git-rebase" class="title-slide slide level1"><h1>git rebase</h1></section>
+<section><section id="git-remote" class="title-slide slide level1"><h1>git remote</h1></section><section id="原理图-3" class="slide level2">
+<h2>原理图</h2>
 <embed src="img/git-remote.svg" type="image/svg+xml" style="background-color:white" />
 </section></section>
-<section><section id="git-pull" class="titleslide slide level1"><h1>git pull</h1></section></section>
-<section><section id="git-push" class="titleslide slide level1"><h1>git push</h1></section></section>
-<section><section id="git-object" class="titleslide slide level1"><h1>Git Object</h1></section></section>
-<section><section id="git-workflow-工作流" class="titleslide slide level1"><h1>Git Workflow<br>工作流</h1></section><section id="工作流是一种约定" class="slide level2">
-<h1>工作流是一种约定</h1>
+<section id="git-pull" class="title-slide slide level1"><h1>git pull</h1></section>
+<section id="git-push" class="title-slide slide level1"><h1>git push</h1></section>
+<section id="git-object" class="title-slide slide level1"><h1>Git Object</h1></section>
+<section><section id="git-workflow-工作流" class="title-slide slide level1"><h1>Git Workflow<br>工作流</h1></section><section id="工作流是一种约定" class="slide level2">
+<h2>工作流是一种约定</h2>
 <ul>
 <li>工作流是软件团队成员之间的约定</li>
 <li>约定内容包括：
@@ -1188,7 +1211,7 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 </ul></li>
 </ul>
 </section><section id="工作流因团队而异" class="slide level2">
-<h1>工作流因团队而异</h1>
+<h2>工作流因团队而异</h2>
 <ul>
 <li>不同的团队需要根据人员（能力、规模）、时间、发布策略等制定不同的工作流
 <ul>
@@ -1201,7 +1224,7 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 <li>请在每个sprint都审视工作流是否合适、运转正常</li>
 </ul>
 </section><section id="长期分支特性分支" class="slide level2">
-<h1>长期分支～特性分支</h1>
+<h2>长期分支～特性分支</h2>
 <ul>
 <li>建议：
 <ul>
@@ -1217,29 +1240,23 @@ $ <span class="kw">git</span> status -s</code></pre></div>
 </ul></li>
 </ul>
 </section><section id="centralized-workflow-集中式工作流" class="slide level2">
-<h1>Centralized Workflow<br>集中式工作流</h1>
-<figure>
-<img src="img/centralized_workflow.png" />
-</figure>
+<h2>Centralized Workflow<br>集中式工作流</h2>
+<p><img data-src="img/centralized_workflow.png" /></p>
 </section><section id="integration-manager-workflow-集成管理者工作流" class="slide level2">
-<h1>Integration-Manager Workflow<br>集成管理者工作流</h1>
-<figure>
-<img src="img/integration-manager.png" />
-</figure>
+<h2>Integration-Manager Workflow<br>集成管理者工作流</h2>
+<p><img data-src="img/integration-manager.png" /></p>
 </section><section id="dictator-and-lieutenants-workflow-司令官与副官工作流" class="slide level2">
-<h1>Dictator and Lieutenants Workflow<br>司令官与副官工作流</h1>
-<figure>
-<img src="img/benevolent-dictator.png" />
-</figure>
+<h2>Dictator and Lieutenants Workflow<br>司令官与副官工作流</h2>
+<p><img data-src="img/benevolent-dictator.png" /></p>
 </section><section id="githubgitlab-的管理方式" class="slide level2">
-<h1>github/gitlab 的管理方式</h1>
+<h2>github/gitlab 的管理方式</h2>
 <p><a href="https://guides.github.com/introduction/flow/">Understanding the GitHub Flow</a></p>
 </section></section>
-<section><section id="git-vs-svn" class="titleslide slide level1"><h1>Git vs SVN</h1></section><section id="section-6" class="slide level2">
-<h1></h1>
+<section><section id="git-vs-svn" class="title-slide slide level1"><h1>Git vs SVN</h1></section><section id="section-6" class="slide level2">
+<h2></h2>
 </section></section>
-<section><section id="最后" class="titleslide slide level1"><h1>最后</h1></section><section id="几点建议" class="slide level2">
-<h1>几点建议</h1>
+<section><section id="最后" class="title-slide slide level1"><h1>最后</h1></section><section id="几点建议" class="slide level2">
+<h2>几点建议</h2>
 <ul>
 <li>
 使用命令行，远离GUI
@@ -1261,7 +1278,7 @@ git和svn是可以共存的
 </li>
 </ul>
 </section></section>
-<section><section id="end-thank-you" class="titleslide slide level1"><h1>End<br><br>Thank you!</h1></section></section>
+<section id="end-thank-you" class="title-slide slide level1"><h1>End<br><br>Thank you!</h1></section>
     </div>
   </div>
 
@@ -1273,8 +1290,10 @@ git和svn是可以共存的
       // Full list of configuration options available at:
       // https://github.com/hakimel/reveal.js#configuration
       Reveal.initialize({
-        // Vertical centering of slides
-        center: false,
+        // Push each slide change to the browser history
+        history: true,
+        // Enable slide navigation via mouse wheel
+        mouseWheel: true,
 
         // Optional reveal.js plugins
         dependencies: [
