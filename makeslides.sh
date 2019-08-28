@@ -1,10 +1,10 @@
 #!/bin/bash 
 
-param=" -f markdown+simple_tables -t revealjs --standalone --variable=theme:night --highlight-style=zenburn  --variable=css:assets/css/slides.css --variable=mouseWheel:true --quiet"
+param=" -f markdown+smart -t revealjs --standalone --highlight-style=zenburn -V theme=league -V css=assets/css/slides.css -V mouseWheel=true -V center=true --quiet"
 
 if [ $# -eq 0 ]
 then
-    find . -name "[Ss]lides*.md"|sed -e 's/\.md//'|xargs -i pandoc $param {}.md -o {}.html 
+    find . -name "[Ss]lides*.md"|sed -e 's/\.md//'|xargs -I {} pandoc $param {}.md -o {}.html 
 else
     until [ $# -eq 0 ]
     do 
