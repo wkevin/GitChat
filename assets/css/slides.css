@@ -23,5 +23,19 @@ here is some modify
 }
 
 .reveal table {
-  font-size: 70%
+  font-size: 80%
+}
+
+
+.reveal blockquote {
+  background: rgba(255, 255, 255, 0.3);
+  width: 90%;
+  font-size: 90%;
+  font-style: normal;
+  text-align: left;
+  color: #000000
+}
+
+div.sourceCode { 
+  background-color: #000000;
 }

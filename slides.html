@@ -101,11 +101,26 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
   <p class="author">wkevin</p>
 </section>
 
-<section id="history" class="title-slide slide level2"><h2>History</h2><ul>
-<li>2016.7 v1.0</li>
-<li>2017.4 v2.0</li>
-<li>2019.8 v3.0</li>
-</ul></section>
+<section id="history" class="title-slide slide level2"><h2>History</h2><table>
+<tbody>
+<tr class="odd">
+<td>2016.7</td>
+<td>v1.0</td>
+<td>完成 Git 基础</td>
+</tr>
+<tr class="even">
+<td>2017.4</td>
+<td>v1.1</td>
+<td>局部修订</td>
+</tr>
+<tr class="odd">
+<td>2019.8</td>
+<td>v1.2</td>
+<td>修订近几年的变化，删除svn对比的内容</td>
+</tr>
+</tbody>
+</table></section>
+<section id="git-基础" class="title-slide slide level1" data-background-color="#3962c3"><h1>Git 基础</h1></section>
 <section><section id="源起" class="title-slide slide level1"><h1>源起</h1></section><section id="vcs-version-control-system" class="title-slide slide level2"><h2>VCS (Version Control System)</h2><ul>
 <li><strong>SCCS</strong>(Source Code Control System) – 1970+, M.J.Rochkind</li>
 <li><strong>RCS</strong>(Revision Control System) – 1980+, Walter F. Tichy</li>
@@ -181,33 +196,33 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 </ul></li>
 </ul></li>
 </ul></section></section>
-<section><section id="git-常用命令" class="title-slide slide level1"><h1>Git 常用命令</h1></section><section id="git-help-给出的关键命令" class="title-slide slide level2"><h2>git help 给出的关键命令</h2><pre class="shell"><code>$ git help
-   add        Add file contents to the index
-   bisect     Find by binary search the change that introduced a bug
-   branch     List, create, or delete branches
-   checkout   Checkout a branch or paths to the working tree
-   clone      Clone a repository into a new directory
-   commit     Record changes to the repository
-   diff       Show changes between commits, commit and working tree, etc
-   fetch      Download objects and refs from another repository
-   grep       Print lines matching a pattern
-   init       Create an empty Git repository or reinitialize an existing one
-   log        Show commit logs
-   merge      Join two or more development histories together
-   mv         Move or rename a file, a directory, or a symlink
-   pull       Fetch from and integrate with another repository or local branch
-   push       Update remote refs along with associated objects
-   rebase     Forward-port local commits to the updated upstream head
-   reset      Reset current HEAD to the specified state
-   rm         Remove files from the working tree and from the index
-   show       Show various types of objects
-   status     Show the working tree status
-   tag        Create, list, delete or verify a tag object signed with GPG</code></pre></section><section id="practice" class="title-slide slide level2"><h2>Practice</h2><blockquote>
+<section><section id="git-常用命令" class="title-slide slide level1"><h1>Git 常用命令</h1></section><section id="git-help-给出的关键命令" class="title-slide slide level2"><h2>git help 给出的关键命令</h2><div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1">$ <span class="fu">git</span> help</a>
+<a class="sourceLine" id="cb1-2" title="2">   <span class="ex">add</span>        Add file contents to the index</a>
+<a class="sourceLine" id="cb1-3" title="3">   <span class="ex">bisect</span>     Find by binary search the change that introduced a bug</a>
+<a class="sourceLine" id="cb1-4" title="4">   <span class="ex">branch</span>     List, create, or delete branches</a>
+<a class="sourceLine" id="cb1-5" title="5">   <span class="ex">checkout</span>   Checkout a branch or paths to the working tree</a>
+<a class="sourceLine" id="cb1-6" title="6">   <span class="ex">clone</span>      Clone a repository into a new directory</a>
+<a class="sourceLine" id="cb1-7" title="7">   <span class="ex">commit</span>     Record changes to the repository</a>
+<a class="sourceLine" id="cb1-8" title="8">   <span class="fu">diff</span>       Show changes between commits, commit and working tree, etc</a>
+<a class="sourceLine" id="cb1-9" title="9">   <span class="ex">fetch</span>      Download objects and refs from another repository</a>
+<a class="sourceLine" id="cb1-10" title="10">   <span class="fu">grep</span>       Print lines matching a pattern</a>
+<a class="sourceLine" id="cb1-11" title="11">   <span class="ex">init</span>       Create an empty Git repository or reinitialize an existing one</a>
+<a class="sourceLine" id="cb1-12" title="12">   <span class="ex">log</span>        Show commit logs</a>
+<a class="sourceLine" id="cb1-13" title="13">   <span class="ex">merge</span>      Join two or more development histories together</a>
+<a class="sourceLine" id="cb1-14" title="14">   <span class="fu">mv</span>         Move or rename a file, a directory, or a symlink</a>
+<a class="sourceLine" id="cb1-15" title="15">   <span class="ex">pull</span>       Fetch from and integrate with another repository or local branch</a>
+<a class="sourceLine" id="cb1-16" title="16">   <span class="ex">push</span>       Update remote refs along with associated objects</a>
+<a class="sourceLine" id="cb1-17" title="17">   <span class="ex">rebase</span>     Forward-port local commits to the updated upstream head</a>
+<a class="sourceLine" id="cb1-18" title="18">   <span class="ex">reset</span>      Reset current HEAD to the specified state</a>
+<a class="sourceLine" id="cb1-19" title="19">   <span class="fu">rm</span>         Remove files from the working tree and from the index</a>
+<a class="sourceLine" id="cb1-20" title="20">   <span class="ex">show</span>       Show various types of objects</a>
+<a class="sourceLine" id="cb1-21" title="21">   <span class="ex">status</span>     Show the working tree status</a>
+<a class="sourceLine" id="cb1-22" title="22">   <span class="ex">tag</span>        Create, list, delete or verify a tag object signed with GPG</a></code></pre></div></section><section id="practice" class="title-slide slide level2"><h2>Practice</h2><blockquote>
 <p>快速记忆，请写出至少5个git的命令</p>
 </blockquote></section><section id="git的逻辑分区及几个关键命令" class="title-slide slide level2"><h2>Git的逻辑分区及几个关键命令</h2><p><img src="img/git-logic-field.png" width="70%" /></p></section><section id="practice-1" class="title-slide slide level2"><h2>Practice</h2><blockquote>
 <p>请绘出上页的图</p>
 </blockquote></section><section id="wkevin版的绘图" class="title-slide slide level2"><h2>wkevin版的绘图</h2><p><img src="img/git-common-cmd.png" width="100%" /></p></section></section>
-<section><section id="git-my-diary-一个完整的日记示例" class="title-slide slide level1"><h1>Git my diary<br>一个完整的日记示例</h1></section><section id="最基本的两个配置name-和-email" class="title-slide slide level2"><h2>最基本的两个配置：name 和 email</h2><div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1">$ <span class="fu">git</span> config --global user.name wkevin</a>
+<section><section id="git-my-diary" class="title-slide slide level1"><h1>Git my diary</h1><p>一个完整的日记示例</p></section><section id="最基本的两个配置name-和-email" class="title-slide slide level2"><h2>最基本的两个配置：name 和 email</h2><div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1">$ <span class="fu">git</span> config --global user.name wkevin</a>
 <a class="sourceLine" id="cb2-2" title="2">$ <span class="fu">git</span> config --global user.emal wkevin27@gmail.com</a></code></pre></div></section><section id="创建一个文件夹并写一篇日记" class="title-slide slide level2"><h2>创建一个文件夹并写一篇日记</h2><div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1"><span class="ex">MBP</span>:demo wangkevin$ mkdir mydiary</a>
 <a class="sourceLine" id="cb3-2" title="2"><span class="ex">MBP</span>:demo wangkevin$ cd mydiary</a>
 <a class="sourceLine" id="cb3-3" title="3">$ <span class="fu">cat</span> <span class="op">&gt;</span>diary.md</a>
@@ -336,10 +351,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 </ul>
 <div class="foottext">
 <br><br>详细：<code>git help revisions</code> 或 <code>man gitrevisions</code>
-</div></section><section id="practice-3" class="title-slide slide level2"><h2>Practice</h2><blockquote>
-<p>使用 git log 查看</p>
-</blockquote>
-<div class="fragment">
+</div></section><section id="practice-3" class="title-slide slide level2"><h2>Practice</h2><div class="fragment">
 只看 zte 分支的 revision
 </div>
 <div class="fragment">
@@ -413,23 +425,23 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <div class="sourceCode" id="cb26"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb26-1" title="1">$ <span class="fu">git</span> st</a>
 <a class="sourceLine" id="cb26-2" title="2"><span class="co">## master</span></a>
 <a class="sourceLine" id="cb26-3" title="3"> <span class="ex">M</span> diary.md</a></code></pre></div>
-<p>别名（alias）是linux系统的基本概念，在git中也如鱼得水。</p></section><section id="我的常用别名" class="title-slide slide level2"><h2>我的常用别名</h2><div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb27-1" title="1">$ <span class="fu">git</span> config -l</a>
-<a class="sourceLine" id="cb27-2" title="2"><span class="ex">user.name</span>=wkevin</a>
-<a class="sourceLine" id="cb27-3" title="3"><span class="ex">user.email</span>=wkevin27@gmail.com</a>
-<a class="sourceLine" id="cb27-4" title="4"><span class="ex">alias.st</span>=status</a>
-<a class="sourceLine" id="cb27-5" title="5"><span class="ex">alias.co</span>=checkout</a>
-<a class="sourceLine" id="cb27-6" title="6"><span class="ex">alias.br</span>=branch -avv</a>
-<a class="sourceLine" id="cb27-7" title="7"><span class="ex">alias.rt</span>=remote -vv</a>
-<a class="sourceLine" id="cb27-8" title="8"><span class="ex">alias.l</span>=log --format=format:<span class="st">&#39;%C(auto) %h | %ad | %Cred %an %Cgreen %s&#39;</span> --date=short -n 25 --graph</a>
-<a class="sourceLine" id="cb27-9" title="9"><span class="ex">alias.lg</span>=log --format=format:<span class="st">&#39;%C(auto) %h | %ai | %ci | %Cred %an %Cgreen %s&#39;</span></a>
-<a class="sourceLine" id="cb27-10" title="10"><span class="ex">alias.cl</span>=clone</a>
-<a class="sourceLine" id="cb27-11" title="11"><span class="ex">alias.si</span>=submodule init</a>
-<a class="sourceLine" id="cb27-12" title="12"><span class="ex">alias.sa</span>=submodule add</a>
-<a class="sourceLine" id="cb27-13" title="13"><span class="ex">alias.su</span>=submodule update</a>
-<a class="sourceLine" id="cb27-14" title="14"><span class="ex">alias.ci</span>=commit</a>
-<a class="sourceLine" id="cb27-15" title="15"><span class="ex">alias.sab</span>=submodule add -b master</a>
-<a class="sourceLine" id="cb27-16" title="16"><span class="ex">alias.sur</span>=submodule update --remote</a>
-<a class="sourceLine" id="cb27-17" title="17"><span class="ex">alias.tg</span>=log --format=format:<span class="st">&#39;%C(auto) %h | %ai | %ci | %d  | %Cred %an %Cgreen %s&#39;</span>  --simplify-by-decoration</a></code></pre></div></section></section>
+<p>别名（alias）是linux系统的基本概念，在git中也如鱼得水。</p></section><section id="我的常用别名" class="title-slide slide level2"><h2>我的常用别名</h2><div class="sourceCode" id="cb27"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb27-1" title="1">$ <span class="fu">git</span> config -l <span class="kw">|</span> <span class="fu">grep</span> alias</a>
+<a class="sourceLine" id="cb27-2" title="2"><span class="ex">alias.st</span>=status</a>
+<a class="sourceLine" id="cb27-3" title="3"><span class="ex">alias.co</span>=checkout</a>
+<a class="sourceLine" id="cb27-4" title="4"><span class="ex">alias.br</span>=branch -avv</a>
+<a class="sourceLine" id="cb27-5" title="5"><span class="ex">alias.rt</span>=remote -vv</a>
+<a class="sourceLine" id="cb27-6" title="6"><span class="ex">alias.l</span>=log --format=format:<span class="st">&#39;%C(auto) %h | %ai | %Cred %an %Cgreen %s&#39;</span> --date=local</a>
+<a class="sourceLine" id="cb27-7" title="7"><span class="ex">alias.lg</span>=log --format=format:<span class="st">&#39;%C(auto) %h | %ai | %ci | %Cred %an %Cgreen %s&#39;</span></a>
+<a class="sourceLine" id="cb27-8" title="8"><span class="ex">alias.tg</span>=log --format=format:<span class="st">&#39;%C(auto) %h | %ai | %ci | %d  | %Cred %an %Cgreen %s&#39;</span>  --simplify-by-decoration</a>
+<a class="sourceLine" id="cb27-9" title="9"><span class="ex">alias.cl</span>=clone</a>
+<a class="sourceLine" id="cb27-10" title="10"><span class="ex">alias.si</span>=submodule init</a>
+<a class="sourceLine" id="cb27-11" title="11"><span class="ex">alias.sa</span>=submodule add</a>
+<a class="sourceLine" id="cb27-12" title="12"><span class="ex">alias.su</span>=submodule update</a>
+<a class="sourceLine" id="cb27-13" title="13"><span class="ex">alias.ci</span>=commit</a>
+<a class="sourceLine" id="cb27-14" title="14"><span class="ex">alias.sab</span>=submodule add -b master</a>
+<a class="sourceLine" id="cb27-15" title="15"><span class="ex">alias.sur</span>=submodule update --remote</a>
+<a class="sourceLine" id="cb27-16" title="16"><span class="ex">alias.tags</span>=log --tags --simplify-by-decoration --pretty=<span class="st">&quot;format:%ci %d&quot;</span></a>
+<a class="sourceLine" id="cb27-17" title="17"><span class="ex">alias.dt</span>=difftool</a></code></pre></div></section></section>
 <section><section id="git-add" class="title-slide slide level1"><h1>git add</h1></section><section id="focal-point" class="title-slide slide level2"><h2>Focal Point</h2><ul>
 <li>git add onefile</li>
 <li>git add .</li>
@@ -441,7 +453,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <p><br><br><br />
 stage本身并没有暂存的意思，git中可以理解为把文件放到一个舞台上上演一下，进而文件进入到一个新的阶段。——用这个词可以说是一箭三雕</p></section><section id="git-help-stage" class="title-slide slide level2"><h2>git help stage</h2><div class="sourceCode" id="cb28"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb28-1" title="1"><span class="va">$git</span> <span class="bu">help</span> stage</a>
 <a class="sourceLine" id="cb28-2" title="2"></a>
-<a class="sourceLine" id="cb28-3" title="3"><span class="ex">GIT-STAGE</span>(1)                                              <span class="ex">Git</span> Manual                                              GIT-STAGE(1)</a>
+<a class="sourceLine" id="cb28-3" title="3"><span class="ex">GIT-STAGE</span>(1)                                     <span class="ex">Git</span> Manual                     GIT-STAGE(1)</a>
 <a class="sourceLine" id="cb28-4" title="4"><span class="ex">NAME</span></a>
 <a class="sourceLine" id="cb28-5" title="5">       <span class="ex">git-stage</span> - Add file contents to the staging area</a>
 <a class="sourceLine" id="cb28-6" title="6"><span class="ex">SYNOPSIS</span></a>
@@ -889,6 +901,9 @@ stage本身并没有暂存的意思，git中可以理解为把文件放到一个
 <a class="sourceLine" id="cb48-3" title="3">  <span class="ex">zte</span></a></code></pre></div>
 </div></section></section>
 <section><section id="git-checkout" class="title-slide slide level1"><h1>git checkout</h1></section><section id="原理图-1" class="title-slide slide level2"><h2>原理图</h2><embed src="img/git-checkout.svg" type="image/svg+xml" style="background-color:white" /></section></section>
+<section id="git-fetch" class="title-slide slide level1"><h1>git fetch</h1></section>
+<section id="git-pull" class="title-slide slide level1"><h1>git pull</h1></section>
+<section id="git-push" class="title-slide slide level1"><h1>git push</h1></section>
 <section><section id="git-merge" class="title-slide slide level1"><h1>git merge</h1></section><section id="focal-point-3" class="title-slide slide level2"><h2>Focal Point</h2><ul>
 <li>不必从干净的工作目录开始合并</li>
 <li>但劝你最好从干净的工作目录开始合并，除非你想把自己搞晕</li>
@@ -933,11 +948,10 @@ stage本身并没有暂存的意思，git中可以理解为把文件放到一个
 <li>git merge –no-ff</li>
 </ul></li>
 </ul></section></section>
-<section><section id="git-reset" class="title-slide slide level1"><h1>git reset</h1></section><section id="原理图-2" class="title-slide slide level2"><h2>原理图</h2><embed src="img/git-reset.svg" type="image/svg+xml" style="background-color:white" /></section></section>
+<section id="git-进阶" class="title-slide slide level1" data-background-color="#3962c3"><h1>Git 进阶</h1></section>
+<section><section id="git-remote" class="title-slide slide level1"><h1>git remote</h1></section><section id="原理图-2" class="title-slide slide level2"><h2>原理图</h2><embed src="img/git-remote.svg" type="image/svg+xml" style="background-color:white" /></section></section>
+<section><section id="git-reset" class="title-slide slide level1"><h1>git reset</h1></section><section id="原理图-3" class="title-slide slide level2"><h2>原理图</h2><embed src="img/git-reset.svg" type="image/svg+xml" style="background-color:white" /></section></section>
 <section id="git-rebase" class="title-slide slide level1"><h1>git rebase</h1></section>
-<section><section id="git-remote" class="title-slide slide level1"><h1>git remote</h1></section><section id="原理图-3" class="title-slide slide level2"><h2>原理图</h2><embed src="img/git-remote.svg" type="image/svg+xml" style="background-color:white" /></section></section>
-<section id="git-pull" class="title-slide slide level1"><h1>git pull</h1></section>
-<section id="git-push" class="title-slide slide level1"><h1>git push</h1></section>
 <section id="git-object" class="title-slide slide level1"><h1>Git Object</h1></section>
 <section><section id="git-workflow-工作流" class="title-slide slide level1"><h1>Git Workflow<br>工作流</h1></section><section id="工作流是一种约定" class="title-slide slide level2"><h2>工作流是一种约定</h2><ul>
 <li>工作流是软件团队成员之间的约定</li>
@@ -977,7 +991,6 @@ stage本身并没有暂存的意思，git中可以理解为把文件放到一个
 <li>特性分支的使用</li>
 </ul></li>
 </ul></section><section id="centralized-workflow-集中式工作流" class="title-slide slide level2"><h2>Centralized Workflow<br>集中式工作流</h2><p><img data-src="img/centralized_workflow.png" /></p></section><section id="integration-manager-workflow-集成管理者工作流" class="title-slide slide level2"><h2>Integration-Manager Workflow<br>集成管理者工作流</h2><p><img data-src="img/integration-manager.png" /></p></section><section id="dictator-and-lieutenants-workflow-司令官与副官工作流" class="title-slide slide level2"><h2>Dictator and Lieutenants Workflow<br>司令官与副官工作流</h2><p><img data-src="img/benevolent-dictator.png" /></p></section><section id="githubgitlab-的管理方式" class="title-slide slide level2"><h2>github/gitlab 的管理方式</h2><p><a href="https://guides.github.com/introduction/flow/">Understanding the GitHub Flow</a></p></section></section>
-<section><section id="git-vs-svn" class="title-slide slide level1"><h1>Git vs SVN</h1></section><section id="section-4" class="title-slide slide level2"><h2></h2></section></section>
 <section><section id="最后" class="title-slide slide level1"><h1>最后</h1></section><section id="几点建议" class="title-slide slide level2"><h2>几点建议</h2><ul>
 <li>
 使用命令行，远离GUI

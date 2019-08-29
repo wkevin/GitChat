@@ -3,9 +3,13 @@
 
 ## History
 
-- 2016.7 v1.0
-- 2017.4 v2.0
-- 2019.8 v3.0
+------ ---- ---
+2016.7 v1.0 完成 Git 基础
+2017.4 v1.1 局部修订
+2019.8 v1.2 修订近几年的变化，删除svn对比的内容
+------ ---- ---
+
+# Git 基础 {data-background-color="#3962c3"}
 
 # 源起
 
@@ -93,7 +97,7 @@
 
 ## git help 给出的关键命令
 
-```shell
+```bash
 $ git help
    add        Add file contents to the index
    bisect     Find by binary search the change that introduced a bug
@@ -136,8 +140,9 @@ $ git help
 
 
 
-# Git my diary<br>一个完整的日记示例
+# Git my diary
 
+一个完整的日记示例
 
 ## 最基本的两个配置：name 和 email
 ```bash
@@ -357,8 +362,6 @@ git 和 svn 不同，没有一个数字递增的节点号，而是一串40Bytes�
 
 ## Practice
 
->使用 git log 查看
-
 <div class="fragment">只看 zte 分支的 revision</div> 
 <div class="fragment">
 ```bash
@@ -444,15 +447,14 @@ $ git st
 ## 我的常用别名
 
 ```bash
-$ git config -l
-user.name=wkevin
-user.email=wkevin27@gmail.com
+$ git config -l | grep alias
 alias.st=status
 alias.co=checkout
 alias.br=branch -avv
 alias.rt=remote -vv
-alias.l=log --format=format:'%C(auto) %h | %ad | %Cred %an %Cgreen %s' --date=short -n 25 --graph
+alias.l=log --format=format:'%C(auto) %h | %ai | %Cred %an %Cgreen %s' --date=local
 alias.lg=log --format=format:'%C(auto) %h | %ai | %ci | %Cred %an %Cgreen %s'
+alias.tg=log --format=format:'%C(auto) %h | %ai | %ci | %d  | %Cred %an %Cgreen %s'  --simplify-by-decoration
 alias.cl=clone
 alias.si=submodule init
 alias.sa=submodule add
@@ -460,7 +462,8 @@ alias.su=submodule update
 alias.ci=commit
 alias.sab=submodule add -b master
 alias.sur=submodule update --remote
-alias.tg=log --format=format:'%C(auto) %h | %ai | %ci | %d  | %Cred %an %Cgreen %s'  --simplify-by-decoration
+alias.tags=log --tags --simplify-by-decoration --pretty="format:%ci %d"
+alias.dt=difftool
 ```
 
 
@@ -485,7 +488,7 @@ stage本身并没有暂存的意思，git中可以理解为把文件放到一个
 ```bash
 $git help stage
 
-GIT-STAGE(1)                                              Git Manual                                              GIT-STAGE(1)
+GIT-STAGE(1)                                     Git Manual                     GIT-STAGE(1)
 NAME
        git-stage - Add file contents to the staging area
 SYNOPSIS
@@ -999,6 +1002,12 @@ GitChat.git$ git branch --contains 9d8d
 
 <embed src="img/git-checkout.svg" type="image/svg+xml" style="background-color:white" />
 
+# git fetch
+
+# git pull
+
+# git push
+
 
 # git merge
 
@@ -1047,13 +1056,8 @@ GitChat.git$ git branch --contains 9d8d
     - git merge -s subtree ...
     - git merge --no-ff
 
-# git reset
 
-## 原理图
-
-<embed src="img/git-reset.svg" type="image/svg+xml" style="background-color:white" />
-
-# git rebase
+# Git 进阶 {data-background-color="#3962c3"}
 
 # git remote
 
@@ -1062,9 +1066,13 @@ GitChat.git$ git branch --contains 9d8d
 <embed src="img/git-remote.svg" type="image/svg+xml" style="background-color:white" />
 
 
-# git pull
+# git reset
 
-# git push
+## 原理图
+
+<embed src="img/git-reset.svg" type="image/svg+xml" style="background-color:white" />
+
+# git rebase
 
 # Git Object
 
@@ -1119,9 +1127,6 @@ GitChat.git$ git branch --contains 9d8d
 
 [Understanding the GitHub Flow](https://guides.github.com/introduction/flow/)
 
-# Git vs SVN
-
-## 
 
 # 最后
 
