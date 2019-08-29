@@ -1,0 +1,328 @@
+<style type="text/css">
+/* RESET
+=============================================================================*/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark,{
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* BODY
+=============================================================================*/
+
+body {
+  font-family: Source Han Sans CN, Helvetica, arial, freesans, clean, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #000;
+  background-color: #ffffff;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+body>*:first-child {
+  margin-top: 0 !important;
+}
+
+body>*:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* BLOCKS
+=============================================================================*/
+
+p, blockquote, ul, ol, dl, table {
+  color: #000;
+  margin: 15px 0;
+}
+
+/* HEADERS
+=============================================================================*/
+h1 tt, h1 code, h2 tt, h2 code, h3 tt, h3 code, h4 tt, h4 code, h5 tt, h5 code, h6 tt, h6 code {
+  font-size: inherit;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  /*margin: 0px 0px 0px 0px;*/
+  margin: 20px 0 10px;
+  padding: 0;
+  color: #000;
+  font-weight: bold;
+}
+
+h1 {
+  /*background-color: #AEDD81;*/
+  padding: 10px 0px 10px 0px;
+  font-size: 200%;
+  color: #000;
+  text-align: center; 
+  border-bottom: 5px double #333333;
+}
+
+h2 {
+  /*background-color: #B2C8BB;*/
+  padding: 5px 0px 5px 10px;
+  font-size: 180%;
+  color: #000;
+  border-bottom: 3px ridge #AAAAAA;
+}
+
+h3 {
+  /*background-color: #99ccff;*/
+  padding: 5px 0px 5px 20px;
+  font-size: 150%;
+  color: #000;
+  border-bottom: 2px inset #CCCCCC;
+}
+
+h4 {
+  font-size: 120%;
+  border-bottom: 2px inset #EEEEEE;
+}
+
+h5 {
+  font-size: 100%;
+}
+
+h6 {
+  font-size: 100%;
+}
+
+body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+h1+p, h2+p, h3+p, h4+p, h5+p, h6+p {
+  margin-top: 10px;
+}
+
+/* LINKS
+=============================================================================*/
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* LISTS
+=============================================================================*/
+
+ul, ol {
+  padding-left: 20px;
+}
+
+ul li > :first-child, 
+ol li > :first-child, 
+ul li ul:first-of-type, 
+ol li ol:first-of-type, 
+ul li ol:first-of-type, 
+ol li ul:first-of-type {
+  margin-top: 0px;
+}
+
+ul ul, ul ol, ol ol, ol ul {
+  margin-bottom: 0;
+}
+
+dl {
+  padding: 0;
+}
+
+dl dt {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: italic;
+  padding: 0;
+  margin: 15px 0 5px;
+}
+
+dl dt:first-child {
+  padding: 0;
+}
+
+dl dt>:first-child {
+  margin-top: 0px;
+}
+
+dl dt>:last-child {
+  margin-bottom: 0px;
+}
+
+dl dd {
+  margin: 0 0 15px;
+  padding: 0 15px;
+}
+
+dl dd>:first-child {
+  margin-top: 0px;
+}
+
+dl dd>:last-child {
+  margin-bottom: 0px;
+}
+
+/* CODE
+=============================================================================*/
+/*
+pandoc: 
+
+1) `xyz` -> <code>xyz</code>
+
+2) \t xyz -> <pre><code>xyz</code></pre> 
+
+3)
+```python
+import os
+```
+3.1) --no-highlight: <pre class=python><code>xyz</code></pre> 
+3.2) --highlight-style=XXX:
+<div class="sourceCode" id="cb?">
+  <pre class="sourceCode python">
+    <code class="sourceCode python">
+      <a class="sourceLine" id="cb?-1" title="***"><span class="im">import</span> os</a>
+    </code>
+  </pre>
+</div>
+*/
+
+code {
+  color: #c7254e;
+  background-color: #F5F5F5;
+}
+
+pre code {
+  overflow-x: scroll;
+  white-space:pre;
+  word-break: keep-all;
+}
+
+/* QUOTES
+=============================================================================*/
+
+blockquote {
+  font-size: 100%
+  border-left: 4px solid #DDD;
+  padding: 0 15px;
+  color: #777;
+}
+
+blockquote>:first-child {
+  margin-top: 0px;
+}
+
+blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+/* HORIZONTAL RULES
+=============================================================================*/
+
+hr {
+  clear: both;
+  margin: 15px 0;
+  height: 0px;
+  overflow: hidden;
+  border: none;
+  background: transparent;
+  border-bottom: 4px solid #ddd;
+  padding: 0;
+}
+figcaption {
+  text-align: center;
+}
+
+/* TABLES
+=============================================================================*/
+table {
+  margin: 0 auto;
+  border-collapse:collapse; /* 关键属性：合并表格内外边框(其实表格边框有2px，外面1px，里面还有1px哦) */ 
+  border:solid #999; /* 设置边框属性；样式(solid=实线)、颜色(#999=灰) */ 
+  border-width:1px 0 0 1px; /* 设置边框状粗细：上 右 下 左 = 对应：1px 0 0 1px */ 
+}
+
+table tr { /* tr: table row */
+  border-top: 1px solid #ccc;
+  line-height: 14px;
+  background-color: #fff;
+}
+
+table th, table td {  /* th: table colum header； td： table colum */
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+  word-wrap:break-word;
+  word-break:keep-all;
+  text-align: center;
+}
+
+table th {
+  font-weight: bold;
+  text-align: center !important; /*内容居中，加上 !important 避免被 Markdown 样式覆盖*/
+  background: rgba(158,188,226,0.2); /*背景色*/
+  white-space: nowrap; /*表头内容强制在一行显示*/
+}
+
+table td:nth-child(1) {
+    /*white-space: nowrap; 首列不换行*/
+}
+
+table tr:hover {
+    background: #efefef; 
+}
+
+
+/* IMAGES
+=============================================================================*/
+
+embed {
+  max-width: 95%;
+  }
+div {
+  text-align: center;
+}
+img {
+  max-width: 100%;
+  clear: both;
+  display: block;
+  margin:auto; 
+  margin-top:5px;
+  margin-bottom:30px;
+  /*
+  border-top:1px solid #ccc;   
+  border-right:1px solid #666;   
+  border-bottom:2px solid #999;   
+  border-left:1px solid #ccc;   
+  padding: 4px;  
+  */
+}
+.alignleft {
+  display: inline;
+  float: left;
+}
+
+.alignright {
+  display: inline;
+  float: right;
+}
+
+.aligncenter {
+  clear: both;
+  display: block;
+  margin:auto;
+} 
+
+.sourceCode {
+  text-align: left;
+}
+</style>

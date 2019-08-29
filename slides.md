@@ -1,37 +1,11 @@
 % ![](img/logo.png)
 % wkevin
-% ZTE
 
-# Slides 操作提示<br><br>请按空格键
+## History
 
-##
-
-
-|按键|效果|
-|---|---|
-|PageDown/PageUp|一维向后/前遍历每张Slides|
-|空格/Shift+空格<br>鼠标滚轮|向后/前播放历史中的每张Slides|
-|上/下/左/右箭头|二维展示每张Slides|
-|Esc/o|二维显示Slides地图<br>箭头：移动<br>Enter：选中|
-|   |   |
-
-<aside class="notes">
-此段内容只有在speaker模式下的NOTES窗口可以看到。
-'s'进入speaker模式。
-</aside>
-
-<br><br>
-<h1>请按 Esc 键</h1>
-
-# 特别声明
-
-## 
-
-本文不是**Git for Dummies**  
-因为傻瓜书不需要人来讲解  
-
-本文目标是  
-**让你执行每个git命令时知其然，并且知其所以然**
+- 2016.7 v1.0
+- 2017.4 v2.0
+- 2019.8 v3.0
 
 # 源起
 
@@ -48,19 +22,34 @@
 
 ## Git从何而来
 
+:::::::::::::: {.columns}
+::: {.column width="40%"}
 ![](img/Torvalds.jpg)
+:::
+::: {.column width="60%"}
+<br>
 
-* [Linux创始人Linus Torvalds访谈，Git的十年之旅](http://www.wtoutiao.com/a/2287349.html) 
-* [Git 诞生记](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137402760310626208b4f695940a49e5348b689d095fc000)
-* [BitKeeper与Git的恩怨情仇](http://www.path8.net/tn/archives/6039) 
+* [Linux创始人Linus Torvalds访谈，Git的十年之旅](http://www.voidcn.com/article/p-cjtmgqch-bne.html) 
+* [Git 诞生记](https://www.liaoxuefeng.com/wiki/896043488029600/896202815778784)
+* [BitKeeper与Git的恩怨情仇](https://blog.csdn.net/glory1234work2115/article/details/51277402) 
+:::
+::::::::::::::
+
 
 ## Git去往何处
 
-2005年7月26日开始，Torvalds把Git托付给了一位日本人：[Junio Hamano](https://en.wikipedia.org/wiki/Junio_Hamano)。Torvalds也说过自己一生最大的成功之一就包括把git托付给Hamano。
-
-Hamano现在google，他的github帐号为：[gitster](https://github.com/gitster)。
-
+:::::::::::::: {.columns}
+::: {.column width="40%"}
 ![](img/Hamano.jpg)
+:::
+::: {.column width="60%"}
+<br>
+  
+- 2005年7月26日开始，Torvalds把Git托付给了一位日本人：[Junio Hamano](https://en.wikipedia.org/wiki/Junio_Hamano)
+- Torvalds 2012 年说过自己一生最大的成功之一就包括把git托付给Hamano
+- Hamano现在google，他的github帐号为：[gitster](https://github.com/gitster)
+:::
+::::::::::::::
 
 ## 官方Specification
 
@@ -89,27 +78,22 @@ Hamano现在google，他的github帐号为：[gitster](https://github.com/gitste
 ## github上Git的卓越组织
 
 * [git](https://github.com/git):
-    - 目前有[8位成员](https://github.com/orgs/git/people)，牵头人 [Scott Chacon](https://github.com/schacon)，他们充当管理者和传教士的角色
+    - 目前有[17位成员](https://github.com/orgs/git/people)，牵头人 [Scott Chacon](https://github.com/schacon)，他们充当管理者和传教士的角色
     - 比较重要的贡献是：
         - 维护git源码
-            + Hamano(gitster)并没有加入到这个Orgnization中，而只是fork到自己账号下，然后PR到 git/git，看来gitster只是想当程序员，不想当管理者和传教士——大概源于日本人和中国人类似，都比较低调。
+            + ~~Hamano(gitster)并没有加入到这个Orgnization中，而只是fork到自己账号下，然后PR到 git/git，看来gitster只是想当程序员，不想当管理者和传教士——大概源于日本人和中国人类似，都比较低调。~~
+            + Hamano 现在已经加入此组织
         - 管理和维护 [git-scm.com](http://git-scm.com) 网站
 * [progit](https://github.com/progit)
-    - 目前有[15位成员](https://github.com/orgs/progit/people)，牵头人 [Scott Chacon](https://github.com/schacon) 和 [Ben Straub](https://github.com/ben)，两人目前都供职于github公司，其他人多是从事翻译工作。
+    - 目前有[18位成员](https://github.com/orgs/progit/people)，牵头人 [Scott Chacon](https://github.com/schacon) 和 [Ben Straub](https://github.com/ben)，两人目前都供职于github公司，其他人多是从事翻译工作。
     - 比较重要的贡献
-        - 写了《Pro git》这本书，此书被翻译成多种语言，被奉为经典。
-
-## Git 比 SVN 好在哪
-
-先把这个问题放一放，[最后来回答](#/git-vs-svn)。
-
-换个问题：我要掌握哪些git知识才能领略到它的好？
+        - 写了《Pro git》这本书，此书被翻译成多种语言([中文版](https://git-scm.com/book/zh))，被奉为经典。
 
 # Git 常用命令
 
 ## git help 给出的关键命令
 
-```bash
+```shell
 $ git help
    add        Add file contents to the index
    bisect     Find by binary search the change that introduced a bug

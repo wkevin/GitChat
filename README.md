@@ -11,12 +11,9 @@
     - `sudo apt-get install pandoc` // need pandoc version > 2.0
     - `cd GitChat/`
     - `git submodule update --init --recursive`
-* Build Html
-    * `pandoc -s --template template.html  -f markdown+smart --toc -t html --quiet -o gitchat.html gitchat.md`
-* Build Slides
-    - `pandoc slides.md -o slides.html -f markdown -t revealjs --standalone --variable=theme:white --highlight-style=zenburn --variable=center:false --variable=css:assets/css/slides.css`
-        + **white** can be one of `ls reveal.js/css/theme`
-        + **zenburn** can be one of: pygments(default),kae,monochrome,espresso,zenburn,haddock,tango
+* Build Html & Slides
+    * `./build-html.sh [-c]`
+        * `-c`  clean first and then build
 * Other
     - pandoc has many Markdown syntax Extension and usage is `pandoc -f markdown+xxextension`:
         + `escaped_line_breaks`

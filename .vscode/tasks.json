@@ -1,0 +1,24 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Compile Markdown to HTML",
+            "type": "shell",
+            "command": "cd ${fileDirname} && pandoc -F ${cwd}/assets/plantuml.py -s -f markdown+smart+hard_line_breaks  --highlight-style=zenburn --metadata pagetitle=${fileBasenameNoExtension} -t html     --css=${cwd}/assets/css/md2html.css --template ${cwd}/assets/toc.template --toc --toc-depth=4 -o ${fileDirname}/${fileBasenameNoExtension}.html ${file}",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Compile Markdown to Slide",
+            "type": "shell",
+            "command": "cd ${fileDirname} && pandoc -F ${cwd}/assets/plantuml.py -s -f markdown+smart+hard_line_breaks  --highlight-style=zenburn --metadata pagetitle=${fileBasenameNoExtension} -t revealjs  --css=${cwd}/assets/css/slides.css --template ${cwd}/assets/revealjs.template --slide-level 3 --variable=theme:league --variable=center:true  -o ${fileDirname}/${fileBasenameNoExtension}.html ${file}",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
+        }
+    ]
+}

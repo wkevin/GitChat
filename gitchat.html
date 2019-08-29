@@ -11,24 +11,12 @@
     <title>gitchat</title>
 
     <!-- Bootstrap core CSS -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="assets/css/bootstrap.min.css" >
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="https://maxcdn.bootstrapcdn.com/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
     <link href="assets/css/dashboard.css" rel="stylesheet">
 
-    <link href="assets/css/markdown.css" rel="stylesheet">
-
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" href="assets/css/md2html.css" />
   </head>
 
   <body>
@@ -164,7 +152,8 @@ Git 聊天入门
 </ol>
 <p><img src="img/git4windows-sh.png" /></p>
 <p>对比一下1和4：</p>
-<p><img src="img/git4windows-gitbash.png" /> <img src="img/git4windows-bin.png" /></p>
+<p><img src="img/git4windows-gitbash.png" /><br />
+<img src="img/git4windows-bin.png" /></p>
 <ul>
 <li>1和4的图标不同，4其实是Windows自身的cmd窗口</li>
 <li>4由于是Windows自身cmd窗口，所以对中文支持较好</li>
@@ -582,7 +571,8 @@ bf36ab9 Sun Jan 31 12:19:33 2016 wkevin 2.1的日记
 <p>那就是颜色了，加上颜色让字段分的更加清晰</p>
 <pre class="cmd"><code>git config --global --replace-all alias.lg  &quot;log --pretty=format:&#39;%C(auto) %h | %ai | %Cred %an %Cgreen %s&#39;&quot;</code></pre>
 <p><img src="img/git-lg-with-color.png" /></p>
-<p>为什么改用<code>%ai</code>，不用<code>%ad</code>了？ <code>%ad</code>会受到<code>--date=xxx</code>的影响，<code>%ai</code>不会。所以限制了<code>%ad</code>的使用，如果常从github上拿代码，会看到世界各地的提交人和提交时间，我还是希望分一下时区的，所以用了<code>%ai</code>。</p>
+<p>为什么改用<code>%ai</code>，不用<code>%ad</code>了？<br />
+<code>%ad</code>会受到<code>--date=xxx</code>的影响，<code>%ai</code>不会。所以限制了<code>%ad</code>的使用，如果常从github上拿代码，会看到世界各地的提交人和提交时间，我还是希望分一下时区的，所以用了<code>%ai</code>。</p>
 <p>比如我们来查看linux的源码：</p>
 <p><img src="img/git-lg-by-linux.png" /></p>
 <h2 id="git-log-fuller-中的-author-和-commit-啥关系">git log –fuller 中的 author 和 commit 啥关系</h2>
@@ -613,8 +603,10 @@ bf36ab9 Sun Jan 31 12:19:33 2016 wkevin 2.1的日记
 </blockquote>
 <p><strong>git中查看差异有两个命令</strong>:</p>
 <ol type="1">
-<li><code>git diff</code>: 在Terminal中按照Linux的传统方式生成patch <img src="img/git-diff.png" /></li>
-<li><code>git difftool</code>: 使用第三方工具显示差异 <img src="img/git-difftool-merge.png" /></li>
+<li><code>git diff</code>: 在Terminal中按照Linux的传统方式生成patch<br />
+<img src="img/git-diff.png" /></li>
+<li><code>git difftool</code>: 使用第三方工具显示差异<br />
+<img src="img/git-difftool-merge.png" /></li>
 </ol>
 <p><code>git difftool</code> 命令能够调用的第三方比较工具有很多，列几个本人用过的：</p>
 <ul>
@@ -1229,9 +1221,12 @@ $ export http_proxy     //再次export即可</code></pre>
 </ul>
 <p>但经过我的试用，功能还都不完善，希望它们早日成熟、好用。</p>
 <p>目前可以使用 github/gitlab 的 RSS Feed 功能：</p>
-<p>针对个人的RSS Feed： <img src="img/gitlab-rss-feed-user.png" /></p>
-<p>针对团队的RSS Feed： <img src="img/gitlab-rss-feed-group.png" /></p>
-<p>使用 RSS Reader（图中使用的是Snafer）订阅的效果： <img src="img/gitlab-rss-reader.png" /></p>
+<p>针对个人的RSS Feed：<br />
+<img src="img/gitlab-rss-feed-user.png" /></p>
+<p>针对团队的RSS Feed：<br />
+<img src="img/gitlab-rss-feed-group.png" /></p>
+<p>使用 RSS Reader（图中使用的是Snafer）订阅的效果：<br />
+<img src="img/gitlab-rss-reader.png" /></p>
 <h2 id="为什么说不要用git-pull而是用git-fetch-git-merge代替">为什么说不要用git pull，而是用git fetch + git merge代替</h2>
 <p>git pull的问题是它把过程的细节都隐藏了起来，以至于你不用去了解git中各种类型分支的区别和使用方法。当然，多数时候这是没问题的，但一旦代码有问题，你很难找到出错的地方。看起来git pull的用法会使你吃惊，简单看一下git的使用文档应该就能说服你。</p>
 <p>将下载（fetch）和合并（merge）放到一个命令里的另外一个弊端是，你的本地工作目录在未经确认的情况下就会被远程分支更新。当然，除非你关闭所有的安全选项，否则git pull在你本地工作目录还不至于造成不可挽回的损失，但很多时候我们宁愿做的慢一些，也不愿意返工重来。</p>
@@ -1331,12 +1326,16 @@ https://&lt;name&gt;:&lt;password&gt;@github.com</code></pre>
 <p>方法就是：在git push之前，先git fetch，再git rebase</p>
 <p>git rebase（衍合）</p>
 <p>git rebase 一般自己一个人开发时使用，用来保持提交记录的整洁。一旦上传到github后，不应该使用git rebase,不然被骂死。</p>
-<p>一旦分支中的提交对象发布到公共仓库，就千万不要对该分支进行衍合操作。 如果你遵循这条金科玉律，就不会出差错。否则，人民群众会仇恨你，你的朋友和家人也会嘲笑你，唾弃你。</p>
+<p>一旦分支中的提交对象发布到公共仓库，就千万不要对该分支进行衍合操作。<br />
+如果你遵循这条金科玉律，就不会出差错。否则，人民群众会仇恨你，你的朋友和家人也会嘲笑你，唾弃你。</p>
 <h2 id="git多用户间协作还有什么引人入胜之处">Git多用户间协作还有什么引人入胜之处</h2>
 <ul>
-<li>集中式工作流 <img src="img/workflow.onecore.png" /></li>
-<li>集成管理员工作流 <img src="img/workflow.manager.png" /></li>
-<li>司令与副官流程（Linux） <img src="img/workflow.many.layers.png" /></li>
+<li>集中式工作流<br />
+<img src="img/workflow.onecore.png" /></li>
+<li>集成管理员工作流<br />
+<img src="img/workflow.manager.png" /></li>
+<li>司令与副官流程（Linux）<br />
+<img src="img/workflow.many.layers.png" /></li>
 </ul>
 <h1 id="round-5-整理">Round 5 : 整理</h1>
 <p><img src="img/elephants-sand-river-sw.jpg" /></p>
@@ -1348,7 +1347,8 @@ https://&lt;name&gt;:&lt;password&gt;@github.com</code></pre>
 </ul>
 <h2 id="git去往何处">git去往何处</h2>
 <p>2005年7月26日开始，Torvalds把git托付给了一位日本人：<a href="https://en.wikipedia.org/wiki/Junio_Hamano">Junio Hamano</a>。Torvalds也说过自己一生最大的成功之一就包括把git托付给Hamano。</p>
-<p>Hamano现在google，他的github帐号为：<a href="https://github.com/gitster">gitster</a>，头像中抱着个大熊猫，说不定比较喜欢China哦。 <img src="img/Hamano.jpg" /></p>
+<p>Hamano现在google，他的github帐号为：<a href="https://github.com/gitster">gitster</a>，头像中抱着个大熊猫，说不定比较喜欢China哦。<br />
+<img src="img/Hamano.jpg" /></p>
 <p>git源码的<a href="https://github.com/git/git/graphs/contributors">提交统计</a>中可以发现Hamano是提交最踊跃的：</p>
 <p><img src="img/git-contributors.png" /></p>
 <p>github上有这样几个卓越的组织（Orgnization):</p>
@@ -1367,7 +1367,8 @@ https://&lt;name&gt;:&lt;password&gt;@github.com</code></pre>
 </ul></li>
 </ul>
 <h2 id="git有哪些好的入门的资料">git有哪些好的入门的资料</h2>
-<p>读到这里是需要系统的了解、学习一下git的时候了， 当然，我明白你说的是中文资料。</p>
+<p>读到这里是需要系统的了解、学习一下git的时候了，<br />
+当然，我明白你说的是中文资料。</p>
 <p><strong>官方Specification</strong></p>
 <ul>
 <li><a href="https://www.kernel.org/pub/software/scm/git/docs/">Git Man Page</a>: 即： git help 命令的输出</li>
@@ -1394,8 +1395,12 @@ https://&lt;name&gt;:&lt;password&gt;@github.com</code></pre>
 <p>google 或 bing 上搜索图片：<strong>git cheat sheet</strong> —— 不要在baidu上搜索，结果你会很失望。</p>
 <p>可以看到很多热心网友们整理的常用命令集，快选一幅打印出来或作为桌面吧！</p>
 <p>比如（版权归作者所有，本文仅是转发）：</p>
-<p><img src="img/Git-Cheatsheet-1.png" /> <img src="img/Git-Cheatsheet-3.jpg" /> <img src="img/Git-Cheatsheet-4.png" /> <img src="img/Git-Cheatsheet-5.png" /></p>
-<p>也有一些复杂到令人发指的： <img src="img/Git-Cheatsheet-2.png" /></p>
+<p><img src="img/Git-Cheatsheet-1.png" /><br />
+<img src="img/Git-Cheatsheet-3.jpg" /><br />
+<img src="img/Git-Cheatsheet-4.png" /><br />
+<img src="img/Git-Cheatsheet-5.png" /></p>
+<p>也有一些复杂到令人发指的：<br />
+<img src="img/Git-Cheatsheet-2.png" /></p>
 <h2 id="重新梳理git的软件">重新梳理git的软件</h2>
 <p>是时候看一下git的 <a href="https://en.wikipedia.org/wiki/Git_(software)">维基百科</a> 了：</p>
 <blockquote>
@@ -1406,7 +1411,9 @@ https://&lt;name&gt;:&lt;password&gt;@github.com</code></pre>
 </blockquote>
 <ul>
 <li>UI前端也有，比如github出品的 <a href="https://desktop.github.com">github desktop</a></li>
-<li><a href="https://github.com/git-for-windows/git">Git for Windows</a> * 第一代的名字叫sysGit](https://github.com/msysgit/git)，基于 msys（属于 MinGW）—— 2015年底已废弃 * 第二代重新建立了github项目<a href="https://github.com/git-for-windows/git">Git for Windows</a>，基于 msys2（不再属于MinGW），英语有自信的可以读读它的<a href="https://github.com/git-for-windows/git/wiki">背景</a>
+<li><a href="https://github.com/git-for-windows/git">Git for Windows</a><br />
+* 第一代的名字叫sysGit](https://github.com/msysgit/git)，基于 msys（属于 MinGW）—— 2015年底已废弃<br />
+* 第二代重新建立了github项目<a href="https://github.com/git-for-windows/git">Git for Windows</a>，基于 msys2（不再属于MinGW），英语有自信的可以读读它的<a href="https://github.com/git-for-windows/git/wiki">背景</a>
 <ul>
 <li><a href="http://code.google.com/p/tortoisegit/">TortoiseGit</a>：类似TortoiseSVN，可以做图标重绘。</li>
 </ul></li>
@@ -1604,9 +1611,15 @@ git clone newrepo.git</code></pre>
 <h2 id="push-错了我要丢弃remote上的某个节点">push 错了，我要丢弃remote上的某个节点</h2>
 <p>管理员： 胆子越来越大了啊，都push到server里了，还要删除，羞不羞啊 :)<br />
 程序员： 给个机会吧，这几个commit确实不想push到server上。<br />
-管理员： 有没有想过server上的这个分支已经被N多同学fetch过了，已经基于它做开发了，你reset了几个节点，别人会出错的！ 程序员： 不会的，这个分支只有我一个人用 管理员： 哪个分支啊？ 程序员： master 管理员： 啥？ master分支 O_O ，你有没有看gitlab的帮助文档，master分支被gitlab保护了，保护分支除了只允许Master角色有写权限外，还不允许任何人对其<code>git push --force</code>操作，也不允许任何人删除保护分支的。 程序员： 有这一说？我说 <code>git push --force origin master:master</code> 咋提示我失败呢</p>
+管理员： 有没有想过server上的这个分支已经被N多同学fetch过了，已经基于它做开发了，你reset了几个节点，别人会出错的！<br />
+程序员： 不会的，这个分支只有我一个人用<br />
+管理员： 哪个分支啊？<br />
+程序员： master<br />
+管理员： 啥？ master分支 O_O ，你有没有看gitlab的帮助文档，master分支被gitlab保护了，保护分支除了只允许Master角色有写权限外，还不允许任何人对其<code>git push --force</code>操作，也不允许任何人删除保护分支的。<br />
+程序员： 有这一说？我说 <code>git push --force origin master:master</code> 咋提示我失败呢</p>
 <p>十几分钟后……</p>
-<p>程序员： 我研究了gitlab的权限说明： https://about.gitlab.com/2014/11/26/keeping-your-code-protected/ ，保护分支是可以取消保护的 管理员： shit，这都被你找到了，好吧，我承认是可以，就在 project - seetings 里面，只给你这一次机会啊，快去吧。</p>
+<p>程序员： 我研究了gitlab的权限说明： https://about.gitlab.com/2014/11/26/keeping-your-code-protected/ ，保护分支是可以取消保护的<br />
+管理员： shit，这都被你找到了，好吧，我承认是可以，就在 project - seetings 里面，只给你这一次机会啊，快去吧。</p>
 <p>终于可以霸王硬上弓了。上弓方法有三：</p>
 <ol type="1">
 <li><code>git reset xxx</code> 先回退本地，然后 <code>git push --force origin master:master</code></li>
@@ -2049,7 +2062,9 @@ committer wkevin &lt;wkevin@users.noreply.github.com&gt; 1454556117 +0800
 <embed src="img/git-remote.svg" type="image/svg+xml" />
 <h2 id="git-reset-原理图">git reset 原理图</h2>
 <embed src="img/git-reset.svg" type="image/svg+xml" />
-<p><code>git reset [-q] [&lt;tree-ish&gt;] [--] &lt;paths&gt;…</code> <code>git reset (--patch | -p) [&lt;tree-ish&gt;] [--] [&lt;paths&gt;…]</code> <code>git reset [--soft | --mixed [-N] | --hard | --merge | --keep] [-q] [&lt;commit&gt;]</code></p>
+<p><code>git reset [-q] [&lt;tree-ish&gt;] [--] &lt;paths&gt;…</code><br />
+<code>git reset (--patch | -p) [&lt;tree-ish&gt;] [--] [&lt;paths&gt;…]</code><br />
+<code>git reset [--soft | --mixed [-N] | --hard | --merge | --keep] [-q] [&lt;commit&gt;]</code></p>
 <ul>
 <li>图中3个动作：
 <ol type="1">
@@ -2119,7 +2134,8 @@ $ git br
 </ul></li>
 </ul>
 <h2 id="arc的安装和配置">arc的安装和配置</h2>
-<p><strong>Windows下的安装</strong> 略</p>
+<p><strong>Windows下的安装</strong><br />
+略</p>
 <p><strong>Ubuntu下的安装</strong></p>
 <ul>
 <li>安装
@@ -2352,12 +2368,7 @@ Included changes:
         var shiftWindow = function() { scrollBy(0, -50) };
         window.addEventListener("hashchange", shiftWindow);
         function load() { if (window.location.hash) shiftWindow(); }
-        
-        /*add Bootstrap styles to tables*/
-        var tables = document.getElementsByTagName("table");
-        for(var i = 0; i < tables.length; ++i){
-            tables[i].className += "table table-bordered table-hover";
-        }
     </script>
+
   </body>
 </html>
