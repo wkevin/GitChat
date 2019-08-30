@@ -173,6 +173,10 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <li><a href="http://git-scm.com">git-scm.com</a></li>
 <li><a href="https://en.wikipedia.org/wiki/Git_(software)">git 维基百科</a></li>
 <li><a href="http://git.wiki.kernel.org">git SCM wiki</a> – 2011年已停止更新</li>
+<li>其他
+<ul>
+<li><a href="https://boxueio.com/series/git-essential">在开发工作中引入git版本控制</a> ：10节课，有视频，有文档，适合入门</li>
+</ul></li>
 </ul></section><section id="github上git的卓越组织" class="title-slide slide level2"><h2>github上Git的卓越组织</h2><ul>
 <li><a href="https://github.com/git">git</a>:
 <ul>
@@ -945,7 +949,38 @@ stage本身并没有暂存的意思，git中可以理解为把文件放到一个
 <section><section id="git-reset" class="title-slide slide level1"><h1>git reset</h1></section><section id="原理图-3" class="title-slide slide level2"><h2>原理图</h2><embed src="img/git-reset.svg" type="image/svg+xml" style="background-color:white" /></section></section>
 <section id="git-rebase" class="title-slide slide level1"><h1>git rebase</h1></section>
 <section id="git-object" class="title-slide slide level1"><h1>Git Object</h1></section>
-<section><section id="git-workflow-工作流" class="title-slide slide level1"><h1>Git Workflow<br>工作流</h1></section><section id="工作流是一种约定" class="title-slide slide level2"><h2>工作流是一种约定</h2><ul>
+<section id="git-生态" class="title-slide slide level1" data-background-color="#3962c3"><h1>Git 生态</h1></section>
+<section><section id="git-托管平台" class="title-slide slide level1"><h1>Git 托管平台</h1></section><section id="github-vs-gitlab" class="title-slide slide level2"><h2><a href="https://about.gitlab.com/devops-tools/github-vs-gitlab.html">Github Vs Gitlab</a></h2><p><img data-src="img/github.vs.gitlab.png" /></p></section><section id="托管平台扩展的scm" class="title-slide slide level2"><h2>托管平台扩展的SCM</h2><p>fork、PR</p></section><section id="基于托管平台的ci" class="title-slide slide level2"><h2>基于托管平台的CI</h2><p><img data-src="img/gitlab.ci.png" /></p></section><section id="github-actions" class="slide level3">
+<h3><a href="https://github.com/features/actions">Github Actions</a></h3>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb49-1" title="1"><span class="kw">|</span><span class="ex">--</span> hello-world (repository)</a>
+<a class="sourceLine" id="cb49-2" title="2"><span class="kw">|</span>   <span class="kw">|</span><span class="ex">__</span> .github</a>
+<a class="sourceLine" id="cb49-3" title="3"><span class="kw">|</span>       <span class="kw">|</span><span class="ex">__</span> main.workflow</a>
+<a class="sourceLine" id="cb49-4" title="4"><span class="kw">|</span>   <span class="kw">|</span><span class="ex">__</span> action-a</a>
+<a class="sourceLine" id="cb49-5" title="5"><span class="kw">|</span>       │<span class="ex">__</span>  Dockerfile</a>
+<a class="sourceLine" id="cb49-6" title="6"><span class="kw">|</span>       │<span class="ex">__</span>  README.md</a>
+<a class="sourceLine" id="cb49-7" title="7"><span class="kw">|</span>       <span class="kw">|</span><span class="ex">__</span>  entrypoint.sh  </a>
+<a class="sourceLine" id="cb49-8" title="8"><span class="kw">|</span></a></code></pre></div>
+<p><br><br />
+<a href="https://developer.github.com/actions/creating-github-actions/creating-a-new-action/">Creating a new GitHub Action</a></p>
+</section><section id="gitlab-ci-gitlab-runner" class="slide level3">
+<h3>Gitlab CI &amp; <a href="https://docs.gitlab.com/runner/">Gitlab Runner</a></h3>
+<ul>
+<li>Multi-platform</li>
+<li>Multi-language</li>
+<li>Stable</li>
+<li>Parallel builds</li>
+<li>Realtime logging</li>
+<li>Flexible pipelines</li>
+<li>Versioned pipelines</li>
+<li>Autoscaling</li>
+<li>Build artifacts</li>
+<li>Docker support</li>
+<li>Container Registry</li>
+<li>Protected variables</li>
+<li>Environments</li>
+</ul>
+</section></section>
+<section><section id="git-workflow" class="title-slide slide level1"><h1>Git Workflow</h1></section><section id="工作流是一种约定" class="title-slide slide level2"><h2>工作流是一种约定</h2><ul>
 <li>工作流是软件团队成员之间的约定</li>
 <li>约定内容包括：
 <ul>

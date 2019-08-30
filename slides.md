@@ -78,6 +78,8 @@
 * [git-scm.com](http://git-scm.com)
 * [git 维基百科](https://en.wikipedia.org/wiki/Git_(software))
 * [git SCM wiki](http://git.wiki.kernel.org) -- 2011年已停止更新
+* 其他
+    * [在开发工作中引入git版本控制](https://boxueio.com/series/git-essential) ：10节课，有视频，有文档，适合入门
 
 ## github上Git的卓越组织
 
@@ -1067,7 +1069,57 @@ GitChat.git$ git branch --contains 9d8d
 
 # Git Object
 
-# Git Workflow<br>工作流
+# Git 生态 {data-background-color="#3962c3"}
+
+# Git 托管平台
+
+## [Github Vs Gitlab](https://about.gitlab.com/devops-tools/github-vs-gitlab.html)
+
+![](img/github.vs.gitlab.png)
+
+## 托管平台扩展的SCM
+
+fork、PR
+
+## 基于托管平台的CI
+
+![](img/gitlab.ci.png)
+
+### [Github Actions](https://github.com/features/actions)
+
+```bash
+|-- hello-world (repository)
+|   |__ .github
+|       |__ main.workflow
+|   |__ action-a
+|       │__  Dockerfile
+|       │__  README.md
+|       |__  entrypoint.sh  
+|
+```
+
+<br>
+[Creating a new GitHub Action](https://developer.github.com/actions/creating-github-actions/creating-a-new-action/)
+
+### Gitlab CI & [Gitlab Runner](https://docs.gitlab.com/runner/)
+
+
+- Multi-platform
+- Multi-language
+- Stable
+- Parallel builds
+- Realtime logging
+- Flexible pipelines
+- Versioned pipelines
+- Autoscaling
+- Build artifacts
+- Docker support
+- Container Registry
+- Protected variables
+- Environments
+
+
+# Git Workflow
 
 ## 工作流是一种约定
 
