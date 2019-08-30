@@ -4,13 +4,14 @@ here is some modify
 */
 
 .reveal {
-    font-size: 26px
+    font-size: 24px
 }
 
 .reveal section img {
     border: 0;
     background-color: transparent;
     box-shadow: 0 0 0 0;
+    max-width: 90%;
 }
 
 .reveal h1,
@@ -25,8 +26,6 @@ here is some modify
 .reveal table {
   font-size: 80%
 }
-
-
 .reveal blockquote {
   background: rgba(255, 255, 255, 0.3);
   width: 90%;
@@ -36,6 +35,13 @@ here is some modify
   color: #000000
 }
 
+.reveal pre {
+  font-size: 0.9em; 
+}
+
+.reveal pre code {
+  max-height: none;
+}
 div.sourceCode { 
   background-color: #000000;
 }

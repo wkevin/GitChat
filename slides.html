@@ -196,7 +196,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 </ul></li>
 </ul></li>
 </ul></section></section>
-<section><section id="git-常用命令" class="title-slide slide level1"><h1>Git 常用命令</h1></section><section id="git-help-给出的关键命令" class="title-slide slide level2"><h2>git help 给出的关键命令</h2><div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1">$ <span class="fu">git</span> help</a>
+<section><section id="git-常用命令" class="title-slide slide level1"><h1>Git 常用命令</h1></section><section id="section" class="title-slide slide level2"><h2></h2><div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1">$ <span class="fu">git</span> help</a>
 <a class="sourceLine" id="cb1-2" title="2">   <span class="ex">add</span>        Add file contents to the index</a>
 <a class="sourceLine" id="cb1-3" title="3">   <span class="ex">bisect</span>     Find by binary search the change that introduced a bug</a>
 <a class="sourceLine" id="cb1-4" title="4">   <span class="ex">branch</span>     List, create, or delete branches</a>
@@ -237,7 +237,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <a class="sourceLine" id="cb3-12" title="12"></a>
 <a class="sourceLine" id="cb3-13" title="13"><span class="co">## 2016.1.31</span></a>
 <a class="sourceLine" id="cb3-14" title="14">回家过年</a></code></pre></div></section><section id="git-init-在文件夹中创建git库" class="title-slide slide level2"><h2>git init 在文件夹中创建git库</h2><div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb4-1" title="1">$ <span class="fu">git</span> init</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="ex">Initialized</span> empty Git repository in /Users/wangkevin/workspace/demo/mydiary/.git/</a></code></pre></div></section><section id="和svn有.svn类似git也有.git" class="title-slide slide level2"><h2>和SVN有.svn类似，git也有.git</h2><div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" title="1">$ <span class="fu">ls</span> -a</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="ex">Initialized</span> empty Git repository in /Users/kevin/workspace/demo/mydiary/.git/</a></code></pre></div></section><section id="和svn有.svn类似git也有.git" class="title-slide slide level2"><h2>和SVN有.svn类似，git也有.git</h2><div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb5-1" title="1">$ <span class="fu">ls</span> -a</a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="bu">.</span>       <span class="ex">..</span>      .git        diary.md</a>
 <a class="sourceLine" id="cb5-3" title="3">$ <span class="fu">ls</span> .git</a>
 <a class="sourceLine" id="cb5-4" title="4"><span class="ex">HEAD</span>        config      hooks       objects</a>
@@ -299,7 +299,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <a class="sourceLine" id="cb14-3" title="3"><span class="ex">Author</span>: wkevin <span class="op">&lt;</span>wkevin27@gmail.com<span class="op">&gt;</span></a>
 <a class="sourceLine" id="cb14-4" title="4"><span class="ex">Date</span>:   Sun Jan 31 11:39:55 2016 +0800</a>
 <a class="sourceLine" id="cb14-5" title="5"></a>
-<a class="sourceLine" id="cb14-6" title="6">    <span class="ex">create</span> mydiary</a></code></pre></div></section><section id="section" class="title-slide slide level2"><h2></h2><p>每天可以随时写日记、随时<code>git add</code>、适时<code>git commit</code>，经过一段时间，你的diary库就越来越让你爱不释手了</p>
+<a class="sourceLine" id="cb14-6" title="6">    <span class="ex">create</span> mydiary</a></code></pre></div></section><section id="section-1" class="title-slide slide level2"><h2></h2><p>每天可以随时写日记、随时<code>git add</code>、适时<code>git commit</code>，经过一段时间，你的diary库就越来越让你爱不释手了</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb15-1" title="1">$ <span class="fu">git</span> log</a>
 <a class="sourceLine" id="cb15-2" title="2"><span class="ex">commit</span> 67840e1813af1084abd5d07d2e2a2e185c679f09</a>
 <a class="sourceLine" id="cb15-3" title="3"><span class="ex">Author</span>: wkevin <span class="op">&lt;</span>wkevin27@gmail.com<span class="op">&gt;</span></a>
@@ -485,13 +485,7 @@ stage本身并没有暂存的意思，git中可以理解为把文件放到一个
 <a class="sourceLine" id="cb29-5" title="5"><span class="ex">15</span>  *.a</a>
 <a class="sourceLine" id="cb29-6" title="6"><span class="ex">16</span>  *.s</a>
 <a class="sourceLine" id="cb29-7" title="7"><span class="ex">17</span>  *.ko</a>
-<a class="sourceLine" id="cb29-8" title="8"><span class="ex">18</span>  *.so</a>
-<a class="sourceLine" id="cb29-9" title="9"><span class="ex">......</span></a>
-<a class="sourceLine" id="cb29-10" title="10"><span class="ex">102</span>  <span class="co"># Kconfig presets</span></a>
-<a class="sourceLine" id="cb29-11" title="11"><span class="ex">103</span>  all.config</a>
-<a class="sourceLine" id="cb29-12" title="12"><span class="ex">104</span>  </a>
-<a class="sourceLine" id="cb29-13" title="13"><span class="ex">105</span>  <span class="co"># Kdevelop4</span></a>
-<a class="sourceLine" id="cb29-14" title="14"><span class="ex">106</span>  *.kdev4</a></code></pre></div></section></section>
+<a class="sourceLine" id="cb29-8" title="8"><span class="ex">18</span>  *.so</a></code></pre></div></section></section>
 <section><section id="git-commit" class="title-slide slide level1"><h1>git commit</h1></section><section id="focal-point-1" class="title-slide slide level2"><h2>Focal Point</h2><ul>
 <li>git commit -a/–all : 提交所有已暂存、未暂存、未追踪的文件</li>
 <li>git commit -m “xxx”</li>
@@ -703,7 +697,7 @@ stage本身并没有暂存的意思，git中可以理解为把文件放到一个
 <a class="sourceLine" id="cb39-6" title="6"><span class="ex">5</span>             <span class="op">&lt;</span></a>
 <a class="sourceLine" id="cb39-7" title="7"><span class="ex">6</span>               6</a>
 <a class="sourceLine" id="cb39-8" title="8"><span class="ex">7</span>               7</a>
-<a class="sourceLine" id="cb39-9" title="9">              <span class="op">&gt;</span> <span class="ex">8</span></a></code></pre></div></section><section id="section-1" class="title-slide slide level2"><h2></h2><div class="sourceCode" id="cb40"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb40-1" title="1">$ <span class="fu">diff</span> 1.txt 2.txt       </a>
+<a class="sourceLine" id="cb39-9" title="9">              <span class="op">&gt;</span> <span class="ex">8</span></a></code></pre></div></section><section id="section-2" class="title-slide slide level2"><h2></h2><div class="sourceCode" id="cb40"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb40-1" title="1">$ <span class="fu">diff</span> 1.txt 2.txt       </a>
 <a class="sourceLine" id="cb40-2" title="2"><span class="ex">3c3</span>    </a>
 <a class="sourceLine" id="cb40-3" title="3"><span class="op">&lt;</span> <span class="ex">3</span>    </a>
 <a class="sourceLine" id="cb40-4" title="4"><span class="ex">---</span></a>
@@ -717,7 +711,7 @@ stage本身并没有暂存的意思，git中可以理解为把文件放到一个
 <li>&lt; 3 / &gt; 7: change 方式为 1.txt 删除字符3， 2.txt 增加字符7</li>
 <li>5d4: 1.txt的第5行 delete</li>
 <li>……</li>
-</ul></section><section id="section-2" class="title-slide slide level2"><h2></h2><div class="sourceCode" id="cb41"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb41-1" title="1">$ <span class="fu">diff</span> 1.txt 2.txt -c</a>
+</ul></section><section id="section-3" class="title-slide slide level2"><h2></h2><div class="sourceCode" id="cb41"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb41-1" title="1">$ <span class="fu">diff</span> 1.txt 2.txt -c</a>
 <a class="sourceLine" id="cb41-2" title="2"><span class="ex">***</span> 1.txt 2016-07-16 19:20:03.593327527 +0800</a>
 <a class="sourceLine" id="cb41-3" title="3"><span class="ex">---</span> 2.txt 2016-07-16 19:20:38.829329212 +0800</a>
 <a class="sourceLine" id="cb41-4" title="4"><span class="ex">***************</span></a>
@@ -740,7 +734,7 @@ stage本身并没有暂存的意思，git中可以理解为把文件放到一个
 <ul>
 <li>"***"表示变动前的文件</li>
 <li>“—”表示变动后的文件</li>
-</ul></section><section id="section-3" class="title-slide slide level2"><h2></h2><div class="sourceCode" id="cb42"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb42-1" title="1">$ <span class="fu">diff</span> 1.txt 2.txt -u</a>
+</ul></section><section id="section-4" class="title-slide slide level2"><h2></h2><div class="sourceCode" id="cb42"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb42-1" title="1">$ <span class="fu">diff</span> 1.txt 2.txt -u</a>
 <a class="sourceLine" id="cb42-2" title="2"><span class="ex">---</span> 1.txt 2016-07-16 19:20:03.593327527 +0800</a>
 <a class="sourceLine" id="cb42-3" title="3"><span class="ex">+++</span> 2.txt 2016-07-16 19:20:38.829329212 +0800</a>
 <a class="sourceLine" id="cb42-4" title="4"><span class="ex">@@</span> -1,7 +1,7 @@</a>
@@ -946,7 +940,7 @@ stage本身并没有暂存的意思，git中可以理解为把文件放到一个
 <li>git merge –no-ff</li>
 </ul></li>
 </ul></section></section>
-<section><section id="git-进阶" class="title-slide slide level1" data-background-color="#3962c3"><h1>Git 进阶</h1></section><section id="wkevins-cheatsheet" class="title-slide slide level2"><h2>wkevin’s cheatsheet</h2><embed src="img/git-common-cmd.png" type="image/svg+xml" style="background-color:white" /></section></section>
+<section><section id="git-进阶" class="title-slide slide level1" data-background-color="#3962c3"><h1>Git 进阶</h1></section><section id="wkevins-cheatsheet" class="title-slide slide level2"><h2>wkevin’s cheatsheet</h2><p><img data-src="img/git-common-cmd.png" /></p></section></section>
 <section id="git-remote" class="title-slide slide level1"><h1>git remote</h1></section>
 <section><section id="git-reset" class="title-slide slide level1"><h1>git reset</h1></section><section id="原理图-3" class="title-slide slide level2"><h2>原理图</h2><embed src="img/git-reset.svg" type="image/svg+xml" style="background-color:white" /></section></section>
 <section id="git-rebase" class="title-slide slide level1"><h1>git rebase</h1></section>
@@ -991,11 +985,10 @@ stage本身并没有暂存的意思，git中可以理解为把文件放到一个
 </ul></section><section id="centralized-workflow-集中式工作流" class="title-slide slide level2"><h2>Centralized Workflow<br>集中式工作流</h2><p><img data-src="img/centralized_workflow.png" /></p></section><section id="integration-manager-workflow-集成管理者工作流" class="title-slide slide level2"><h2>Integration-Manager Workflow<br>集成管理者工作流</h2><p><img data-src="img/integration-manager.png" /></p></section><section id="dictator-and-lieutenants-workflow-司令官与副官工作流" class="title-slide slide level2"><h2>Dictator and Lieutenants Workflow<br>司令官与副官工作流</h2><p><img data-src="img/benevolent-dictator.png" /></p></section><section id="githubgitlab-的管理方式" class="title-slide slide level2"><h2>github/gitlab 的管理方式</h2><p><a href="https://guides.github.com/introduction/flow/">Understanding the GitHub Flow</a></p></section></section>
 <section><section id="最后" class="title-slide slide level1"><h1>最后</h1></section><section id="几点建议" class="title-slide slide level2"><h2>几点建议</h2><ul>
 <li class="fragment">用命令行，远离GUI</li>
-<li class="fragment">用快捷键，随时调出命令行</li>
 <li class="fragment">用简文本，尽量抛弃word、excel、powerpoint等富文本</li>
 <li class="fragment">扬Git之开源、共享精神</li>
 <li class="fragment">开胸怀、学习新知识</li>
-<li class="fragment">it和svn是可以共存的</li>
+<li class="fragment">git和svn是可以共存的，不要一刀切</li>
 </ul></section></section>
 <section id="end-thank-you" class="title-slide slide level1"><h1>End<br><br>Thank you!</h1></section>
     </div>

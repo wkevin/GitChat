@@ -95,7 +95,7 @@
 
 # Git 常用命令
 
-## git help 给出的关键命令
+##
 
 ```bash
 $ git help
@@ -168,7 +168,7 @@ $ cat diary.md
 ## git init 在文件夹中创建git库
 ```bash
 $ git init
-Initialized empty Git repository in /Users/wangkevin/workspace/demo/mydiary/.git/
+Initialized empty Git repository in /Users/kevin/workspace/demo/mydiary/.git/
 ```
 
 ## 和SVN有.svn类似，git也有.git
@@ -526,12 +526,6 @@ linux.git$ cat .gitignore
 16  *.s
 17  *.ko
 18  *.so
-......
-102  # Kconfig presets
-103  all.config
-104  
-105  # Kdevelop4
-106  *.kdev4
 ```
 
 
@@ -1059,7 +1053,7 @@ GitChat.git$ git branch --contains 9d8d
 
 ## wkevin's cheatsheet
 
-<embed src="img/git-common-cmd.png" type="image/svg+xml" style="background-color:white" />
+![](img/git-common-cmd.png)
 
 # git remote
 
@@ -1131,10 +1125,9 @@ GitChat.git$ git branch --contains 9d8d
 
 >
 - 用命令行，远离GUI
-- 用快捷键，随时调出命令行
 - 用简文本，尽量抛弃word、excel、powerpoint等富文本
 - 扬Git之开源、共享精神
 - 开胸怀、学习新知识
-- it和svn是可以共存的
+- git和svn是可以共存的，不要一刀切
 
 # End<br><br>Thank you!
