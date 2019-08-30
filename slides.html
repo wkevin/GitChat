@@ -221,7 +221,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <p>快速记忆，请写出至少5个git的命令</p>
 </blockquote></section><section id="git的逻辑分区及几个关键命令" class="title-slide slide level2"><h2>Git的逻辑分区及几个关键命令</h2><p><img src="img/git-logic-field.png" width="70%" /></p></section><section id="practice-1" class="title-slide slide level2"><h2>Practice</h2><blockquote>
 <p>请绘出上页的图</p>
-</blockquote></section><section id="wkevin版的绘图" class="title-slide slide level2"><h2>wkevin版的绘图</h2><p><img src="img/git-common-cmd.png" width="100%" /></p></section></section>
+</blockquote></section></section>
 <section><section id="git-my-diary" class="title-slide slide level1"><h1>Git my diary</h1><p>一个完整的日记示例</p></section><section id="最基本的两个配置name-和-email" class="title-slide slide level2"><h2>最基本的两个配置：name 和 email</h2><div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1">$ <span class="fu">git</span> config --global user.name wkevin</a>
 <a class="sourceLine" id="cb2-2" title="2">$ <span class="fu">git</span> config --global user.emal wkevin27@gmail.com</a></code></pre></div></section><section id="创建一个文件夹并写一篇日记" class="title-slide slide level2"><h2>创建一个文件夹并写一篇日记</h2><div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb3-1" title="1"><span class="ex">MBP</span>:demo wangkevin$ mkdir mydiary</a>
 <a class="sourceLine" id="cb3-2" title="2"><span class="ex">MBP</span>:demo wangkevin$ cd mydiary</a>
@@ -442,7 +442,7 @@ code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
 <a class="sourceLine" id="cb27-15" title="15"><span class="ex">alias.sur</span>=submodule update --remote</a>
 <a class="sourceLine" id="cb27-16" title="16"><span class="ex">alias.tags</span>=log --tags --simplify-by-decoration --pretty=<span class="st">&quot;format:%ci %d&quot;</span></a>
 <a class="sourceLine" id="cb27-17" title="17"><span class="ex">alias.dt</span>=difftool</a></code></pre></div></section></section>
-<section><section id="git-add" class="title-slide slide level1"><h1>git add</h1></section><section id="focal-point" class="title-slide slide level2"><h2>Focal Point</h2><ul>
+<section><section id="git-add" class="title-slide slide level1"><h1>git add</h1></section><section id="原理图" class="title-slide slide level2"><h2>原理图</h2><embed src="img/git-add.svg" type="image/svg+xml" style="background-color:white" /></section><section id="focal-point" class="title-slide slide level2"><h2>Focal Point</h2><ul>
 <li>git add onefile</li>
 <li>git add .</li>
 <li>git add onefolder/.</li>
@@ -491,7 +491,7 @@ stage本身并没有暂存的意思，git中可以理解为把文件放到一个
 <a class="sourceLine" id="cb29-11" title="11"><span class="ex">103</span>  all.config</a>
 <a class="sourceLine" id="cb29-12" title="12"><span class="ex">104</span>  </a>
 <a class="sourceLine" id="cb29-13" title="13"><span class="ex">105</span>  <span class="co"># Kdevelop4</span></a>
-<a class="sourceLine" id="cb29-14" title="14"><span class="ex">106</span>  *.kdev4</a></code></pre></div></section><section id="原理图" class="title-slide slide level2"><h2>原理图</h2><embed src="img/git-add.svg" type="image/svg+xml" style="background-color:white" /></section></section>
+<a class="sourceLine" id="cb29-14" title="14"><span class="ex">106</span>  *.kdev4</a></code></pre></div></section></section>
 <section><section id="git-commit" class="title-slide slide level1"><h1>git commit</h1></section><section id="focal-point-1" class="title-slide slide level2"><h2>Focal Point</h2><ul>
 <li>git commit -a/–all : 提交所有已暂存、未暂存、未追踪的文件</li>
 <li>git commit -m “xxx”</li>
@@ -901,9 +901,7 @@ stage本身并没有暂存的意思，git中可以理解为把文件放到一个
 <a class="sourceLine" id="cb48-3" title="3">  <span class="ex">zte</span></a></code></pre></div>
 </div></section></section>
 <section><section id="git-checkout" class="title-slide slide level1"><h1>git checkout</h1></section><section id="原理图-1" class="title-slide slide level2"><h2>原理图</h2><embed src="img/git-checkout.svg" type="image/svg+xml" style="background-color:white" /></section></section>
-<section id="git-fetch" class="title-slide slide level1"><h1>git fetch</h1></section>
-<section id="git-pull" class="title-slide slide level1"><h1>git pull</h1></section>
-<section id="git-push" class="title-slide slide level1"><h1>git push</h1></section>
+<section><section id="git-fetchpullpush" class="title-slide slide level1"><h1>git fetch/pull/push</h1></section><section id="原理图-2" class="title-slide slide level2"><h2>原理图</h2><embed src="img/git-remote.svg" type="image/svg+xml" style="background-color:white" /></section></section>
 <section><section id="git-merge" class="title-slide slide level1"><h1>git merge</h1></section><section id="focal-point-3" class="title-slide slide level2"><h2>Focal Point</h2><ul>
 <li>不必从干净的工作目录开始合并</li>
 <li>但劝你最好从干净的工作目录开始合并，除非你想把自己搞晕</li>
@@ -948,8 +946,8 @@ stage本身并没有暂存的意思，git中可以理解为把文件放到一个
 <li>git merge –no-ff</li>
 </ul></li>
 </ul></section></section>
-<section id="git-进阶" class="title-slide slide level1" data-background-color="#3962c3"><h1>Git 进阶</h1></section>
-<section><section id="git-remote" class="title-slide slide level1"><h1>git remote</h1></section><section id="原理图-2" class="title-slide slide level2"><h2>原理图</h2><embed src="img/git-remote.svg" type="image/svg+xml" style="background-color:white" /></section></section>
+<section><section id="git-进阶" class="title-slide slide level1" data-background-color="#3962c3"><h1>Git 进阶</h1></section><section id="wkevins-cheatsheet" class="title-slide slide level2"><h2>wkevin’s cheatsheet</h2><embed src="img/git-common-cmd.png" type="image/svg+xml" style="background-color:white" /></section></section>
+<section id="git-remote" class="title-slide slide level1"><h1>git remote</h1></section>
 <section><section id="git-reset" class="title-slide slide level1"><h1>git reset</h1></section><section id="原理图-3" class="title-slide slide level2"><h2>原理图</h2><embed src="img/git-reset.svg" type="image/svg+xml" style="background-color:white" /></section></section>
 <section id="git-rebase" class="title-slide slide level1"><h1>git rebase</h1></section>
 <section id="git-object" class="title-slide slide level1"><h1>Git Object</h1></section>
@@ -992,24 +990,12 @@ stage本身并没有暂存的意思，git中可以理解为把文件放到一个
 </ul></li>
 </ul></section><section id="centralized-workflow-集中式工作流" class="title-slide slide level2"><h2>Centralized Workflow<br>集中式工作流</h2><p><img data-src="img/centralized_workflow.png" /></p></section><section id="integration-manager-workflow-集成管理者工作流" class="title-slide slide level2"><h2>Integration-Manager Workflow<br>集成管理者工作流</h2><p><img data-src="img/integration-manager.png" /></p></section><section id="dictator-and-lieutenants-workflow-司令官与副官工作流" class="title-slide slide level2"><h2>Dictator and Lieutenants Workflow<br>司令官与副官工作流</h2><p><img data-src="img/benevolent-dictator.png" /></p></section><section id="githubgitlab-的管理方式" class="title-slide slide level2"><h2>github/gitlab 的管理方式</h2><p><a href="https://guides.github.com/introduction/flow/">Understanding the GitHub Flow</a></p></section></section>
 <section><section id="最后" class="title-slide slide level1"><h1>最后</h1></section><section id="几点建议" class="title-slide slide level2"><h2>几点建议</h2><ul>
-<li>
-使用命令行，远离GUI
-</li>
-<li class="fragment">
-使用快捷键，随时调出命令行
-</li>
-<li class="fragment">
-使用简文本，尽量抛弃word、excel、powerpoint等富文本
-</li>
-<li class="fragment">
-发扬Git之开源、共享精神
-</li>
-<li class="fragment">
-敞开胸怀、学习新知识
-</li>
-<li class="fragment">
-git和svn是可以共存的
-</li>
+<li class="fragment">用命令行，远离GUI</li>
+<li class="fragment">用快捷键，随时调出命令行</li>
+<li class="fragment">用简文本，尽量抛弃word、excel、powerpoint等富文本</li>
+<li class="fragment">扬Git之开源、共享精神</li>
+<li class="fragment">开胸怀、学习新知识</li>
+<li class="fragment">it和svn是可以共存的</li>
 </ul></section></section>
 <section id="end-thank-you" class="title-slide slide level1"><h1>End<br><br>Thank you!</h1></section>
     </div>

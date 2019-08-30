@@ -134,9 +134,6 @@ $ git help
 
 >请绘出上页的图
 
-## wkevin版的绘图
-
-<img src="img/git-common-cmd.png" width="100%" />
 
 
 
@@ -469,6 +466,10 @@ alias.dt=difftool
 
 # git add
 
+## 原理图
+
+<embed src="img/git-add.svg" type="image/svg+xml" style="background-color:white" />
+
 ## Focal Point
 
 * git add onefile
@@ -533,9 +534,6 @@ linux.git$ cat .gitignore
 106  *.kdev4
 ```
 
-## 原理图
-
-<embed src="img/git-add.svg" type="image/svg+xml" style="background-color:white" />
 
 # git commit
 
@@ -1002,11 +1000,11 @@ GitChat.git$ git branch --contains 9d8d
 
 <embed src="img/git-checkout.svg" type="image/svg+xml" style="background-color:white" />
 
-# git fetch
+# git fetch/pull/push
 
-# git pull
+## 原理图
 
-# git push
+<embed src="img/git-remote.svg" type="image/svg+xml" style="background-color:white" />
 
 
 # git merge
@@ -1059,12 +1057,11 @@ GitChat.git$ git branch --contains 9d8d
 
 # Git 进阶 {data-background-color="#3962c3"}
 
+## wkevin's cheatsheet
+
+<embed src="img/git-common-cmd.png" type="image/svg+xml" style="background-color:white" />
+
 # git remote
-
-## 原理图
-
-<embed src="img/git-remote.svg" type="image/svg+xml" style="background-color:white" />
-
 
 # git reset
 
@@ -1132,13 +1129,12 @@ GitChat.git$ git branch --contains 9d8d
 
 ## 几点建议
 
-<ul>
-<li>使用命令行，远离GUI</li>
-<li class="fragment">使用快捷键，随时调出命令行</li>
-<li class="fragment">使用简文本，尽量抛弃word、excel、powerpoint等富文本</li>
-<li class="fragment">发扬Git之开源、共享精神</li>
-<li class="fragment">敞开胸怀、学习新知识</li>
-<li class="fragment">git和svn是可以共存的</li>
-</ul>
+>
+- 用命令行，远离GUI
+- 用快捷键，随时调出命令行
+- 用简文本，尽量抛弃word、excel、powerpoint等富文本
+- 扬Git之开源、共享精神
+- 开胸怀、学习新知识
+- it和svn是可以共存的
 
 # End<br><br>Thank you!
