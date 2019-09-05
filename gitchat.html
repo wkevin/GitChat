@@ -16,6 +16,68 @@
     <!-- Custom styles for this template -->
     <link href="assets/css/dashboard.css" rel="stylesheet">
 
+    <style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  { color: #cccccc; background-color: #303030; }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ffcfaf; } /* Alert */
+code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+code span.at { } /* Attribute */
+code span.bn { color: #dca3a3; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #f0dfaf; } /* ControlFlow */
+code span.ch { color: #dca3a3; } /* Char */
+code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+code span.co { color: #7f9f7f; } /* Comment */
+code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+code span.do { color: #7f9f7f; } /* Documentation */
+code span.dt { color: #dfdfbf; } /* DataType */
+code span.dv { color: #dcdccc; } /* DecVal */
+code span.er { color: #c3bf9f; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #c0bed1; } /* Float */
+code span.fu { color: #efef8f; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+code span.kw { color: #f0dfaf; } /* Keyword */
+code span.op { color: #f0efd0; } /* Operator */
+code span.ot { color: #efef8f; } /* Other */
+code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+code span.sc { color: #dca3a3; } /* SpecialChar */
+code span.ss { color: #cc9393; } /* SpecialString */
+code span.st { color: #cc9393; } /* String */
+code span.va { } /* Variable */
+code span.vs { color: #cc9393; } /* VerbatimString */
+code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+    </style>
     <link rel="stylesheet" href="assets/css/md2html.css" />
   </head>
 
@@ -56,6 +118,7 @@
           <li><a href="#git-merge-有没有图形化的工具">git merge 有没有图形化的工具</a></li>
           <li><a href="#git分支之间的关系能否图示">git分支之间的关系能否图示</a></li>
           <li><a href="#分支名能否用中文">分支名能否用中文</a></li>
+          <li><a href="#分支太多容易分不清咋办">分支太多容易分不清咋办</a></li>
           </ul></li>
           <li><a href="#round-4-协作">Round 4 : 协作</a><ul>
           <li><a href="#想看看别人的git库了">想看看别人的git库了</a></li>
@@ -1044,6 +1107,14 @@ kevin@T410:~$ echo $?
 8. They cannot contain a sequence @{.
 9. They cannot be the single character @.
 10. They cannot contain a \.</code></pre>
+<h2 id="分支太多容易分不清咋办">分支太多容易分不清咋办</h2>
+<pre><code>$ vi ~/.bashrc</code></pre>
+<p>增加</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb74-1" title="1"><span class="kw">function</span><span class="fu"> git-branch-prompt</span> <span class="kw">{</span></a>
+<a class="sourceLine" id="cb74-2" title="2">  <span class="bu">local</span> <span class="va">branch=</span><span class="kw">`</span><span class="fu">git</span> symbolic-ref --short -q HEAD<span class="kw">`</span></a>
+<a class="sourceLine" id="cb74-3" title="3">  <span class="kw">if</span><span class="bu"> [</span> <span class="va">$branch</span><span class="bu"> ]</span>; <span class="kw">then</span> <span class="bu">printf</span> <span class="st">&quot; [%s]&quot;</span> <span class="va">$branch</span><span class="kw">;</span> <span class="kw">fi</span></a>
+<a class="sourceLine" id="cb74-4" title="4"><span class="kw">}</span></a>
+<a class="sourceLine" id="cb74-5" title="5"><span class="va">PS1=</span><span class="st">&quot;\u @ \[\033[0;36m\]\W\[\033[0m\]\[\033[0;32m\]</span><span class="dt">\$</span><span class="st">(git-branch-prompt)\[\033[0m\] </span><span class="dt">\$</span><span class="st"> &quot;</span></a></code></pre></div>
 <hr />
 <p>学会了分支操作（创建、合并、冲突……）是与人合作的基础，你是否已经准备好了走出个人的宇宙，拥抱开源的大世界了！</p>
 <p>第3局，Over！</p>

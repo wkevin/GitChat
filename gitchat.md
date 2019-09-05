@@ -1068,6 +1068,21 @@ Git imposes the following rules on how references are named:
 10. They cannot contain a \.
 ```
 
+## 分支太多容易分不清咋办
+
+```
+$ vi ~/.bashrc
+```
+
+增加
+```bash
+function git-branch-prompt {
+  local branch=`git symbolic-ref --short -q HEAD`
+  if [ $branch ]; then printf " [%s]" $branch; fi
+}
+PS1="\u @ \[\033[0;36m\]\W\[\033[0m\]\[\033[0;32m\]\$(git-branch-prompt)\[\033[0m\] \$ "
+```
+
 ---
 
 学会了分支操作（创建、合并、冲突……）是与人合作的基础，你是否已经准备好了走出个人的宇宙，拥抱开源的大世界了！
