@@ -1077,7 +1077,7 @@ $ vi ~/.bashrc
 增加
 ```bash
 function git-branch-prompt {
-  local branch=`git symbolic-ref --short -q HEAD`
+  local branch=`git symbolic-ref --short -q HEAD 2>/dev/null`
   if [ $branch ]; then printf " [%s]" $branch; fi
 }
 PS1="\u @ \[\033[0;36m\]\W\[\033[0m\]\[\033[0;32m\]\$(git-branch-prompt)\[\033[0m\] \$ "

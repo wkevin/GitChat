@@ -1111,7 +1111,7 @@ kevin@T410:~$ echo $?
 <pre><code>$ vi ~/.bashrc</code></pre>
 <p>增加</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb74-1" title="1"><span class="kw">function</span><span class="fu"> git-branch-prompt</span> <span class="kw">{</span></a>
-<a class="sourceLine" id="cb74-2" title="2">  <span class="bu">local</span> <span class="va">branch=</span><span class="kw">`</span><span class="fu">git</span> symbolic-ref --short -q HEAD<span class="kw">`</span></a>
+<a class="sourceLine" id="cb74-2" title="2">  <span class="bu">local</span> <span class="va">branch=</span><span class="kw">`</span><span class="fu">git</span> symbolic-ref --short -q HEAD <span class="op">2&gt;</span>/dev/null<span class="kw">`</span></a>
 <a class="sourceLine" id="cb74-3" title="3">  <span class="kw">if</span><span class="bu"> [</span> <span class="va">$branch</span><span class="bu"> ]</span>; <span class="kw">then</span> <span class="bu">printf</span> <span class="st">&quot; [%s]&quot;</span> <span class="va">$branch</span><span class="kw">;</span> <span class="kw">fi</span></a>
 <a class="sourceLine" id="cb74-4" title="4"><span class="kw">}</span></a>
 <a class="sourceLine" id="cb74-5" title="5"><span class="va">PS1=</span><span class="st">&quot;\u @ \[\033[0;36m\]\W\[\033[0m\]\[\033[0;32m\]</span><span class="dt">\$</span><span class="st">(git-branch-prompt)\[\033[0m\] </span><span class="dt">\$</span><span class="st"> &quot;</span></a></code></pre></div>
