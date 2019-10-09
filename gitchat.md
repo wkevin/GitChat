@@ -1004,6 +1004,8 @@ $ git log --pretty=oneline --graph
 * 3d7cdeec5f90a16934a2cfd35a089c78aa0e4816 remove duplicate item in: who uses it
 ```
 
+关于 git branch 之间的图示，有一些软件做出了不同的展示，[这里](https://pvigier.github.io/2019/05/06/commit-graph-drawing-algorithms.html) 有一篇文章对比展示了 gitk、gitkraken、smartgit、sourcetree……多个软件的效果，并且自己也开发了 gitamine 来图示。
+
 ## 分支名能否用中文
 
 关于分支的命名，可以用一条git命令来检查： git check-ref-format —— 它的返回值为0表示git接受此命名，否则不接受。比如：
