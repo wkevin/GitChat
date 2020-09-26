@@ -1351,20 +1351,19 @@ $ export http_proxy     //再次export即可</code></pre>
 </ul></li>
 </ol>
 <h2 id="通过http-push时每次都要求输入namepassword能否避开">通过http push时每次都要求输入name/password，能否避开</h2>
-<p>通过ssh push时都是不必输入用户名和密码的，http/https的都要，相当麻烦，可以这样解决：</p>
 <ul>
-<li>配置git</li>
+<li>配置是否需要 git 认证小助手把密码存储起来</li>
 </ul>
 <pre class="cmd"><code>$ git config credential.helper store</code></pre>
-<ul>
-<li>创建<code>.git-credentials</code>文件，替换其中的 name 和 password</li>
-</ul>
-<pre class="cmd"><code>$ cd ~
-$ echo &quot;https://&lt;name&gt;:&lt;password&gt;@github.com&quot; &gt; .git-credentials
-$ cat .git-credentials
-https://&lt;name&gt;:&lt;password&gt;@github.com</code></pre>
-<p>欧儿了！</p>
-<p>需要注意的一点是：如果你打开了<strong>两步验证</strong>，则通常意义的password已经不能使用，网站会提供tocken给你替代password，请在 .git-credentials 文件中用 tocken 替代之。</p>
+<p>以后 <code>git push</code> 再要求输入用户名、密码后，会保存在 ~/.git-credentials 文件中。</p>
+<p>或者，也可以手工创建<code>.git-credentials</code>文件，替换其中的 name 和 password:</p>
+<pre class="cmd"><code>$ echo &quot;https://&lt;name&gt;:&lt;password&gt;@github.com&quot; &gt; ~/.git-credentials</code></pre>
+<p>注意几点：</p>
+<ol type="1">
+<li>~/.git-credentials 打开可看到明文密码 ，<strong>所以，千万不要在公用电脑上配置此项。</strong></li>
+<li>如果有多个 github 账号，保存/备份好 ~/.git-credentials 文件，不要搞混、搞丢失了。</li>
+<li>如果你打开了<strong>两步验证</strong>，则通常意义的password已经不能使用，网站会提供tocken给你替代password，请在 ~/.git-credentials 文件中用 tocken 替代之。</li>
+</ol>
 <h2 id="如何删除远程分支">如何删除远程分支</h2>
 <ul>
 <li>删除本地分支是： <code>git branch remove &lt;branchName&gt;</code></li>
