@@ -8,8 +8,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="reveal.js/css/reset.css">
-  <link rel="stylesheet" href="reveal.js/css/reveal.css">
+  <link rel="stylesheet" href="reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="reveal.js/dist/reveal.css">
   <style>
       code{white-space: pre-wrap;}
       span.smallcaps{font-variant: small-caps;}
@@ -78,19 +78,17 @@ code span.va { } /* Variable */
 code span.vs { color: #cc9393; } /* VerbatimString */
 code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
   </style>
-  <link rel="stylesheet" href="reveal.js/css/theme/league.css" id="theme">
+  <link rel="stylesheet" href="reveal.js/dist/theme/league.css" id="theme">
+  <link rel="stylesheet" href="reveal.js/plugin/highlight/monokai.css">
   <link rel="stylesheet" href="assets/css/slides.css"/>
   <!-- Printing and PDF exports -->
   <script>
     var link = document.createElement( 'link' );
     link.rel = 'stylesheet';
     link.type = 'text/css';
-    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.css' : 'reveal.js/css/print/paper.css';
+    link.href = window.location.search.match( /print-pdf/gi ) ? 'reveal.js/css/print/pdf.scss' : 'reveal.js/css/print/paper.scss';
     document.getElementsByTagName( 'head' )[0].appendChild( link );
   </script>
-  <!--[if lt IE 9]>
-  <script src="reveal.js/lib/js/html5shiv.js"></script>
-  <![endif]-->
 </head>
 <body>
   <div class="reveal">
@@ -1029,7 +1027,10 @@ stage本身并没有暂存的意思，git中可以理解为把文件放到一个
     </div>
   </div>
 
-  <script src="reveal.js/js/reveal.js"></script>
+  <script src="reveal.js/dist/reveal.js"></script>
+  <script src="reveal.js/plugin/notes/notes.js"></script>
+  <script src="reveal.js/plugin/markdown/markdown.js"></script>
+  <script src="reveal.js/plugin/highlight/highlight.js"></script>
 
   <script>
 
@@ -1042,11 +1043,7 @@ stage本身并没有暂存的意思，git中可以理解为把文件放到一个
         center: true,
 
         // Optional reveal.js plugins
-        dependencies: [
-          { src: 'reveal.js/lib/js/classList.js', condition: function() { return !document.body.classList; } },
-          { src: 'reveal.js/plugin/zoom-js/zoom.js', async: true },
-          { src: 'reveal.js/plugin/notes/notes.js', async: true }
-        ]
+        plugins: [ RevealMarkdown,  RevealNotes ]
       });
     </script>
     </body>
