@@ -1445,7 +1445,7 @@ $ echo "https://<name>:<password>@github.com" > ~/.git-credentials
 
 ## 如何删除远程分支
 
-- 删除本地分支是： `git branch remove <branchName>`
+- 删除本地分支是： `git branch -D <branchName>`
 - 删除远程分支：
   - `git push origin :<branchName>`
   - `git push origin --delete <branchName>`
